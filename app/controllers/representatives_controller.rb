@@ -65,6 +65,6 @@ class RepresentativesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def representative_params
-      params.require(:representative).permit(:first_name, :last_name, :title, :university_id)
+      params.require(:representative).permit(:first_name, :last_name, :title, :university_id,:rep_email)
     end
 end

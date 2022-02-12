@@ -8,6 +8,10 @@
       <th>First name</th>
       <th>Last name</th>
       <th>University</th>
+      <th>Degree level</th>
+      <th>Major/Area of Study</th>
+      <th>Term of exchange</th>
+      <th>Email</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,6 +22,10 @@
         <td><%= student.first_name %></td>
         <td><%= student.last_name %></td>
         <td><%= student.university_id %></td>
+        <td><%= student.degree_level %></td>
+        <td><%= student.major %></td>
+        <td><%= student.exchange_term %></td>
+        <td><%= student.student_email %></td>
         <td><%= link_to 'Show', student %></td>
         <td><%= link_to 'Edit', edit_student_path(student) %></td>
         <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>

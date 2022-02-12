@@ -6,11 +6,6 @@
   <thead>
     <tr>
       <th>University name</th>
-      <th>Rep first name</th>
-      <th>Rep last name</th>
-      <th>Rep title</th>
-      <th>Rep email</th>
-      <th>Num students</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,11 +14,6 @@
     <% @universities.each do |university| %>
       <tr>
         <td><%= university.university_name %></td>
-        <td><%= university.rep_first_name %></td>
-        <td><%= university.rep_last_name %></td>
-        <td><%= university.rep_title %></td>
-        <td><%= university.rep_email %></td>
-        <td><%= university.num_students %></td>
         <td><%= link_to 'Show', university %></td>
         <td><%= link_to 'Edit', edit_university_path(university) %></td>
         <td><%= link_to 'Destroy', university, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -16,6 +16,11 @@
 </p>
 
 <p>
+  <strong>Representive email:</strong>
+  <%= @representative.rep_email %>
+</p>
+
+<p>
   <strong>University:</strong>
   <%= University.where(id: @representative.university_id).last.university_name %>
 </p>
