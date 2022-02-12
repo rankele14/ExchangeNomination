@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @representative.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @representative.last_name %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @representative.title %>
+</p>
+
+<p>
+  <strong>University:</strong>
+  <%= University.where(id: @representative.university_id).last.university_name %>
+</p>
+
+<%= link_to 'Edit', edit_representative_path(@representative) %> |
+<%= link_to 'Continue', new_student_path %>
