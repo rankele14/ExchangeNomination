@@ -38,7 +38,7 @@
 
   <div class="field">
     <%= form.label :exchange_term %>
-    <%= form.text_field :exchange_term %>
+    <%= form.select :exchange_term, [nil,"Fall Only", "Spring Only", "Fall and Spring"] %>
   </div>
 
   <div class="field">
