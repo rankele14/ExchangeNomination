@@ -8,6 +8,7 @@ class RepresentativesController < ApplicationController
 
   # GET /representatives/1 or /representatives/1.json
   def show
+    @students = Student.where(university_id: @representative.university_id)
   end
 
   # GET /representatives/new
