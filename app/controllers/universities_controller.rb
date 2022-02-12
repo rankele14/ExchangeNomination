@@ -8,6 +8,7 @@ class UniversitiesController < ApplicationController
 
   # GET /universities/1 or /universities/1.json
   def show
+    @students = Student.where(university_id: @university.id)
   end
 
   # GET /universities/new
