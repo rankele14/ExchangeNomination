@@ -10,16 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_28_051503) do
+ActiveRecord::Schema.define(version: 2022_02_12_200911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "books", force: :cascade do |t|
+  create_table "representatives", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
     t.string "title"
-    t.string "author"
-    t.decimal "price"
-    t.date "published_date"
+    t.integer "university_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "rep_email"
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.integer "university_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "student_email"
+    t.string "exchange_term"
+    t.string "degree_level"
+    t.string "major"
+  end
+
+  create_table "universities", force: :cascade do |t|
+    t.string "university_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
