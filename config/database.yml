@@ -26,13 +26,13 @@ default: &default
 
 development:
   <<: *default
-  database: exch_nom_development
+  database: ExchangeNomination_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user running Rails.
-  #username: exch_nom
+  #username: ExchangeNomination
 
   # The password associated with the postgres role (username).
   #password:
@@ -60,7 +60,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: exch_nom_test
+  database: ExchangeNomination_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -84,6 +84,6 @@ test:
 #
 production:
   <<: *default
-  database: exch_nom_production
-  username: exch_nom
-  password: <%= ENV['EXCH_NOM_DATABASE_PASSWORD'] %>
+  database: ExchangeNomination_production
+  username: ExchangeNomination
+  password: <%= ENV['EXCHANGENOMINATION_DATABASE_PASSWORD'] %>
