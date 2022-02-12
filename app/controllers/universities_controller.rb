@@ -26,7 +26,7 @@ class UniversitiesController < ApplicationController
 
     respond_to do |format|
       if @university.save
-        format.html { redirect_to university_url(@university), notice: "University was successfully created." }
+        format.html { redirect_to universities_path notice: "University was successfully created." }
         format.json { render :show, status: :created, location: @university }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +39,7 @@ class UniversitiesController < ApplicationController
   def update
     respond_to do |format|
       if @university.update(university_params)
-        format.html { redirect_to university_url(@university), notice: "University was successfully updated." }
+        format.html { redirect_to universities_path, notice: "University was successfully updated." }
         format.json { render :show, status: :ok, location: @university }
       else
         format.html { render :edit, status: :unprocessable_entity }
