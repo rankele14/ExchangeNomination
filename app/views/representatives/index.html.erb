@@ -20,6 +20,7 @@
         <td><%= representative.last_name %></td>
         <td><%= representative.title %></td>
         <td><%= University.where(id: representative.university_id).last.university_name %></td>
+		<td><%= representative.rep_email %></td>
         <td><%= link_to 'Show', representative %></td>
         <td><%= link_to 'Edit', edit_representative_path(representative) %></td>
         <td><%= link_to 'Destroy', representative, method: :delete, data: { confirm: 'Are you sure?' } %></td>
