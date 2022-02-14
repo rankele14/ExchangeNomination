@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe 'Creating a university', type: :feature do
   scenario 'valid inputs' do
     visit new_university_path
+	click_on 'Create University'
+	expect(page).to have_content('error')
     fill_in 'University name', with: 'AM'
 	click_on 'Create University'
     visit universities_path
@@ -17,6 +19,9 @@ RSpec.describe 'Editing a university', type: :feature do
 	click_on 'Create University'
     visit universities_path
     click_on 'Edit'
+	fill_in 'University name', with: ''
+	click_on 'Update University'
+	expect(page).to have_content('error')
 	fill_in 'University name', with: 'UT'
 	click_on 'Update University'
 	visit universities_path
@@ -30,8 +35,7 @@ RSpec.describe 'Deleting a university', type: :feature do
     fill_in 'University name', with: 'AM'
 	click_on 'Create University'
     visit universities_path
-	click_on 'Delete'
-	page.driver.browser.switch_to.alert.accept
+	click_on 'Destroy'
     expect(page).not_to have_content('AM')
   end
 end
@@ -43,6 +47,8 @@ RSpec.describe 'Creating a representative', type: :feature do
 	click_on 'Create University'
     visit universities_path
 	visit new_representative_path
+	click_on 'Create Representative'
+	expect(page).to have_content('error')
 	select 'AM', :from => 'University'
 	fill_in 'First name', with: 'John'
 	fill_in 'Last name', with: 'Smith'
@@ -72,6 +78,9 @@ RSpec.describe 'Editing a representative', type: :feature do
 	click_on 'Create Representative'
     visit representatives_path
     click_on 'Edit'
+	fill_in 'First name', with: ''
+	click_on 'Update Representative'
+	expect(page).to have_content('error')
 	fill_in 'First name', with: 'Alice'
 	click_on 'Update Representative'
 	visit representatives_path
@@ -93,8 +102,7 @@ RSpec.describe 'Deleting a representative', type: :feature do
 	fill_in 'Rep email', with: 'JohnSmith@gmail.com'
 	click_on 'Create Representative'
     visit representatives_path
-    click_on 'Delete'
-	page.driver.browser.switch_to.alert.accept
+	click_on 'Destroy'
     expect(page).not_to have_content('John')
   end
 end
@@ -106,6 +114,8 @@ RSpec.describe 'Creating a student', type: :feature do
 	click_on 'Create University'
     visit universities_path
 	visit new_student_path
+	click_on 'Create Student'
+    expect(page).to have_content('error')
 	select 'AM', :from => 'University'
 	fill_in 'First name', with: 'Foo'
 	fill_in 'Last name', with: 'Bar'
@@ -141,6 +151,9 @@ RSpec.describe 'Editing a student', type: :feature do
 	click_on 'Create Student'
     visit students_path
     click_on 'Edit'
+	fill_in 'First name', with: ''
+	click_on 'Update Student'
+	expect(page).to have_content('error')
 	fill_in 'First name', with: 'Baz'
 	click_on 'Update Student'
 	visit students_path
@@ -164,8 +177,7 @@ RSpec.describe 'Deleting a student', type: :feature do
 	fill_in 'Student email', with: 'FooBar@gmail.com'
 	click_on 'Create Student'
     visit students_path
-    click_on 'Delete'
-	page.driver.browser.switch_to.alert.accept
+	click_on 'Destroy'
     expect(page).not_to have_content('Foo')
   end
 end
