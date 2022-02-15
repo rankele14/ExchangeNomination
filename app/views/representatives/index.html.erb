@@ -22,7 +22,7 @@
         <td><%= University.find(representative.university_id).university_name %></td>
         <td><%= link_to 'Show', representative %></td>
         <td><%= link_to 'Edit', edit_representative_path(representative) %></td>
-        <td><%= link_to 'Delete', representative, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', representative, method: :delete %></td>
       </tr>
     <% end %>
   </tbody>
