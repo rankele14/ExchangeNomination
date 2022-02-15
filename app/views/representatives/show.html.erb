@@ -22,7 +22,7 @@
 
 <p>
   <strong>University:</strong>
-  <%= University.find(@representative.university_id).university_name %>
+  <%= University.where(id: @representative.university_id).last.university_name %>
 </p>
 
 <%= link_to 'Edit', edit_representative_path(@representative) %> |

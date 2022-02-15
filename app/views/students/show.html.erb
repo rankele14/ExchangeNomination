@@ -36,5 +36,5 @@
 </p>
 
 <%= link_to 'Edit', edit_student_path(@student) %> |
-<%= link_to 'Enter another new student', new_student_path %> | 
-<%= link_to 'Finish', University.find(@student.university_id) %>
+<%= link_to 'Continue', new_student_path %> | 
+<%= link_to 'Finish', edit_student_path(@student) %>
