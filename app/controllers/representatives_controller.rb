@@ -10,8 +10,9 @@ class RepresentativesController < ApplicationController
   def show
   end
 
-  def admin_show
-    @representative=Representative.find(params[:id])
+  # GET /representatives/1/user_show
+  def user_show
+    @representative = Representative.find(params[:id])
   end
 
   # GET /representatives/new
@@ -19,8 +20,18 @@ class RepresentativesController < ApplicationController
     @representative = Representative.new
   end
 
+  # GET /representatives/user_new
+  def user_new
+    @representative = Representative.new
+  end
+
   # GET /representatives/1/edit
   def edit
+  end
+
+  # GET /representatives/1/user_edit
+  def user_edit
+    @representative = Representative.find(params[:id])
   end
 
   # POST /representatives or /representatives.json
@@ -33,6 +44,33 @@ class RepresentativesController < ApplicationController
         format.json { render :show, status: :created, location: @representative }
       else
         format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @representative.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def user_create
+    @representative = Representative.new(representative_params)
+
+    respond_to do |format|
+      if @representative.save
+        format.html { redirect_to user_show_representative_url(@representative), notice: "Representative was successfully created." }
+        format.json { render :show, status: :created, location: @representative }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @representative.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /representatives/1 or /representatives/1.json
+  def update
+    respond_to do |format|
+      if @representative.update(representative_params)
+        format.html { redirect_to representative_url(@representative), notice: "Representative was successfully updated." }
+        format.json { render :show, status: :ok, location: @representative }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @representative.errors, status: :unprocessable_entity }
       end
     end

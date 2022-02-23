@@ -1,7 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<h1>ADSHOW</h1>
-<br>
 <p>
   <strong>First name:</strong>
   <%= @representative.first_name %>
@@ -27,5 +25,5 @@
   <%= University.find(@representative.university_id).university_name %>
 </p>
 
-<%= link_to 'Edit', edit_representative_path(@representative) %> |
-<%= link_to 'Back', representatives_path %>
+<%= link_to 'Edit', user_edit_representative_path(@representative) %> |
+<%= link_to 'Continue', user_new_student_path %>

@@ -1,0 +1,10 @@
+<h1>Representative Info</h1>
+<br>
+<%= link_to 'Admin', admin_path %>
+<br>
+<br>
+
+<%= render 'formu', representative: @representative %>
+<!-- Need to redefine create command to link to user_show...
+how to form.submit to user_create vs create?
+might be better to do this based on authentication if/then? -->

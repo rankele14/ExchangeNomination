@@ -1,7 +1,12 @@
                                   Prefix Verb   URI Pattern                                                                                       Controller#Action
+                 user_new_representative GET    /representatives/user_new(.:format)                                                               representatives#user_new
+                        user_new_student GET    /students/user_new(.:format)                                                                      students#user_new
                    finish_representative GET    /representatives/finish(.:format)                                                                 representatives#finish
                                    admin GET    /admin(.:format)                                                                                  students#admin
-               admin_show_representative GET    /representatives/:id/admin_show(.:format)                                                         representatives#admin_show
+                 ucreate_representatives POST   /user_create1(.:format)                                                                           representatives#user_create
+                        ucreate_students POST   /user_create2(.:format)                                                                           students#user_create
+                user_show_representative GET    /representatives/:id/user_show(.:format)                                                          representatives#user_show
+                user_edit_representative GET    /representatives/:id/user_edit(.:format)                                                          representatives#user_edit
                          representatives GET    /representatives(.:format)                                                                        representatives#index
                                          POST   /representatives(.:format)                                                                        representatives#create
                       new_representative GET    /representatives/new(.:format)                                                                    representatives#new
@@ -10,7 +15,8 @@
                                          PATCH  /representatives/:id(.:format)                                                                    representatives#update
                                          PUT    /representatives/:id(.:format)                                                                    representatives#update
                                          DELETE /representatives/:id(.:format)                                                                    representatives#destroy
-                      admin_show_student GET    /students/:id/admin_show(.:format)                                                                students#admin_show
+                       user_show_student GET    /students/:id/user_show(.:format)                                                                 students#user_show
+                       user_edit_student GET    /students/:id/user_edit(.:format)                                                                 students#user_edit
                                 students GET    /students(.:format)                                                                               students#index
                                          POST   /students(.:format)                                                                               students#create
                              new_student GET    /students/new(.:format)                                                                           students#new
@@ -43,7 +49,7 @@
                                          PATCH  /universities/:id(.:format)                                                                       universities#update
                                          PUT    /universities/:id(.:format)                                                                       universities#update
                                          DELETE /universities/:id(.:format)                                                                       universities#destroy
-                                    root GET    /                                                                                                 representatives#new
+                                    root GET    /                                                                                                 representatives#user_new
            rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                           action_mailbox/ingresses/postmark/inbound_emails#create
               rails_relay_inbound_emails POST   /rails/action_mailbox/relay/inbound_emails(.:format)                                              action_mailbox/ingresses/relay/inbound_emails#create
            rails_sendgrid_inbound_emails POST   /rails/action_mailbox/sendgrid/inbound_emails(.:format)                                           action_mailbox/ingresses/sendgrid/inbound_emails#create

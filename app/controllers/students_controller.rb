@@ -14,7 +14,9 @@ class StudentsController < ApplicationController
   def show
   end
   
-  def admin_show
+  # GET /students/1/user_show
+  def user_show
+    @student = Student.find(params[:id])
   end
 
   # GET /students/new
@@ -22,8 +24,18 @@ class StudentsController < ApplicationController
     @student = Student.new
   end
 
+  # GET /students/user_new
+  def user_new
+    @student = Student.new
+  end
+
   # GET /students/1/edit
   def edit
+  end
+
+  # GET /students/1/user_edit
+  def user_edit
+    @student = Student.find(params[:id])
   end
 
   # POST /students or /students.json
@@ -33,6 +45,20 @@ class StudentsController < ApplicationController
     respond_to do |format|
       if @student.save
         format.html { redirect_to student_url(@student), notice: "Student was successfully created." }
+        format.json { render :show, status: :created, location: @student }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @student.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def user_create
+    @student = Student.new(student_params)
+
+    respond_to do |format|
+      if @student.save
+        format.html { redirect_to user_show_student_url(@student), notice: "Student was successfully created." }
         format.json { render :show, status: :created, location: @student }
       else
         format.html { render :new, status: :unprocessable_entity }
