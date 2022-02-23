@@ -5,9 +5,16 @@ class StudentsController < ApplicationController
   def index
     @students = Student.all
   end
+  
+  # this made for possible admin home page
+  def admin
+  end
 
   # GET /students/1 or /students/1.json
   def show
+  end
+  
+  def admin_show
   end
 
   # GET /students/new

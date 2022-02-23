@@ -1,0 +1,7 @@
+config/routes.db add new functions/pages
+controllers add functions for routes
+views new pages
+
+separate admin and user CRUD
+(current representative: Show2 looks correct)
+change admin to user show

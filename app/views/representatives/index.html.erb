@@ -20,7 +20,8 @@
         <td><%= representative.last_name %></td>
         <td><%= representative.title %></td>
         <td><%= University.find(representative.university_id).university_name %></td>
-        <td><%= link_to 'Show', representative %></td>
+        <td class="actions"><%= link_to("Show", representative_path(representative), :class => 'action show') %></td>
+        <td class="actions"><%= link_to("Show2", admin_show_representative_path(representative), :class => 'action admin_show') %></td>
         <td><%= link_to 'Edit', edit_representative_path(representative) %></td>
         <td><%= link_to 'Delete', representative, method: :delete %></td>
       </tr>
@@ -33,4 +34,4 @@
 <%= link_to 'New Representative', new_representative_path %>
 <br>
 <br>
-<%= link_to 'Back', students_path %>
+<%= link_to 'Back', admin_path %>

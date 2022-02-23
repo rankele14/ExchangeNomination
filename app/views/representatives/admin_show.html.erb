@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>ADSHOW</h1>
+<br>
+<p>
+  <strong>First name:</strong>
+  <%= @representative.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @representative.last_name %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @representative.title %>
+</p>
+
+<p>
+  <strong>Representive email:</strong>
+  <%= @representative.rep_email %>
+</p>
+
+<p>
+  <strong>University:</strong>
+  <%= University.find(@representative.university_id).university_name %>
+</p>
+
+<%= link_to 'Edit', edit_representative_path(@representative) %> |
+<%= link_to 'Back', representatives_path %>

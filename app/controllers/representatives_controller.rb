@@ -8,7 +8,10 @@ class RepresentativesController < ApplicationController
 
   # GET /representatives/1 or /representatives/1.json
   def show
-    @students = Student.where(university_id: @representative.university_id)
+  end
+
+  def admin_show
+    @representative=Representative.find(params[:id])
   end
 
   # GET /representatives/new
@@ -56,6 +59,9 @@ class RepresentativesController < ApplicationController
       format.html { redirect_to representatives_url, notice: "Representative was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def finish
   end
 
   private
