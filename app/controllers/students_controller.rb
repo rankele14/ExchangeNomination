@@ -31,8 +31,10 @@ class StudentsController < ApplicationController
     myString2 = String(request.params).tr("^0-9","")
     #if no number passed => error?
     #is parameter "format" important?
-    @student.university_id = params[:id]
+    @student.representative_id = params[:id]
     @student.student_email = params[:id]
+    @representative = Representative.find(@student.representative_id)
+    @student.university_id = @representative.university_id
     @university = University.find(@student.university_id)
     if @university.num_nominees >= 3
       redirect_to finish_url(@university)
@@ -133,6 +135,6 @@ class StudentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def student_params
-      params.require(:student).permit(:first_name, :last_name, :university_id, :student_email, :exchange_term, :degree_level, :major)
+      params.require(:student).permit(:first_name, :last_name, :university_id, :representative_id, :student_email, :exchange_term, :degree_level, :major)
     end
 end

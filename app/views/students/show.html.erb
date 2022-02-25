@@ -12,7 +12,13 @@
 
 <p>
   <strong>University:</strong>
-  <%= University.where(id: @student.university_id).last.university_name %>
+  <%= University.find(@student.university_id).university_name %>
+</p>
+
+<p>
+  <strong>Representative:</strong>
+  <%= Representative.find(@student.representative_id).first_name %>
+  <%= Representative.find(@student.representative_id).last_name %>
 </p>
 
 <p>

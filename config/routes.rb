@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   # specific definitions go first or else get overwritten by default definitions
   get 'representatives/user_new', to: 'representatives#user_new', as: 'user_new_representative'
-  get 'universities/:id/students/user_new/', to: 'students#user_new', as: 'user_new_student' #pass university id to new student form
-  get 'universities/:id/finish/', to: 'representatives#finish', as: 'finish' # finish page
+  get 'representatives/:id/students/user_new/', to: 'students#user_new', as: 'user_new_student' #pass representative id to new student form
+  get 'representatives/:id/finish/', to: 'representatives#finish', as: 'finish' # finish page
   get 'admin', to: 'students#admin', as: 'admin' # admin home page in student folder for now
   post 'representative/user_create', to: 'representatives#user_create', as: 'ucreate_representatives'
   post 'students/user_create', to: 'students#user_create', as: 'ucreate_students'

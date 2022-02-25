@@ -1,3 +1,5 @@
 class Student < ApplicationRecord
-    validates :first_name, :last_name, :university_id, :student_email, :exchange_term, :degree_level, :major, presence: true
+    validates :first_name, :last_name, :university_id, :representative_id, :student_email, :exchange_term, :degree_level, :major, presence: true
+    belongs_to :university
+    belongs_to :representative
 end

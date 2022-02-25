@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_24_145156) do
+ActiveRecord::Schema.define(version: 2022_02_25_213350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2022_02_24_145156) do
     t.string "exchange_term"
     t.string "degree_level"
     t.string "major"
+    t.integer "representative_id"
   end
 
   create_table "universities", force: :cascade do |t|
