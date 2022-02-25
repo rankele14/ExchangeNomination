@@ -102,6 +102,27 @@ class RepresentativesController < ApplicationController
   def finish
   end
 
+  def rep_check
+    @representative = Representative.find(params[:id])
+    @university = University.find(@representitive.university_id)
+
+    if @university.num_nominees >= 3
+      format.html { redirect_to finish_representative_url, notice: "University nominees already reached max limit of 3 students." }
+    else
+      @student = Student.new
+      @student.update(first_name: "", last_name: "", university_id: @representitive.university_id, student_email: "", exchange_term: "", degree_level: "", major: "")
+      edit_student_path(@student)
+    end
+  end
+
+  def test_method
+    @representative.update(first_name: "Updated")
+  end
+
+  def rep_redirect
+    user_new_student_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_representative

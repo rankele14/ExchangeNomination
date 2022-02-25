@@ -17,6 +17,7 @@ class StudentsController < ApplicationController
   # GET /students/1/user_show
   def user_show
     @student = Student.find(params[:id])
+    @university = University.find(@student.university_id)
   end
 
   # GET /students/new
@@ -27,6 +28,17 @@ class StudentsController < ApplicationController
   # GET /students/user_new
   def user_new
     @student = Student.new
+    myString2 = String(request.params).tr("^0-9","")
+    #if no number passed => error?
+    #is parameter "format" important?
+    @student.university_id = params[:id]
+    @student.student_email = params[:id]
+    @university = University.find(@student.university_id)
+    if @university.num_nominees >= 3
+      redirect_to finish_url(@university)
+      #format.html { redirect_to finish_url(@university), notice: "Sorry, max limit of 3 students already reached." }
+      #format.json { render :show, status: :created, location: @student }
+    end
   end
 
   # GET /students/1/edit
@@ -41,9 +53,11 @@ class StudentsController < ApplicationController
   # POST /students or /students.json
   def create
     @student = Student.new(student_params)
+    @university = University.find(@student.university_id)
 
     respond_to do |format|
       if @student.save
+        @university.update(num_nominees: @university.num_nominees + 1)
         format.html { redirect_to student_url(@student), notice: "Student was successfully created." }
         format.json { render :show, status: :created, location: @student }
       else
@@ -53,13 +67,21 @@ class StudentsController < ApplicationController
     end
   end
 
+  # POST /students but redirects to user_show
   def user_create
     @student = Student.new(student_params)
+    @university = University.find(@student.university_id)
 
     respond_to do |format|
       if @student.save
-        format.html { redirect_to user_show_student_url(@student), notice: "Student was successfully created." }
-        format.json { render :show, status: :created, location: @student }
+        if @university.num_nominees >= 3 # on fourth form redircts on create instead of submit
+          format.html { redirect_to finish_url(@university), notice: "Sorry, max limit of 3 students already reached." } # fix notice
+          format.json { render :show, status: :created, location: @student }
+        else
+          @university.update(num_nominees: @university.num_nominees + 1)
+          format.html { redirect_to user_show_student_url(@student), notice: "Student was successfully created." }
+          format.json { render :show, status: :created, location: @student }
+        end
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @student.errors, status: :unprocessable_entity }
@@ -83,6 +105,8 @@ class StudentsController < ApplicationController
   # DELETE /students/1 or /students/1.json
   def destroy
     @student.destroy
+    @university = University.find(@student.university_id)
+    @university.update(num_nominees: @university.num_nominees - 1)
 
     respond_to do |format|
       format.html { redirect_to students_url, notice: "Student was successfully destroyed." }

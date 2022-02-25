@@ -12,7 +12,8 @@
 <table>
   <thead>
     <tr>
-      <th>University name</th>
+      <th>University</th>
+      <th>Nominees</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,6 +22,7 @@
     <% @universities.each do |university| %>
       <tr>
         <td><%= university.university_name %></td>
+        <td><%= university.num_nominees %></td>
         <td><%= link_to 'Show', university %></td>
         <td><%= link_to 'Edit', edit_university_path(university) %></td>
         <td><%= link_to 'Delete', university, method: :delete %></td>

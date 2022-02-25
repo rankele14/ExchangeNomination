@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   # specific definitions go first or else get overwritten by default definitions
   get 'representatives/user_new', to: 'representatives#user_new', as: 'user_new_representative'
-  get 'students/user_new', to: 'students#user_new', as: 'user_new_student'
-  get 'representatives/finish', to: 'representatives#finish', as: 'finish_representative' # finish page
+  get 'universities/:id/students/user_new/', to: 'students#user_new', as: 'user_new_student' #pass university id to new student form
+  get 'universities/:id/finish/', to: 'representatives#finish', as: 'finish' # finish page
   get 'admin', to: 'students#admin', as: 'admin' # admin home page in student folder for now
-  post 'user_create1', to: 'representatives#user_create', as: 'ucreate_representatives'
-  post 'user_create2', to: 'students#user_create', as: 'ucreate_students'
+  post 'representative/user_create', to: 'representatives#user_create', as: 'ucreate_representatives'
+  post 'students/user_create', to: 'students#user_create', as: 'ucreate_students'
 
   # add new functions/pages to separate user and admin views
   resources :representatives do
@@ -23,9 +23,9 @@ Rails.application.routes.draw do
   end
 
   # default definitions and root
+  resources :universities
   resources :representatives
   resources :students
-  resources :universities
   root "representatives#user_new"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
