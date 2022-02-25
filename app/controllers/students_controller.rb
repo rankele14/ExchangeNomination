@@ -12,11 +12,15 @@ class StudentsController < ApplicationController
 
   # GET /students/1 or /students/1.json
   def show
+    @student = Student.find(params[:id])
+    @representative = Representative.find(@student.representative_id)
+    @university = University.find(@student.university_id)
   end
   
   # GET /students/1/user_show
   def user_show
     @student = Student.find(params[:id])
+    @representative = Representative.find(@student.representative_id)
     @university = University.find(@student.university_id)
   end
 
