@@ -17,6 +17,7 @@
                                          DELETE /representatives/:id(.:format)                                                                    representatives#destroy
                        user_show_student GET    /students/:id/user_show(.:format)                                                                 students#user_show
                        user_edit_student GET    /students/:id/user_edit(.:format)                                                                 students#user_edit
+                     user_update_student PATCH  /students/:id/user_update(.:format)                                                               students#user_update
                                 students GET    /students(.:format)                                                                               students#index
                                          POST   /students(.:format)                                                                               students#create
                              new_student GET    /students/new(.:format)                                                                           students#new

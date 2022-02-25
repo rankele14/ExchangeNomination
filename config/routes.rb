@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     member do
       get :user_show
       get :user_edit
+      patch :user_update
+      put :user_update
     end
   end
 

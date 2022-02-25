@@ -67,21 +67,16 @@ class StudentsController < ApplicationController
     end
   end
 
-  # POST /students but redirects to user_show
+  # POST /students but redirects to user_show_student
   def user_create
     @student = Student.new(student_params)
     @university = University.find(@student.university_id)
 
     respond_to do |format|
       if @student.save
-        if @university.num_nominees >= 3 # on fourth form redircts on create instead of submit
-          format.html { redirect_to finish_url(@university), notice: "Sorry, max limit of 3 students already reached." } # fix notice
-          format.json { render :show, status: :created, location: @student }
-        else
-          @university.update(num_nominees: @university.num_nominees + 1)
-          format.html { redirect_to user_show_student_url(@student), notice: "Student was successfully created." }
-          format.json { render :show, status: :created, location: @student }
-        end
+        @university.update(num_nominees: @university.num_nominees + 1)
+        format.html { redirect_to user_show_student_url(@student), notice: "Student was successfully created." }
+        format.json { render :show, status: :created, location: @student }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @student.errors, status: :unprocessable_entity }
@@ -94,6 +89,22 @@ class StudentsController < ApplicationController
     respond_to do |format|
       if @student.update(student_params)
         format.html { redirect_to student_url(@student), notice: "Student was successfully updated." }
+        format.json { render :show, status: :ok, location: @student }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @student.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /students/1/user_update
+  def user_update
+    @student = Student.find(params[:id])
+    puts "#Is this working???!! #{@student.first_name}"
+
+    respond_to do |format|
+      if @student.user_update(student_params)
+        format.html { redirect_to user_show_student_url(@student), notice: "Student was successfully updated." }
         format.json { render :show, status: :ok, location: @student }
       else
         format.html { render :edit, status: :unprocessable_entity }
