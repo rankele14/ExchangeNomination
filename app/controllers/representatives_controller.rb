@@ -100,6 +100,8 @@ class RepresentativesController < ApplicationController
   end
 
   def finish
+    @representative = Representative.find(params[:id])
+    @students = Student.where(representative_id: @representative.id)
   end
 
   def rep_check

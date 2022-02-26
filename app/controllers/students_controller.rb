@@ -41,7 +41,7 @@ class StudentsController < ApplicationController
     @student.university_id = @representative.university_id
     @university = University.find(@student.university_id)
     if @university.num_nominees >= 3
-      redirect_to finish_url(@university)
+      redirect_to finish_url(@representative)
       #format.html { redirect_to finish_url(@university), notice: "Sorry, max limit of 3 students already reached." }
       #format.json { render :show, status: :created, location: @student }
     end
