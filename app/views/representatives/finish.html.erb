@@ -28,7 +28,7 @@
         <td><%= student.student_email %></td>
         <td><%= link_to 'Show', user_show_student_path(student) %></td>
         <td><%= link_to 'Edit', user_edit_student_path(student) %></td>
-        <td><%= link_to 'Delete', student, method: :delete %></td>
+        <td><%= link_to 'Delete', student, method: :user_destroy %></td>
       </tr>
     <% end %>
   </tbody>

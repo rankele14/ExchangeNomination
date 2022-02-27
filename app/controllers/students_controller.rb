@@ -131,6 +131,20 @@ class StudentsController < ApplicationController
     end
   end
 
+  def user_destroy
+    @student = Student.find(params[:id])
+    @university = University.find(@student.university_id)
+    @representative = Representative.find(@student.representative_id)
+    @university.update(num_nominees: @university.num_nominees - 1)
+    @student.destroy
+
+    respond_to do |format|
+      format.html { redirect_to finish_path(@representative), notice: "Student was successfully destroyed." }
+      format.json { head :no_content }
+    end
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_student
