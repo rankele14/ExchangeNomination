@@ -77,10 +77,12 @@ class RepresentativesController < ApplicationController
   end
 
   # PATCH/PUT /representatives/1 or /representatives/1.json
-  def update
+  def user_update
+    @representative = Representative.find(params[:id])
+
     respond_to do |format|
       if @representative.update(representative_params)
-        format.html { redirect_to representative_url(@representative), notice: "Representative was successfully updated." }
+        format.html { redirect_to user_show_representative_url(@representative), notice: "Representative was successfully updated." }
         format.json { render :show, status: :ok, location: @representative }
       else
         format.html { render :edit, status: :unprocessable_entity }
