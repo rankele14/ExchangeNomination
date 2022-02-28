@@ -71,6 +71,7 @@ class StudentsController < ApplicationController
   # POST /students but redirects to user_show_student
   def user_create
     @student = Student.new(student_params)
+    @student.university_id = params[:id]
     @university = University.find(@student.university_id)
 
     respond_to do |format|

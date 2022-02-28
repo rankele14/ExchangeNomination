@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'universities/:id/finish/', to: 'representatives#finish', as: 'finish' # finish page
   get 'admin', to: 'students#admin', as: 'admin' # admin home page in student folder for now
   post 'representative/user_create', to: 'representatives#user_create', as: 'ucreate_representatives'
-  post 'students/user_create', to: 'students#user_create', as: 'ucreate_students'
+  post 'universities/:id/students/user_create', to: 'students#user_create', as: 'ucreate_students'
 
   # add new functions/pages to separate user and admin views
   resources :representatives do
