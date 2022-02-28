@@ -8,6 +8,7 @@ class StudentsController < ApplicationController
   
   # this made for possible admin home page
   def admin
+    @max_lim = $max_limit
   end
 
   # GET /students/1 or /students/1.json
@@ -18,6 +19,7 @@ class StudentsController < ApplicationController
   def user_show
     @student = Student.find(params[:id])
     @university = University.find(@student.university_id)
+    @max_lim = $max_limit
   end
 
   # GET /students/new
@@ -32,9 +34,8 @@ class StudentsController < ApplicationController
     #if no number passed => error?
     #is parameter "format" important?
     @student.university_id = params[:id]
-    @student.student_email = params[:id]
     @university = University.find(@student.university_id)
-    if @university.num_nominees >= 3
+    if @university.num_nominees >= $max_limit
       redirect_to finish_url(@university)
       #format.html { redirect_to finish_url(@university), notice: "Sorry, max limit of 3 students already reached." }
       #format.json { render :show, status: :created, location: @student }
@@ -100,7 +101,6 @@ class StudentsController < ApplicationController
   # PATCH/PUT /students/1/user_update
   def user_update
     @student = Student.find(params[:id])
-    puts "#Is this working???!! #{@student.first_name}"
 
     respond_to do |format|
       if @student.update(student_params)
