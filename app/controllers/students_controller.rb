@@ -109,7 +109,7 @@ class StudentsController < ApplicationController
     puts "#Is this working???!! #{@student.first_name}"
 
     respond_to do |format|
-      if @student.user_update(student_params)
+      if @student.update(student_params)
         format.html { redirect_to user_show_student_url(@student), notice: "Student was successfully updated." }
         format.json { render :show, status: :ok, location: @student }
       else
