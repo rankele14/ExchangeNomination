@@ -5,6 +5,21 @@
 <br>
 <br>
 
+<p>
+Max Number of Nominees: 
+<%= @max_lim %>
+</p>
+
+<br>
+<br>
+
+<form action="/admin" method="put">
+  <input type="text">
+  <!-- other inputs here -->
+  <input type="submit" value="Update Max Value">
+</form>
+
+
 <%= link_to 'Universities', universities_path %>
 <br>
 <%= link_to 'Representatives', representatives_path %>
