@@ -35,3 +35,32 @@
 </table>
 
 <%= link_to 'Enter another new student', user_new_student_path(@representative) %> | 
+
+<h1>Nominator Info</h1>
+
+<p>
+  <strong>First name:</strong>
+  <%= @representative.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @representative.last_name %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @representative.title %>
+</p>
+
+<p>
+  <strong>Nominator email:</strong>
+  <%= @representative.rep_email %>
+</p>
+
+<p>
+  <strong>University:</strong>
+  <%= University.find(@representative.university_id).university_name %>
+</p>
+
+<%= link_to 'Edit Nominator Info', user_edit_representative_path(@representative) %> |
