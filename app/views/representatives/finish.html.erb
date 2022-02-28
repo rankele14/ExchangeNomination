@@ -1,6 +1,8 @@
 <h1>Finish</h1>
 
-<h1>Students</h1>
+<br>
+
+<h2>Students</h2>
 
 <table>
   <thead>
@@ -34,9 +36,21 @@
   </tbody>
 </table>
 
-<%= link_to 'Enter another new student', user_new_student_path(@representative) %> | 
+<p>
+  <strong>Number of University Nominations: </strong>
+  <%= University.find(@representative.university_id).num_nominees %>
+  students nominated out of alloted 
+  <%= @max_lim%> nominees
+</p>
+<p>If maximum nominees reached then entering a new student will not be allowed.</p>
 
-<h1>Nominator Info</h1>
+<%= link_to 'Enter a new student', user_new_student_path(@representative) %> | 
+
+<br>
+<br>
+<br>
+
+<h2>Nominator</h2>
 
 <p>
   <strong>First name:</strong>

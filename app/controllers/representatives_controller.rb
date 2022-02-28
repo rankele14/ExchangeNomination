@@ -102,13 +102,14 @@ class RepresentativesController < ApplicationController
   def finish
     @representative = Representative.find(params[:id])
     @students = Student.where(representative_id: @representative.id)
+    @max_lim = $max_limit
   end
 
   def rep_check
     @representative = Representative.find(params[:id])
     @university = University.find(@representitive.university_id)
 
-    if @university.num_nominees >= 3
+    if @university.num_nominees >= $max_limit
       format.html { redirect_to finish_representative_url, notice: "University nominees already reached max limit of 3 students." }
     else
       @student = Student.new

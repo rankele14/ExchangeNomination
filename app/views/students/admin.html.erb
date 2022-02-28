@@ -3,6 +3,19 @@
 <h1>Admin Home Page</h1>
 
 <br>
+
+<p>
+Max Number of Nominees: 
+<%= @max_lim %>
+</p>
+
+<form action="/admin" method="put">
+  <input type="text">
+  <!-- other inputs here -->
+  <input type="submit" value="Update Max Value">
+</form>
+
+<br>
 <br>
 
 <%= link_to 'Universities', universities_path %>

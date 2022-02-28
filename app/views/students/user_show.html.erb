@@ -36,9 +36,10 @@
 </p>
 
 <p>
-  <strong>Number of Nominations</strong>
+  <strong>Number of Nominations: </strong>
   <%= @university.num_nominees %>
-  <strong> Out of 3 </strong>
+  out of 
+  <%= @max_lim%>
 </p>
 
 <%= link_to 'Edit', user_edit_student_path(@student) %> |
