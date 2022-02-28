@@ -11,6 +11,19 @@ class StudentsController < ApplicationController
     @max_lim = $max_limit
   end
 
+  def update_max
+    #puts "params? #{params}"
+    #puts "params? #{params[:max_lim]}"
+    ml = params[:max_lim].to_i
+    #puts "int #{ml}"
+    if ml > -1
+      $max_limit = params[:max_lim]
+      redirect_to admin_url, notice: "Max Limit was successfully updated."
+    else
+      redirect_to admin_url, notice: "Max Limit cannot be negative."
+    end
+  end
+
   # GET /students/1 or /students/1.json
   def show
     @student = Student.find(params[:id])
@@ -34,18 +47,13 @@ class StudentsController < ApplicationController
   # GET /students/user_new
   def user_new
     @student = Student.new
-    myString2 = String(request.params).tr("^0-9","")
-    #if no number passed => error?
-    #is parameter "format" important?
     @student.representative_id = params[:id]
-    @student.student_email = params[:id]
     @representative = Representative.find(@student.representative_id)
     @student.university_id = @representative.university_id
     @university = University.find(@student.university_id)
+
     if @university.num_nominees >= $max_limit
-      redirect_to finish_url(@representative)
-      #format.html { redirect_to finish_url(@university), notice: "Sorry, max limit of 3 students already reached." }
-      #format.json { render :show, status: :created, location: @student }
+      redirect_to finish_url(@representative), notice: "Sorry, max limit of 3 students already reached." 
     end
   end
 
@@ -108,7 +116,7 @@ class StudentsController < ApplicationController
   # PATCH/PUT /students/1/user_update
   def user_update
     @student = Student.find(params[:id])
-    puts "#Is this working???!! #{@student.first_name}"
+    #puts "#Is this working???!! #{@student.first_name}"
 
     respond_to do |format|
       if @student.update(student_params)

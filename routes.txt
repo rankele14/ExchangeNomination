@@ -1,10 +1,12 @@
                                   Prefix Verb   URI Pattern                                                                                       Controller#Action
                  user_new_representative GET    /representatives/user_new(.:format)                                                               representatives#user_new
-                        user_new_student GET    /universities/:id/students/user_new(.:format)                                                     students#user_new
-                                  finish GET    /universities/:id/finish(.:format)                                                                representatives#finish
+                        user_new_student GET    /representatives/:id/students/user_new(.:format)                                                  students#user_new
+                                  finish GET    /representatives/:id/finish(.:format)                                                             representatives#finish
                                    admin GET    /admin(.:format)                                                                                  students#admin
+                              update_max GET    /admin/update_max(.:format)                                                                       students#update_max
                  ucreate_representatives POST   /representative/user_create(.:format)                                                             representatives#user_create
                         ucreate_students POST   /students/user_create(.:format)                                                                   students#user_create
+                       udestroy_students POST   /students/:id(.:format)                                                                           students#user_destroy
                 user_show_representative GET    /representatives/:id/user_show(.:format)                                                          representatives#user_show
                 user_edit_representative GET    /representatives/:id/user_edit(.:format)                                                          representatives#user_edit
                          representatives GET    /representatives(.:format)                                                                        representatives#index
@@ -18,6 +20,7 @@
                        user_show_student GET    /students/:id/user_show(.:format)                                                                 students#user_show
                        user_edit_student GET    /students/:id/user_edit(.:format)                                                                 students#user_edit
                      user_update_student PATCH  /students/:id/user_update(.:format)                                                               students#user_update
+                                         PUT    /students/:id/user_update(.:format)                                                               students#user_update
                                 students GET    /students(.:format)                                                                               students#index
                                          POST   /students(.:format)                                                                               students#create
                              new_student GET    /students/new(.:format)                                                                           students#new
