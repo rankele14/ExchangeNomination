@@ -135,3 +135,28 @@ RSpec.describe AnswerChoice, type: :model do
     expect(subject).not_to be_valid
   end
 end
+
+RSpec.describe StudentResponse, type: :model do
+  subject do
+    described_class.new(questionID: 1, studentID: 1, response: 'Yes')
+  end
+
+  it 'is valid with all valid attributes' do
+    expect(subject).to be_valid
+  end
+
+  it 'is not valid without a questionID' do
+    subject.questionID = nil
+    expect(subject).not_to be_valid
+  end
+  
+  it 'is not valid without a studentID' do
+    subject.studentID = nil
+    expect(subject).not_to be_valid
+  end
+
+  it 'is not valid without a response' do
+    subject.response = nil
+    expect(subject).not_to be_valid
+  end
+end
