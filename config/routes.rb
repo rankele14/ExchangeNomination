@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :answer_choices
+  resources :questions
   resources :representatives
   resources :students
   resources :universities

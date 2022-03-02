@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Answer Choices</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Questionid</th>
+      <th>Anser choice</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @answer_choices.each do |answer_choice| %>
+      <tr>
+        <td><%= answer_choice.questionID %></td>
+        <td><%= answer_choice.anser_choice %></td>
+        <td><%= link_to 'Show', answer_choice %></td>
+        <td><%= link_to 'Edit', edit_answer_choice_path(answer_choice) %></td>
+        <td><%= link_to 'Destroy', answer_choice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Answer Choice', new_answer_choice_path %>
