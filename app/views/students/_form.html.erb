@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :representative_id %>
-    <%= form.select :representative_id, Representative.where(university_id: student.university_id).order([:last_name, :first_name].join(", ")).map { |representative| [[representative.last_name, representative.first_name].join(", "), representative.id] }, include_blank: true, id: "id_of_the_representative_id_select_box" %>
+    <%= form.select :representative_id, Representative.order([:last_name, :first_name].join(", ")).map { |representative| [[representative.last_name, representative.first_name].join(", "), representative.id] }, include_blank: true, id: "id_of_the_representative_id_select_box" %>
   </div>
 
   <div class="field">
