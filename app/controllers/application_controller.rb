@@ -1,3 +1,3 @@
 class ApplicationController < ActionController::Base
-  $max_limit = 3
+  before_action :authenticate_admin!
 end
