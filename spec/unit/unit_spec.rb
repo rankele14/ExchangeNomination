@@ -1,8 +1,11 @@
 require 'rails_helper'
 require 'spec_helper'
+
 RSpec.describe Representative, type: :model do
   subject do
-    described_class.new(first_name: 'John', last_name: 'Smith', title: 'CEO', university_id: 1, rep_email: 'JohnSmith@gmail.com')
+    @uni = University.new(university_name: 'AM')
+    @uni.save
+    described_class.new(first_name: 'John', last_name: 'Smith', title: 'CEO', university_id: @uni.id, rep_email: 'JohnSmith@gmail.com')
   end
 
   it 'is valid with all valid attributes' do
@@ -48,11 +51,45 @@ RSpec.describe University, type: :model do
     subject.university_name = nil
     expect(subject).not_to be_valid
   end
+
+  it 'is not valid without a num_nominees' do
+    subject.num_nominees = nil
+    expect(subject).not_to be_valid
+  end
+end
+
+RSpec.describe University, type: :model do
+  subject do
+    described_class.new(university_name: 'AM', num_nominees: 0)
+  end
+
+  it 'is valid with all valid attributes' do
+    expect(subject).to be_valid
+  end
+
+  it 'is not valid without a university_name' do
+    subject.university_name = nil
+    expect(subject).not_to be_valid
+  end
+end
+
+RSpec.describe AnswerChoice, type: :model do
+  subject do
+    described_class.new(questionID: 1, answer_choice: 'Yes')
+  end
+  it 'is not valid without a num_nominees' do
+    subject.num_nominees = nil
+    expect(subject).not_to be_valid
+  end
 end
 
 RSpec.describe Student, type: :model do
   subject do
-    described_class.new(first_name: 'Foo', last_name: 'Bar', university_id: 1, student_email: 'FooBar@gmail.com', exchange_term: 'First', degree_level: 'PHD', major: 'Basket Making')
+    @uni = University.new(university_name: 'AM')
+    @uni.save
+    @rep = Representative.new(first_name: 'John', last_name: 'Smith', title: 'CEO', university_id: @uni.id, rep_email: 'JohnSmith@gmail.com')
+    @rep.save
+    described_class.new(first_name: 'Foo', last_name: 'Bar', university_id: @uni.id, representative_id: @rep.id, student_email: 'FooBar@gmail.com', exchange_term: 'First', degree_level: 'PHD', major: 'Basket Making')
   end
 
   it 'is valid with all valid attributes' do
@@ -91,67 +128,6 @@ RSpec.describe Student, type: :model do
     
   it 'is not valid without a major' do
     subject.major = nil
-    expect(subject).not_to be_valid
-  end
-end
-
-
-RSpec.describe Question, type: :model do
-  subject do
-    described_class.new(multiple_choice: true, prompt: 'Are you a human?')
-  end
-
-  it 'is valid with all valid attributes' do
-    expect(subject).to be_valid
-  end
-
-  it 'is valid without a multiple_choice' do
-    subject.multiple_choice = nil
-    expect(subject).to be_valid
-  end
-
-  it 'is not valid without a prompt' do
-    subject.prompt = nil
-    expect(subject).not_to be_valid
-  end
-end
-
-RSpec.describe AnswerChoice, type: :model do
-  subject do
-    described_class.new(questionID: 1, answer_choice: 'Yes')
-  end
-
-  it 'is valid with all valid attributes' do
-    expect(subject).to be_valid
-  end
-
-  it 'is not valid without a choice' do
-    subject.answer_choice = nil
-    expect(subject).not_to be_valid
-  end
-end
-
-RSpec.describe StudentResponse, type: :model do
-  subject do
-    described_class.new(questionID: 1, studentID: 1, response: 'Yes')
-  end
-
-  it 'is valid with all valid attributes' do
-    expect(subject).to be_valid
-  end
-
-  it 'is not valid without a questionID' do
-    subject.questionID = nil
-    expect(subject).not_to be_valid
-  end
-  
-  it 'is not valid without a studentID' do
-    subject.studentID = nil
-    expect(subject).not_to be_valid
-  end
-
-  it 'is not valid without a response' do
-    subject.response = nil
     expect(subject).not_to be_valid
   end
 end

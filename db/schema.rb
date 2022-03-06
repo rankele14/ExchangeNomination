@@ -59,12 +59,14 @@ ActiveRecord::Schema.define(version: 2022_03_06_010556) do
     t.string "exchange_term"
     t.string "degree_level"
     t.string "major"
+    t.integer "representative_id"
   end
 
   create_table "universities", force: :cascade do |t|
     t.string "university_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "num_nominees", default: 0
   end
 
 end

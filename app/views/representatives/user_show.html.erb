@@ -25,5 +25,5 @@
   <%= University.find(@representative.university_id).university_name %>
 </p>
 
-<%= link_to 'Edit', edit_representative_path(@representative) %> |
-<%= link_to 'Back', representatives_path %>
+<%= link_to 'Edit', user_edit_representative_path(@representative) %> |
+<%= link_to 'Continue', finish_path(@representative) %>

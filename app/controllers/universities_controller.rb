@@ -9,6 +9,7 @@ class UniversitiesController < ApplicationController
   # GET /universities/1 or /universities/1.json
   def show
     @students = Student.where(university_id: @university.id)
+    @representatives = Representative.where(university_id: @university.id)
   end
 
   # GET /universities/new
@@ -66,6 +67,6 @@ class UniversitiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def university_params
-      params.require(:university).permit(:university_name, :rep_first_name, :rep_last_name, :rep_title, :rep_email, :num_students)
+      params.require(:university).permit(:university_name, :num_nominees) 
     end
 end

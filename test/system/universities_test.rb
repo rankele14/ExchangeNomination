@@ -10,15 +10,10 @@ class UniversitiesTest < ApplicationSystemTestCase
     assert_selector "h1", text: "Universities"
   end
 
-  test "creating a University" do
+  test "creating a University" do #what?
     visit universities_url
     click_on "New University"
 
-    fill_in "Num students", with: @university.num_students
-    fill_in "Rep email", with: @university.rep_email
-    fill_in "Rep first name", with: @university.rep_first_name
-    fill_in "Rep last name", with: @university.rep_last_name
-    fill_in "Rep title", with: @university.rep_title
     fill_in "University name", with: @university.university_name
     click_on "Create University"
 
@@ -30,12 +25,8 @@ class UniversitiesTest < ApplicationSystemTestCase
     visit universities_url
     click_on "Edit", match: :first
 
-    fill_in "Num students", with: @university.num_students
-    fill_in "Rep email", with: @university.rep_email
-    fill_in "Rep first name", with: @university.rep_first_name
-    fill_in "Rep last name", with: @university.rep_last_name
-    fill_in "Rep title", with: @university.rep_title
     fill_in "University name", with: @university.university_name
+    #probably needs one for num_nominees
     click_on "Update University"
 
     assert_text "University was successfully updated"

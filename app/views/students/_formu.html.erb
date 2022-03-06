@@ -1,4 +1,4 @@
-<%= form_with(model: student) do |form| %>
+<%= form_with model: student, url: ucreate_students_path, method: :post, local: true do |form| %>
   <% if student.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(student.errors.count, "error") %> prohibited this student from being saved:</h2>
@@ -12,13 +12,11 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :university_id %>
-    <%= form.select :university_id, University.order(:university_name).map { |university| [university.university_name, university.id] }, include_blank: true, id: "id_of_the_university_id_select_box" %>
+    <%= form.hidden_field :university_id %>
   </div>
 
   <div class="field">
-    <%= form.label :representative_id %>
-    <%= form.select :representative_id, Representative.order([:last_name, :first_name].join(", ")).map { |representative| [[representative.last_name, representative.first_name].join(", "), representative.id] }, include_blank: true, id: "id_of_the_representative_id_select_box" %>
+    <%= form.hidden_field :representative_id %>
   </div>
 
   <div class="field">

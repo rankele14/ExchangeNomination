@@ -16,12 +16,6 @@
 </p>
 
 <p>
-  <strong>Representative:</strong>
-  <%= @representative.first_name %>
-  <%= @representative.last_name %>
-</p>
-
-<p>
   <strong>Degree level</strong>
   <%= @student.degree_level %>
 </p>
@@ -41,14 +35,13 @@
   <%= @student.student_email %>
 </p>
 
-<h2>Responses</h2>
-<% for response in @student.response %>
-    <ul>
-      <li><%= response.reply %></li>
-  </ul>
-<% end %>
+<p>
+  <strong>Number of Nominations: </strong>
+  <%= @university.num_nominees %>
+  out of 
+  <%= @max_lim%>
+</p>
 
-<%= link_to 'Edit', edit_student_path(@student) %> |
-<%= link_to 'Enter another new student', new_student_path %> | 
-<%= link_to 'Add Response', student_responses_path(@student) %> |
-<%= link_to 'Finish', University.find(@student.university_id) %>
+<%= link_to 'Edit', user_edit_student_path(@student) %> |
+<%= link_to 'Enter another new student', user_new_student_path(@student.representative_id) %> | 
+<%= link_to 'Finish', finish_path(@student.representative_id) %>
