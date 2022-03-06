@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  root to: 'dashboards#show'
   devise_for :admins, controllers: { omniauth_callbacks: 'admins/omniauth_callbacks' }
   devise_scope :admin do
     get 'admins/sign_in', to: 'admins/sessions#new', as: :new_admin_session
@@ -44,7 +44,7 @@ Rails.application.routes.draw do
   resources :responses
   resources :questions do
 	resources :answers
-   root "dashboards#show"
+  #root "dashboards#show"
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
