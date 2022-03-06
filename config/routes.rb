@@ -36,6 +36,8 @@ Rails.application.routes.draw do
   resources :universities
   resources :representatives
   resources :students
-  root "representatives#user_new"
+
+  root "dashboards#show"
+  #root "representatives#user_new"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
