@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe Representative, type: :model do
   subject do
@@ -70,7 +71,12 @@ RSpec.describe University, type: :model do
     subject.university_name = nil
     expect(subject).not_to be_valid
   end
+end
 
+RSpec.describe AnswerChoice, type: :model do
+  subject do
+    described_class.new(questionID: 1, answer_choice: 'Yes')
+  end
   it 'is not valid without a num_nominees' do
     subject.num_nominees = nil
     expect(subject).not_to be_valid
