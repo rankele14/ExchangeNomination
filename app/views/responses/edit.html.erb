@@ -1,0 +1,6 @@
+<h1>Editing Response</h1>
+<% @question = Question.all.find(@response.question_id) %>
+<%= render 'form', response: @response, question_id: @response.question_id %>
+
+<%= link_to 'Show', [@student, @response] %> |
+<%= link_to 'Back', student_response_path(@student) %>

@@ -8,7 +8,11 @@ class RepresentativesController < ApplicationController
 
   # GET /representatives/1 or /representatives/1.json
   def show
-    @students = Student.where(university_id: @representative.university_id)
+  end
+
+  # GET /representatives/1/user_show
+  def user_show
+    @representative = Representative.find(params[:id])
   end
 
   # GET /representatives/new
@@ -16,8 +20,18 @@ class RepresentativesController < ApplicationController
     @representative = Representative.new
   end
 
+  # GET /representatives/user_new
+  def user_new
+    @representative = Representative.new
+  end
+
   # GET /representatives/1/edit
   def edit
+  end
+
+  # GET /representatives/1/user_edit
+  def user_edit
+    @representative = Representative.find(params[:id])
   end
 
   # POST /representatives or /representatives.json
@@ -30,6 +44,20 @@ class RepresentativesController < ApplicationController
         format.json { render :show, status: :created, location: @representative }
       else
         format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @representative.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def user_create
+    @representative = Representative.new(representative_params)
+
+    respond_to do |format|
+      if @representative.save
+        format.html { redirect_to user_show_representative_url(@representative), notice: "Representative was successfully created." }
+        format.json { render :show, status: :created, location: @representative }
+      else
+        format.html { render :user_new, status: :unprocessable_entity }
         format.json { render json: @representative.errors, status: :unprocessable_entity }
       end
     end
@@ -48,6 +76,21 @@ class RepresentativesController < ApplicationController
     end
   end
 
+  # PATCH/PUT /representatives/1 or /representatives/1.json
+  def user_update
+    @representative = Representative.find(params[:id])
+
+    respond_to do |format|
+      if @representative.update(representative_params)
+        format.html { redirect_to user_show_representative_url(@representative), notice: "Representative was successfully updated." }
+        format.json { render :show, status: :ok, location: @representative }
+      else
+        format.html { render :user_edit, status: :unprocessable_entity }
+        format.json { render json: @representative.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # DELETE /representatives/1 or /representatives/1.json
   def destroy
     @representative.destroy
@@ -56,6 +99,33 @@ class RepresentativesController < ApplicationController
       format.html { redirect_to representatives_url, notice: "Representative was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def finish
+    @representative = Representative.find(params[:id])
+    @students = Student.where(representative_id: @representative.id)
+    @max_lim = $max_limit
+  end
+
+  def rep_check
+    @representative = Representative.find(params[:id])
+    @university = University.find(@representitive.university_id)
+
+    if @university.num_nominees >= $max_limit
+      redirect_to finish_url(@representative), notice: "Sorry, your university has already reached the maximum limit of 3 student nominees." 
+    else
+      @student = Student.new
+      @student.update(first_name: "", last_name: "", university_id: @representitive.university_id, student_email: "", exchange_term: "", degree_level: "", major: "")
+      edit_student_path(@student)
+    end
+  end
+
+  def test_method
+    @representative.update(first_name: "Updated")
+  end
+
+  def rep_redirect
+    user_new_student_path
   end
 
   private

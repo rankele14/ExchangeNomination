@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @student.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @student.last_name %>
+</p>
+
+<p>
+  <strong>University:</strong>
+  <%= @university.university_name %>
+</p>
+
+<p>
+  <strong>Degree level</strong>
+  <%= @student.degree_level %>
+</p>
+
+<p>
+  <strong>Major/Area of Study</strong>
+  <%= @student.major %>
+</p>
+
+<p>
+  <strong>Term of exchange</strong>
+  <%= @student.exchange_term %>
+</p>
+
+<p>
+  <strong>Email</strong>
+  <%= @student.student_email %>
+</p>
+
+<p>
+  <strong>Number of Nominations: </strong>
+  <%= @university.num_nominees %>
+  out of 
+  <%= @max_lim%>
+</p>
+
+<%= link_to 'Edit', user_edit_student_path(@student) %> |
+<%= link_to 'Enter another new student', user_new_student_path(@student.representative_id) %> | 
+<%= link_to 'Finish', finish_path(@student.representative_id) %>

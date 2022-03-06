@@ -1,7 +1,16 @@
-<h1>Representative Info</h1>
-<br>
-<%= link_to 'Admin', students_path %>
-<br>
-<br>
 
-<%= render 'form', representative: @representative %>
+<% content_for :title, "Representative Info" %>
+<link rel="stylesheet" href="../../assets/stylesheets/forms.css">
+
+
+<body style="background: #500000;">
+  <h1>Representative Info</h1>
+  <br>
+  <div>
+    <%= link_to 'Admin', students_path %>
+    <br>
+    <br>
+    <%= render 'form', representative: @representative %>
+  </div>
+
+</body>
