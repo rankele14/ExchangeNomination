@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Representative, type: :model do
   subject do
-    described_class.new(first_name: 'John', last_name: 'Smith', title: 'CEO', university_id: 1, rep_email: 'JohnSmith@gmail.com')
+    @uni = University.new(university_name: 'AM')
+    @uni.save
+    described_class.new(first_name: 'John', last_name: 'Smith', title: 'CEO', university_id: @uni.id, rep_email: 'JohnSmith@gmail.com')
   end
 
   it 'is valid with all valid attributes' do
@@ -77,7 +79,11 @@ end
 
 RSpec.describe Student, type: :model do
   subject do
-    described_class.new(first_name: 'Foo', last_name: 'Bar', university_id: 1, student_email: 'FooBar@gmail.com', exchange_term: 'First', degree_level: 'PHD', major: 'Basket Making')
+    @uni = University.new(university_name: 'AM')
+    @uni.save
+    @rep = Representative.new(first_name: 'John', last_name: 'Smith', title: 'CEO', university_id: @uni.id, rep_email: 'JohnSmith@gmail.com')
+    @rep.save
+    described_class.new(first_name: 'Foo', last_name: 'Bar', university_id: @uni.id, representative_id: @rep.id, student_email: 'FooBar@gmail.com', exchange_term: 'First', degree_level: 'PHD', major: 'Basket Making')
   end
 
   it 'is valid with all valid attributes' do

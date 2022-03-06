@@ -21,7 +21,7 @@ RSpec.describe 'Creating a university with num_nominees', type: :feature do
 	click_on 'Create University'
 	expect(page).to have_content('error')
     fill_in 'University name', with: 'AM'
-    fill_in 'Number of Nominees', with: '2'
+    fill_in 'Num nominees', with: 2
 	click_on 'Create University'
     visit universities_path
     expect(page).to have_content('AM')
@@ -40,7 +40,7 @@ RSpec.describe 'Editing a university', type: :feature do
 	click_on 'Update University'
 	expect(page).to have_content('error')
 	fill_in 'University name', with: 'UT'
-  fill_in 'num_nominees', with: 2
+  fill_in 'Num nominees', with: 2
 	click_on 'Update University'
 	visit universities_path
 	expect(page).to have_content('UT')
