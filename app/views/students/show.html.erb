@@ -35,6 +35,14 @@
   <%= @student.student_email %>
 </p>
 
+<h2>Responses</h2>
+<% for response in @student.response %>
+    <ul>
+      <li><%= response.reply %></li>
+  </ul>
+<% end %>
+
 <%= link_to 'Edit', edit_student_path(@student) %> |
 <%= link_to 'Enter another new student', new_student_path %> | 
+<%= link_to 'Add Response', student_responses_path(@student) %> |
 <%= link_to 'Finish', University.find(@student.university_id) %>

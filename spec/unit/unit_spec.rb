@@ -105,9 +105,9 @@ RSpec.describe Question, type: :model do
     expect(subject).to be_valid
   end
 
-  it 'is not valid without a multiple_choice' do
+  it 'is valid without a multiple_choice' do
     subject.multiple_choice = nil
-    expect(subject).not_to be_valid
+    expect(subject).to be_valid
   end
 
   it 'is not valid without a prompt' do
@@ -123,11 +123,6 @@ RSpec.describe AnswerChoice, type: :model do
 
   it 'is valid with all valid attributes' do
     expect(subject).to be_valid
-  end
-
-  it 'is not valid without a questionID' do
-    subject.questionID = nil
-    expect(subject).not_to be_valid
   end
 
   it 'is not valid without a choice' do

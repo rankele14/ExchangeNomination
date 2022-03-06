@@ -5,7 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>Multiple choice</th>
+      <th>Multi</th>
       <th>Prompt</th>
       <th colspan="3"></th>
     </tr>
@@ -14,7 +14,7 @@
   <tbody>
     <% @questions.each do |question| %>
       <tr>
-        <td><%= question.multiple_choice %></td>
+        <td><%= question.multi %></td>
         <td><%= question.prompt %></td>
         <td><%= link_to 'Show', question %></td>
         <td><%= link_to 'Edit', edit_question_path(question) %></td>

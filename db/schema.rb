@@ -10,20 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_02_223831) do
+ActiveRecord::Schema.define(version: 2022_03_06_010556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "answer_choices", force: :cascade do |t|
-    t.integer "questionID"
-    t.string "answer_choice"
+  create_table "answers", force: :cascade do |t|
+    t.string "choice"
+    t.bigint "question_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
   end
 
   create_table "questions", force: :cascade do |t|
-    t.boolean "multiple_choice"
+    t.boolean "multi"
     t.string "prompt"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -39,12 +40,13 @@ ActiveRecord::Schema.define(version: 2022_03_02_223831) do
     t.string "rep_email"
   end
 
-  create_table "student_responses", force: :cascade do |t|
-    t.integer "questionID"
-    t.integer "studentID"
-    t.string "response"
+  create_table "responses", force: :cascade do |t|
+    t.string "reply"
+    t.integer "question_id"
+    t.bigint "student_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["student_id"], name: "index_responses_on_student_id"
   end
 
   create_table "students", force: :cascade do |t|

@@ -1,4 +1,4 @@
 class Question < ApplicationRecord
-    validates :multiple_choice, :prompt, presence: true
-    has_many :students, dependent: :destroy
+	has_many :answer , dependent: :destroy
+	validates :prompt, presence: true
 end
