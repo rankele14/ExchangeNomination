@@ -15,6 +15,7 @@
       <th>First name</th>
       <th>Last name</th>
       <th>University</th>
+      <th>Representative</th>
       <th>Degree level</th>
       <th>Major/Area of Study</th>
       <th>Term of exchange</th>
@@ -29,6 +30,7 @@
         <td><%= student.first_name %></td>
         <td><%= student.last_name %></td>
         <td><%= University.find(student.university_id).university_name %></td>
+        <td><%= [Representative.find(student.representative_id).first_name, Representative.find(student.representative_id).last_name].join(' ') %></td>
         <td><%= student.degree_level %></td>
         <td><%= student.major %></td>
         <td><%= student.exchange_term %></td>

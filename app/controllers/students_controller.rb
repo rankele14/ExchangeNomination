@@ -8,7 +8,7 @@ class StudentsController < ApplicationController
   
   # this made for possible admin home page
   def admin
-    @max_lim = $max_limit
+    @max_lim = $max_limit.to_i
   end
 
   def update_max
@@ -17,7 +17,7 @@ class StudentsController < ApplicationController
     ml = params[:max_lim].to_i
     #puts "int #{ml}"
     if ml > -1
-      $max_limit = params[:max_lim]
+      $max_limit = params[:max_lim].to_i
       redirect_to admin_url, notice: "Max Limit was successfully updated."
     else
       redirect_to admin_url, notice: "Max Limit cannot be negative."
@@ -36,7 +36,7 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
     @representative = Representative.find(@student.representative_id)
     @university = University.find(@student.university_id)
-    @max_lim = $max_limit
+    @max_lim = $max_limit.to_i
   end
 
   # GET /students/new
@@ -52,8 +52,8 @@ class StudentsController < ApplicationController
     @student.university_id = @representative.university_id
     @university = University.find(@student.university_id)
 
-    if @university.num_nominees >= $max_limit
-      redirect_to finish_url(@representative), notice: "Sorry, max limit of 3 students already reached." 
+    if @university.num_nominees >= $max_limit.to_i
+      redirect_to finish_url(@representative), notice: "Sorry, maximum limit of 3 students already reached." 
     end
   end
 
@@ -94,7 +94,7 @@ class StudentsController < ApplicationController
         format.html { redirect_to user_show_student_url(@student), notice: "Student was successfully created." }
         format.json { render :show, status: :created, location: @student }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :user_new, status: :unprocessable_entity }
         format.json { render json: @student.errors, status: :unprocessable_entity }
       end
     end
@@ -123,7 +123,7 @@ class StudentsController < ApplicationController
         format.html { redirect_to user_show_student_url(@student), notice: "Student was successfully updated." }
         format.json { render :show, status: :ok, location: @student }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :user_edit, status: :unprocessable_entity }
         format.json { render json: @student.errors, status: :unprocessable_entity }
       end
     end
