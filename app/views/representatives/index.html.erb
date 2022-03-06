@@ -1,6 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Representatives</h1>
+<br>
+
+<%= link_to 'Universities', universities_path %> | 
+<%= link_to 'Representatives', representatives_path %> | 
+<%= link_to 'Students', students_path %>
+<br>
+<br>
 
 <table>
   <thead>
@@ -9,6 +16,7 @@
       <th>Last name</th>
       <th>Title</th>
       <th>University</th>
+      <th>Email</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,7 +28,8 @@
         <td><%= representative.last_name %></td>
         <td><%= representative.title %></td>
         <td><%= University.find(representative.university_id).university_name %></td>
-        <td><%= link_to 'Show', representative %></td>
+        <td><%= representative.rep_email %></td>
+        <td class="actions"><%= link_to("Show", representative_path(representative), :class => 'action show') %></td>
         <td><%= link_to 'Edit', edit_representative_path(representative) %></td>
         <td><%= link_to 'Delete', representative, method: :delete %></td>
       </tr>
@@ -33,4 +42,4 @@
 <%= link_to 'New Representative', new_representative_path %>
 <br>
 <br>
-<%= link_to 'Back', students_path %>
+<%= link_to 'Back', admin_path %>

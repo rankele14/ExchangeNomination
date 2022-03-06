@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Admin Home Page</h1>
+
+<br>
+
+<p>
+Max Number of Nominees: 
+<%= @max_lim %>
+</p>
+
+<form action="/admin/update_max" method="get" accept-charset="UTF-8" >
+  <label for="max_lim">Update to:</label>
+  <input id="max_lim" name="max_lim" type="number" />
+  <input name="commit" type="submit" value="Update Limit" />
+</form>
+
+<br>
+<br>
+
+<%= link_to 'Universities', universities_path %>
+<br>
+<%= link_to 'Representatives', representatives_path %>
+<br>
+<%= link_to 'Students', students_path %>
+
+<br>
+<br>
+
+<%= link_to 'Return to Home Page', user_new_representative_path %>
