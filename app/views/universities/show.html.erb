@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<% content_for :title, "Universities: " + @university.university_name%>
+
 <p>
   <strong>University name:</strong>
   <%= @university.university_name %>

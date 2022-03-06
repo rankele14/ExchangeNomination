@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<% content_for :title, "Students: " + @student.first_name + " " + @student.last_name%>
+
 <p>
   <strong>First name:</strong>
   <%= @student.first_name %>
@@ -51,4 +53,5 @@
 <%= link_to 'Edit', edit_student_path(@student) %> |
 <%= link_to 'Enter another new student', new_student_path %> | 
 <%= link_to 'Add Response', student_responses_path(@student) %> |
+
 <%= link_to 'Finish', University.find(@student.university_id) %>

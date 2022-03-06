@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<% content_for :title, "Student Database" %>
+
 <h1>Students</h1>
 <br>
 
@@ -45,7 +47,15 @@
 
 <br>
 
+
+
+<%= link_to 'Universities', universities_path %> |
+<%= link_to 'Representatives', representatives_path %>
+
+<br>
+<br>
+
 <%= link_to 'Add New Student', new_student_path %>
 <br>
-<br>
 <%= link_to 'Back', admin_path %>
+
