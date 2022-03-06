@@ -53,7 +53,7 @@ class StudentsController < ApplicationController
     @university = University.find(@student.university_id)
 
     if @university.num_nominees >= $max_limit.to_i
-      redirect_to finish_url(@representative), notice: "Sorry, max limit of 3 students already reached." 
+      redirect_to finish_url(@representative), notice: "Sorry, maximum limit of 3 students already reached." 
     end
   end
 
@@ -94,7 +94,7 @@ class StudentsController < ApplicationController
         format.html { redirect_to user_show_student_url(@student), notice: "Student was successfully created." }
         format.json { render :show, status: :created, location: @student }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :user_new, status: :unprocessable_entity }
         format.json { render json: @student.errors, status: :unprocessable_entity }
       end
     end
@@ -123,7 +123,7 @@ class StudentsController < ApplicationController
         format.html { redirect_to user_show_student_url(@student), notice: "Student was successfully updated." }
         format.json { render :show, status: :ok, location: @student }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :user_edit, status: :unprocessable_entity }
         format.json { render json: @student.errors, status: :unprocessable_entity }
       end
     end

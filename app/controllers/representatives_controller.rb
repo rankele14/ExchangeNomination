@@ -57,7 +57,7 @@ class RepresentativesController < ApplicationController
         format.html { redirect_to user_show_representative_url(@representative), notice: "Representative was successfully created." }
         format.json { render :show, status: :created, location: @representative }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :user_new, status: :unprocessable_entity }
         format.json { render json: @representative.errors, status: :unprocessable_entity }
       end
     end
@@ -85,7 +85,7 @@ class RepresentativesController < ApplicationController
         format.html { redirect_to user_show_representative_url(@representative), notice: "Representative was successfully updated." }
         format.json { render :show, status: :ok, location: @representative }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :user_edit, status: :unprocessable_entity }
         format.json { render json: @representative.errors, status: :unprocessable_entity }
       end
     end
@@ -112,7 +112,7 @@ class RepresentativesController < ApplicationController
     @university = University.find(@representitive.university_id)
 
     if @university.num_nominees >= $max_limit
-      format.html { redirect_to finish_representative_url, notice: "University nominees already reached max limit of 3 students." }
+      redirect_to finish_url(@representative), notice: "Sorry, your university has already reached the maximum limit of 3 student nominees." 
     else
       @student = Student.new
       @student.update(first_name: "", last_name: "", university_id: @representitive.university_id, student_email: "", exchange_term: "", degree_level: "", major: "")
