@@ -40,7 +40,7 @@ class RepresentativesController < ApplicationController
 
     respond_to do |format|
       if @representative.save
-        format.html { redirect_to representative_url(@representative), notice: "Representative was successfully created." }
+        format.html { redirect_to representative_url(@representative), notice: "Nominator was successfully created." }
         format.json { render :show, status: :created, location: @representative }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -54,7 +54,7 @@ class RepresentativesController < ApplicationController
 
     respond_to do |format|
       if @representative.save
-        format.html { redirect_to user_show_representative_url(@representative), notice: "Representative was successfully created." }
+        format.html { redirect_to user_show_representative_url(@representative), notice: "Nominator was successfully created." }
         format.json { render :show, status: :created, location: @representative }
       else
         format.html { render :user_new, status: :unprocessable_entity }
@@ -67,7 +67,7 @@ class RepresentativesController < ApplicationController
   def update
     respond_to do |format|
       if @representative.update(representative_params)
-        format.html { redirect_to representative_url(@representative), notice: "Representative was successfully updated." }
+        format.html { redirect_to representative_url(@representative), notice: "Nominator was successfully updated." }
         format.json { render :show, status: :ok, location: @representative }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -82,7 +82,7 @@ class RepresentativesController < ApplicationController
 
     respond_to do |format|
       if @representative.update(representative_params)
-        format.html { redirect_to user_show_representative_url(@representative), notice: "Representative was successfully updated." }
+        format.html { redirect_to user_show_representative_url(@representative), notice: "Nominator was successfully updated." }
         format.json { render :show, status: :ok, location: @representative }
       else
         format.html { render :user_edit, status: :unprocessable_entity }
@@ -96,7 +96,7 @@ class RepresentativesController < ApplicationController
     @representative.destroy
 
     respond_to do |format|
-      format.html { redirect_to representatives_url, notice: "Representative was successfully destroyed." }
+      format.html { redirect_to representatives_url, notice: "Nominator was successfully destroyed." }
       format.json { head :no_content }
     end
   end
