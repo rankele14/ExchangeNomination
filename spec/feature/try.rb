@@ -72,3 +72,11 @@ RSpec.describe 'Creating a university with num_nominees', type: :feature do
     expect(page).to have_content('2')
   end
 end
+
+RSpec.describe 'Google sign-in', type: :feature do
+  scenario 'valid inputs' do
+    visit root_path
+    expect(page).to have_content('TAMU')
+    click_on 'Admin Sign in'
+  end
+end
