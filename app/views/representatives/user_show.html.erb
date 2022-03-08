@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @representative.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @representative.last_name %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @representative.title %>
+</p>
+
+<p>
+  <strong>Nominator email:</strong>
+  <%= @representative.rep_email %>
+</p>
+
+<p>
+  <strong>University:</strong>
+  <%= University.find(@representative.university_id).university_name %>
+</p>
+
+<%= link_to 'Edit', user_edit_representative_path(@representative) %> |
+<%= link_to 'Continue', finish_path(@representative) %>

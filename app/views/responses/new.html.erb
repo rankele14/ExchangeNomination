@@ -1,0 +1,9 @@
+<h1>New Response</h1>
+<% Question.all.each do |question| %>
+  <tr>
+	<% @question = question %>
+    <%= render 'form', response: @response %>
+  </tr>
+<% end %>
+
+<%= link_to 'Done', student_responses_path(@student) %>

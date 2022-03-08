@@ -2,16 +2,8 @@
 
 one:
   university_name: MyString
-  rep_first_name: MyString
-  rep_last_name: MyString
-  rep_title: MyString
-  rep_email: MyString
-  num_students: 1
+  num_nominees: 1
 
 two:
   university_name: MyString
-  rep_first_name: MyString
-  rep_last_name: MyString
-  rep_title: MyString
-  rep_email: MyString
-  num_students: 1
+  num_nominees: 1
