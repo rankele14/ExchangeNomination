@@ -40,7 +40,7 @@ class RepresentativesController < ApplicationController
 
     respond_to do |format|
       if @representative.save
-        format.html { redirect_to representative_url(@representative), notice: "Representative was successfully created." }
+        format.html { redirect_to representative_url(@representative), notice: "Nominator was successfully created." }
         format.json { render :show, status: :created, location: @representative }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -54,10 +54,10 @@ class RepresentativesController < ApplicationController
 
     respond_to do |format|
       if @representative.save
-        format.html { redirect_to user_show_representative_url(@representative), notice: "Representative was successfully created." }
+        format.html { redirect_to user_show_representative_url(@representative), notice: "Nominator was successfully created." }
         format.json { render :show, status: :created, location: @representative }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :user_new, status: :unprocessable_entity }
         format.json { render json: @representative.errors, status: :unprocessable_entity }
       end
     end
@@ -67,7 +67,7 @@ class RepresentativesController < ApplicationController
   def update
     respond_to do |format|
       if @representative.update(representative_params)
-        format.html { redirect_to representative_url(@representative), notice: "Representative was successfully updated." }
+        format.html { redirect_to representative_url(@representative), notice: "Nominator was successfully updated." }
         format.json { render :show, status: :ok, location: @representative }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -77,13 +77,15 @@ class RepresentativesController < ApplicationController
   end
 
   # PATCH/PUT /representatives/1 or /representatives/1.json
-  def update
+  def user_update
+    @representative = Representative.find(params[:id])
+
     respond_to do |format|
       if @representative.update(representative_params)
-        format.html { redirect_to representative_url(@representative), notice: "Representative was successfully updated." }
+        format.html { redirect_to user_show_representative_url(@representative), notice: "Nominator was successfully updated." }
         format.json { render :show, status: :ok, location: @representative }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :user_edit, status: :unprocessable_entity }
         format.json { render json: @representative.errors, status: :unprocessable_entity }
       end
     end
@@ -94,12 +96,15 @@ class RepresentativesController < ApplicationController
     @representative.destroy
 
     respond_to do |format|
-      format.html { redirect_to representatives_url, notice: "Representative was successfully destroyed." }
+      format.html { redirect_to representatives_url, notice: "Nominator was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   def finish
+    @representative = Representative.find(params[:id])
+    @students = Student.where(representative_id: @representative.id)
+    @max_lim = $max_limit
   end
 
   def rep_check
@@ -107,7 +112,7 @@ class RepresentativesController < ApplicationController
     @university = University.find(@representitive.university_id)
 
     if @university.num_nominees >= $max_limit
-      format.html { redirect_to finish_representative_url, notice: "University nominees already reached max limit of 3 students." }
+      redirect_to finish_url(@representative), notice: "Sorry, your university has already reached the maximum limit of 3 student nominees." 
     else
       @student = Student.new
       @student.update(first_name: "", last_name: "", university_id: @representitive.university_id, student_email: "", exchange_term: "", degree_level: "", major: "")

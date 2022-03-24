@@ -12,7 +12,7 @@
 
 <p>
   <strong>University:</strong>
-  <%= University.where(id: @student.university_id).last.university_name %>
+  <%= @university.university_name %>
 </p>
 
 <p>
@@ -43,5 +43,5 @@
 </p>
 
 <%= link_to 'Edit', user_edit_student_path(@student) %> |
-<%= link_to 'Enter another new student', user_new_student_path( University.find(@student.university_id) ) %> | 
-<%= link_to 'Finish', finish_path( University.find(@student.university_id) ) %>
+<%= link_to 'Enter another new student', user_new_student_path(@student.representative_id) %> | 
+<%= link_to 'Finish', finish_path(@student.representative_id) %>

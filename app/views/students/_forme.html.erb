@@ -12,6 +12,14 @@
   <% end %>
 
   <div class="field">
+    <%= form.hidden_field :university_id %>
+  </div>
+
+  <div class="field">
+    <%= form.hidden_field :representative_id %>
+  </div>
+
+  <div class="field">
     <%= form.label :first_name %>
     <%= form.text_field :first_name %>
   </div>
@@ -23,7 +31,7 @@
 
   <div class="field">
     <%= form.label :degree_level %>
-    <%= form.text_field :degree_level %>
+    <%= form.select :degree_level, [nil,"Bachelors", "Masters"] %>
   </div>
 
   <div class="field">
@@ -38,12 +46,9 @@
 
   <div class="field">
     <%= form.label :student_email %>
-    <%= form.text_field :student_email %>
+    <%= form.email_field :student_email %>
   </div>
-
   
-  
-
   <div class="actions">
     <%= form.submit %>
   </div>
