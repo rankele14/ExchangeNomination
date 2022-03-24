@@ -8,20 +8,6 @@ class StudentsController < ApplicationController
   
   # this made for possible admin home page
   def admin
-    @max_lim = $max_limit.to_i
-  end
-
-  def update_max
-    #puts "params? #{params}"
-    #puts "params? #{params[:max_lim]}"
-    ml = params[:max_lim].to_i
-    #puts "int #{ml}"
-    if ml > -1
-      $max_limit = params[:max_lim].to_i
-      redirect_to admin_url, notice: "Max Limit was successfully updated."
-    else
-      redirect_to admin_url, notice: "Max Limit cannot be negative."
-    end
   end
 
   # GET /students/1 or /students/1.json

@@ -40,7 +40,7 @@ end
 
 RSpec.describe University, type: :model do
   subject do
-    described_class.new(university_name: 'AM')
+    described_class.new(university_name: 'AM', num_nominees: 0, max_limit: 3)
   end
 
   it 'is valid with all valid attributes' do
@@ -56,19 +56,9 @@ RSpec.describe University, type: :model do
     subject.num_nominees = nil
     expect(subject).not_to be_valid
   end
-end
 
-RSpec.describe University, type: :model do
-  subject do
-    described_class.new(university_name: 'AM', num_nominees: 0)
-  end
-
-  it 'is valid with all valid attributes' do
-    expect(subject).to be_valid
-  end
-
-  it 'is not valid without a university_name' do
-    subject.university_name = nil
+  it 'is not valid without a max_limit' do
+    subject.max_limit = nil
     expect(subject).not_to be_valid
   end
 end

@@ -4,6 +4,7 @@ class UniversitiesController < ApplicationController
   # GET /universities or /universities.json
   def index
     @universities = University.all
+    @max_lim = $max_limit.to_i
   end
 
   # GET /universities/1 or /universities/1.json
@@ -15,6 +16,8 @@ class UniversitiesController < ApplicationController
   # GET /universities/new
   def new
     @university = University.new
+    @university.num_nominees = 0
+    @university.max_limit = $max_limit
   end
 
   # GET /universities/1/edit
@@ -59,6 +62,32 @@ class UniversitiesController < ApplicationController
     end
   end
 
+  def update_max
+    #puts "params? #{params[:max_lim]}"
+    ml = params[:max_lim].to_i
+    if ml > -1
+      $max_limit = params[:max_lim].to_i
+      redirect_to universities_path, notice: "Max Limit was successfully updated."
+    else
+      redirect_to universities_path, notice: "Max Limit cannot be negative."
+    end
+  end
+
+  def change_all_max
+    cl = params[:change_lim].to_i
+
+    if cl > -1
+      @universities = University.all
+      @universities.each do |university|
+        university.max_limit = cl
+        university.save
+      end
+      redirect_to universities_path, notice: "Limits were successfully updated."
+    else
+      redirect_to universities_path, notice: "Limits cannot be negative."
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_university
@@ -67,6 +96,6 @@ class UniversitiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def university_params
-      params.require(:university).permit(:university_name, :num_nominees) 
+      params.require(:university).permit(:university_name, :num_nominees, :max_limit) 
     end
 end
