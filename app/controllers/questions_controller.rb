@@ -56,6 +56,14 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def clear_all
+    @questions = Question.all
+    @questions.each do |question|
+      question.destroy
+      # automatically destroys answers
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_question

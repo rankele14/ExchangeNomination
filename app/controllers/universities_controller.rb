@@ -59,6 +59,33 @@ class UniversitiesController < ApplicationController
     end
   end
 
+  def clear_all
+    @universities = University.all
+    @universities.each do |university|
+      university.destroy
+    end
+    # automatically destroys representatives and students
+  end
+
+  def reset_all
+    @universities = University.all
+    @universities.each do |university|
+      # delete students too?
+      @representatives = Representative.where(university_id: university.id)
+      @representatives.each do |representative|
+        representative.destroy
+      end
+      @students = Student.where(university_id: university.id)
+      @students.each do |student|
+        student.destroy
+      end
+      #responses?
+      university.num_nominees = 0
+      university.max_limit = $max_limit
+      university.save
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_university

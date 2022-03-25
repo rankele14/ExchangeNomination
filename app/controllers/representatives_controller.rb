@@ -129,6 +129,14 @@ class RepresentativesController < ApplicationController
     user_new_student_path
   end
 
+  def clear_all
+    @representatives = Representative.all
+    @representatives.each do |representative|
+      representative.destroy
+    end
+    # automatically destroys rep's students
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_representative

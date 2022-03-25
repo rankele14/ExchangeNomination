@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   # specific definitions go first or else get overwritten by default definitions
   get 'representatives/:id/students/user_new/', to: 'students#user_new', as: 'user_new_student' #pass representative id to new student form
+  get 'admin/', to: 'students#admin', as: 'admin'
   get 'admin/update_max', to: 'students#update_max', as: 'update_max'
   post 'students/:id', to: 'students#user_destroy', as: 'user_destroy_student'
 

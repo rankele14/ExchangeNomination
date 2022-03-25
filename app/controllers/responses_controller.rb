@@ -57,6 +57,13 @@ class ResponsesController < ApplicationController
     end
   end
 
+  def clear_all
+    @responses = Response.all
+    @responses.each do |response|
+      response.destroy
+    end
+  end
+
   private
 	def get_student
 	  @student = Student.find(params[:student_id])

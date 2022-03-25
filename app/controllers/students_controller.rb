@@ -154,6 +154,13 @@ class StudentsController < ApplicationController
     end
   end
 
+  def clear_all
+    @students = Student.all
+    @students.each do |student|
+      student.destroy
+    end
+    # automatically destroys responses
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
