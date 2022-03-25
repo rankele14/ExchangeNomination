@@ -135,6 +135,7 @@ class RepresentativesController < ApplicationController
       representative.destroy
     end
     # automatically destroys rep's students
+    redirect_to representatives_url, notice: "Representatives successfully cleared."
   end
 
   private

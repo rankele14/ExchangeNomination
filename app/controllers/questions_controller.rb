@@ -62,6 +62,7 @@ class QuestionsController < ApplicationController
       question.destroy
       # automatically destroys answers
     end
+    redirect_to questions_url, notice: "Questions successfully cleared."
   end
 
   private

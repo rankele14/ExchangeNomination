@@ -113,6 +113,7 @@ RSpec.describe Student, type: :model do
   
   it 'is not valid without a student_email' do
     subject.student_email= nil
+    #validate email
     expect(subject).not_to be_valid
   end
   

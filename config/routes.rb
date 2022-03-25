@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   # specific definitions go first or else get overwritten by default definitions
   get 'representatives/:id/students/user_new/', to: 'students#user_new', as: 'user_new_student' #pass representative id to new student form
-  get 'admin/', to: 'students#admin', as: 'admin'
+  get 'admin', to: 'students#admin', as: 'admin'
   get 'admin/update_max', to: 'students#update_max', as: 'update_max'
   post 'students/:id', to: 'students#user_destroy', as: 'user_destroy_student'
 
@@ -25,11 +25,16 @@ Rails.application.routes.draw do
     collection do
       get :user_new
       post :user_create
+      get :clear_all
     end
   end
 
   resources :students do
-    resources :responses
+    resources :responses do
+      collection do
+        get :clear_all
+      end
+    end
     member do
       get :user_show
       get :user_edit
@@ -38,14 +43,23 @@ Rails.application.routes.draw do
     end
     collection do
       post :user_create
+      get :clear_all
     end
   end
 
   # default definitions and root
-  resources :universities
+  resources :universities do
+    collection do
+      get :clear_all
+      get :reset_all
+    end
+  end
 
   resources :questions do
 	  resources :answers
+    collection do
+      get :clear_all
+    end
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

@@ -160,6 +160,7 @@ class StudentsController < ApplicationController
       student.destroy
     end
     # automatically destroys responses
+    redirect_to students_url, notice: "Students successfully cleared."
   end
 
   private

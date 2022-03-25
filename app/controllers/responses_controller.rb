@@ -62,6 +62,7 @@ class ResponsesController < ApplicationController
     @responses.each do |response|
       response.destroy
     end
+    redirect_to responses_url, notice: "Responses successfully cleared."
   end
 
   private

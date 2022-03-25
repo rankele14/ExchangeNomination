@@ -65,9 +65,11 @@ class UniversitiesController < ApplicationController
       university.destroy
     end
     # automatically destroys representatives and students
+    redirect_to universities_url, notice: "Universities successfully cleared."
   end
 
   def reset_all
+    puts 'reset_all'
     @universities = University.all
     @universities.each do |university|
       # delete students too?
@@ -75,15 +77,17 @@ class UniversitiesController < ApplicationController
       @representatives.each do |representative|
         representative.destroy
       end
-      @students = Student.where(university_id: university.id)
-      @students.each do |student|
-        student.destroy
-      end
+      # representatives auto-destroy students, students auto-destroy responses
+      #@students = Student.where(university_id: university.id)
+      #@students.each do |student|
+      #  student.destroy
+      #end
       #responses?
       university.num_nominees = 0
-      university.max_limit = $max_limit
+      #university.max_limit = $max_limit
       university.save
     end
+    redirect_to universities_url, notice: "Universities successfully reset."
   end
 
   private
