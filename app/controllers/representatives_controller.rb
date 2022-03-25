@@ -23,6 +23,7 @@ class RepresentativesController < ApplicationController
   # GET /representatives/user_new
   def user_new
     @representative = Representative.new
+    $max_limit = 3
   end
 
   # GET /representatives/1/edit
