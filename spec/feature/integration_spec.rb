@@ -242,7 +242,7 @@ RSpec.describe 'User creating a representative', type: :feature do
     fill_in 'University name', with: 'AM'
 	click_on 'Create University'
     visit universities_path
-	visit user_new_representative_path
+	visit user_new_representatives_path
     click_on 'Create Representative'
     expect(page).to have_content('error')
     select 'AM', :from => 'University'
@@ -266,7 +266,7 @@ RSpec.describe 'User editing a representative', type: :feature do
     fill_in 'University name', with: 'AM'
 	click_on 'Create University'
     visit universities_path
-	visit user_new_representative_path
+	visit user_new_representatives_path
     select 'AM', :from => 'University'
     fill_in 'First name', with: 'John'
     fill_in 'Last name', with: 'Smith'
@@ -290,7 +290,7 @@ RSpec.describe 'User finish page', type: :feature do
     fill_in 'University name', with: 'AM'
 	click_on 'Create University'
     visit universities_path
-	visit user_new_representative_path
+	visit user_new_representatives_path
     select 'AM', :from => 'University'
     fill_in 'First name', with: 'John'
     fill_in 'Last name', with: 'Smith'
@@ -312,7 +312,7 @@ RSpec.describe 'User creating a student', type: :feature do
     fill_in 'University name', with: 'AM'
 	click_on 'Create University'
     visit universities_path
-	visit user_new_representative_path
+	visit user_new_representatives_path
     select 'AM', :from => 'University'
     fill_in 'First name', with: 'John'
     fill_in 'Last name', with: 'Smith'
@@ -348,7 +348,7 @@ RSpec.describe 'User editing a student', type: :feature do
     fill_in 'University name', with: 'AM'
 	click_on 'Create University'
     visit universities_path
-	visit user_new_representative_path
+	visit user_new_representatives_path
     select 'AM', :from => 'University'
     fill_in 'First name', with: 'John'
     fill_in 'Last name', with: 'Smith'
@@ -381,7 +381,7 @@ RSpec.describe 'User deleting a student', type: :feature do
     fill_in 'University name', with: 'AM'
 	click_on 'Create University'
     visit universities_path
-	visit user_new_representative_path
+	visit user_new_representatives_path
     select 'AM', :from => 'University'
     fill_in 'First name', with: 'John'
     fill_in 'Last name', with: 'Smith'
@@ -413,7 +413,7 @@ RSpec.describe 'Auto-stop user adding students', type: :feature do
     fill_in 'University name', with: 'AM'
 	click_on 'Create University'
     visit universities_path
-	visit user_new_representative_path
+	visit user_new_representatives_path
     select 'AM', :from => 'University'
     fill_in 'First name', with: 'John'
     fill_in 'Last name', with: 'Smith'
@@ -466,7 +466,7 @@ RSpec.describe 'Re-activate new students after delete', type: :feature do
     fill_in 'University name', with: 'AM'
 	click_on 'Create University'
     visit universities_path
-	visit user_new_representative_path
+	visit user_new_representatives_path
     select 'AM', :from => 'University'
     fill_in 'First name', with: 'John'
     fill_in 'Last name', with: 'Smith'
@@ -513,7 +513,7 @@ RSpec.describe 'Auto-stop with full students', type: :feature do
     fill_in 'University name', with: 'AM'
 	click_on 'Create University'
     visit universities_path
-	visit user_new_representative_path
+	visit user_new_representatives_path
     select 'AM', :from => 'University'
     fill_in 'First name', with: 'John'
     fill_in 'Last name', with: 'Smith'
@@ -546,7 +546,7 @@ RSpec.describe 'Auto-stop with full students', type: :feature do
     fill_in 'Student email', with: 'Foo3Bar@gmail.com'
     click_on 'Create Student'
     # start over with new representative
-  visit user_new_representative_path
+  visit user_new_representatives_path
     select 'AM', :from => 'University'
     fill_in 'First name', with: 'Alice'
     fill_in 'Last name', with: 'May'

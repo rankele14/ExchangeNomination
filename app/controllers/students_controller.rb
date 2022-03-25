@@ -53,7 +53,7 @@ class StudentsController < ApplicationController
     @university = University.find(@student.university_id)
 
     if @university.num_nominees >= $max_limit.to_i
-      redirect_to finish_url(@representative), notice: "Sorry, maximum limit of 3 students already reached." 
+      redirect_to finish_representative_url(@representative), notice: "Sorry, maximum limit of 3 students already reached." 
     end
   end
 
@@ -149,7 +149,7 @@ class StudentsController < ApplicationController
     @student.destroy
 
     respond_to do |format|
-      format.html { redirect_to finish_path(@representative), notice: "Student was successfully destroyed." }
+      format.html { redirect_to finish_representative_path(@representative), notice: "Student was successfully destroyed." }
       format.json { head :no_content }
     end
   end
