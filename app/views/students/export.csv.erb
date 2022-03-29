@@ -1,0 +1,5 @@
+<%- headers = ['Last Name', 'First Name', 'University', 'Nominator', 'Degree level', 'Major/Area of Study', 'Term of exchange', 'Email' ] -%>
+<%= CSV.generate_line headers %>
+<%- @students.each do |student| -%>
+  <%= CSV.generate_line([student.last_name, student.first_name, University.find(student.university_id).university_name, [Representative.find(student.representative_id).first_name, Representative.find(student.representative_id).last_name].join(' '), student.degree_level, student.major, student.exchange_term, student.student_email]) -%>
+<%- end -%>

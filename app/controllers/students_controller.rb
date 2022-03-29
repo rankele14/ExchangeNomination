@@ -1,3 +1,5 @@
+require 'csv'
+
 class StudentsController < ApplicationController
   before_action :set_student, only: %i[ show edit update destroy ]
 
@@ -151,6 +153,17 @@ class StudentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to finish_path(@representative), notice: "Student was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+  
+  def export
+    @students = Student.all
+
+    respond_to do |format|
+      format.csv do
+        response.headers['Content-Type'] = 'text/csv'
+        response.headers['Content-Disposition'] = "attachment; filename=student.csv"
+      end
     end
   end
 
