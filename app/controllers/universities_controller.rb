@@ -4,7 +4,8 @@ class UniversitiesController < ApplicationController
   # GET /universities or /universities.json
   def index
     @universities = University.all
-    @max_lim = $max_limit.to_i
+    @variable = Variable.find_by(var_name: 'max_limit')
+    @max_lim = @variable.var_value.to_i
   end
 
   # GET /universities/1 or /universities/1.json
@@ -17,7 +18,8 @@ class UniversitiesController < ApplicationController
   def new
     @university = University.new
     @university.num_nominees = 0
-    @university.max_limit = $max_limit
+    @variable = Variable.find_by(var_name: 'max_limit')
+    @university.max_limit = @variable.var_value.to_i
   end
 
   # GET /universities/1/edit
@@ -63,28 +65,38 @@ class UniversitiesController < ApplicationController
   end
 
   def update_max
+    @variable = Variable.find_by(var_name: 'max_limit')
     #puts "params? #{params[:max_lim]}"
     ml = params[:max_lim].to_i
-    if ml > -1
-      $max_limit = params[:max_lim].to_i
+    if ml > -1 and ml < 101
+      @variable.var_value = params[:max_lim]
+      @variable.save
       redirect_to universities_path, notice: "Max Limit was successfully updated."
+    elsif ml < 0
+      redirect_to universities_path, alert: "Max Limit update not successful. Max Limit cannot be negative."
+    elsif ml > 100
+      redirect_to universities_path, alert: "Max Limit update not successful. Max Limit capped at 100."
     else
-      redirect_to universities_path, notice: "Max Limit cannot be negative."
+      redirect_to universities_path, alert: "There was an error updating max limit."
     end
   end
 
   def change_all_max
     cl = params[:change_lim].to_i
 
-    if cl > -1
+    if cl > -1 and cl < 101
       @universities = University.all
       @universities.each do |university|
         university.max_limit = cl
         university.save
       end
       redirect_to universities_path, notice: "Limits were successfully updated."
+    elsif cl < 0
+      redirect_to universities_path, alert: "Limits update not successful. Limits cannot be negative."
+    elsif cl > 100
+      redirect_to universities_path, alert: "Limits update not successful. Limits capped at 100."
     else
-      redirect_to universities_path, notice: "Limits cannot be negative."
+      redirect_to universities_path, alert: "There was an error updating limits."
     end
   end
 
