@@ -1,13 +1,21 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Responses</h1>
+<br>
+
+<%= link_to 'Universities', universities_path %> | 
+<%= link_to 'Nominators', representatives_path %> | 
+<%= link_to 'Students', students_path %> | 
+<%= link_to 'Questions', questions_path %>
+<br>
+<br>
 
 <table>
   <thead>
     <tr>
-      <th>Reply</th>
       <th>Question</th>
       <th>Student</th>
+      <th>Reply</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,9 +23,9 @@
   <tbody>
     <% @responses.each do |response| %>
       <tr>
-        <td><%= response.reply %></td>
-		<td><%= Question.all.find(response.question_id).prompt %></td>
+		    <td><%= Question.all.find(response.question_id).prompt %></td>
         <td><%= response.student.student_email %></td>
+        <td><%= response.reply %></td>
         <td><%= link_to 'Show Student', [@student] %></td>
         <td><%= link_to 'Edit Response', edit_student_response_path(@student, response) %></td>
         <td><%= link_to 'Destroy Response', [@student, response], method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -29,3 +37,5 @@
 <br>
 
 <%= link_to 'New Response', new_student_response_path(@student) %>
+<br>
+<%= link_to 'Back', admin_path %>
