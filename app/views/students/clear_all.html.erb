@@ -1,0 +1,23 @@
+<div>
+  <h2>Clear All Students</h2>
+
+  <%= form_with url: destroy_all_students_url do |f| %>
+
+    <p>Are you sure you want to permanently delete all students?</p>
+
+    <p> Students: <br>
+    <% @representatives.each do |representative| %>
+      <%= @student.first_name %> <%= @student.last_name %> <br>
+    <% end %>
+    </p>
+
+    <p><strong>Notice:</strong> Deleting all students will also delete all responses related to them.</p>
+    <%= link_to 'Back to students', students_path %>
+    <br><br>
+
+    <div class="form-buttons">
+      <%= f.submit("Clear All Students") %>
+    </div>
+
+  <% end %>
+</div>

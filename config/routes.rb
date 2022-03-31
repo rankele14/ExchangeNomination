@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       get :user_new
       post :user_create
       get :clear_all
+      post :destroy_all
     end
   end
 
@@ -33,6 +34,7 @@ Rails.application.routes.draw do
     resources :responses do
       collection do
         get :clear_all
+        post :destroy_all
       end
     end
     member do
@@ -44,6 +46,7 @@ Rails.application.routes.draw do
     collection do
       post :user_create
       get :clear_all
+      post :destroy_all
     end
   end
 
@@ -51,6 +54,7 @@ Rails.application.routes.draw do
   resources :universities do
     collection do
       get :clear_all
+      post :destroy_all
       get :reset_all
     end
   end
@@ -59,6 +63,7 @@ Rails.application.routes.draw do
 	  resources :answers
     collection do
       get :clear_all
+      post :destroy_all
     end
   end
 

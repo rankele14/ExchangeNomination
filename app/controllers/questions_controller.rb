@@ -58,6 +58,10 @@ class QuestionsController < ApplicationController
 
   def clear_all
     @questions = Question.all
+  end
+
+  def destroy_all
+    @questions = Question.all
     @questions.each do |question|
       question.destroy
       # automatically destroys answers

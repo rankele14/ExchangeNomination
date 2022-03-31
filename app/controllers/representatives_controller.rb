@@ -131,6 +131,10 @@ class RepresentativesController < ApplicationController
 
   def clear_all
     @representatives = Representative.all
+  end
+
+  def destroy_all
+    @representatives = Representative.all
     @representatives.each do |representative|
       representative.destroy
     end

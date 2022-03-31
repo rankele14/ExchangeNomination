@@ -61,6 +61,10 @@ class UniversitiesController < ApplicationController
 
   def clear_all
     @universities = University.all
+  end
+
+  def destroy_all
+    @universities = University.all
     @universities.each do |university|
       university.destroy
     end

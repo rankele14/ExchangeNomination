@@ -59,6 +59,10 @@ class ResponsesController < ApplicationController
 
   def clear_all
     @responses = Response.all
+  end
+
+  def destroy_all
+    @responses = Response.all
     @responses.each do |response|
       response.destroy
     end

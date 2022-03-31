@@ -156,6 +156,10 @@ class StudentsController < ApplicationController
 
   def clear_all
     @students = Student.all
+  end
+
+  def destroy_all
+    @students = Student.all
     @students.each do |student|
       student.destroy
     end
