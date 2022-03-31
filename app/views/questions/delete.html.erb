@@ -1,0 +1,28 @@
+<div>
+  <h2>Delete Question</h2>
+
+  <%= form_for(@question, :method => 'delete') do |f| %>
+
+    <p>Are you sure you want to permanently delete this question?</p>
+
+    <p>Prompt: <%= @question.prompt %></p>
+    <% if @question.multi %>
+      Answers
+      <% for answer in @question.answer %>
+        <ul>
+          <li><%= answer.choice %></li>
+        </ul>
+      <% end %>
+    <% end %>
+    
+    <p><strong>Notice:</strong> Deleting this item will also delete related answers and responses.</p>
+    <%= link_to 'Show', @question %> |
+    <%= link_to 'Back to Questions', questions_path %>
+    <br><br>
+
+    <div class="form-buttons">
+      <%= f.submit("Delete Question") %>
+    </div>
+
+  <% end %>
+</div>

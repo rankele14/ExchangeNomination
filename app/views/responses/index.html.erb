@@ -28,7 +28,7 @@
         <td><%= response.reply %></td>
         <td><%= link_to 'Show Student', [@student] %></td>
         <td><%= link_to 'Edit Response', edit_student_response_path(@student, response) %></td>
-        <td><%= link_to 'Destroy Response', [@student, response], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete Response', delete_student_response_path(@student, response) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -38,4 +38,4 @@
 
 <%= link_to 'New Response', new_student_response_path(@student) %>
 <br>
-<%= link_to 'Back', admin_path %>
+<%= link_to 'Back to Admin', admin_path %>

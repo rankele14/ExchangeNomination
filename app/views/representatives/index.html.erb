@@ -32,7 +32,7 @@
         <td><%= representative.rep_email %></td>
         <td class="actions"><%= link_to("Show", representative_path(representative), :class => 'action show') %></td>
         <td><%= link_to 'Edit', edit_representative_path(representative) %></td>
-        <td><%= link_to 'Delete', representative, method: :delete %></td>
+        <td><%= link_to 'Delete', delete_representative_path(representative) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -43,4 +43,4 @@
 <%= link_to 'New Nominator', new_representative_path %>
 <br>
 <br>
-<%= link_to 'Back', admin_path %>
+<%= link_to 'Back to Admin', admin_path %>

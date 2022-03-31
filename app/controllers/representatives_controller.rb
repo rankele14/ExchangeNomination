@@ -93,6 +93,10 @@ class RepresentativesController < ApplicationController
   end
 
   # DELETE /representatives/1 or /representatives/1.json
+  def delete
+    @representative = Representative.find(params[:id])
+  end
+
   def destroy
     @representative.destroy
 

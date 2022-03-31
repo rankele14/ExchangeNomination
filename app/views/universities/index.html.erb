@@ -28,7 +28,7 @@
         <td><%= university.num_nominees %></td>
         <td><%= link_to 'Show', university %></td>
         <td><%= link_to 'Edit', edit_university_path(university) %></td>
-        <td><%= link_to 'Delete', university, method: :delete %></td>
+        <td><%= link_to 'Delete', delete_university_path(university) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -37,6 +37,5 @@
 <br>
 
 <%= link_to 'New University', new_university_path %>
-<br>
-<br>
-<%= link_to 'Back', admin_path %>
+<br><br>
+<%= link_to 'Back to Admin', admin_path %>

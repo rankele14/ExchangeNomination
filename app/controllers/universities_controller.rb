@@ -50,6 +50,10 @@ class UniversitiesController < ApplicationController
   end
 
   # DELETE /universities/1 or /universities/1.json
+  def delete
+    @university = University.find(params[:id])
+  end
+
   def destroy
     @university.destroy
 

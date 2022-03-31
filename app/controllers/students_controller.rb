@@ -130,6 +130,10 @@ class StudentsController < ApplicationController
   end
 
   # DELETE /students/1 or /students/1.json
+  def delete
+    @student = Student.find(params[:id])
+  end
+
   def destroy
     @student.destroy
     @university = University.find(@student.university_id)
@@ -139,6 +143,10 @@ class StudentsController < ApplicationController
       format.html { redirect_to students_url, notice: "Student was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def user_delete
+    @student = Student.find(params[:id])
   end
 
   def user_destroy

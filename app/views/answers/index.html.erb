@@ -18,7 +18,7 @@
       <tr>
         <td><%= answer.choice %></td>
         <td><%= link_to 'Edit Choice', edit_question_answer_path(@question, answer) %></td>
-        <td><%= link_to 'Destroy Choice', [@question, answer], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete Choice', delete_question_answer_path(@question, answer) %></td>
       </tr>
     <% end %>
   </tbody>

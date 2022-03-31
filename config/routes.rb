@@ -23,28 +23,40 @@ Rails.application.routes.draw do
       get :user_show
       get :user_edit
       patch :user_update
+      get :delete
     end
   end
 
   resources :students do
-    resources :responses
+    resources :responses do
+      member do
+        get :delete
+      end
+    end
     member do
       get :user_show
       get :user_edit
       patch :user_update
+      get :delete
+      get :user_delete
     end
   end
 
-  # default definitions and root
-  resources :universities
-  resources :representatives
-  resources :students
+  resources :universities do
+    member do
+      get :delete
+    end
+  end
 
-
-  resources :responses
   resources :questions do
-	resources :answers
-  #root "dashboards#show"
+	  resources :answers do
+      member do
+        get :delete
+      end
+    end
+    member do
+      get :delete
+    end
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

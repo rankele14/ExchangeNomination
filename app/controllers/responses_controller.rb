@@ -49,6 +49,10 @@ class ResponsesController < ApplicationController
   end
 
   # DELETE /responses/1 or /responses/1.json
+  def delete
+    @response = Response.find(params[:id])
+  end
+
   def destroy
     @response.destroy
     respond_to do |format|
