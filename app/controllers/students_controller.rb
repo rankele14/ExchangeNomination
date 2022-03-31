@@ -162,6 +162,12 @@ class StudentsController < ApplicationController
     end
   end
 
+  # help pages
+  def admin_help
+  end
+
+  def user_help
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -9,12 +9,15 @@
                                   finish GET      /representatives/:id/finish(.:format)                                                             representatives#finish
                                    admin GET      /admin(.:format)                                                                                  students#admin
                               update_max GET      /admin/update_max(.:format)                                                                       students#update_max
+                              admin_help GET      /admin/help(.:format)                                                                             students#admin_help
+                               user_help GET      /help(.:format)                                                                                   students#user_help
                  ucreate_representatives POST     /representative/user_create(.:format)                                                             representatives#user_create
                         ucreate_students POST     /students/user_create(.:format)                                                                   students#user_create
                        udestroy_students POST     /students/:id(.:format)                                                                           students#user_destroy
                 user_show_representative GET      /representatives/:id/user_show(.:format)                                                          representatives#user_show
                 user_edit_representative GET      /representatives/:id/user_edit(.:format)                                                          representatives#user_edit
               user_update_representative PATCH    /representatives/:id/user_update(.:format)                                                        representatives#user_update
+                   delete_representative GET      /representatives/:id/delete(.:format)                                                             representatives#delete
                          representatives GET      /representatives(.:format)                                                                        representatives#index
                                          POST     /representatives(.:format)                                                                        representatives#create
                       new_representative GET      /representatives/new(.:format)                                                                    representatives#new
@@ -23,6 +26,7 @@
                                          PATCH    /representatives/:id(.:format)                                                                    representatives#update
                                          PUT      /representatives/:id(.:format)                                                                    representatives#update
                                          DELETE   /representatives/:id(.:format)                                                                    representatives#destroy
+                 delete_student_response GET      /students/:student_id/responses/:id/delete(.:format)                                              responses#delete
                        student_responses GET      /students/:student_id/responses(.:format)                                                         responses#index
                                          POST     /students/:student_id/responses(.:format)                                                         responses#create
                     new_student_response GET      /students/:student_id/responses/new(.:format)                                                     responses#new
@@ -34,6 +38,8 @@
                        user_show_student GET      /students/:id/user_show(.:format)                                                                 students#user_show
                        user_edit_student GET      /students/:id/user_edit(.:format)                                                                 students#user_edit
                      user_update_student PATCH    /students/:id/user_update(.:format)                                                               students#user_update
+                          delete_student GET      /students/:id/delete(.:format)                                                                    students#delete
+                     user_delete_student GET      /students/:id/user_delete(.:format)                                                               students#user_delete
                                 students GET      /students(.:format)                                                                               students#index
                                          POST     /students(.:format)                                                                               students#create
                              new_student GET      /students/new(.:format)                                                                           students#new
@@ -42,6 +48,7 @@
                                          PATCH    /students/:id(.:format)                                                                           students#update
                                          PUT      /students/:id(.:format)                                                                           students#update
                                          DELETE   /students/:id(.:format)                                                                           students#destroy
+                       delete_university GET      /universities/:id/delete(.:format)                                                                universities#delete
                             universities GET      /universities(.:format)                                                                           universities#index
                                          POST     /universities(.:format)                                                                           universities#create
                           new_university GET      /universities/new(.:format)                                                                       universities#new
@@ -50,30 +57,7 @@
                                          PATCH    /universities/:id(.:format)                                                                       universities#update
                                          PUT      /universities/:id(.:format)                                                                       universities#update
                                          DELETE   /universities/:id(.:format)                                                                       universities#destroy
-                                         GET      /representatives(.:format)                                                                        representatives#index
-                                         POST     /representatives(.:format)                                                                        representatives#create
-                                         GET      /representatives/new(.:format)                                                                    representatives#new
-                                         GET      /representatives/:id/edit(.:format)                                                               representatives#edit
-                                         GET      /representatives/:id(.:format)                                                                    representatives#show
-                                         PATCH    /representatives/:id(.:format)                                                                    representatives#update
-                                         PUT      /representatives/:id(.:format)                                                                    representatives#update
-                                         DELETE   /representatives/:id(.:format)                                                                    representatives#destroy
-                                         GET      /students(.:format)                                                                               students#index
-                                         POST     /students(.:format)                                                                               students#create
-                                         GET      /students/new(.:format)                                                                           students#new
-                                         GET      /students/:id/edit(.:format)                                                                      students#edit
-                                         GET      /students/:id(.:format)                                                                           students#show
-                                         PATCH    /students/:id(.:format)                                                                           students#update
-                                         PUT      /students/:id(.:format)                                                                           students#update
-                                         DELETE   /students/:id(.:format)                                                                           students#destroy
-                               responses GET      /responses(.:format)                                                                              responses#index
-                                         POST     /responses(.:format)                                                                              responses#create
-                            new_response GET      /responses/new(.:format)                                                                          responses#new
-                           edit_response GET      /responses/:id/edit(.:format)                                                                     responses#edit
-                                response GET      /responses/:id(.:format)                                                                          responses#show
-                                         PATCH    /responses/:id(.:format)                                                                          responses#update
-                                         PUT      /responses/:id(.:format)                                                                          responses#update
-                                         DELETE   /responses/:id(.:format)                                                                          responses#destroy
+                  delete_question_answer GET      /questions/:question_id/answers/:id/delete(.:format)                                              answers#delete
                         question_answers GET      /questions/:question_id/answers(.:format)                                                         answers#index
                                          POST     /questions/:question_id/answers(.:format)                                                         answers#create
                      new_question_answer GET      /questions/:question_id/answers/new(.:format)                                                     answers#new
@@ -82,6 +66,7 @@
                                          PATCH    /questions/:question_id/answers/:id(.:format)                                                     answers#update
                                          PUT      /questions/:question_id/answers/:id(.:format)                                                     answers#update
                                          DELETE   /questions/:question_id/answers/:id(.:format)                                                     answers#destroy
+                         delete_question GET      /questions/:id/delete(.:format)                                                                   questions#delete
                                questions GET      /questions(.:format)                                                                              questions#index
                                          POST     /questions(.:format)                                                                              questions#create
                             new_question GET      /questions/new(.:format)                                                                          questions#new
