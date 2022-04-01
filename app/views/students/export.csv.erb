@@ -1,5 +1,17 @@
 <%- headers = ['Last Name', 'First Name', 'University', 'Nominator', 'Degree level', 'Major/Area of Study', 'Term of exchange', 'Email' ] -%>
+<%- @questions.each do |question| -%>
+  <%- headers = headers + [question.prompt] -%>
+<%- end -%>
 <%= CSV.generate_line headers %>
 <%- @students.each do |student| -%>
-  <%= CSV.generate_line([student.last_name, student.first_name, University.find(student.university_id).university_name, [Representative.find(student.representative_id).first_name, Representative.find(student.representative_id).last_name].join(' '), student.degree_level, student.major, student.exchange_term, student.student_email]) -%>
+  <%- line = [student.last_name, student.first_name, University.find(student.university_id).university_name, [Representative.find(student.representative_id).first_name, Representative.find(student.representative_id).last_name].join(' '), student.degree_level, student.major, student.exchange_term, student.student_email]-%>
+  <%- @questions.each do |question| -%>
+    <%- response = [@responses.where(question_id: question, student_id: student)] -%>
+    <%- if response.empty? -%>
+      <%- line = line + [''] -%>
+    <%- else -%>
+      <%- line = line + [@responses.where(question_id: question, student_id: student)[0]] -%>
+    <%- end -%>
+  <%- end -%>
+  <%= CSV.generate_line(line) -%>
 <%- end -%>

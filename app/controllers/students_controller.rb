@@ -158,6 +158,8 @@ class StudentsController < ApplicationController
   
   def export
     @students = Student.all
+    @questions = Question.all
+    @responses = Response.all
 
     respond_to do |format|
       format.csv do
