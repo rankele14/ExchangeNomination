@@ -159,7 +159,11 @@ class StudentsController < ApplicationController
   def destroy
     @student.destroy
     @university = University.find(@student.university_id)
-    @university.update(num_nominees: @university.num_nominees - 1)
+    if (@student.exchange_term.include? "and")
+      @university.update(num_nominees: @university.num_nominees - 2)
+    else
+      @university.update(num_nominees: @university.num_nominees - 1)
+    end
 
     respond_to do |format|
       format.html { redirect_to students_url, notice: "Student was successfully destroyed." }
@@ -169,9 +173,13 @@ class StudentsController < ApplicationController
 
   def user_destroy
     @student = Student.find(params[:id])
-    @university = University.find(@student.university_id)
     @representative = Representative.find(@student.representative_id)
-    @university.update(num_nominees: @university.num_nominees - 1)
+    @university = University.find(@student.university_id)
+    if (@student.exchange_term.include? "and")
+      @university.update(num_nominees: @university.num_nominees - 2)
+    else
+      @university.update(num_nominees: @university.num_nominees - 1)
+    end
     @student.destroy
 
     respond_to do |format|
