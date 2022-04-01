@@ -74,6 +74,7 @@ class StudentsController < ApplicationController
     respond_to do |format|
       if @student.save
         @university.update(num_nominees: @university.num_nominees + 1)
+		ConfirmationMailer.with(student: @student, representative: Representative.find_by(id: @student.representative_id)).confirm_email.deliver_later
         format.html { redirect_to student_url(@student), notice: "Student was successfully created." }
         format.json { render :show, status: :created, location: @student }
       else
@@ -91,6 +92,7 @@ class StudentsController < ApplicationController
     respond_to do |format|
       if @student.save
         @university.update(num_nominees: @university.num_nominees + 1)
+		ConfirmationMailer.with(student: @student, representative: Representative.find_by(id: @student.representative_id)).confirm_email.deliver_later
         format.html { redirect_to user_show_student_url(@student), notice: "Student was successfully created." }
         format.json { render :show, status: :created, location: @student }
       else
