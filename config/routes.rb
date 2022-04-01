@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get 'representatives/:id/finish/', to: 'representatives#finish', as: 'finish' # finish page
   get 'admin', to: 'students#admin', as: 'admin' # admin home page in student folder for now
   get 'admin/update_max', to: 'students#update_max', as: 'update_max'
-  get 'students/export', to: 'students#export'
+  get 'students/export/student.csv', to: 'students#export', as: 'export' # export button
   post 'representative/user_create', to: 'representatives#user_create', as: 'ucreate_representatives'
   post 'students/user_create', to: 'students#user_create', as: 'ucreate_students'
   post 'students/:id', to: 'students#user_destroy', as: 'udestroy_students'
