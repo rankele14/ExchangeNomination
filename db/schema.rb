@@ -80,7 +80,15 @@ ActiveRecord::Schema.define(version: 2022_04_01_025847) do
 
   create_table "universities", force: :cascade do |t|
     t.string "university_name"
-    t.integer "num_nominees", default: 0
+    t.integer "num_nominees"
+    t.integer "max_limit"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "variables", force: :cascade do |t|
+    t.string "var_name"
+    t.string "var_value"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

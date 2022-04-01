@@ -10,20 +10,6 @@ class StudentsController < ApplicationController
   
   # this made for possible admin home page
   def admin
-    @max_lim = $max_limit.to_i
-  end
-
-  def update_max
-    #puts "params? #{params}"
-    #puts "params? #{params[:max_lim]}"
-    ml = params[:max_lim].to_i
-    #puts "int #{ml}"
-    if ml > -1
-      $max_limit = params[:max_lim].to_i
-      redirect_to admin_url, notice: "Max Limit was successfully updated."
-    else
-      redirect_to admin_url, notice: "Max Limit cannot be negative."
-    end
   end
 
   # GET /students/1 or /students/1.json
@@ -38,7 +24,8 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
     @representative = Representative.find(@student.representative_id)
     @university = University.find(@student.university_id)
-    @max_lim = $max_limit.to_i
+    @variable = Variable.find_by(var_name: 'max_limit')
+    @max_lim = @variable.var_value.to_i
   end
 
   # GET /students/new
@@ -53,9 +40,10 @@ class StudentsController < ApplicationController
     @representative = Representative.find(@student.representative_id)
     @student.university_id = @representative.university_id
     @university = University.find(@student.university_id)
+    @variable = Variable.find_by(var_name: 'max_limit')
 
-    if @university.num_nominees >= $max_limit.to_i
-      redirect_to finish_url(@representative), notice: "Sorry, maximum limit of 3 students already reached." 
+    if @university.num_nominees >= @variable.var_value.to_i
+      redirect_to finish_url(@representative), alert: "Sorry, maximum limit of 3 students already reached." 
     end
   end
 

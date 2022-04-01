@@ -23,7 +23,6 @@ class RepresentativesController < ApplicationController
   # GET /representatives/user_new
   def user_new
     @representative = Representative.new
-    $max_limit = 3
   end
 
   # GET /representatives/1/edit
@@ -105,15 +104,17 @@ class RepresentativesController < ApplicationController
   def finish
     @representative = Representative.find(params[:id])
     @students = Student.where(representative_id: @representative.id)
-    @max_lim = $max_limit
+    @variable = Variable.find_by(var_name: 'max_limit')
+    @max_lim = @variable.var_value.to_i
   end
 
   def rep_check
     @representative = Representative.find(params[:id])
     @university = University.find(@representitive.university_id)
+    @variable = Variable.find_by(var_name: 'max_limit')
 
-    if @university.num_nominees >= $max_limit
-      redirect_to finish_url(@representative), notice: "Sorry, your university has already reached the maximum limit of 3 student nominees." 
+    if @university.num_nominees >= @variable.var_value.to_i
+      redirect_to finish_url(@representative), alert: "Sorry, your university has already reached the maximum limit of 3 student nominees." 
     else
       @student = Student.new
       @student.update(first_name: "", last_name: "", university_id: @representitive.university_id, student_email: "", exchange_term: "", degree_level: "", major: "")
