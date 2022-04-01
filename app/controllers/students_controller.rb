@@ -1,3 +1,5 @@
+require 'csv'
+
 class StudentsController < ApplicationController
   before_action :set_student, only: %i[ show edit update destroy ]
 
@@ -62,6 +64,7 @@ class StudentsController < ApplicationController
     respond_to do |format|
       if @student.save
         @university.update(num_nominees: @university.num_nominees + 1)
+		ConfirmationMailer.with(student: @student, representative: Representative.find_by(id: @student.representative_id)).confirm_email.deliver_later
         format.html { redirect_to student_url(@student), notice: "Student was successfully created." }
         format.json { render :show, status: :created, location: @student }
       else
@@ -79,6 +82,7 @@ class StudentsController < ApplicationController
     respond_to do |format|
       if @student.save
         @university.update(num_nominees: @university.num_nominees + 1)
+		ConfirmationMailer.with(student: @student, representative: Representative.find_by(id: @student.representative_id)).confirm_email.deliver_later
         format.html { redirect_to user_show_student_url(@student), notice: "Student was successfully created." }
         format.json { render :show, status: :created, location: @student }
       else
@@ -139,6 +143,20 @@ class StudentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to finish_path(@representative), notice: "Student was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+  
+  def export
+    @students = Student.all
+    @students = @students.sort_by(&:university_id)
+    @questions = Question.all
+    @responses = Response.all
+
+    respond_to do |format|
+      format.csv do
+        response.headers['Content-Type'] = 'text/csv'
+        response.headers['Content-Disposition'] = "attachment; filename=student.csv"
+      end
     end
   end
 
