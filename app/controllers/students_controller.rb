@@ -102,13 +102,27 @@ class StudentsController < ApplicationController
   
   # PATCH/PUT /students/1 or /students/1.json
   def update
-    respond_to do |format|
-      if @student.update(student_params)
-        format.html { redirect_to student_url(@student), notice: "Student was successfully updated." }
-        format.json { render :show, status: :ok, location: @student }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @student.errors, status: :unprocessable_entity }
+    prev_term = @student.exchange_term
+    new_term = params[:student][:exchange_term]
+    @university = University.find(@student.university_id)
+    @variable = Variable.find_by(var_name: 'max_limit')
+
+    if !(prev_term.include? "and") && (new_term.include? "and") && (@university.num_nominees >= @variable.var_value.to_i) then # used to be single, now double, exceeds university limit
+      redirect_to edit_student_url(@student), alert: "Sorry, a double term nomination would exceed the university's nomination limit. Please stick to a single term nomination." 
+    else
+      respond_to do |format|
+        if @student.update(student_params)
+          if !(prev_term.include? "and") && (new_term.include? "and") then # used to be single, now double
+            @university.update(num_nominees: @university.num_nominees + 1)
+          elsif (prev_term.include? "and") && !(new_term.include? "and") then # used to be double, now single
+            @university.update(num_nominees: @university.num_nominees - 1)
+          end
+          format.html { redirect_to student_url(@student), notice: "Student was successfully updated." }
+          format.json { render :show, status: :ok, location: @student }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @student.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -116,15 +130,27 @@ class StudentsController < ApplicationController
   # PATCH/PUT /students/1/user_update
   def user_update
     @student = Student.find(params[:id])
-    #puts "#Is this working???!! #{@student.first_name}"
+    prev_term = @student.exchange_term
+    new_term = params[:student][:exchange_term]
+    @university = University.find(@student.university_id)
+    @variable = Variable.find_by(var_name: 'max_limit')
 
-    respond_to do |format|
-      if @student.update(student_params)
-        format.html { redirect_to user_show_student_url(@student), notice: "Student was successfully updated." }
-        format.json { render :show, status: :ok, location: @student }
-      else
-        format.html { render :user_edit, status: :unprocessable_entity }
-        format.json { render json: @student.errors, status: :unprocessable_entity }
+    if !(prev_term.include? "and") && (new_term.include? "and") && (@university.num_nominees >= @variable.var_value.to_i) then # used to be single, now double, exceeds university limit
+      redirect_to user_edit_student_url(@student), alert: "Sorry, a double term nomination would exceed the university's nomination limit. Please stick to a single term nomination." 
+    else
+      respond_to do |format|
+        if @student.update(student_params)
+          if !(prev_term.include? "and") && (new_term.include? "and") then # used to be single, now double
+            @university.update(num_nominees: @university.num_nominees + 1)
+          elsif (prev_term.include? "and") && !(new_term.include? "and") then # used to be double, now single
+            @university.update(num_nominees: @university.num_nominees - 1)
+          end
+          format.html { redirect_to user_show_student_url(@student), notice: "Student was successfully updated." }
+          format.json { render :show, status: :ok, location: @student }
+        else
+          format.html { render :user_edit, status: :unprocessable_entity }
+          format.json { render json: @student.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
