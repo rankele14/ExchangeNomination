@@ -63,8 +63,12 @@ class StudentsController < ApplicationController
 
     respond_to do |format|
       if @student.save
-        @university.update(num_nominees: @university.num_nominees + 1)
-		ConfirmationMailer.with(student: @student, representative: Representative.find_by(id: @student.representative_id)).confirm_email.deliver_later
+        if @student.exchange_term.include? "and"
+          @university.update(num_nominees: @university.num_nominees + 2)
+        else
+          @university.update(num_nominees: @university.num_nominees + 1)
+        end
+        ConfirmationMailer.with(student: @student, representative: Representative.find_by(id: @student.representative_id)).confirm_email.deliver_later
         format.html { redirect_to student_url(@student), notice: "Student was successfully created." }
         format.json { render :show, status: :created, location: @student }
       else
@@ -81,8 +85,12 @@ class StudentsController < ApplicationController
 
     respond_to do |format|
       if @student.save
-        @university.update(num_nominees: @university.num_nominees + 1)
-		ConfirmationMailer.with(student: @student, representative: Representative.find_by(id: @student.representative_id)).confirm_email.deliver_later
+        if @student.exchange_term.include? "and"
+          @university.update(num_nominees: @university.num_nominees + 2)
+        else
+          @university.update(num_nominees: @university.num_nominees + 1)
+        end
+        ConfirmationMailer.with(student: @student, representative: Representative.find_by(id: @student.representative_id)).confirm_email.deliver_later
         format.html { redirect_to user_show_student_url(@student), notice: "Student was successfully created." }
         format.json { render :show, status: :created, location: @student }
       else
@@ -91,7 +99,7 @@ class StudentsController < ApplicationController
       end
     end
   end
-
+  
   # PATCH/PUT /students/1 or /students/1.json
   def update
     respond_to do |format|
