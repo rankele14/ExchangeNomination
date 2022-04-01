@@ -158,6 +158,7 @@ class StudentsController < ApplicationController
   
   def export
     @students = Student.all
+    @students = @students.sort_by(&:university_id)
     @questions = Question.all
     @responses = Response.all
 
