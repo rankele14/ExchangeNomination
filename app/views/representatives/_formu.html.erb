@@ -1,4 +1,4 @@
-<%= form_with model: representative, url: ucreate_representatives_path, method: :post, local: true do |form| %>
+<%= form_with model: representative, url: user_create_representatives_path, method: :post, local: true do |form| %>
   <% if representative.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(representative.errors.count, "error") %> prohibited this nominator from being saved:</h2>

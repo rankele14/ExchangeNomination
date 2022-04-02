@@ -6,7 +6,7 @@ RSpec.describe 'User deleting a student', type: :feature do
       fill_in 'University name', with: 'AM'
       click_on 'Create University'
       visit universities_path
-      visit user_new_representative_path
+      visit user_new_representatives_path
       select 'AM', :from => 'University'
       fill_in 'First name', with: 'John'
       fill_in 'Last name', with: 'Smith'

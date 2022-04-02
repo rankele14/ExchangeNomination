@@ -7,20 +7,9 @@ Rails.application.routes.draw do
     get 'admins/sign_out', to: 'admins/sessions#destroy', as: :destroy_admin_session
   end
 
-
   # specific definitions go first or else get overwritten by default definitions
-  get 'representatives/user_new', to: 'representatives#user_new', as: 'user_new_representative'
-  post 'representative/user_create', to: 'representatives#user_create', as: 'ucreate_representatives'
   get 'representatives/:id/students/user_new/', to: 'students#user_new', as: 'user_new_student' #pass representative id to new student form
-  get 'representatives/:id/finish/', to: 'representatives#finish', as: 'finish' # finish page
   get 'admin', to: 'students#admin', as: 'admin' # admin home page in student folder for now
-  get 'admin/update_max', to: 'students#update_max', as: 'update_max'
-  get 'students/export/student.csv', to: 'students#export', as: 'export' # export button
-  post 'representative/user_create', to: 'representatives#user_create', as: 'ucreate_representatives'
-  post 'students/user_create', to: 'students#user_create', as: 'ucreate_students'
-  post 'students/:id', to: 'students#user_destroy', as: 'udestroy_students'
-  get 'universities/update_max', to: 'universities#update_max', as: 'update_max'
-  get 'universities/change_all_max', to: 'universities#change_all_max', as: 'change_all_max'
 
   # add new functions/pages to separate user and admin views
   resources :representatives do
@@ -28,6 +17,11 @@ Rails.application.routes.draw do
       get :user_show
       get :user_edit
       patch :user_update
+      get :finish
+    end
+    collection do
+      get :user_new
+      post :user_create
     end
   end
 
@@ -37,10 +31,20 @@ Rails.application.routes.draw do
       get :user_show
       get :user_edit
       patch :user_update
+      post :user_destroy
+    end
+    collection do
+      post :user_create
+      get :export, path: 'export/student.csv' # export button
     end
   end
 
-  resources :universities
+  resources :universities do
+    collection do
+      get :update_max
+      get :change_all_max
+    end
+  end
 
   # default definitions and root
   resources :responses

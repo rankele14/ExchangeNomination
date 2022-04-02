@@ -114,7 +114,7 @@ class RepresentativesController < ApplicationController
     @variable = Variable.find_by(var_name: 'max_limit')
 
     if @university.num_nominees >= @variable.var_value.to_i
-      redirect_to finish_url(@representative), alert: "Sorry, your university has already reached the maximum limit of 3 student nominees." 
+      redirect_to finish_representative_url(@representative), alert: "Sorry, your university has already reached the maximum limit of 3 student nominees." 
     else
       @student = Student.new
       @student.update(first_name: "", last_name: "", university_id: @representitive.university_id, student_email: "", exchange_term: "", degree_level: "", major: "")
