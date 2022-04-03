@@ -1,5 +1,5 @@
 class ConfirmationMailer < ApplicationMailer
-  default from: 'tamuexchangenomination@gmail.com'
+  default from: ENV['EMAIL']
   def confirm_email
 	@representative = params[:representative]
 	@student = params[:student]
