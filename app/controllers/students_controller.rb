@@ -10,6 +10,16 @@ class StudentsController < ApplicationController
   
   # this made for possible admin home page
   def admin
+    @deadline = Variable.find_by(var_name: 'deadline')
+    if @deadline == nil
+      @deadline = Variable.new
+    end
+
+    @variable = Variable.find_by(var_name: 'max_limi')
+    if @variable == nil
+      @variable = Variable.new({var_name: 'max_limit', var_value: 3})
+      @variable.save
+    end
   end
 
   # GET /students/1 or /students/1.json
@@ -41,9 +51,12 @@ class StudentsController < ApplicationController
     @student.university_id = @representative.university_id
     @university = University.find(@student.university_id)
     @variable = Variable.find_by(var_name: 'max_limit')
+    @deadline = Variable.find_by(var_name: 'deadline')
 
     if @university.num_nominees >= @variable.var_value.to_i
       redirect_to finish_representative_url(@representative), alert: "Sorry, maximum limit of 3 students already reached." 
+    elsif @deadline != nil && Time.now > @deadline.var_value then # past the deadline
+      redirect_to finish_representative_path(@representative), alert: "Sorry, the deadline for submitting students has passed" 
     end
   end
 
@@ -82,20 +95,25 @@ class StudentsController < ApplicationController
   def user_create
     @student = Student.new(student_params)
     @university = University.find(@student.university_id)
-
-    respond_to do |format|
-      if @student.save
-        if @student.exchange_term.include? "and"
-          @university.update(num_nominees: @university.num_nominees + 2)
+    @deadline = Variable.find_by(var_name: 'deadline')
+    
+    if @deadline != nil && Time.now > @deadline.var_value then# past the deadline
+      redirect_to finish_representative_path(@student.representative_id), alert: "Sorry, the deadline for submitting students has passed" 
+    else
+      respond_to do |format|
+        if @student.save
+          if @student.exchange_term.include? "and"
+            @university.update(num_nominees: @university.num_nominees + 2)
+          else
+            @university.update(num_nominees: @university.num_nominees + 1)
+          end
+          ConfirmationMailer.with(student: @student, representative: Representative.find_by(id: @student.representative_id)).confirm_email.deliver_later
+          format.html { redirect_to user_show_student_url(@student), notice: "Student was successfully created." }
+          format.json { render :show, status: :created, location: @student }
         else
-          @university.update(num_nominees: @university.num_nominees + 1)
+          format.html { render :user_new, status: :unprocessable_entity }
+          format.json { render json: @student.errors, status: :unprocessable_entity }
         end
-        ConfirmationMailer.with(student: @student, representative: Representative.find_by(id: @student.representative_id)).confirm_email.deliver_later
-        format.html { redirect_to user_show_student_url(@student), notice: "Student was successfully created." }
-        format.json { render :show, status: :created, location: @student }
-      else
-        format.html { render :user_new, status: :unprocessable_entity }
-        format.json { render json: @student.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -134,9 +152,12 @@ class StudentsController < ApplicationController
     new_term = params[:student][:exchange_term]
     @university = University.find(@student.university_id)
     @variable = Variable.find_by(var_name: 'max_limit')
+    @deadline = Variable.find_by(var_name: 'deadline')
 
     if !(prev_term.include? "and") && (new_term.include? "and") && (@university.num_nominees >= @variable.var_value.to_i) then # used to be single, now double, exceeds university limit
       redirect_to user_edit_student_url(@student), alert: "Sorry, a double term nomination would exceed the university's nomination limit. Please stick to a single term nomination." 
+    elsif @deadline != nil && Time.now > @deadline.var_value then # past the deadline
+      redirect_to finish_representative_path(@student.representative_id), alert: "Sorry, the deadline for submitting students has passed" 
     else
       respond_to do |format|
         if @student.update(student_params)
@@ -200,6 +221,18 @@ class StudentsController < ApplicationController
         response.headers['Content-Disposition'] = "attachment; filename=student.csv"
       end
     end
+  end
+
+  def update_max
+    @deadline = Variable.find_by(var_name: 'deadline')
+    deadline = params[:deadline]
+    if @deadline == nil
+      @deadline = Variable.new({var_name: 'deadline', var_value: deadline})
+    else
+      @deadline.var_value = deadline
+    end
+    @deadline.save
+    redirect_to admin_url, notice: "Deadline was successfully updated."
   end
 
 
