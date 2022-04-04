@@ -15,7 +15,7 @@ class StudentsController < ApplicationController
       @deadline = Variable.new
     end
 
-    @variable = Variable.find_by(var_name: 'max_limi')
+    @variable = Variable.find_by(var_name: 'max_limit')
     if @variable == nil
       @variable = Variable.new({var_name: 'max_limit', var_value: 3})
       @variable.save
