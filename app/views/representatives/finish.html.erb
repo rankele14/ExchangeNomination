@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 <p id="alert"><%= alert %></p>
+<div style="text-align: right"><%= link_to 'Help', user_help_path %></div>
 
 <h1>Finish</h1>
 
@@ -33,7 +34,7 @@
         <td><%= student.student_email %></td>
         <td><%= link_to 'Show', user_show_student_path(student) %></td>
         <td><%= link_to 'Edit', user_edit_student_path(student) %></td>
-        <td><%= link_to 'Delete', student, method: :user_destroy %></td>
+        <td><%= link_to 'Delete', user_delete_student_path(student) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -47,11 +48,7 @@
 </p>
 <p>If the maximum number of nominees has been reached, then entering a new student will not be allowed.</p>
 
-<%= link_to 'Enter a new student', user_new_student_path(@representative) %> | 
-
-<br>
-<br>
-<br>
+<%= link_to 'Enter a new student', user_new_student_path(@representative) %> <br><br><br>
 
 <h2>Nominator</h2>
 
@@ -80,4 +77,4 @@
   <%= University.find(@representative.university_id).university_name %>
 </p>
 
-<%= link_to 'Edit Nominator Info', user_edit_representative_path(@representative) %> |
+<%= link_to 'Edit Nominator Info', user_edit_representative_path(@representative) %>

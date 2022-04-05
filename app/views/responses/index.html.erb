@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+<div style="text-align: right"><%= link_to 'Help', admin_help_path %></div>
 
 <h1>Responses</h1>
 <br>
@@ -28,7 +29,7 @@
         <td><%= response.reply %></td>
         <td><%= link_to 'Show Student', [@student] %></td>
         <td><%= link_to 'Edit Response', edit_student_response_path(@student, response) %></td>
-        <td><%= link_to 'Destroy Response', [@student, response], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete Response', delete_student_response_path(@student, response) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -39,4 +40,4 @@
 <%= link_to 'New Response', new_student_response_path(@student) %> | 
 <%= link_to 'Clear All', clear_all_repsonses_path %>
 <br>
-<%= link_to 'Back', admin_path %>
+<%= link_to 'Back to Admin', admin_path %>

@@ -1,0 +1,23 @@
+<div>
+  <h2>Delete University</h2>
+
+  <%= form_for(@university, :method => 'delete') do |f| %>
+
+    <p>Are you sure you want to permanently delete this university?</p>
+
+    <p>
+    University name: <%= @university.university_name %> <br>
+    Number of Nominees: <%= @university.num_nominees %>
+    </p>
+    
+    <p><strong>Notice:</strong> Deleting this item will also delete related representatives and students. </p>
+    <%= link_to 'Show', @university %> |
+    <%= link_to 'Back to Universities', universities_path %>
+    <br><br>
+
+    <div class="form-buttons">
+      <%= f.submit("Delete University") %>
+    </div>
+
+  <% end %>
+</div>

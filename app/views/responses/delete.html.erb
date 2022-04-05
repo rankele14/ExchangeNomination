@@ -1,0 +1,21 @@
+<div>
+  <h2>Delete Response</h2>
+
+  <%= form_for(@response, :method => 'delete') do |f| %>
+
+    <p>Are you sure you want to permanently delete this response?</p>
+
+    <p>Reply: <%= @response.reply %> <br>
+    Question: <%= @response.question %> <br>
+    Student: <%= @response.student %>
+    </p>
+    
+    <%= link_to 'Back to Responses', responses_path %>
+    <br><br>
+
+    <div class="form-buttons">
+      <%= f.submit("Delete Response") %>
+    </div>
+
+  <% end %>
+</div>

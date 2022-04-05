@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 <p id="alert"><%= alert %></p>
+<div style="text-align: right"><%= link_to 'Help', admin_help_path %></div>
 
 <% content_for :title, "Universities" %>
 
@@ -31,7 +32,7 @@
         <td><%= university.max_limit %></td>
         <td><%= link_to 'Show', university %></td>
         <td><%= link_to 'Edit', edit_university_path(university) %></td>
-        <td><%= link_to 'Delete', university, method: :delete %></td>
+        <td><%= link_to 'Delete', delete_university_path(university) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -74,4 +75,4 @@ Default Limit of Nominees:
 <br>
 <br>
 
-<%= link_to 'Back', admin_path %>
+<%= link_to 'Back to Admin', admin_path %>

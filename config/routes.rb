@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   # specific definitions go first or else get overwritten by default definitions
   get 'representatives/:id/students/user_new/', to: 'students#user_new', as: 'user_new_student' #pass representative id to new student form
   get 'admin', to: 'students#admin', as: 'admin' # admin home page in student folder for now
+  get 'admin/help', to: 'students#admin_help', as: 'admin_help'
+  get 'help', to: 'students#user_help', as: 'user_help'
 
   # add new functions/pages to separate user and admin views
   resources :representatives do
@@ -18,6 +20,7 @@ Rails.application.routes.draw do
       get :user_edit
       patch :user_update
       get :finish
+      get :delete
     end
     collection do
       get :user_new
@@ -33,12 +36,17 @@ Rails.application.routes.draw do
         get :clear_all
         post :destroy_all
       end
+      member do
+        get :delete
+      end
     end
     member do
       get :user_show
       get :user_edit
       patch :user_update
       post :user_destroy
+      get :delete
+      get :user_delete
     end
     collection do
       post :user_create
@@ -57,13 +65,23 @@ Rails.application.routes.draw do
       post :destroy_all
       get :reset_all
     end
+    member do
+      get :delete
+    end
   end
 
   resources :questions do
-	  resources :answers
+	  resources :answers do
+      member do
+        get :delete
+      end
+    end
     collection do
       get :clear_all
       post :destroy_all
+    end
+    member do
+      get :delete
     end
   end
 

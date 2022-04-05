@@ -1,0 +1,24 @@
+<div>
+  <div style="text-align: right"><%= link_to 'Help', user_help_path %></div>
+  <h2>Delete Student</h2>
+
+  <%= form_for(@student, :method => 'user_delete') do |f| %>
+
+    <p>Are you sure you want to permanently delete this student?</p>
+
+    <p>
+      Name: <%= @student.first_name %> <%= @student.last_name %> <br>
+      University: <%= University.where(id: @student.university_id).university_name %>
+    </p>
+    
+    <p><strong>Notice:</strong> Deleting this item will also delete related responses.</p>
+    <%= link_to 'Show', user_show_student_path(@student) %> |
+    <%= link_to 'Back to Finish', finish_path(@student.representative_id) %>
+    <br><br>
+
+    <div class="form-buttons">
+      <%= f.submit("Delete Student") %>
+    </div>
+
+  <% end %>
+</div>

@@ -48,6 +48,10 @@ class QuestionsController < ApplicationController
   end
 
   # DELETE /questions/1 or /questions/1.json
+  def delete
+    @question = Question.find(params[:id])
+  end
+
   def destroy
     @question.destroy
     respond_to do |format|
