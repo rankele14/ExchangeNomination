@@ -98,6 +98,39 @@ class UniversitiesController < ApplicationController
     else
       redirect_to universities_path, alert: "There was an error updating limits."
     end
+  def clear_all
+    @universities = University.all
+  end
+
+  def destroy_all
+    @universities = University.all
+    @universities.each do |university|
+      university.destroy
+    end
+    # automatically destroys representatives and students
+    redirect_to universities_url, notice: "Universities successfully cleared."
+  end
+
+  def reset_all
+    puts 'reset_all'
+    @universities = University.all
+    @universities.each do |university|
+      # delete students too?
+      @representatives = Representative.where(university_id: university.id)
+      @representatives.each do |representative|
+        representative.destroy
+      end
+      # representatives auto-destroy students, students auto-destroy responses
+      #@students = Student.where(university_id: university.id)
+      #@students.each do |student|
+      #  student.destroy
+      #end
+      #responses?
+      university.num_nominees = 0
+      #university.max_limit = $max_limit
+      university.save
+    end
+    redirect_to universities_url, notice: "Universities successfully reset."
   end
 
   private

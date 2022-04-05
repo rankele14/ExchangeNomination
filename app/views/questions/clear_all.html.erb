@@ -1,0 +1,27 @@
+<div>
+  <h2>Clear All Questions</h2>
+
+  <%= form_with url: destroy_all_questions_url do |f| %>
+
+    <p>Are you sure you want to permanently delete all questions?</p>
+
+    <p>Prompt: <%= @question.prompt %> </p>
+    <% if @question.multi %>
+      <h2>Answers</h2>
+      <% for answer in @question.answer %>
+        <ul>
+          <li><%= answer.choice %></li>
+        </ul>
+      <% end %>
+    <% end %>
+
+    <p><strong>Notice:</strong> Deleting all questions will also delete all answers and responses related to them.</p>
+    <%= link_to 'Back to questions', questions_path %>
+    <br><br>
+
+    <div class="form-buttons">
+      <%= f.submit("Clear All Questions") %>
+    </div>
+
+  <% end %>
+</div>

@@ -57,6 +57,18 @@ class ResponsesController < ApplicationController
     end
   end
 
+  def clear_all
+    @responses = Response.all
+  end
+
+  def destroy_all
+    @responses = Response.all
+    @responses.each do |response|
+      response.destroy
+    end
+    redirect_to responses_url, notice: "Responses successfully cleared."
+  end
+
   private
 	def get_student
 	  @student = Student.find(params[:student_id])

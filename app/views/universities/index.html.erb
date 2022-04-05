@@ -6,6 +6,13 @@
 <h1>Universities</h1>
 <br>
 
+<%= link_to 'Universities', universities_path %> | 
+<%= link_to 'Nominators', representatives_path %> | 
+<%= link_to 'Students', students_path %> | 
+<%= link_to 'Questions', questions_path %>
+<br>
+<br>
+
 <table>
   <thead>
     <tr>
@@ -32,7 +39,9 @@
 
 <br>
 
-<%= link_to 'New University', new_university_path %>
+<%= link_to 'New University', new_university_path %> | 
+<%= link_to 'Reset All', reset_all_universities_path %> |
+<%= link_to 'Clear All', clear_all_universities_path %>
 <br>
 <br>
 

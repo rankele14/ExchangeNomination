@@ -22,11 +22,18 @@ Rails.application.routes.draw do
     collection do
       get :user_new
       post :user_create
+      get :clear_all
+      post :destroy_all
     end
   end
 
   resources :students do
-    resources :responses
+    resources :responses do
+      collection do
+        get :clear_all
+        post :destroy_all
+      end
+    end
     member do
       get :user_show
       get :user_edit
@@ -36,20 +43,28 @@ Rails.application.routes.draw do
     collection do
       post :user_create
       get :export, path: 'export/student.csv' # export button
-    end
-  end
-
-  resources :universities do
-    collection do
-      get :update_max
-      get :change_all_max
+      get :clear_all
+      post :destroy_all
     end
   end
 
   # default definitions and root
-  resources :responses
+  resources :universities do
+    collection do
+      get :update_max
+      get :change_all_max
+      get :clear_all
+      post :destroy_all
+      get :reset_all
+    end
+  end
+
   resources :questions do
 	  resources :answers
+    collection do
+      get :clear_all
+      post :destroy_all
+    end
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
