@@ -87,14 +87,19 @@ class RepresentativesController < ApplicationController
   # PATCH/PUT /representatives/1 or /representatives/1.json
   def user_update
     @representative = Representative.find(params[:id])
+    @deadline = Variable.find_by(var_name: 'deadline')
 
-    respond_to do |format|
-      if @representative.update(representative_params)
-        format.html { redirect_to user_show_representative_url(@representative), notice: "Nominator was successfully updated." }
-        format.json { render :show, status: :ok, location: @representative }
-      else
-        format.html { render :user_edit, status: :unprocessable_entity }
-        format.json { render json: @representative.errors, status: :unprocessable_entity }
+    if @deadline != nil && Time.now > @deadline.var_value then # past the deadline
+      redirect_to deadline_dashboards_path 
+    else
+      respond_to do |format|
+        if @representative.update(representative_params)
+          format.html { redirect_to user_show_representative_url(@representative), notice: "Nominator was successfully updated." }
+          format.json { render :show, status: :ok, location: @representative }
+        else
+          format.html { render :user_edit, status: :unprocessable_entity }
+          format.json { render json: @representative.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
