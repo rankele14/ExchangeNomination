@@ -28,6 +28,7 @@ class UniversitiesController < ApplicationController
 
   # POST /universities or /universities.json
   def create
+    puts
     @university = University.new(university_params)
 
     respond_to do |format|
@@ -102,6 +103,8 @@ class UniversitiesController < ApplicationController
     else
       redirect_to universities_path, alert: "There was an error updating limits."
     end
+  end
+
   def clear_all
     @universities = University.all
   end
@@ -116,7 +119,6 @@ class UniversitiesController < ApplicationController
   end
 
   def reset_all
-    puts 'reset_all'
     @universities = University.all
     @universities.each do |university|
       # delete students too?
@@ -125,13 +127,7 @@ class UniversitiesController < ApplicationController
         representative.destroy
       end
       # representatives auto-destroy students, students auto-destroy responses
-      #@students = Student.where(university_id: university.id)
-      #@students.each do |student|
-      #  student.destroy
-      #end
-      #responses?
       university.num_nominees = 0
-      #university.max_limit = $max_limit
       university.save
     end
     redirect_to universities_url, notice: "Universities successfully reset."

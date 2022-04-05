@@ -1,4 +1,6 @@
+require 'common_stuff'
 class RepresentativesController < ApplicationController
+  include CommonStuff
   before_action :set_representative, only: %i[ show edit update destroy ]
 
   # GET /representatives or /representatives.json
@@ -23,6 +25,12 @@ class RepresentativesController < ApplicationController
   # GET /representatives/user_new
   def user_new
     @representative = Representative.new
+    if (Variable.find_by(var_name: 'max_limit') == nil) then #defines max limit if not exist
+      @variable = Variable.new
+      @variable.var_name = 'max_limit'
+      @variable.var_value = '3'
+      @variable.save
+    end
   end
 
   # GET /representatives/1/edit
@@ -97,6 +105,10 @@ class RepresentativesController < ApplicationController
   end
 
   def destroy
+    @students = Student.where(representative_id: @representative.id)
+    @students.each do |student|
+      destroy_uni_update(student.id)
+    end
     @representative.destroy
 
     respond_to do |format|

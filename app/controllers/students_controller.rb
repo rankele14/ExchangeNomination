@@ -1,7 +1,8 @@
 require 'csv'
-
+require 'common_stuff'
 class StudentsController < ApplicationController
-  before_action :set_student, only: %i[ show edit update destroy ]
+  include CommonStuff
+  before_action :set_student, only: %i[ show user_show edit user_edit update user_update destroy user_destroy delete user_delete ]
 
   # GET /students or /students.json
   def index
@@ -14,14 +15,12 @@ class StudentsController < ApplicationController
 
   # GET /students/1 or /students/1.json
   def show
-    @student = Student.find(params[:id])
     @representative = Representative.find(@student.representative_id)
     @university = University.find(@student.university_id)
   end
   
   # GET /students/1/user_show
   def user_show
-    @student = Student.find(params[:id])
     @representative = Representative.find(@student.representative_id)
     @university = University.find(@student.university_id)
     @variable = Variable.find_by(var_name: 'max_limit')
@@ -53,7 +52,6 @@ class StudentsController < ApplicationController
 
   # GET /students/1/user_edit
   def user_edit
-    @student = Student.find(params[:id])
   end
 
   # POST /students or /students.json
@@ -129,7 +127,6 @@ class StudentsController < ApplicationController
 
   # PATCH/PUT /students/1/user_update
   def user_update
-    @student = Student.find(params[:id])
     prev_term = @student.exchange_term
     new_term = params[:student][:exchange_term]
     @university = University.find(@student.university_id)
@@ -157,17 +154,12 @@ class StudentsController < ApplicationController
 
   # DELETE /students/1 or /students/1.json
   def delete
-    @student = Student.find(params[:id])
+    @university = University.find_by(id: @student.university_id)
   end
 
   def destroy
+    destroy_uni_update(@student.id)
     @student.destroy
-    @university = University.find(@student.university_id)
-    if (@student.exchange_term.include? "and")
-      @university.update(num_nominees: @university.num_nominees - 2)
-    else
-      @university.update(num_nominees: @university.num_nominees - 1)
-    end
 
     respond_to do |format|
       format.html { redirect_to students_url, notice: "Student was successfully destroyed." }
@@ -176,18 +168,12 @@ class StudentsController < ApplicationController
   end
 
   def user_delete
-    @student = Student.find(params[:id])
+    @university = University.find_by(id: @student.university_id)
   end
 
   def user_destroy
-    @student = Student.find(params[:id])
     @representative = Representative.find(@student.representative_id)
-    @university = University.find(@student.university_id)
-    if (@student.exchange_term.include? "and")
-      @university.update(num_nominees: @university.num_nominees - 2)
-    else
-      @university.update(num_nominees: @university.num_nominees - 1)
-    end
+    destroy_uni_update(@student.id)
     @student.destroy
 
     respond_to do |format|
@@ -217,6 +203,7 @@ class StudentsController < ApplicationController
   def destroy_all
     @students = Student.all
     @students.each do |student|
+      student.destroy_uni_update(student.id)
       student.destroy
     end
     # automatically destroys responses

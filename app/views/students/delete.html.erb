@@ -7,7 +7,7 @@
 
     <p>
       Name: <%= @student.first_name %> <%= @student.last_name %> <br>
-      University: <%= University.where(id: @student.university_id).university_name %>
+      University: <%= @university.university_name %>
     </p>
     
     <p><strong>Notice:</strong> Deleting this item will also delete related responses. </p>
