@@ -2,6 +2,18 @@
 <div style="text-align: right"><%= link_to 'Help', admin_help_path %></div>
 
 <h1>Admin Home Page</h1>
+
+<p>
+Deadline in UTC: 
+<%= @deadline.var_value %>
+</p>
+
+<form action="/admin/update_deadline" method="get" accept-charset="UTF-8" >
+  <label for="deadline">Update to:</label>
+  <input id="deadline" name="deadline" type="datetime-local" />
+  <input name="commit" type="submit" value="Update Deadline" />
+</form>
+
 <br>
 
 <%= link_to 'Universities', universities_path %>

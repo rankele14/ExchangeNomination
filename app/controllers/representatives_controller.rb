@@ -25,6 +25,10 @@ class RepresentativesController < ApplicationController
   # GET /representatives/user_new
   def user_new
     @representative = Representative.new
+    @deadline = Variable.find_by(var_name: 'deadline')
+    if @deadline != nil && Time.now > @deadline.var_value then # past the deadline
+      redirect_to deadline_dashboards_path
+    end
     if (Variable.find_by(var_name: 'max_limit') == nil) then #defines max limit if not exist
       @variable = Variable.new
       @variable.var_name = 'max_limit'
@@ -59,14 +63,18 @@ class RepresentativesController < ApplicationController
 
   def user_create
     @representative = Representative.new(representative_params)
-
-    respond_to do |format|
-      if @representative.save
-        format.html { redirect_to user_show_representative_url(@representative), notice: "Nominator was successfully created." }
-        format.json { render :show, status: :created, location: @representative }
-      else
-        format.html { render :user_new, status: :unprocessable_entity }
-        format.json { render json: @representative.errors, status: :unprocessable_entity }
+    @deadline = Variable.find_by(var_name: 'deadline')
+    if @deadline != nil && Time.now > @deadline.var_value then # past the deadline
+      redirect_to deadline_dashboards_path 
+    else
+      respond_to do |format|
+        if @representative.save
+          format.html { redirect_to user_show_representative_url(@representative), notice: "Nominator was successfully created." }
+          format.json { render :show, status: :created, location: @representative }
+        else
+          format.html { render :user_new, status: :unprocessable_entity }
+          format.json { render json: @representative.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -87,14 +95,19 @@ class RepresentativesController < ApplicationController
   # PATCH/PUT /representatives/1 or /representatives/1.json
   def user_update
     @representative = Representative.find(params[:id])
+    @deadline = Variable.find_by(var_name: 'deadline')
 
-    respond_to do |format|
-      if @representative.update(representative_params)
-        format.html { redirect_to user_show_representative_url(@representative), notice: "Nominator was successfully updated." }
-        format.json { render :show, status: :ok, location: @representative }
-      else
-        format.html { render :user_edit, status: :unprocessable_entity }
-        format.json { render json: @representative.errors, status: :unprocessable_entity }
+    if @deadline != nil && Time.now > @deadline.var_value then # past the deadline
+      redirect_to finish_representative_url(@representative), alert: "Sorry, the deadline for submitting students has passed" 
+    else
+      respond_to do |format|
+        if @representative.update(representative_params)
+          format.html { redirect_to user_show_representative_url(@representative), notice: "Nominator was successfully updated." }
+          format.json { render :show, status: :ok, location: @representative }
+        else
+          format.html { render :user_edit, status: :unprocessable_entity }
+          format.json { render json: @representative.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -120,8 +133,10 @@ class RepresentativesController < ApplicationController
   def finish
     @representative = Representative.find(params[:id])
     @students = Student.where(representative_id: @representative.id)
+    @university = University.find(@representative.university_id)
     @variable = Variable.find_by(var_name: 'max_limit')
     @max_lim = @variable.var_value.to_i
+    @deadline = Variable.find_by(var_name: 'deadline')
   end
 
   def rep_check

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   # specific definitions go first or else get overwritten by default definitions
   get 'representatives/:id/students/user_new/', to: 'students#user_new', as: 'user_new_student' #pass representative id to new student form
   get 'admin', to: 'students#admin', as: 'admin' # admin home page in student folder for now
+  get 'admin/update_deadline', to: 'students#update_deadline', as: 'update_deadline
   get 'admin/help', to: 'students#admin_help', as: 'admin_help'
   get 'help', to: 'students#user_help', as: 'user_help'
 
@@ -70,6 +71,15 @@ Rails.application.routes.draw do
     end
   end
 
+
+  resources :dashboards do
+    collection do
+      get :deadline
+    end
+  end
+
+  # default definitions and root
+  resources :responses
   resources :questions do
 	  resources :answers do
       member do
