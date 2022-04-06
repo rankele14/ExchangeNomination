@@ -44,10 +44,7 @@
 </table>
 
 <%= link_to 'Add Nominator', new_representative_path %>
-
-<br>
-<br>
-
+<br><br>
 
 <p style="font-size:130%;">Student Nominees for this University:</p>
 
@@ -84,8 +81,8 @@
 </table>
 
 <%= link_to 'Add Student', new_student_path %>
+<br><br>
 
-<br>
-<br>
-
+<%= link_to 'Edit', edit_university_path(@university) %> | 
+<%= link_to 'Delete', delete_university_path(@university) %> | 
 <%= link_to 'Back to Universities', universities_path %>

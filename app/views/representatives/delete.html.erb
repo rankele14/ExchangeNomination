@@ -1,0 +1,24 @@
+<div>
+  <h2>Delete Representative</h2>
+
+  <%= form_for(@representative, :method => 'delete') do |f| %>
+
+    <p>Are you sure you want to permanently delete this representative?</p>
+
+    <p>
+    Name: <%= @representative.first_name %> <%= @representative.last_name %> <br>
+    Title: <%= @representative.title %> <br>
+    University: <%= University.find(@representative.university_id).university_name %>
+    </p>
+    
+    <p><strong>Notice:</strong> Deleting this item will also delete related students.</p>
+    <%= link_to 'Show', @representative %> |
+    <%= link_to 'Back to Representatives', representatives_path %>
+    <br><br>
+
+    <div class="form-buttons">
+      <%= f.submit("Delete Representative") %>
+    </div>
+
+  <% end %>
+</div>

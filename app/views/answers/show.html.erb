@@ -11,4 +11,5 @@
 </p>
 
 <%= link_to 'Edit', edit_question_answer_path(@question, @answer) %> |
-<%= link_to 'Back', question_answers_path(@question) %>
+<%= link_to 'Delete', delete_question_answer_path(@question, @answer) %> |
+<%= link_to 'Back to Answers', question_answers_path(@question) %>
