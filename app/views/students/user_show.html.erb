@@ -51,5 +51,9 @@
   </ul>
 <% end %>
 <%= link_to 'Edit', user_edit_student_path(@student) %> |
-<%= link_to 'Enter another new student', user_new_student_path(@student.representative_id) %> | 
+
+<% if (@deadline == nil || Time.now <= @deadline.var_value) && @university.num_nominees < @variable.var_value.to_i%>
+  <%= link_to 'Enter another new student', user_new_student_path(@student.representative_id) %> | 
+<% end %>
+
 <%= link_to 'Finish', finish_representative_path(@student.representative_id) %>
