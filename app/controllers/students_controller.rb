@@ -10,6 +10,11 @@ class StudentsController < ApplicationController
   
   # this made for possible admin home page
   def admin
+	@variable = Variable.find_by(var_name: 'max_limit')
+    if @variable == nil
+      @variable = Variable.new({var_name: 'max_limit', var_value: 3})
+      @variable.save
+    end
   end
 
   # GET /students/1 or /students/1.json
@@ -68,7 +73,6 @@ class StudentsController < ApplicationController
         else
           @university.update(num_nominees: @university.num_nominees + 1)
         end
-        ConfirmationMailer.with(student: @student, representative: Representative.find_by(id: @student.representative_id)).confirm_email.deliver_later
         format.html { redirect_to student_url(@student), notice: "Student was successfully created." }
         format.json { render :show, status: :created, location: @student }
       else
@@ -85,6 +89,9 @@ class StudentsController < ApplicationController
 
     respond_to do |format|
       if @student.save
+		for question in Question.all.each do
+		  @response = Response.create(student_id: @student.id, question_id: question.id)
+		end
         if @student.exchange_term.include? "and"
           @university.update(num_nominees: @university.num_nominees + 2)
         else

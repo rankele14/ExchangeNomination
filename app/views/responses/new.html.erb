@@ -3,6 +3,10 @@
   <tr>
 	<% @question = question %>
     <%= render 'form', response: @response %>
+	<p>
+	<strong>Current Response:</strong>
+	<%= @response.reply %>
+	</p>
   </tr>
 <% end %>
 

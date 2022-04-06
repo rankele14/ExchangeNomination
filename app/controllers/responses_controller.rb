@@ -1,5 +1,5 @@
 class ResponsesController < ApplicationController
-  before_action :set_response, only: %i[ show edit update destroy ]
+  before_action :set_response, only: %i[ show edit user_edit update user_update destroy ]
   before_action :get_student
   # GET /responses or /responses.json
   def index
@@ -17,6 +17,9 @@ class ResponsesController < ApplicationController
 
   # GET /responses/1/edit
   def edit
+  end
+  
+  def user_edit
   end
 
   # POST /responses or /responses.json
@@ -39,7 +42,19 @@ class ResponsesController < ApplicationController
   def update
     respond_to do |format|
       if @response.update(response_params)
-        format.html { redirect_to student_responses_path(@student), notice: "Response was successfully updated." }
+        format.html { redirect_to show_student_url(@student), notice: "Response was successfully updated." }
+        format.json { render :show, status: :ok, location: @response }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @response.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
+  def user_update
+    respond_to do |format|
+      if @response.update(response_params)
+        format.html { redirect_to user_show_student_url(@student), notice: "Response was successfully updated." }
         format.json { render :show, status: :ok, location: @response }
       else
         format.html { render :edit, status: :unprocessable_entity }

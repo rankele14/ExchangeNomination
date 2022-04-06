@@ -26,7 +26,12 @@ Rails.application.routes.draw do
   end
 
   resources :students do
-    resources :responses
+    resources :responses do
+	  member do
+	    get :user_edit
+	    patch :user_update
+	  end
+    end
     member do
       get :user_show
       get :user_edit
