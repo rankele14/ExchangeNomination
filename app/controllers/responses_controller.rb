@@ -49,12 +49,28 @@ class ResponsesController < ApplicationController
   end
 
   # DELETE /responses/1 or /responses/1.json
+  def delete
+    @response = Response.find(params[:id])
+  end
+
   def destroy
     @response.destroy
     respond_to do |format|
       format.html { redirect_to student_responses_path(@student), notice: "Response was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def clear_all
+    @responses = Response.all
+  end
+
+  def destroy_all
+    @responses = Response.all
+    @responses.each do |response|
+      response.destroy
+    end
+    redirect_to responses_url, notice: "Responses successfully cleared."
   end
 
   private

@@ -5,4 +5,5 @@
 <%= render 'form', student: @student %>
 
 <%= link_to 'Show', @student %> |
-<%= link_to 'Back', University.find(@student.university_id) %>
+<%= link_to 'Delete', delete_student_path(@student) %> |
+<%= link_to 'Back to Students', students_path %>

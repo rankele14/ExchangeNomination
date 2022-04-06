@@ -3,4 +3,5 @@
 <%= render 'form', response: @response, question_id: @response.question_id %>
 
 <%= link_to 'Show', [@student, @response] %> |
-<%= link_to 'Back', student_response_path(@student) %>
+<%= link_to 'Delete', delete_student_response_path(@student, @response) %> |
+<%= link_to 'Back to Responses', student_response_path(@student) %>

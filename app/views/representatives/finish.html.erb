@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 <p id="alert"><%= alert %></p>
+<div style="text-align: right"><%= link_to 'Help', user_help_path %></div>
 
 <h1>Finish</h1>
 
@@ -31,10 +32,11 @@
         <td><%= student.major %></td>
         <td><%= student.exchange_term %></td>
         <td><%= student.student_email %></td>
+        
         <% if @deadline == nil || Time.now <= @deadline.var_value %>
           <td><%= link_to 'Show', user_show_student_path(student) %></td>
           <td><%= link_to 'Edit', user_edit_student_path(student) %></td>
-          <td><%= link_to 'Delete', student, method: :user_destroy %></td>
+          <td><%= link_to 'Delete', user_delete_student_path(student) %></td>
         <% end %>
       </tr>
     <% end %>
@@ -48,6 +50,7 @@
   <%= @max_lim%> nominees
 </p>
 <p>If the maximum number of nominees has been reached, then entering a new student will not be allowed.</p>
+
 
 <% if (@deadline == nil || Time.now <= @deadline.var_value) && @university.num_nominees < @variable.var_value.to_i%>
   <%= link_to 'Enter a new student', user_new_student_path(@representative) %> | 

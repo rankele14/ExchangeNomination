@@ -1,4 +1,6 @@
+require 'common_stuff'
 class RepresentativesController < ApplicationController
+  include CommonStuff
   before_action :set_representative, only: %i[ show edit update destroy ]
 
   # GET /representatives or /representatives.json
@@ -26,6 +28,12 @@ class RepresentativesController < ApplicationController
     @deadline = Variable.find_by(var_name: 'deadline')
     if @deadline != nil && Time.now > @deadline.var_value then # past the deadline
       redirect_to deadline_dashboards_path
+    end
+    if (Variable.find_by(var_name: 'max_limit') == nil) then #defines max limit if not exist
+      @variable = Variable.new
+      @variable.var_name = 'max_limit'
+      @variable.var_value = '3'
+      @variable.save
     end
   end
 
@@ -105,7 +113,15 @@ class RepresentativesController < ApplicationController
   end
 
   # DELETE /representatives/1 or /representatives/1.json
+  def delete
+    @representative = Representative.find(params[:id])
+  end
+
   def destroy
+    @students = Student.where(representative_id: @representative.id)
+    @students.each do |student|
+      destroy_uni_update(student.id)
+    end
     @representative.destroy
 
     respond_to do |format|
@@ -143,6 +159,19 @@ class RepresentativesController < ApplicationController
 
   def rep_redirect
     user_new_student_path
+  end
+
+  def clear_all
+    @representatives = Representative.all
+  end
+
+  def destroy_all
+    @representatives = Representative.all
+    @representatives.each do |representative|
+      representative.destroy
+    end
+    # automatically destroys rep's students
+    redirect_to representatives_url, notice: "Representatives successfully cleared."
   end
 
   private

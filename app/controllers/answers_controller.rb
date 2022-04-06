@@ -49,7 +49,11 @@ class AnswersController < ApplicationController
   end
 
   # DELETE /answers/1 or /answers/1.json
-  def destroy
+  def delete
+    @answer = Answer.find(params[:id])
+  end
+
+    def destroy
     @answer.destroy
     respond_to do |format|
       format.html { redirect_to question_answers_path(@question), notice: "Answer was successfully destroyed." }
