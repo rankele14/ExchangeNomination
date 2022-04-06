@@ -88,6 +88,6 @@
   <%= University.find(@representative.university_id).university_name %>
 </p>
 
-<% if (@deadline == nil || Time.now <= @deadline.var_value) && @university.num_nominees < @variable.var_value.to_i%>
+<% if (@deadline == nil || Time.now <= @deadline.var_value) %>
   <%= link_to 'Edit Nominator Info', user_edit_representative_path(@representative) %>
 <% end %>

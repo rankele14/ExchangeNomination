@@ -223,7 +223,7 @@ class StudentsController < ApplicationController
     end
   end
 
-  def update_max
+  def update_deadline
     @deadline = Variable.find_by(var_name: 'deadline')
     deadline = params[:deadline]
     if @deadline == nil

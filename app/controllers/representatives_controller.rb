@@ -90,7 +90,7 @@ class RepresentativesController < ApplicationController
     @deadline = Variable.find_by(var_name: 'deadline')
 
     if @deadline != nil && Time.now > @deadline.var_value then # past the deadline
-      redirect_to finish_representative_url(@representative) alert: "Sorry, the deadline for submitting students has passed" 
+      redirect_to finish_representative_url(@representative), alert: "Sorry, the deadline for submitting students has passed" 
     else
       respond_to do |format|
         if @representative.update(representative_params)

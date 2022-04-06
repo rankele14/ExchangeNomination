@@ -7,7 +7,7 @@ Deadline in UTC:
 <%= @deadline.var_value %>
 </p>
 
-<form action="/admin/update_max" method="get" accept-charset="UTF-8" >
+<form action="/admin/update_deadline" method="get" accept-charset="UTF-8" >
   <label for="deadline">Update to:</label>
   <input id="deadline" name="deadline" type="datetime-local" />
   <input name="commit" type="submit" value="Update Deadline" />
