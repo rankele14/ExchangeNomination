@@ -92,13 +92,6 @@ class StudentsController < ApplicationController
   def user_create
     @student = Student.new(student_params)
     @university = University.find(@student.university_id)
-    respond_to do |format|
-      if @student.save
-		for question in Question.all.each do
-		  @response = Response.create(student_id: @student.id, question_id: question.id)
-		end
-        if @student.exchange_term.include? "and"
-          @university.update(num_nominees: @university.num_nominees + 2)
     @deadline = Variable.find_by(var_name: 'deadline')
     
     if @deadline != nil && Time.now > @deadline.var_value then# past the deadline
