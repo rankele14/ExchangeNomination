@@ -48,10 +48,12 @@
 
 <br>
 
-<h2>Responses:</h2>
+<h2>Questions:</h2>
 <% for response in @student.response %>
     <ul>
+	  <td><%= Question.all.find(response.question_id).prompt %></td>
       <li><%= response.reply %></li>
+	  <td><%= link_to 'Answer Question', edit_student_response_path(@student, response) %></td>
   </ul>
 <% end %>
 

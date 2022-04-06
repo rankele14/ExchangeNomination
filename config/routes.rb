@@ -33,6 +33,10 @@ Rails.application.routes.draw do
 
   resources :students do
     resources :responses do
+	  member do
+	    get :user_edit
+	    patch :user_update
+	  end
       collection do
         get :clear_all
         post :destroy_all

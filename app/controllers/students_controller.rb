@@ -79,7 +79,6 @@ class StudentsController < ApplicationController
         else
           @university.update(num_nominees: @university.num_nominees + 1)
         end
-        ConfirmationMailer.with(student: @student, representative: Representative.find_by(id: @student.representative_id)).confirm_email.deliver_later
         format.html { redirect_to student_url(@student), notice: "Student was successfully created." }
         format.json { render :show, status: :created, location: @student }
       else
@@ -93,6 +92,13 @@ class StudentsController < ApplicationController
   def user_create
     @student = Student.new(student_params)
     @university = University.find(@student.university_id)
+    respond_to do |format|
+      if @student.save
+		for question in Question.all.each do
+		  @response = Response.create(student_id: @student.id, question_id: question.id)
+		end
+        if @student.exchange_term.include? "and"
+          @university.update(num_nominees: @university.num_nominees + 2)
     @deadline = Variable.find_by(var_name: 'deadline')
     
     if @deadline != nil && Time.now > @deadline.var_value then# past the deadline
