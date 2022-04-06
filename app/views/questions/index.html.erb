@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+<div style="text-align: right"><%= link_to 'Help', admin_help_path %></div>
 
 <h1>Questions</h1>
 <br>
@@ -26,7 +27,7 @@
         <td><%= question.prompt %></td>
         <td><%= link_to 'Show', question %></td>
         <td><%= link_to 'Edit', edit_question_path(question) %></td>
-        <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', delete_question_path(question) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,6 +35,7 @@
 
 <br>
 
-<%= link_to 'New Question', new_question_path %>
+<%= link_to 'New Question', new_question_path %> | 
+<%= link_to 'Clear All', clear_all_questions_path %>
 <br>
-<%= link_to 'Back', admin_path %>
+<%= link_to 'Back to Admin', admin_path %>

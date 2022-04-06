@@ -2,5 +2,6 @@
 
 <%= render 'form', answer: @answer %>
 
-<%= link_to 'Show', [@question, @answer] %> |
-<%= link_to 'Back', question_answer_path(@question) %>
+<%= link_to 'Show', [@question, @answer] %> | 
+<%= link_to 'Delete', delete_question_answer_path(@question, @answer) %> | 
+<%= link_to 'Back to Answers', question_answer_path(@question) %>

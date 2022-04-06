@@ -2,5 +2,6 @@
 <% @question = Question.all.find(@response.question_id) %>
 <%= render 'form', response: @response, question_id: @response.question_id %>
 
-<%= link_to 'Show', user_show_student_url(@student) %> |
-<%= link_to 'Back', user_show_student_url(@student) %>
+<%= link_to 'Show', [@student, @response] %> |
+<%= link_to 'Delete', delete_student_response_path(@student, @response) %> |
+<%= link_to 'Back to Responses', student_response_path(@student) %>
