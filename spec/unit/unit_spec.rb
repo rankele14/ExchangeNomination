@@ -63,16 +63,6 @@ RSpec.describe University, type: :model do
   end
 end
 
-RSpec.describe AnswerChoice, type: :model do
-  subject do
-    described_class.new(questionID: 1, answer_choice: 'Yes')
-  end
-  it 'is not valid without a num_nominees' do
-    subject.num_nominees = nil
-    expect(subject).not_to be_valid
-  end
-end
-
 RSpec.describe Student, type: :model do
   subject do
     @uni = University.new(university_name: 'AM')
