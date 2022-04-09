@@ -46,7 +46,7 @@ class StudentsController < ApplicationController
   def user_new
     @student = Student.new
     @student.representative_id = params[:id]
-    @representative = Representative.find(@student.representative_id)
+    @representative = Representative.find(params[:id])
     @student.university_id = @representative.university_id
     @university = University.find(@student.university_id)
     @variable = Variable.find_by(var_name: 'max_limit')
@@ -70,10 +70,10 @@ class StudentsController < ApplicationController
   # POST /students or /students.json
   def create
     @student = Student.new(student_params)
-    @university = University.find(@student.university_id)
 
     respond_to do |format|
       if @student.save
+        @university = University.find(@student.university_id)
         if @student.exchange_term.include? "and"
           @university.update(num_nominees: @university.num_nominees + 2)
         else
