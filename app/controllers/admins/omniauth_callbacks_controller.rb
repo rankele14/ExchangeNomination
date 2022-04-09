@@ -8,7 +8,7 @@ class Admins::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         sign_in_and_redirect admin, event: :authentication
       else
         flash[:alert] = t 'devise.omniauth_callbacks.failure', kind: 'Google', reason: "#{auth.info.email} is not authorized."
-        redirect_to root_path
+        redirect_to user_new_representatives_path
       end
     end
   
@@ -34,6 +34,6 @@ class Admins::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   
     def auth
-      @auth ||= request.env['omniauth.auth']
+      @auth ||= Rails.application.env_config['omniauth.auth'] || request.env['omniauth.auth']
     end
   end
