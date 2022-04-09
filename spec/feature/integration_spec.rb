@@ -33,6 +33,7 @@ RSpec.describe 'Logging in', type: :feature do
   end
 end
 
+
 ################################### admin CUD functions ###########################
 
 RSpec.describe 'Admin dashboard links', type: :feature do
@@ -83,8 +84,14 @@ RSpec.describe 'Admin dashboard links', type: :feature do
     expect(page).to have_content('Back to Admin')
   end
 
+  scenario 'Export' do
+    visit root_path
+	  click_on 'Admin login'
+    click_on 'Export Students'
+  end
+
   # FIXME responses?
-  # not including deadline or export here
+  # not including deadline here
 
   scenario 'Return link' do
     visit admin_path
