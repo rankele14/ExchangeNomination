@@ -1,6 +1,15 @@
 <p id="notice"><%= notice %></p>
+<div style="text-align: right"><%= link_to 'Help', admin_help_path %></div>
 
 <h1>Admins</h1>
+<br>
+
+<%= link_to 'Universities', universities_path %> | 
+<%= link_to 'Nominators', representatives_path %> | 
+<%= link_to 'Students', students_path %> | 
+<%= link_to 'Questions', questions_path %>
+<br>
+<br>
 
 <table>
   <thead>
@@ -25,3 +34,6 @@
 <br>
 
 <%= link_to 'New Admin', new_authorized_path %>
+<br>
+<br>
+<%= link_to 'Back to Admin', admin_path %>

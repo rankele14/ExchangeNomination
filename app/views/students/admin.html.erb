@@ -1,7 +1,18 @@
 <p id="notice"><%= notice %></p>
 <div style="text-align: right"><%= link_to 'Help', admin_help_path %></div>
+<%= link_to "Sign Out", destroy_admin_session_path %>
+<br>
 
 <h1>Admin Home Page</h1>
+<br>
+
+<%= link_to 'Universities', universities_path %> | 
+<%= link_to 'Nominators', representatives_path %> | 
+<%= link_to 'Students', students_path %> | 
+<%= link_to 'Questions', questions_path %> |
+<%= link_to 'Admin list', authorizeds_path %>
+<br>
+<br>
 
 <p>
 Deadline in UTC: 
@@ -13,22 +24,8 @@ Deadline in UTC:
   <input id="deadline" name="deadline" type="datetime-local" />
   <input name="commit" type="submit" value="Update Deadline" />
 </form>
-
-<br>
-
-<%= link_to 'Universities', universities_path %>
-<br>
-<%= link_to 'Nominators', representatives_path %>
-<br>
-<%= link_to 'Students', students_path %>
-<br>
-<%= link_to 'Questions', questions_path %>
-<br>
-<%= link_to 'Admin list', authorizeds_path %>
-<br>
-<%= link_to "Sign Out", destroy_admin_session_path %>
 <br>
 
 <%= link_to 'Export Students', export_students_path %>
-
+<br>
 <%= link_to 'Return to Home Page', user_new_representatives_path %>
