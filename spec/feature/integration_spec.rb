@@ -1113,6 +1113,90 @@ RSpec.describe 'User student functions', type: :feature do
   end
 end
 
+RSpec.describe 'Deadline', type: :feature do
+  before do
+    @authorized = Authorized.create(authorized_email: "userdoe@example.com")
+    Rails.application.env_config['devise.mapping'] = Devise.mappings[:admin]
+    Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_user]
+    unless Admin.where(email: 'userdoe@example.com').first.nil? == false
+      Admin.create!(email: 'userdoe@example.com', full_name: 'User Doe', uid: '123456789', avatar_url: 'https://lh3.googleusercontent.com/url/photo.jpg')
+    end
+    visit root_path # need to create university and representative first
+      click_on 'Admin login'
+      visit new_university_path
+      fill_in 'University name', with: 'AM'
+      click_on 'Create University'
+    visit user_new_representatives_path
+      select 'AM', :from => 'University'
+      fill_in 'First name', with: 'John'
+      fill_in 'Last name', with: 'Smith'
+      fill_in 'Title', with: 'CEO'
+      fill_in 'Rep email', with: 'JohnSmith@gmail.com'
+      click_on 'Create Representative'
+      click_link 'Continue'
+    click_on 'Enter a new student'
+      fill_in 'First name', with: 'Foo'
+      fill_in 'Last name', with: 'Bar'
+      select 'Bachelors', :from => 'Degree level'
+      fill_in 'Major', with: 'Basket Making'
+      select 'Fall Only', :from => 'Exchange term'
+      fill_in 'Student email', with: 'FooBar@gmail.com'
+      click_on 'Create Student'
+    visit admin_path
+      fill_in 'deadline', with: DateTime.current.prev_day(1)
+      click_on 'Update Deadline'
+  end
+
+  scenario 'root redirect' do
+    visit user_new_representatives_path
+    expect(page).to have_content('The deadline for this form has passed')
+  end
+
+  scenario 'create representitive' do
+    visit admin_path
+      fill_in 'deadline', with: DateTime.current + 3.seconds
+      click_on 'Update Deadline'
+    visit root_path
+      select 'AM', :from => 'University'
+      fill_in 'First name', with: 'John'
+      fill_in 'Last name', with: 'Smith'
+      fill_in 'Title', with: 'CEO'
+      fill_in 'Rep email', with: 'JohnSmith@gmail.com'
+      sleep(3)
+      click_on 'Create Representative'
+      expect(page).to have_content('The deadline for this form has passed')
+  end
+
+  scenario 'create student' do
+    visit user_new_student_path(Representative.all[0])
+      expect(page).not_to have_content('University') # can't fill in representative or university
+      expect(page).not_to have_content('Representative')
+      fill_in 'First name', with: 'Foo2'
+      fill_in 'Last name', with: 'Bar2'
+      select 'Bachelors', :from => 'Degree level'
+      fill_in 'Major', with: 'Basket Making'
+      select 'Fall Only', :from => 'Exchange term'
+      fill_in 'Student email', with: 'FooBar@gmail.com'
+    click_on 'Create Student'
+      expect(page).not_to have_content('Foo2')
+      expect(page).not_to have_content('Bar2') 
+  end
+
+  scenario 'edit student' do
+    visit user_edit_student_url(Student.all[0])
+      fill_in 'First name', with: 'Baz'
+    click_on 'Update Student'
+      expect(page).not_to have_content('Baz')
+  end
+
+  scenario 'delete student' do
+    visit user_delete_student_url(Student.all[0])
+      click_on 'Delete Student'
+      expect(page).to have_content('Nomination Record')
+      expect(page).to have_content('Foo')
+  end
+end
+
 #test destroy associations
 #test show compound tables?
 #valid email
