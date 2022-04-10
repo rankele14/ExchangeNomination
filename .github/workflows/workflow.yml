@@ -11,6 +11,10 @@ jobs:
   rspec-test:
     name: RSpec
     runs-on: ubuntu-latest
+    AllCops:
+      NewCops: enable
+      Exclude:
+      - 'vendor/'
     services:
       postgres:
         image: postgres:12
