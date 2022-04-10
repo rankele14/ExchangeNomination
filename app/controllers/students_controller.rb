@@ -1,24 +1,25 @@
+# frozen_string_literal: true
+
 require 'csv'
 require 'common_stuff'
 class StudentsController < ApplicationController
   include CommonStuff
-  before_action :set_student, only: %i[ show user_show edit user_edit update user_update destroy user_destroy delete user_delete ]
+  before_action :set_student,
+                only: %i[show user_show edit user_edit update user_update destroy user_destroy delete user_delete]
 
   # GET /students or /students.json
   def index
     @students = Student.all
   end
-  
+
   # this made for possible admin home page
   def admin
     @deadline = Variable.find_by(var_name: 'deadline')
-    if @deadline == nil
-      @deadline = Variable.new
-    end
+    @deadline = Variable.new if @deadline.nil?
 
     @variable = Variable.find_by(var_name: 'max_limit')
-    if @variable == nil
-      @variable = Variable.new({var_name: 'max_limit', var_value: 3})
+    if @variable.nil?
+      @variable = Variable.new({ var_name: 'max_limit', var_value: 3 })
       @variable.save
     end
   end
@@ -28,7 +29,7 @@ class StudentsController < ApplicationController
     @representative = Representative.find(@student.representative_id)
     @university = University.find(@student.university_id)
   end
-  
+
   # GET /students/1/user_show
   def user_show
     @representative = Representative.find(@student.representative_id)
@@ -51,19 +52,17 @@ class StudentsController < ApplicationController
     @deadline = Variable.find_by(var_name: 'deadline')
 
     # if @university.num_nominees >= @university.max_limit
-    #   redirect_to finish_representative_url(@representative), alert: "Sorry, maximum limit of 3 students already reached." 
+    #   redirect_to finish_representative_url(@representative), alert: "Sorry, maximum limit of 3 students already reached."
     # elsif @deadline != nil && Time.now > @deadline.var_value then # past the deadline
-    #   redirect_to finish_representative_path(@representative), alert: "Sorry, the deadline for submitting students has passed" 
+    #   redirect_to finish_representative_path(@representative), alert: "Sorry, the deadline for submitting students has passed"
     # end
   end
 
   # GET /students/1/edit
-  def edit
-  end
+  def edit; end
 
   # GET /students/1/user_edit
-  def user_edit
-  end
+  def user_edit; end
 
   # POST /students or /students.json
   def create
@@ -77,7 +76,7 @@ class StudentsController < ApplicationController
         else
           @university.update(num_nominees: @university.num_nominees + 1)
         end
-        format.html { redirect_to student_url(@student), notice: "Student was successfully created." }
+        format.html { redirect_to student_url(@student), notice: 'Student was successfully created.' }
         format.json { render :show, status: :created, location: @student }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -92,9 +91,10 @@ class StudentsController < ApplicationController
     @representative = Representative.find(@student.representative_id)
     @university = University.find(@student.university_id)
     @deadline = Variable.find_by(var_name: 'deadline')
-    
-    if @deadline != nil && Time.now > @deadline.var_value then# past the deadline
-      redirect_to finish_representative_path(@student.representative_id), alert: "Sorry, the deadline for submitting students has passed" 
+
+    if !@deadline.nil? && Time.now > @deadline.var_value # past the deadline
+      redirect_to finish_representative_path(@student.representative_id),
+                  alert: 'Sorry, the deadline for submitting students has passed'
     else
       respond_to do |format|
         if @student.save
@@ -103,8 +103,9 @@ class StudentsController < ApplicationController
           else
             @university.update(num_nominees: @university.num_nominees + 1)
           end
-          ConfirmationMailer.with(student: @student, representative: Representative.find_by(id: @student.representative_id)).confirm_email.deliver_later
-          format.html { redirect_to user_show_student_url(@student), notice: "Student was successfully created." }
+          ConfirmationMailer.with(student: @student,
+                                  representative: Representative.find_by(id: @student.representative_id)).confirm_email.deliver_later
+          format.html { redirect_to user_show_student_url(@student), notice: 'Student was successfully created.' }
           format.json { render :show, status: :created, location: @student }
         else
           format.html { render :user_new, status: :unprocessable_entity }
@@ -113,7 +114,7 @@ class StudentsController < ApplicationController
       end
     end
   end
-  
+
   # PATCH/PUT /students/1 or /students/1.json
   def update
     prev_term = @student.exchange_term
@@ -121,17 +122,18 @@ class StudentsController < ApplicationController
     @university = University.find(@student.university_id)
     @variable = Variable.find_by(var_name: 'max_limit')
 
-    if !(prev_term.include? 'and') && (new_term.include? 'and') && (@university.num_nominees >= @university.max_limit) then # used to be single, now double, exceeds university limit
-      redirect_to edit_student_url(@student), alert: "Sorry, a double term nomination would exceed the university's nomination limit. Please stick to a single term nomination." 
+    if !(prev_term.include? 'and') && (new_term.include? 'and') && (@university.num_nominees >= @university.max_limit) # used to be single, now double, exceeds university limit
+      redirect_to edit_student_url(@student),
+                  alert: "Sorry, a double term nomination would exceed the university's nomination limit. Please stick to a single term nomination."
     else
       respond_to do |format|
         if @student.update(student_params)
-          if !(prev_term.include? 'and') && (new_term.include? 'and') then # used to be single, now double
+          if !(prev_term.include? 'and') && (new_term.include? 'and') # used to be single, now double
             @university.update(num_nominees: @university.num_nominees + 1)
-          elsif (prev_term.include? 'and') && !(new_term.include? 'and') then # used to be double, now single
+          elsif (prev_term.include? 'and') && !(new_term.include? 'and') # used to be double, now single
             @university.update(num_nominees: @university.num_nominees - 1)
           end
-          format.html { redirect_to student_url(@student), notice: "Student was successfully updated." }
+          format.html { redirect_to student_url(@student), notice: 'Student was successfully updated.' }
           format.json { render :show, status: :ok, location: @student }
         else
           format.html { render :edit, status: :unprocessable_entity }
@@ -148,19 +150,21 @@ class StudentsController < ApplicationController
     @university = University.find(@student.university_id)
     @deadline = Variable.find_by(var_name: 'deadline')
 
-    if !(prev_term.include? 'and') && (new_term.include? 'and') && (@university.num_nominees >= @university.max_limit) then # used to be single, now double, exceeds university limit
-      redirect_to user_edit_student_url(@student), alert: "Sorry, a double term nomination would exceed the university's nomination limit. Please stick to a single term nomination." 
-    elsif @deadline != nil && Time.now > @deadline.var_value then # past the deadline
-      redirect_to finish_representative_path(@student.representative_id), alert: "Sorry, the deadline for submitting students has passed" 
+    if !(prev_term.include? 'and') && (new_term.include? 'and') && (@university.num_nominees >= @university.max_limit) # used to be single, now double, exceeds university limit
+      redirect_to user_edit_student_url(@student),
+                  alert: "Sorry, a double term nomination would exceed the university's nomination limit. Please stick to a single term nomination."
+    elsif !@deadline.nil? && Time.now > @deadline.var_value # past the deadline
+      redirect_to finish_representative_path(@student.representative_id),
+                  alert: 'Sorry, the deadline for submitting students has passed'
     else
       respond_to do |format|
         if @student.update(student_params)
-          if !(prev_term.include? 'and') && (new_term.include? 'and') then # used to be single, now double
+          if !(prev_term.include? 'and') && (new_term.include? 'and') # used to be single, now double
             @university.update(num_nominees: @university.num_nominees + 1)
-          elsif (prev_term.include? 'and') && !(new_term.include? 'and') then # used to be double, now single
+          elsif (prev_term.include? 'and') && !(new_term.include? 'and') # used to be double, now single
             @university.update(num_nominees: @university.num_nominees - 1)
           end
-          format.html { redirect_to user_show_student_url(@student), notice: "Student was successfully updated." }
+          format.html { redirect_to user_show_student_url(@student), notice: 'Student was successfully updated.' }
           format.json { render :show, status: :ok, location: @student }
         else
           format.html { render :user_edit, status: :unprocessable_entity }
@@ -180,7 +184,7 @@ class StudentsController < ApplicationController
     @student.destroy
 
     respond_to do |format|
-      format.html { redirect_to students_url, notice: "Student was successfully destroyed." }
+      format.html { redirect_to students_url, notice: 'Student was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -195,11 +199,13 @@ class StudentsController < ApplicationController
     @student.destroy
 
     respond_to do |format|
-      format.html { redirect_to finish_representative_path(@representative), notice: "Student was successfully destroyed." }
+      format.html do
+        redirect_to finish_representative_path(@representative), notice: 'Student was successfully destroyed.'
+      end
       format.json { head :no_content }
     end
   end
-  
+
   def export
     @students = Student.all
     @students = @students.sort_by(&:university_id)
@@ -209,7 +215,7 @@ class StudentsController < ApplicationController
     respond_to do |format|
       format.csv do
         response.headers['Content-Type'] = 'text/csv'
-        response.headers['Content-Disposition'] = "attachment; filename=student.csv"
+        response.headers['Content-Disposition'] = 'attachment; filename=student.csv'
       end
     end
   end
@@ -217,15 +223,14 @@ class StudentsController < ApplicationController
   def update_deadline
     @deadline = Variable.find_by(var_name: 'deadline')
     deadline = params[:deadline]
-    if @deadline == nil
-      @deadline = Variable.new({var_name: 'deadline', var_value: deadline})
+    if @deadline.nil?
+      @deadline = Variable.new({ var_name: 'deadline', var_value: deadline })
     else
       @deadline.var_value = deadline
     end
     @deadline.save
-    redirect_to admin_url, notice: "Deadline was successfully updated."
+    redirect_to admin_url, notice: 'Deadline was successfully updated.'
   end
-
 
   def clear_all
     @students = Student.all
@@ -238,25 +243,24 @@ class StudentsController < ApplicationController
       student.destroy
     end
     # automatically destroys responses
-    redirect_to students_url, notice: "Students successfully cleared."
+    redirect_to students_url, notice: 'Students successfully cleared.'
   end
-  
+
   # help pages
-  def admin_help
-  end
+  def admin_help; end
 
-  def user_help
-  end
-
+  def user_help; end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_student
-      @student = Student.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def student_params
-      params.require(:student).permit(:first_name, :last_name, :university_id, :representative_id, :student_email, :exchange_term, :degree_level, :major)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_student
+    @student = Student.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def student_params
+    params.require(:student).permit(:first_name, :last_name, :university_id, :representative_id, :student_email,
+                                    :exchange_term, :degree_level, :major)
+  end
 end

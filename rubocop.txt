@@ -13,21 +13,24 @@ Gemfile:25:1: C: [Correctable] Layout/EmptyLines: Extra blank line detected.
 Gemfile:39:28: C: [Correctable] Style/SymbolArray: Use %i or %I for an array of symbols.
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
                            ^^^^^^^^^^^^^^^^^^^^^^^^^^
-Gemfile:49:3: C: [Correctable] Bundler/OrderedGems: Gems should be sorted in an alphabetical order within their section of the Gemfile. Gem listen should appear before rack-mini-profiler.
+Gemfile:53:3: C: [Correctable] Bundler/OrderedGems: Gems should be sorted in an alphabetical order within their section of the Gemfile. Gem listen should appear before rack-mini-profiler.
   gem 'listen', '~> 3.3'
   ^^^^^^^^^^^^^^^^^^^^^^
-Gemfile:60:3: C: [Correctable] Bundler/OrderedGems: Gems should be sorted in an alphabetical order within their section of the Gemfile. Gem simplecov should appear before webdrivers.
+Gemfile:64:3: C: [Correctable] Bundler/OrderedGems: Gems should be sorted in an alphabetical order within their section of the Gemfile. Gem simplecov should appear before webdrivers.
   gem 'simplecov', :require => false
   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Gemfile:60:20: C: [Correctable] Style/HashSyntax: Use the new Ruby 1.9 hash syntax.
+Gemfile:64:20: C: [Correctable] Style/HashSyntax: Use the new Ruby 1.9 hash syntax.
   gem 'simplecov', :require => false
                    ^^^^^^^^^^^
-Gemfile:64:31: C: [Correctable] Style/SymbolArray: Use %i or %I for an array of symbols.
+Gemfile:65:3: C: [Correctable] Bundler/OrderedGems: Gems should be sorted in an alphabetical order within their section of the Gemfile. Gem brakeman should appear before simplecov.
+  gem 'brakeman'
+  ^^^^^^^^^^^^^^
+Gemfile:69:31: C: [Correctable] Style/SymbolArray: Use %i or %I for an array of symbols.
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Gemfile:67:14: C: [Correctable] Layout/TrailingEmptyLines: Final newline missing.
-gem 'rubocop'
-             
+Gemfile:69:67: C: [Correctable] Layout/TrailingEmptyLines: Final newline missing.
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+                                                                  
 Rakefile:1:1: C: Layout/EndOfLine: Carriage return character detected.
 # Add your own tasks in files placed in lib/tasks ending in .rake, ...
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -998,8 +1001,8 @@ app/models/admin.rb:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Miss
 class Admin < ApplicationRecord
 ^
 app/models/admin.rb:5:5: C: [Correctable] Layout/EmptyLineAfterGuardClause: Add empty line after guard clause.
-    return nil unless Authorized.where(authorized_email: email).present? || email =~ /rankele@tamu.edu\z/
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    return nil unless Authorized.where(authorized_email: email).present? || email =~ /cmclean5404@tamu.edu\z/
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 app/models/admin.rb:8:4: C: [Correctable] Layout/TrailingEmptyLines: Final newline missing.
 end
    
@@ -2020,6 +2023,9 @@ class CreateAuthorizeds < ActiveRecord::Migration[6.1]
 db/migrate/20220401025847_create_authorizeds.rb:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
 class CreateAuthorizeds < ActiveRecord::Migration[6.1]
 ^
+db/schema.rb:1:1: C: Layout/EndOfLine: Carriage return character detected.
+# This file is auto-generated from the current state of the database. Instead ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 db/schema.rb:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
 # This file is auto-generated from the current state of the database. Instead
 ^
@@ -5263,4 +5269,4 @@ test/test_helper.rb:5:7: C: [Correctable] Style/ClassAndModuleChildren: Use nest
 class ActiveSupport::TestCase
       ^^^^^^^^^^^^^^^^^^^^^^^
 
-115 files inspected, 1795 offenses detected, 1580 offenses auto-correctable
+115 files inspected, 1797 offenses detected, 1581 offenses auto-correctable
