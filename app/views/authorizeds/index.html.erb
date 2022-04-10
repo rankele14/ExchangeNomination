@@ -1,39 +1,48 @@
-<p id="notice"><%= notice %></p>
-<div style="text-align: right"><%= link_to 'Help', admin_help_path %></div>
+<header style="margin-top: 0;">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3C0000; padding-top: 0;padding-bottom: 0;">
+    <div class = "row" style="height:35px; padding-bottom: 0;">
+      <div class="col-sm-auto" style="margin-bottom: 0;">
+        <%= button_to "Back to Admin Home Page", admin_path, :class => "new-navbar-box", :method => :get %>
+      </div>
+    </div>
+  <nav>
+</header>
 
-<h1>Admins</h1>
-<br>
+<div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
+  <p id="notice"><%= notice %></p>
 
-<%= link_to 'Universities', universities_path %> | 
-<%= link_to 'Nominators', representatives_path %> | 
-<%= link_to 'Students', students_path %> | 
-<%= link_to 'Questions', questions_path %>
-<br>
-<br>
+  <h1>Admins</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Admin emails</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <hr style="height: 3px; border: 0px solid #696969; border-top-width: 1px;" >
 
-  <tbody>
-    <% @authorizeds.each do |authorized| %>
-      <tr>
-        <td><%= authorized.authorized_email %></td>
-        <td><%= link_to 'Show', authorized %></td>
-        <td><%= link_to 'Edit', edit_authorized_path(authorized) %></td>
-        <td><%= link_to 'Destroy', authorized, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <table class="table center">
+        <thead class="thread-dark">
+          <tr>
+            <th>Admin emails</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
 
-<br>
+        <tbody>
+          <% @authorizeds.each do |authorized| %>
+            <tr>
+              <td><%= authorized.authorized_email %></td>
+              <td><%= button_to 'Show', authorized, :class => "show-button", :method => :get %></td>
+              <td><%= button_to 'Edit', edit_authorized_path(authorized), :class => "edit-button", :method => :get %></td>
+              <td><%= button_to 'Destroy', authorized, :class => "delete-button", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-<%= link_to 'New Admin', new_authorized_path %>
-<br>
-<br>
-<%= link_to 'Back to Admin', admin_path %>
+
+  <br>
+
+  <div style="margin-left: 30%;">
+    <%= button_to "New Admin", new_authorized_path, :class => "create-new-item-button", :method => :get %>
+  </div>
+</div>
