@@ -62,12 +62,8 @@ group :test do
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'webdrivers'
   gem 'simplecov', :require => false
+  gem 'brakeman'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-gem 'brakeman'
-gem 'rubocop', github: 'rubocop/rubocop'
-gem 'rubocop-performance', '~> 1.13.0'
-gem 'rubocop-rspec', '~> 2.9.0'
