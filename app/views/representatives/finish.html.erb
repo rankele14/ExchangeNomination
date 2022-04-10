@@ -47,12 +47,12 @@
   <strong>Number of University Nominations: </strong>
   <%= University.find(@representative.university_id).num_nominees %>
   students nominated out of alloted 
-  <%= @max_lim%> nominees
+  <%= @university.max_limit %> nominees
 </p>
 <p>If the maximum number of nominees has been reached, then entering a new student will not be allowed.</p>
 
 
-<% if (@deadline == nil || Time.now <= @deadline.var_value) && @university.num_nominees < @variable.var_value.to_i%>
+<% if (@deadline == nil || Time.now <= @deadline.var_value) && @university.num_nominees < @university.max_limit %>
   <%= link_to 'Enter a new student', user_new_student_path(@representative) %> | 
 <% end %>
 

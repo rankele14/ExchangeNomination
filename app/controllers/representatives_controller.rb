@@ -25,16 +25,6 @@ class RepresentativesController < ApplicationController
   # GET /representatives/user_new
   def user_new
     @representative = Representative.new
-    @deadline = Variable.find_by(var_name: 'deadline')
-    if @deadline != nil && Time.now > @deadline.var_value then # past the deadline
-      redirect_to deadline_dashboards_path
-    end
-    if (Variable.find_by(var_name: 'max_limit') == nil) then #defines max limit if not exist
-      @variable = Variable.new
-      @variable.var_name = 'max_limit'
-      @variable.var_value = '3'
-      @variable.save
-    end
   end
 
   # GET /representatives/1/edit
@@ -81,8 +71,26 @@ class RepresentativesController < ApplicationController
 
   # PATCH/PUT /representatives/1 or /representatives/1.json
   def update
+    @uni_prev = University.find(@representative.university_id)
     respond_to do |format|
       if @representative.update(representative_params)
+        @university = University.find(@representative.university_id)
+        if @uni_prev != @university
+          @students = Student.where(representative_id: @representative.id)
+          @students.each do |student|
+            student.university_id = @representative.university_id
+            student.save
+            if student.exchange_term.include? 'and'
+              @university.num_nominees = @university.num_nominees + 2
+              @uni_prev.num_nominees = @uni_prev.num_nominees - 2
+            else
+              @university.num_nominees = @university.num_nominees + 1
+              @uni_prev.num_nominees = @uni_prev.num_nominees - 1
+            end
+            @university.save
+            @uni_prev.save
+          end
+        end
         format.html { redirect_to representative_url(@representative), notice: "Nominator was successfully updated." }
         format.json { render :show, status: :ok, location: @representative }
       else
@@ -134,23 +142,7 @@ class RepresentativesController < ApplicationController
     @representative = Representative.find(params[:id])
     @students = Student.where(representative_id: @representative.id)
     @university = University.find(@representative.university_id)
-    @variable = Variable.find_by(var_name: 'max_limit')
-    @max_lim = @variable.var_value.to_i
     @deadline = Variable.find_by(var_name: 'deadline')
-  end
-
-  def rep_check
-    @representative = Representative.find(params[:id])
-    @university = University.find(@representitive.university_id)
-    @variable = Variable.find_by(var_name: 'max_limit')
-
-    if @university.num_nominees >= @variable.var_value.to_i
-      redirect_to finish_representative_url(@representative), alert: "Sorry, your university has already reached the maximum limit of 3 student nominees." 
-    else
-      @student = Student.new
-      @student.update(first_name: "", last_name: "", university_id: @representitive.university_id, student_email: "", exchange_term: "", degree_level: "", major: "")
-      edit_student_path(@student)
-    end
   end
 
   def test_method
@@ -167,7 +159,11 @@ class RepresentativesController < ApplicationController
 
   def destroy_all
     @representatives = Representative.all
-    @representatives.each do |representative|
+    @representatives.each do |representative|      
+      @students = Student.where(representative_id: representative.id)
+      @students.each do |student|
+        destroy_uni_update(student.id)
+      end
       representative.destroy
     end
     # automatically destroys rep's students

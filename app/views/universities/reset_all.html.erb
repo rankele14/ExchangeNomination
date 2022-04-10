@@ -1,0 +1,23 @@
+<div>
+  <h2>Reset All Universities</h2>
+
+  <%= form_with url: reset_universities_url do |f| %>
+
+    <p>Are you sure you want to permanently reset all universities?</p>
+
+    <p> Universities: <br>
+    <% @universities.each do |university| %>
+      <%= university.university_name %> <br>
+    <% end %>
+    </p>
+
+    <p><strong>Notice:</strong> Reseting all universities will delete all representatives and students and responses related to them.</p>
+    <%= link_to 'Back to universities', universities_path %>
+    <br><br>
+
+    <div class="form-buttons">
+      <%= f.submit("Reset All Universities") %>
+    </div>
+
+  <% end %>
+</div>

@@ -98,6 +98,19 @@ RSpec.describe 'Admin dashboard links', type: :feature do
     click_on 'Return to Home Page'
     expect(page).to have_content('Nominator Info')
   end
+
+  # scenario 'Help page' do
+  #   visit admin_path
+  #   click_on 'Help'
+  #   expect(page).to have_content('')
+  # end
+
+  scenario 'Sign out' do
+    visit admin_path
+    click_on 'Sign Out'
+    expect(page).to have_content('Signed out')
+    expect(page).to have_content('Nominator Info')
+  end
 end
 
 RSpec.describe 'Admin university functions', type: :feature do
@@ -121,6 +134,10 @@ RSpec.describe 'Admin university functions', type: :feature do
       fill_in 'University name', with: 'AM'
       click_on 'Create University'
     visit universities_path
+      expect(page).to have_content('AM')
+      expect(page).to have_content('0')
+      expect(page).to have_content('3')
+    click_on 'Show'
       expect(page).to have_content('AM')
       expect(page).to have_content('0')
       expect(page).to have_content('3')
@@ -170,8 +187,37 @@ RSpec.describe 'Admin university functions', type: :feature do
       click_on 'Delete University'
       expect(page).not_to have_content('AM')
   end
-  #FIXME check links
-  #check destroy association
+  
+  scenario 'check destroy association' do
+    visit new_university_path
+      fill_in 'University name', with: 'AM'
+      click_on 'Create University'
+    visit new_representative_path
+      select 'AM', :from => 'University'
+      fill_in 'First name', with: 'John'
+      fill_in 'Last name', with: 'Smith'
+      fill_in 'Title', with: 'CEO'
+      fill_in 'Rep email', with: 'JohnSmith@gmail.com'
+      click_on 'Create Representative'
+    visit new_student_path
+      select 'AM', :from => 'University'
+      fill_in 'First name', with: 'Foo'
+      fill_in 'Last name', with: 'Bar'
+      select 'Bachelors', :from => 'Degree level'
+      fill_in 'Major', with: 'Basket Making'
+      select 'Fall Only', :from => 'Exchange term'
+      fill_in 'Student email', with: 'FooBar@gmail.com'
+      select 'Smith, John', :from => 'Representative'
+      click_on 'Create Student'
+    visit universities_path
+      click_on 'Delete'
+      click_on 'Delete University'
+      expect(page).not_to have_content('AM')
+      visit representatives_path
+      expect(page).not_to have_content('John')
+      visit students_path
+      expect(page).not_to have_content('Foo')
+  end
 
   # max update
   scenario 'update default max limit' do 
@@ -180,6 +226,9 @@ RSpec.describe 'Admin university functions', type: :feature do
       fill_in 'max_lim', with: '-1'
       click_on 'Update Default Limit'
       expect(page).to have_content('cannot be negative')
+      fill_in 'max_lim', with: '9999'
+      click_on 'Update Default Limit'
+      expect(page).to have_content('capped at 100')
       fill_in 'max_lim', with: '5'
     click_on 'Update Default Limit'
       expect(page).not_to have_content('3')
@@ -198,13 +247,126 @@ RSpec.describe 'Admin university functions', type: :feature do
       fill_in 'change_lim', with: '-1'
       click_on 'Change All Limits'
       expect(page).to have_content('cannot be negative')
+      fill_in 'change_lim', with: '9999'
+      click_on 'Change All Limits'
+      expect(page).to have_content('capped at 100')
       fill_in 'change_lim', with: '5'
     click_on 'Change All Limits'
       expect(page).to have_content('AM 0 5')
       expect(page).to have_content('TU 0 5')
       expect(page).to have_content('successful')
   end
-  #clear all, reset all
+
+  scenario 'clear all' do
+    visit new_university_path
+      fill_in 'University name', with: 'AM'
+      click_on 'Create University'
+      visit new_university_path
+      fill_in 'University name', with: 'TU'
+      click_on 'Create University'
+    visit new_representative_path
+      select 'AM', :from => 'University'
+      fill_in 'First name', with: 'John'
+      fill_in 'Last name', with: 'Smith'
+      fill_in 'Title', with: 'CEO'
+      fill_in 'Rep email', with: 'JohnSmith@gmail.com'
+      click_on 'Create Representative'
+    visit new_student_path
+      select 'AM', :from => 'University'
+      fill_in 'First name', with: 'Foo'
+      fill_in 'Last name', with: 'Bar'
+      select 'Bachelors', :from => 'Degree level'
+      fill_in 'Major', with: 'Basket Making'
+      select 'Fall Only', :from => 'Exchange term'
+      fill_in 'Student email', with: 'FooBar@gmail.com'
+      select 'Smith, John', :from => 'Representative'
+      click_on 'Create Student'
+    visit new_representative_path
+      select 'TU', :from => 'University'
+      fill_in 'First name', with: 'Jackie'
+      fill_in 'Last name', with: 'Garcia'
+      fill_in 'Title', with: 'Director'
+      fill_in 'Rep email', with: 'JackieGarcia@yahoo.com'
+      click_on 'Create Representative'
+    visit new_student_path
+      select 'TU', :from => 'University'
+      fill_in 'First name', with: 'Test'
+      fill_in 'Last name', with: 'Two'
+      select 'Bachelors', :from => 'Degree level'
+      fill_in 'Major', with: 'Basket Making'
+      select 'Fall Only', :from => 'Exchange term'
+      fill_in 'Student email', with: 'FooBar@gmail.com'
+      select 'Garcia, Jackie', :from => 'Representative'
+      click_on 'Create Student'
+    visit universities_path
+    click_on 'Clear All'
+      click_on 'Clear All Universities'
+    visit universities_path
+      expect(page).not_to have_content('AM')
+      expect(page).not_to have_content('TU')
+    visit representatives_path
+      expect(page).not_to have_content('John')
+      expect(page).not_to have_content('Jackie')
+    visit students_path
+      expect(page).not_to have_content('Foo')
+      expect(page).not_to have_content('Test')
+  end
+
+  scenario 'reset all' do
+    visit new_university_path
+      fill_in 'University name', with: 'AM'
+      click_on 'Create University'
+      visit new_university_path
+      fill_in 'University name', with: 'TU'
+      click_on 'Create University'
+    visit new_representative_path
+      select 'AM', :from => 'University'
+      fill_in 'First name', with: 'John'
+      fill_in 'Last name', with: 'Smith'
+      fill_in 'Title', with: 'CEO'
+      fill_in 'Rep email', with: 'JohnSmith@gmail.com'
+      click_on 'Create Representative'
+    visit new_student_path
+      select 'AM', :from => 'University'
+      fill_in 'First name', with: 'Foo'
+      fill_in 'Last name', with: 'Bar'
+      select 'Bachelors', :from => 'Degree level'
+      fill_in 'Major', with: 'Basket Making'
+      select 'Fall Only', :from => 'Exchange term'
+      fill_in 'Student email', with: 'FooBar@gmail.com'
+      select 'Smith, John', :from => 'Representative'
+      click_on 'Create Student'
+    visit new_representative_path
+      select 'TU', :from => 'University'
+      fill_in 'First name', with: 'Jackie'
+      fill_in 'Last name', with: 'Garcia'
+      fill_in 'Title', with: 'Director'
+      fill_in 'Rep email', with: 'JackieGarcia@yahoo.com'
+      click_on 'Create Representative'
+    visit new_student_path
+      select 'TU', :from => 'University'
+      fill_in 'First name', with: 'Test'
+      fill_in 'Last name', with: 'Two'
+      select 'Bachelors', :from => 'Degree level'
+      fill_in 'Major', with: 'Basket Making'
+      select 'Fall Only', :from => 'Exchange term'
+      fill_in 'Student email', with: 'FooBar@gmail.com'
+      select 'Garcia, Jackie', :from => 'Representative'
+      click_on 'Create Student'
+    visit universities_path
+    click_on 'Reset All'
+      expect(page).to have_content('Reset')
+      click_on 'Reset All Universities'
+    visit universities_path
+      expect(page).to have_content('AM 0 3')
+      expect(page).to have_content('TU 0 3')
+    visit representatives_path
+      expect(page).not_to have_content('John')
+      expect(page).not_to have_content('Jackie')
+    visit students_path
+      expect(page).not_to have_content('Foo')
+      expect(page).not_to have_content('Test')
+  end
 end
 
 RSpec.describe 'Admin representative functions', type: :feature do
@@ -268,6 +430,60 @@ RSpec.describe 'Admin representative functions', type: :feature do
       expect(page).to have_content('Alice')
   end
 
+  scenario 'editing a representative\'s university' do
+    visit new_university_path
+      fill_in 'University name', with: 'AM'
+      click_on 'Create University'
+      visit new_university_path
+      fill_in 'University name', with: 'TU'
+      click_on 'Create University'
+    visit new_representative_path
+      select 'AM', :from => 'University'
+      fill_in 'First name', with: 'John'
+      fill_in 'Last name', with: 'Smith'
+      fill_in 'Title', with: 'CEO'
+      fill_in 'Rep email', with: 'JohnSmith@gmail.com'
+      click_on 'Create Representative'
+    visit new_student_path
+      select 'AM', :from => 'University'
+      fill_in 'First name', with: 'Foo'
+      fill_in 'Last name', with: 'Bar'
+      select 'Bachelors', :from => 'Degree level'
+      fill_in 'Major', with: 'Basket Making'
+      select 'Fall Only', :from => 'Exchange term'
+      fill_in 'Student email', with: 'FooBar@gmail.com'
+      select 'Smith, John', :from => 'Representative'
+      click_on 'Create Student'
+    visit new_student_path
+      select 'AM', :from => 'University'
+      fill_in 'First name', with: 'Test'
+      fill_in 'Last name', with: 'Two'
+      select 'Bachelors', :from => 'Degree level'
+      fill_in 'Major', with: 'Basket Making'
+      select 'Fall and Spring', :from => 'Exchange term'
+      fill_in 'Student email', with: 'TT@gmail.com'
+      select 'Smith, John', :from => 'Representative'
+      click_on 'Create Student'
+    visit universities_path
+      expect(page).to have_content('AM 3 3')
+      expect(page).to have_content('TU 0 3')
+    visit representatives_path
+    click_on 'Edit'
+      select '', :from => 'University'
+      click_on 'Update Representative'
+      expect(page).to have_content('error')
+      select 'TU', :from => 'University'
+      click_on 'Update Representative'
+    visit representatives_path
+      expect(page).to have_content('TU')
+    visit students_path
+      expect(page).to have_content('TU')
+      expect(page).not_to have_content('AM')
+    visit universities_path
+      expect(page).to have_content('AM 0 3')
+      expect(page).to have_content('TU 3 3')
+  end
+
   # delete/destroy
   scenario 'deleting a representative' do
     visit new_university_path
@@ -285,8 +501,89 @@ RSpec.describe 'Admin representative functions', type: :feature do
       click_on 'Delete Representative'
       expect(page).not_to have_content('John')
   end
-  #FIXME check links
-  #check destroy association
+  
+  scenario 'delete associations' do
+    visit new_university_path
+      fill_in 'University name', with: 'AM'
+      click_on 'Create University'
+    visit new_representative_path
+      select 'AM', :from => 'University'
+      fill_in 'First name', with: 'John'
+      fill_in 'Last name', with: 'Smith'
+      fill_in 'Title', with: 'CEO'
+      fill_in 'Rep email', with: 'JohnSmith@gmail.com'
+      click_on 'Create Representative'
+    visit new_student_path
+      select 'AM', :from => 'University'
+      fill_in 'First name', with: 'Foo'
+      fill_in 'Last name', with: 'Bar'
+      select 'Bachelors', :from => 'Degree level'
+      fill_in 'Major', with: 'Basket Making'
+      select 'Fall Only', :from => 'Exchange term'
+      fill_in 'Student email', with: 'FooBar@gmail.com'
+      select 'Smith, John', :from => 'Representative'
+      click_on 'Create Student'
+    visit representatives_path
+      click_on 'Delete'
+      click_on 'Delete Representative'
+    visit universities_path
+      expect(page).to have_content('AM 0 3')
+    visit representatives_path
+      expect(page).not_to have_content('John')
+    visit students_path
+      expect(page).not_to have_content('Foo')
+  end
+  
+  scenario 'clear all' do
+    visit new_university_path
+      fill_in 'University name', with: 'AM'
+      click_on 'Create University'
+    visit new_representative_path
+      select 'AM', :from => 'University'
+      fill_in 'First name', with: 'John'
+      fill_in 'Last name', with: 'Smith'
+      fill_in 'Title', with: 'CEO'
+      fill_in 'Rep email', with: 'JohnSmith@gmail.com'
+      click_on 'Create Representative'
+    visit new_student_path
+      select 'AM', :from => 'University'
+      fill_in 'First name', with: 'Foo'
+      fill_in 'Last name', with: 'Bar'
+      select 'Bachelors', :from => 'Degree level'
+      fill_in 'Major', with: 'Basket Making'
+      select 'Fall Only', :from => 'Exchange term'
+      fill_in 'Student email', with: 'FooBar@gmail.com'
+      select 'Smith, John', :from => 'Representative'
+      click_on 'Create Student'
+    visit new_representative_path
+      select 'AM', :from => 'University'
+      fill_in 'First name', with: 'Jackie'
+      fill_in 'Last name', with: 'Garcia'
+      fill_in 'Title', with: 'Director'
+      fill_in 'Rep email', with: 'JackieGarcia@yahoo.com'
+      click_on 'Create Representative'
+    visit new_student_path
+      select 'AM', :from => 'University'
+      fill_in 'First name', with: 'Test'
+      fill_in 'Last name', with: 'Two'
+      select 'Bachelors', :from => 'Degree level'
+      fill_in 'Major', with: 'Basket Making'
+      select 'Fall Only', :from => 'Exchange term'
+      fill_in 'Student email', with: 'FooBar@gmail.com'
+      select 'Garcia, Jackie', :from => 'Representative'
+      click_on 'Create Student'
+    visit representatives_path
+    click_on 'Clear All'
+      click_on 'Clear All Representatives'
+    visit universities_path
+      expect(page).to have_content('AM 0 3')
+    visit representatives_path
+      expect(page).not_to have_content('John')
+      expect(page).not_to have_content('Jackie')
+    visit students_path
+      expect(page).not_to have_content('Foo')
+      expect(page).not_to have_content('Test')
+  end
 end
 
 RSpec.describe 'Admin student functions', type: :feature do
@@ -299,10 +596,6 @@ RSpec.describe 'Admin student functions', type: :feature do
     end
     visit root_path
     click_on 'Admin login'
-  end
-
-  # new/create
-  scenario 'create student' do
     visit new_university_path
       fill_in 'University name', with: 'AM'
       click_on 'Create University'
@@ -313,6 +606,10 @@ RSpec.describe 'Admin student functions', type: :feature do
       fill_in 'Title', with: 'CEO'
       fill_in 'Rep email', with: 'JohnSmith@gmail.com'
       click_on 'Create Representative'
+  end
+
+  # new/create
+  scenario 'create student' do
     visit new_student_path
       click_on 'Create Student'
       expect(page).to have_content('error')
@@ -324,6 +621,16 @@ RSpec.describe 'Admin student functions', type: :feature do
       fill_in 'Major', with: 'Basket Making'
       select 'Fall Only', :from => 'Exchange term'
       fill_in 'Student email', with: 'FooBar@gmail.com'
+      click_on 'Create Student'
+    visit new_student_path
+      select 'AM', :from => 'University'
+      fill_in 'First name', with: 'Test'
+      fill_in 'Last name', with: 'Two'
+      select 'Bachelors', :from => 'Degree level'
+      fill_in 'Major', with: 'Basket Making'
+      select 'Fall and Spring', :from => 'Exchange term'
+      fill_in 'Student email', with: 'TT@gmail.com'
+      select 'Smith, John', :from => 'Representative'
       click_on 'Create Student'
     visit students_path
       expect(page).to have_content('Foo')
@@ -338,16 +645,6 @@ RSpec.describe 'Admin student functions', type: :feature do
 
   # edit/update
   scenario 'editing a student' do
-    visit new_university_path
-      fill_in 'University name', with: 'AM'
-      click_on 'Create University'
-    visit new_representative_path
-      select 'AM', :from => 'University'
-      fill_in 'First name', with: 'John'
-      fill_in 'Last name', with: 'Smith'
-      fill_in 'Title', with: 'CEO'
-      fill_in 'Rep email', with: 'JohnSmith@gmail.com'
-      click_on 'Create Representative'
     visit new_student_path
       select 'AM', :from => 'University'
       fill_in 'First name', with: 'Foo'
@@ -371,16 +668,6 @@ RSpec.describe 'Admin student functions', type: :feature do
 
   # delete/destroy
   scenario 'deleting a student' do #FIXME updates max limit
-    visit new_university_path
-      fill_in 'University name', with: 'AM'
-      click_on 'Create University'
-    visit new_representative_path
-      select 'AM', :from => 'University'
-      fill_in 'First name', with: 'John'
-      fill_in 'Last name', with: 'Smith'
-      fill_in 'Title', with: 'CEO'
-      fill_in 'Rep email', with: 'JohnSmith@gmail.com'
-      click_on 'Create Representative'
     visit new_student_path
       select 'AM', :from => 'University'
       fill_in 'First name', with: 'Foo'
@@ -396,8 +683,127 @@ RSpec.describe 'Admin student functions', type: :feature do
       click_on 'Delete Student'
       expect(page).not_to have_content('Foo')
   end
-  #FIXME check links
-  #check destroy association
+  
+  scenario 'clear all' do
+    visit new_student_path
+      select 'AM', :from => 'University'
+      fill_in 'First name', with: 'Foo'
+      fill_in 'Last name', with: 'Bar'
+      select 'Bachelors', :from => 'Degree level'
+      fill_in 'Major', with: 'Basket Making'
+      select 'Fall Only', :from => 'Exchange term'
+      fill_in 'Student email', with: 'FooBar@gmail.com'
+      select 'Smith, John', :from => 'Representative'
+      click_on 'Create Student'
+    visit new_student_path
+      select 'AM', :from => 'University'
+      fill_in 'First name', with: 'Test'
+      fill_in 'Last name', with: 'Two'
+      select 'Bachelors', :from => 'Degree level'
+      fill_in 'Major', with: 'Basket Making'
+      select 'Fall Only', :from => 'Exchange term'
+      fill_in 'Student email', with: 'FooBar@gmail.com'
+      select 'Smith, John', :from => 'Representative'
+      click_on 'Create Student'
+    visit students_path
+    click_on 'Clear All'
+      click_on 'Clear All Students'
+    visit universities_path
+      expect(page).to have_content('AM 0 3')
+    visit representatives_path
+      expect(page).to have_content('John')
+    visit students_path
+      expect(page).not_to have_content('Foo')
+      expect(page).not_to have_content('Test')
+  end
+
+  scenario 'correct students count from creating and deleting' do
+    visit new_student_path
+      select 'AM', :from => 'University'
+      fill_in 'First name', with: 'Foo'
+      fill_in 'Last name', with: 'Bar'
+      select 'Bachelors', :from => 'Degree level'
+      fill_in 'Major', with: 'Basket Making'
+      select 'Fall Only', :from => 'Exchange term'
+      fill_in 'Student email', with: 'FooBar@gmail.com'
+      select 'Smith, John', :from => 'Representative'
+      click_on 'Create Student'
+    visit universities_path
+      expect(page).to have_content('AM 1 3')
+    visit students_path
+      click_on 'Delete'
+      click_on 'Delete Student'
+    visit universities_path
+      expect(page).to have_content('AM 0 3')
+    visit new_student_path
+      select 'AM', :from => 'University'
+      fill_in 'First name', with: 'Foo'
+      fill_in 'Last name', with: 'Bar'
+      select 'Bachelors', :from => 'Degree level'
+      fill_in 'Major', with: 'Basket Making'
+      select 'Fall and Spring', :from => 'Exchange term'
+      fill_in 'Student email', with: 'FooBar@gmail.com'
+      select 'Smith, John', :from => 'Representative'
+      click_on 'Create Student'
+    visit universities_path
+      expect(page).to have_content('AM 2 3')
+    visit students_path
+      click_on 'Delete'
+      click_on 'Delete Student'
+    visit universities_path
+      expect(page).to have_content('AM 0 3')
+  end
+
+  scenario 'update exchange term' do
+    visit new_student_path
+      click_on 'Create Student'
+      expect(page).to have_content('error')
+      select 'AM', :from => 'University'
+      select 'Smith, John', :from => 'Representative'
+      fill_in 'First name', with: 'Foo'
+      fill_in 'Last name', with: 'Bar'
+      select 'Bachelors', :from => 'Degree level'
+      fill_in 'Major', with: 'Basket Making'
+      select 'Fall Only', :from => 'Exchange term'
+      fill_in 'Student email', with: 'FooBar@gmail.com'
+      click_on 'Create Student'
+    visit universities_path
+      expect(page).to have_content('AM 1 3')
+    visit students_path
+      click_on 'Edit'
+      select 'Fall and Spring', :from => 'Exchange term'
+      click_on 'Update Student'
+    visit universities_path
+      expect(page).to have_content('AM 2 3')
+    visit students_path
+      click_on 'Edit'
+      select 'Spring Only', :from => 'Exchange term'
+      click_on 'Update Student'
+    visit universities_path
+      expect(page).to have_content('AM 1 3')
+  end
+
+  scenario 'update exchange term max' do
+    visit new_student_path
+      select 'AM', :from => 'University'
+      fill_in 'First name', with: 'Foo'
+      fill_in 'Last name', with: 'Bar'
+      select 'Bachelors', :from => 'Degree level'
+      fill_in 'Major', with: 'Basket Making'
+      select 'Fall Only', :from => 'Exchange term'
+      fill_in 'Student email', with: 'FooBar@gmail.com'
+      select 'Smith, John', :from => 'Representative'
+      click_on 'Create Student'
+    visit universities_path
+      fill_in 'change_lim', with: '1'
+      click_on 'Change All Limits'
+      expect(page).to have_content('AM 1 1')
+    visit students_path
+      click_on 'Edit'
+      select 'Fall and Spring', :from => 'Exchange term'
+      click_on 'Update Student'
+      expect(page).to have_content('Sorry')
+  end
 end
 
 # RSpec.describe 'Admin question functions', type: :feature do
@@ -496,13 +902,13 @@ RSpec.describe 'User student functions', type: :feature do
       visit new_university_path
       fill_in 'University name', with: 'AM'
       click_on 'Create University'
-      visit user_new_representatives_path
-        select 'AM', :from => 'University'
-        fill_in 'First name', with: 'John'
-        fill_in 'Last name', with: 'Smith'
-        fill_in 'Title', with: 'CEO'
-        fill_in 'Rep email', with: 'JohnSmith@gmail.com'
-        click_on 'Create Representative'
+    visit user_new_representatives_path
+      select 'AM', :from => 'University'
+      fill_in 'First name', with: 'John'
+      fill_in 'Last name', with: 'Smith'
+      fill_in 'Title', with: 'CEO'
+      fill_in 'Rep email', with: 'JohnSmith@gmail.com'
+      click_on 'Create Representative'
       click_link 'Continue'
   end
 
@@ -560,6 +966,66 @@ RSpec.describe 'User student functions', type: :feature do
     click_on 'Finish'
       expect(page).to have_content('Nomination Record')
   end
+  
+  scenario 'update exchange term up' do
+    click_on 'Enter a new student'
+      click_on 'Create Student'
+      fill_in 'First name', with: 'Foo'
+      fill_in 'Last name', with: 'Bar'
+      select 'Bachelors', :from => 'Degree level'
+      fill_in 'Major', with: 'Basket Making'
+      select 'Fall Only', :from => 'Exchange term'
+      fill_in 'Student email', with: 'FooBar@gmail.com'
+      click_on 'Create Student'
+    click_on 'Edit'
+      select 'Fall and Spring', :from => 'Exchange term'
+      click_on 'Update Student'
+    visit universities_path
+      expect(page).to have_content('AM 2 3')
+  end
+  
+  scenario 'update exchange term down' do
+    click_on 'Enter a new student'
+      click_on 'Create Student'
+      fill_in 'First name', with: 'Foo'
+      fill_in 'Last name', with: 'Bar'
+      select 'Bachelors', :from => 'Degree level'
+      fill_in 'Major', with: 'Basket Making'
+      select 'Fall and Spring', :from => 'Exchange term'
+      fill_in 'Student email', with: 'FooBar@gmail.com'
+      click_on 'Create Student'
+    click_on 'Edit'
+      select 'Spring Only', :from => 'Exchange term'
+      click_on 'Update Student'
+    visit universities_path
+      expect(page).to have_content('AM 1 3')
+  end
+
+  scenario 'update exchange term max' do
+    visit universities_path
+      fill_in 'change_lim', with: '1'
+      click_on 'Change All Limits'
+    visit user_new_representatives_path
+      select 'AM', :from => 'University'
+      fill_in 'First name', with: 'Johnny'
+      fill_in 'Last name', with: 'Smith'
+      fill_in 'Title', with: 'CEO'
+      fill_in 'Rep email', with: 'JohnnySmith@gmail.com'
+      click_on 'Create Representative'
+      click_link 'Continue'
+    click_on 'Enter a new student'
+      fill_in 'First name', with: 'Foo'
+      fill_in 'Last name', with: 'Bar'
+      select 'Bachelors', :from => 'Degree level'
+      fill_in 'Major', with: 'Basket Making'
+      select 'Fall Only', :from => 'Exchange term'
+      fill_in 'Student email', with: 'FooBar@gmail.com'
+      click_on 'Create Student'
+    click_on 'Edit'
+      select 'Fall and Spring', :from => 'Exchange term'
+      click_on 'Update Student'
+      expect(page).to have_content('Sorry')
+  end
 
   scenario 'delete student' do
     click_on 'Enter a new student'
@@ -594,30 +1060,18 @@ RSpec.describe 'User student functions', type: :feature do
       fill_in 'Last name', with: 'Bar'
       select 'Bachelors', :from => 'Degree level'
       fill_in 'Major', with: 'Basket Making'
-      select 'Fall Only', :from => 'Exchange term'
+      select 'Fall and Spring', :from => 'Exchange term'
       fill_in 'Student email', with: 'Foo2Bar@gmail.com'
       click_on 'Create Student'
-      expect(page).to have_content('2 out of 3')
-    click_on 'Enter another new student' # student 3
-      fill_in 'First name', with: 'Foo3'
-      fill_in 'Last name', with: 'Bar'
-      select 'Bachelors', :from => 'Degree level'
-      fill_in 'Major', with: 'Basket Making'
-      select 'Fall Only', :from => 'Exchange term'
-      fill_in 'Student email', with: 'Foo3Bar@gmail.com'
-      click_on 'Create Student'
       expect(page).to have_content('3 out of 3')
-    click_on 'Enter another new student' # auto-redirect to finish page
+      expect(page).not_to have_content('Enter another new student')
+    click_on 'Finish'
       expect(page).to have_content('Nomination Record')
-      expect(page).to have_content('Sorry')
       expect(page).to have_content('3 students nominated')
-    click_on 'Enter a new student' # should not redirect
-      expect(page).to have_content('Nomination Record')
-      expect(page).to have_content('Sorry')
-      expect(page).to have_content('3 students nominated')
+      expect(page).not_to have_content('Enter another new student')
   end
 
-  scenario 'Re-activate new students after delete' do
+  scenario "Don't allow more representatives to make nominations after reaching limit" do
     click_on 'Enter a new student' # student 1
       fill_in 'First name', with: 'Foo'
       fill_in 'Last name', with: 'Bar'
@@ -642,58 +1096,21 @@ RSpec.describe 'User student functions', type: :feature do
       select 'Fall Only', :from => 'Exchange term'
       fill_in 'Student email', with: 'Foo3Bar@gmail.com'
       click_on 'Create Student'
-    click_on 'Enter another new student' # auto-redirect to finish page
+      # start over with new representative
+    visit user_new_representatives_path
+      select 'AM', :from => 'University'
+      fill_in 'First name', with: 'Alice'
+      fill_in 'Last name', with: 'May'
+      fill_in 'Title', with: 'Division Head'
+      fill_in 'Rep email', with: 'A.May@gmail.com'
+      click_on 'Create Representative'
+    click_link 'Continue'
+      expect(page).to have_content('Nomination Record')
       expect(page).to have_content('3 students nominated')
-    click_on 'Delete'
-      click_on 'Delete Student'
-      expect(page).to have_content('2 students nominated')
-    click_on 'Enter a new student' # should redirect now
-      expect(page).to have_content('New Student')
+      expect(page).to have_content('Alice')
+      expect(page).not_to have_content('Foo')
+      expect(page).not_to have_content('Enter a new student')
   end
-
-  scenario "don't allow more representatives to make nominations after reaching limit" do
-      click_on 'Enter a new student' # student 1
-        fill_in 'First name', with: 'Foo'
-        fill_in 'Last name', with: 'Bar'
-        select 'Bachelors', :from => 'Degree level'
-        fill_in 'Major', with: 'Basket Making'
-        select 'Fall Only', :from => 'Exchange term'
-        fill_in 'Student email', with: 'FooBar@gmail.com'
-        click_on 'Create Student'
-      click_on 'Enter another new student' # student 2
-        fill_in 'First name', with: 'Foo2'
-        fill_in 'Last name', with: 'Bar'
-        select 'Bachelors', :from => 'Degree level'
-        fill_in 'Major', with: 'Basket Making'
-        select 'Fall Only', :from => 'Exchange term'
-        fill_in 'Student email', with: 'Foo2Bar@gmail.com'
-        click_on 'Create Student'
-      click_on 'Enter another new student' # student 3
-        fill_in 'First name', with: 'Foo3'
-        fill_in 'Last name', with: 'Bar'
-        select 'Bachelors', :from => 'Degree level'
-        fill_in 'Major', with: 'Basket Making'
-        select 'Fall Only', :from => 'Exchange term'
-        fill_in 'Student email', with: 'Foo3Bar@gmail.com'
-        click_on 'Create Student'
-        # start over with new representative
-      visit user_new_representatives_path
-        select 'AM', :from => 'University'
-        fill_in 'First name', with: 'Alice'
-        fill_in 'Last name', with: 'May'
-        fill_in 'Title', with: 'Division Head'
-        fill_in 'Rep email', with: 'A.May@gmail.com'
-        click_on 'Create Representative'
-      click_link 'Continue'
-        expect(page).to have_content('Nomination Record')
-        expect(page).to have_content('3 students nominated')
-        expect(page).to have_content('Alice')
-        expect(page).not_to have_content('Foo')
-      click_on 'Enter a new student'
-        expect(page).not_to have_content('New Student')
-        expect(page).to have_content('Nomination Record')
-        expect(page).to have_content('Sorry')
-    end
 end
 
 #test destroy associations
