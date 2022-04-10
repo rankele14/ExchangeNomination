@@ -190,6 +190,8 @@ class StudentsController < ApplicationController
   end
 
   def user_destroy
+    @representative = Representative.find(@student.representative_id)
+    @deadline = Variable.find_by(var_name: 'deadline')
     if @deadline != nil && Time.now > @deadline.var_value then
       respond_to do |format|
         format.html { redirect_to finish_representative_path(@representative), notice: "Sorry, the deadline for removing students has passed." }
