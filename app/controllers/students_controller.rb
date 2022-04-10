@@ -182,7 +182,7 @@ class StudentsController < ApplicationController
     @student.destroy
 
     respond_to do |format|
-      format.html { redirect_to students_url, notice: "Student was successfully destroyed." }
+      format.html { redirect_to students_url, notice: "Student was successfully removed." }
       format.json { head :no_content }
     end
   end
@@ -192,13 +192,20 @@ class StudentsController < ApplicationController
   end
 
   def user_destroy
-    @representative = Representative.find(@student.representative_id)
-    destroy_uni_update(@student.id)
-    @student.destroy
+    if @deadline != nil && Time.now > @deadline.var_value then
+      respond_to do |format|
+        format.html { redirect_to finish_representative_path(@representative), notice: "Sorry, the deadline for removing students has passed." }
+        format.json { head :no_content }
+      end
+    else
+      @representative = Representative.find(@student.representative_id)
+      destroy_uni_update(@student.id)
+      @student.destroy
 
-    respond_to do |format|
-      format.html { redirect_to finish_representative_path(@representative), notice: "Student was successfully destroyed." }
-      format.json { head :no_content }
+      respond_to do |format|
+        format.html { redirect_to finish_representative_path(@representative), notice: "Student was successfully removed." }
+        format.json { head :no_content }
+      end
     end
   end
   
