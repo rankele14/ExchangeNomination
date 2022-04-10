@@ -1,4 +1,21 @@
-<h1>You're logged in!</h1>
-<%= link_to "Admin dashboard", admin_path%>
-<%= link_to "Student Nominator View",  user_new_representatives_path%>
-<%= link_to "Sign Out", destroy_admin_session_path %>
+<header style="margin-top: 0;">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3C0000; padding-top: 0;padding-bottom: 0;">
+    <div class = "row" style="height:35px; padding-bottom: 0;">
+      <div class="col-sm-auto" style="margin-bottom: 0;">
+        <%= button_to "Admin dashboard", admin_path, :class => "new-navbar-box", :method => :get %>
+      </div>
+      <div class="col-sm-auto" style="margin-bottom: 0;">
+        <%= button_to "Student Nominator View", user_new_representatives_path, :class => "new-navbar-box", :method => :get %>
+      </div>
+      <div class="col-sm-auto" style="margin-bottom: 0;">
+        <%= button_to "Sign Out", destroy_admin_session_path, :class => "new-navbar-box", :method => :get %>
+      </div>
+    </div>
+  <nav>
+</header>
+
+<div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
+  <div class="container show-box">
+    <h1 style="text-align: center;">You're logged in!</h1>
+  </div>
+</div>
