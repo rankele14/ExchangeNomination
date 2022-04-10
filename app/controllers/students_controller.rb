@@ -34,7 +34,6 @@ class StudentsController < ApplicationController
     @representative = Representative.find(@student.representative_id)
     @university = University.find(@student.university_id)
     @variable = Variable.find_by(var_name: 'max_limit')
-    @max_lim = @variable.var_value.to_i
   end
 
   # GET /students/new
@@ -49,14 +48,13 @@ class StudentsController < ApplicationController
     @representative = Representative.find(params[:id])
     @student.university_id = @representative.university_id
     @university = University.find(@student.university_id)
-    @variable = Variable.find_by(var_name: 'max_limit')
     @deadline = Variable.find_by(var_name: 'deadline')
 
-    if @university.num_nominees >= @variable.var_value.to_i
-      redirect_to finish_representative_url(@representative), alert: "Sorry, maximum limit of 3 students already reached." 
-    elsif @deadline != nil && Time.now > @deadline.var_value then # past the deadline
-      redirect_to finish_representative_path(@representative), alert: "Sorry, the deadline for submitting students has passed" 
-    end
+    # if @university.num_nominees >= @university.max_limit
+    #   redirect_to finish_representative_url(@representative), alert: "Sorry, maximum limit of 3 students already reached." 
+    # elsif @deadline != nil && Time.now > @deadline.var_value then # past the deadline
+    #   redirect_to finish_representative_path(@representative), alert: "Sorry, the deadline for submitting students has passed" 
+    # end
   end
 
   # GET /students/1/edit
@@ -74,7 +72,7 @@ class StudentsController < ApplicationController
     respond_to do |format|
       if @student.save
         @university = University.find(@student.university_id)
-        if @student.exchange_term.include? "and"
+        if @student.exchange_term.include? 'and'
           @university.update(num_nominees: @university.num_nominees + 2)
         else
           @university.update(num_nominees: @university.num_nominees + 1)
@@ -91,6 +89,7 @@ class StudentsController < ApplicationController
   # POST /students but redirects to user_show_student
   def user_create
     @student = Student.new(student_params)
+    @representative = Representative.find(@student.representative_id)
     @university = University.find(@student.university_id)
     @deadline = Variable.find_by(var_name: 'deadline')
     
@@ -99,7 +98,7 @@ class StudentsController < ApplicationController
     else
       respond_to do |format|
         if @student.save
-          if @student.exchange_term.include? "and"
+          if @student.exchange_term.include? 'and'
             @university.update(num_nominees: @university.num_nominees + 2)
           else
             @university.update(num_nominees: @university.num_nominees + 1)
@@ -122,14 +121,14 @@ class StudentsController < ApplicationController
     @university = University.find(@student.university_id)
     @variable = Variable.find_by(var_name: 'max_limit')
 
-    if !(prev_term.include? "and") && (new_term.include? "and") && (@university.num_nominees >= @variable.var_value.to_i) then # used to be single, now double, exceeds university limit
+    if !(prev_term.include? 'and') && (new_term.include? 'and') && (@university.num_nominees >= @university.max_limit) then # used to be single, now double, exceeds university limit
       redirect_to edit_student_url(@student), alert: "Sorry, a double term nomination would exceed the university's nomination limit. Please stick to a single term nomination." 
     else
       respond_to do |format|
         if @student.update(student_params)
-          if !(prev_term.include? "and") && (new_term.include? "and") then # used to be single, now double
+          if !(prev_term.include? 'and') && (new_term.include? 'and') then # used to be single, now double
             @university.update(num_nominees: @university.num_nominees + 1)
-          elsif (prev_term.include? "and") && !(new_term.include? "and") then # used to be double, now single
+          elsif (prev_term.include? 'and') && !(new_term.include? 'and') then # used to be double, now single
             @university.update(num_nominees: @university.num_nominees - 1)
           end
           format.html { redirect_to student_url(@student), notice: "Student was successfully updated." }
@@ -147,19 +146,18 @@ class StudentsController < ApplicationController
     prev_term = @student.exchange_term
     new_term = params[:student][:exchange_term]
     @university = University.find(@student.university_id)
-    @variable = Variable.find_by(var_name: 'max_limit')
     @deadline = Variable.find_by(var_name: 'deadline')
 
-    if !(prev_term.include? "and") && (new_term.include? "and") && (@university.num_nominees >= @variable.var_value.to_i) then # used to be single, now double, exceeds university limit
+    if !(prev_term.include? 'and') && (new_term.include? 'and') && (@university.num_nominees >= @university.max_limit) then # used to be single, now double, exceeds university limit
       redirect_to user_edit_student_url(@student), alert: "Sorry, a double term nomination would exceed the university's nomination limit. Please stick to a single term nomination." 
     elsif @deadline != nil && Time.now > @deadline.var_value then # past the deadline
       redirect_to finish_representative_path(@student.representative_id), alert: "Sorry, the deadline for submitting students has passed" 
     else
       respond_to do |format|
         if @student.update(student_params)
-          if !(prev_term.include? "and") && (new_term.include? "and") then # used to be single, now double
+          if !(prev_term.include? 'and') && (new_term.include? 'and') then # used to be single, now double
             @university.update(num_nominees: @university.num_nominees + 1)
-          elsif (prev_term.include? "and") && !(new_term.include? "and") then # used to be double, now single
+          elsif (prev_term.include? 'and') && !(new_term.include? 'and') then # used to be double, now single
             @university.update(num_nominees: @university.num_nominees - 1)
           end
           format.html { redirect_to user_show_student_url(@student), notice: "Student was successfully updated." }
@@ -236,7 +234,7 @@ class StudentsController < ApplicationController
   def destroy_all
     @students = Student.all
     @students.each do |student|
-      student.destroy_uni_update(student.id)
+      destroy_uni_update(student.id)
       student.destroy
     end
     # automatically destroys responses

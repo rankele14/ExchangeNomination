@@ -69,6 +69,7 @@ Rails.application.routes.draw do
       get :clear_all
       post :destroy_all
       get :reset_all
+      post :reset
     end
     member do
       get :delete

@@ -154,6 +154,11 @@ RSpec.describe Student, type: :model do
     expect(subject).not_to be_valid
   end
   
+  it 'is not valid without a representative_id' do
+    subject.representative_id = nil
+    expect(subject).not_to be_valid
+  end
+  
   it 'is not valid without a student_email' do
     subject.student_email= nil
     expect(subject).not_to be_valid
