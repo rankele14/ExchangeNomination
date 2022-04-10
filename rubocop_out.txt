@@ -1,0 +1,331 @@
+Inspecting 115 files
+C...CCC.CCCCCCCCCCCCCCC..CC.C............................C........C..CCC.....C......C.CCCCCCCCCC.CC...C............
+
+Offenses:
+
+Gemfile:1:1: C: Layout/EndOfLine: Carriage return character detected.
+# frozen_string_literal: true ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/admins/omniauth_callbacks_controller.rb:4:3: C: Style/Documentation: Missing top-level documentation comment for class Admins::OmniauthCallbacksController.
+  class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/admins/sessions_controller.rb:4:3: C: Style/Documentation: Missing top-level documentation comment for class Admins::SessionsController.
+  class SessionsController < Devise::SessionsController
+  ^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/answers_controller.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class AnswersController.
+class AnswersController < ApplicationController
+^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/answers_controller.rb:66:7: C: Naming/AccessorMethodName: Do not prefix reader method names with get_.
+  def get_question
+      ^^^^^^^^^^^^
+app/controllers/authorizeds_controller.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class AuthorizedsController.
+class AuthorizedsController < ApplicationController
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/dashboards_controller.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class DashboardsController.
+class DashboardsController < ApplicationController
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/questions_controller.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class QuestionsController.
+class QuestionsController < ApplicationController
+^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/representatives_controller.rb:4:1: C: Metrics/ClassLength: Class has too many lines. [146/100]
+class RepresentativesController < ApplicationController ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/representatives_controller.rb:4:1: C: Style/Documentation: Missing top-level documentation comment for class RepresentativesController.
+class RepresentativesController < ApplicationController
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/representatives_controller.rb:54:3: C: Metrics/AbcSize: Assignment Branch Condition size for user_create is too high. [<3, 21, 6> 22.05/17]
+  def user_create ...
+  ^^^^^^^^^^^^^^^
+app/controllers/representatives_controller.rb:54:3: C: Metrics/MethodLength: Method has too many lines. [17/10]
+  def user_create ...
+  ^^^^^^^^^^^^^^^
+app/controllers/representatives_controller.rb:75:3: C: Metrics/AbcSize: Assignment Branch Condition size for update is too high. [<10, 39, 7> 40.87/17]
+  def update ...
+  ^^^^^^^^^^
+app/controllers/representatives_controller.rb:75:3: C: Metrics/MethodLength: Method has too many lines. [27/10]
+  def update ...
+  ^^^^^^^^^^
+app/controllers/representatives_controller.rb:106:3: C: Metrics/AbcSize: Assignment Branch Condition size for user_update is too high. [<3, 23, 6> 23.96/17]
+  def user_update ...
+  ^^^^^^^^^^^^^^^
+app/controllers/representatives_controller.rb:106:3: C: Metrics/MethodLength: Method has too many lines. [18/10]
+  def user_update ...
+  ^^^^^^^^^^^^^^^
+app/controllers/responses_controller.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class ResponsesController.
+class ResponsesController < ApplicationController
+^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/responses_controller.rb:25:3: C: Metrics/MethodLength: Method has too many lines. [11/10]
+  def create ...
+  ^^^^^^^^^^
+app/controllers/responses_controller.rb:90:7: C: Naming/AccessorMethodName: Do not prefix reader method names with get_.
+  def get_student
+      ^^^^^^^^^^^
+app/controllers/students_controller.rb:5:1: C: Metrics/ClassLength: Class has too many lines. [204/100]
+class StudentsController < ApplicationController ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/students_controller.rb:5:1: C: Style/Documentation: Missing top-level documentation comment for class StudentsController.
+class StudentsController < ApplicationController
+^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/students_controller.rb:21:5: C: Style/GuardClause: Use a guard clause (return unless @variable.nil?) instead of wrapping the code inside a conditional expression.
+    if @variable.nil?
+    ^^
+app/controllers/students_controller.rb:55:121: C: Layout/LineLength: Line is too long. [124/120]
+    #   redirect_to finish_representative_url(@representative), alert: "Sorry, maximum limit of 3 students already reached."
+                                                                                                                        ^^^^
+app/controllers/students_controller.rb:57:121: C: Layout/LineLength: Line is too long. [128/120]
+    #   redirect_to finish_representative_path(@representative), alert: "Sorry, the deadline for submitting students has passed"
+                                                                                                                        ^^^^^^^^
+app/controllers/students_controller.rb:68:3: C: Metrics/AbcSize: Assignment Branch Condition size for create is too high. [<3, 24, 4> 24.52/17]
+  def create ...
+  ^^^^^^^^^^
+app/controllers/students_controller.rb:68:3: C: Metrics/MethodLength: Method has too many lines. [16/10]
+  def create ...
+  ^^^^^^^^^^
+app/controllers/students_controller.rb:89:3: C: Metrics/AbcSize: Assignment Branch Condition size for user_create is too high. [<5, 39, 8> 40.12/17]
+  def user_create ...
+  ^^^^^^^^^^^^^^^
+app/controllers/students_controller.rb:89:3: C: Metrics/MethodLength: Method has too many lines. [25/10]
+  def user_create ...
+  ^^^^^^^^^^^^^^^
+app/controllers/students_controller.rb:107:121: C: Layout/LineLength: Line is too long. [133/120]
+                                  representative: Representative.find_by(id: @student.representative_id)).confirm_email.deliver_later
+                                                                                                                        ^^^^^^^^^^^^^
+app/controllers/students_controller.rb:119:3: C: Metrics/AbcSize: Assignment Branch Condition size for update is too high. [<5, 39, 11> 40.83/17]
+  def update ...
+  ^^^^^^^^^^
+app/controllers/students_controller.rb:119:3: C: Metrics/CyclomaticComplexity: Cyclomatic complexity for update is too high. [9/7]
+  def update ...
+  ^^^^^^^^^^
+app/controllers/students_controller.rb:119:3: C: Metrics/MethodLength: Method has too many lines. [23/10]
+  def update ...
+  ^^^^^^^^^^
+app/controllers/students_controller.rb:119:3: C: Metrics/PerceivedComplexity: Perceived complexity for update is too high. [12/8]
+  def update ...
+  ^^^^^^^^^^
+app/controllers/students_controller.rb:125:121: C: Layout/LineLength: Line is too long. [176/120]
+    if !(prev_term.include? 'and') && (new_term.include? 'and') && (@university.num_nominees >= @university.max_limit) # used to be single, now double, exceeds university limit
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/students_controller.rb:127:121: C: Layout/LineLength: Line is too long. [148/120]
+                  alert: "Sorry, a double term nomination would exceed the university's nomination limit. Please stick to a single term nomination."
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/students_controller.rb:147:3: C: Metrics/AbcSize: Assignment Branch Condition size for user_update is too high. [<5, 46, 14> 48.34/17]
+  def user_update ...
+  ^^^^^^^^^^^^^^^
+app/controllers/students_controller.rb:147:3: C: Metrics/CyclomaticComplexity: Cyclomatic complexity for user_update is too high. [11/7]
+  def user_update ...
+  ^^^^^^^^^^^^^^^
+app/controllers/students_controller.rb:147:3: C: Metrics/MethodLength: Method has too many lines. [26/10]
+  def user_update ...
+  ^^^^^^^^^^^^^^^
+app/controllers/students_controller.rb:147:3: C: Metrics/PerceivedComplexity: Perceived complexity for user_update is too high. [14/8]
+  def user_update ...
+  ^^^^^^^^^^^^^^^
+app/controllers/students_controller.rb:153:121: C: Layout/LineLength: Line is too long. [176/120]
+    if !(prev_term.include? 'and') && (new_term.include? 'and') && (@university.num_nominees >= @university.max_limit) # used to be single, now double, exceeds university limit
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/students_controller.rb:155:121: C: Layout/LineLength: Line is too long. [148/120]
+                  alert: "Sorry, a double term nomination would exceed the university's nomination limit. Please stick to a single term nomination."
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/universities_controller.rb:3:1: C: Metrics/ClassLength: Class has too many lines. [107/100]
+class UniversitiesController < ApplicationController ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/universities_controller.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class UniversitiesController.
+class UniversitiesController < ApplicationController
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/universities_controller.rb:31:3: C: Metrics/MethodLength: Method has too many lines. [11/10]
+  def create ...
+  ^^^^^^^^^^
+app/controllers/universities_controller.rb:73:3: C: Metrics/MethodLength: Method has too many lines. [11/10]
+  def update_max ...
+  ^^^^^^^^^^^^^^
+app/controllers/universities_controller.rb:90:3: C: Metrics/MethodLength: Method has too many lines. [13/10]
+  def change_all_max ...
+  ^^^^^^^^^^^^^^^^^^
+app/helpers/answers_helper.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for module AnswersHelper.
+module AnswersHelper
+^^^^^^^^^^^^^^^^^^^^
+app/helpers/application_helper.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for module ApplicationHelper.
+module ApplicationHelper
+^^^^^^^^^^^^^^^^^^^^^^^^
+app/helpers/authorizeds_helper.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for module AuthorizedsHelper.
+module AuthorizedsHelper
+^^^^^^^^^^^^^^^^^^^^^^^^
+app/helpers/questions_helper.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for module QuestionsHelper.
+module QuestionsHelper
+^^^^^^^^^^^^^^^^^^^^^^
+app/helpers/representatives_helper.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for module RepresentativesHelper.
+module RepresentativesHelper
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/helpers/responses_helper.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for module ResponsesHelper.
+module ResponsesHelper
+^^^^^^^^^^^^^^^^^^^^^^
+app/helpers/students_helper.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for module StudentsHelper.
+module StudentsHelper
+^^^^^^^^^^^^^^^^^^^^^
+app/helpers/universities_helper.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for module UniversitiesHelper.
+module UniversitiesHelper
+^^^^^^^^^^^^^^^^^^^^^^^^^
+app/mailers/confirmation_mailer.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class ConfirmationMailer.
+class ConfirmationMailer < ApplicationMailer
+^^^^^^^^^^^^^^^^^^^^^^^^
+app/models/admin.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class Admin.
+class Admin < ApplicationRecord
+^^^^^^^^^^^
+app/models/application_record.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class ApplicationRecord.
+class ApplicationRecord < ActiveRecord::Base
+^^^^^^^^^^^^^^^^^^^^^^^
+bin/bundle:24:3: C: Metrics/CyclomaticComplexity: Cyclomatic complexity for cli_arg_version is too high. [9/7]
+  def cli_arg_version ...
+  ^^^^^^^^^^^^^^^^^^^
+bin/bundle:24:3: C: Metrics/MethodLength: Method has too many lines. [11/10]
+  def cli_arg_version ...
+  ^^^^^^^^^^^^^^^^^^^
+bin/bundle:24:3: C: Metrics/PerceivedComplexity: Perceived complexity for cli_arg_version is too high. [9/8]
+  def cli_arg_version ...
+  ^^^^^^^^^^^^^^^^^^^
+bin/bundle:91:3: C: Metrics/MethodLength: Method has too many lines. [12/10]
+  def activate_bundler ...
+  ^^^^^^^^^^^^^^^^^^^^
+bin/bundle:104:121: C: Layout/LineLength: Line is too long. [198/120]
+    warn "Activating bundler (#{bundler_requirement}) failed:\n#{gem_error.message}\n\nTo install the version of bundler this project requires, run `gem install bundler -v '#{bundler_requirement}'`"
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+config/application.rb:12:3: C: Style/Documentation: Missing top-level documentation comment for class ExchangeNomination::Application.
+  class Application < Rails::Application
+  ^^^^^^^^^^^^^^^^^
+config/environments/development.rb:5:1: C: Metrics/BlockLength: Block has too many lines. [36/25]
+Rails.application.configure do ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+config/environments/production.rb:5:1: C: Metrics/BlockLength: Block has too many lines. [32/25]
+Rails.application.configure do ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+config/environments/test.rb:10:1: C: Metrics/BlockLength: Block has too many lines. [37/25]
+Rails.application.configure do ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+config/initializers/devise.rb:1:1: C: Layout/EndOfLine: Carriage return character detected.
+# frozen_string_literal: true ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+config/initializers/devise.rb:17:121: C: Layout/LineLength: Line is too long. [154/120]
+  # config.secret_key = '4ddfd9871e7e128031fbfbf4f5f5afca46e90a5bb079898632a9a290b03d52764184cde460a8eba6f8d5f09ace9e9625881d0df12cef9b8668bab8f9e105dec1'
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+config/initializers/devise.rb:130:121: C: Layout/LineLength: Line is too long. [150/120]
+  # config.pepper = 'cc0b4efc29be9af12c402899b6cb8da75af533ccdb9233c30cdfdd3b4e857835731a65341cf66b7415b094c3be6dd1a7d4e8353cb7cfe1f975b0565abd734793'
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+config/routes.rb:3:1: C: Metrics/BlockLength: Block has too many lines. [89/25]
+Rails.application.routes.draw do ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+config/routes.rb:13:121: C: Layout/LineLength: Line is too long. [140/120]
+  get 'representatives/:id/students/user_new/', to: 'students#user_new', as: 'user_new_student' # pass representative id to new student form
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^
+config/routes.rb:36:3: C: Metrics/BlockLength: Block has too many lines. [27/25]
+  resources :students do ...
+  ^^^^^^^^^^^^^^^^^^^^^^
+db/migrate/20220212170041_create_universities.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class CreateUniversities.
+class CreateUniversities < ActiveRecord::Migration[6.1]
+^^^^^^^^^^^^^^^^^^^^^^^^
+db/migrate/20220212170633_create_students.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class CreateStudents.
+class CreateStudents < ActiveRecord::Migration[6.1]
+^^^^^^^^^^^^^^^^^^^^
+db/migrate/20220212170633_create_students.rb:4:3: C: Metrics/MethodLength: Method has too many lines. [11/10]
+  def change ...
+  ^^^^^^^^^^
+db/migrate/20220212171017_create_representatives.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class CreateRepresentatives.
+class CreateRepresentatives < ActiveRecord::Migration[6.1]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/migrate/20220303005639_devise_create_admins.rb:1:1: C: Layout/EndOfLine: Carriage return character detected.
+# frozen_string_literal: true ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/migrate/20220303005639_devise_create_admins.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class DeviseCreateAdmins.
+class DeviseCreateAdmins < ActiveRecord::Migration[6.1]
+^^^^^^^^^^^^^^^^^^^^^^^^
+db/migrate/20220305233039_create_questions.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class CreateQuestions.
+class CreateQuestions < ActiveRecord::Migration[6.1]
+^^^^^^^^^^^^^^^^^^^^^
+db/migrate/20220305233219_create_answers.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class CreateAnswers.
+class CreateAnswers < ActiveRecord::Migration[6.1]
+^^^^^^^^^^^^^^^^^^^
+db/migrate/20220306010556_create_responses.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class CreateResponses.
+class CreateResponses < ActiveRecord::Migration[6.1]
+^^^^^^^^^^^^^^^^^^^^^
+db/migrate/20220331012434_create_variables.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class CreateVariables.
+class CreateVariables < ActiveRecord::Migration[6.1]
+^^^^^^^^^^^^^^^^^^^^^
+db/migrate/20220401025847_create_authorizeds.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class CreateAuthorizeds.
+class CreateAuthorizeds < ActiveRecord::Migration[6.1]
+^^^^^^^^^^^^^^^^^^^^^^^
+db/schema.rb:1:1: C: Layout/EndOfLine: Carriage return character detected.
+# frozen_string_literal: true ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/schema.rb:15:1: C: Metrics/BlockLength: Block has too many lines. [70/25]
+ActiveRecord::Schema.define(version: 20_220_401_025_847) do ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+lib/common_stuff.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for module CommonStuff.
+module CommonStuff
+^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:40:1: C: Metrics/BlockLength: Block has too many lines. [56/25]
+RSpec.describe 'Admin dashboard links', type: :feature do ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:117:1: C: Metrics/BlockLength: Block has too many lines. [240/25]
+RSpec.describe 'Admin university functions', type: :feature do ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:192:3: C: Metrics/BlockLength: Block has too many lines. [28/25]
+  scenario 'check destroy association' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:261:3: C: Metrics/BlockLength: Block has too many lines. [52/25]
+  scenario 'clear all' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:316:3: C: Metrics/BlockLength: Block has too many lines. [53/25]
+  scenario 'reset all' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:373:1: C: Metrics/BlockLength: Block has too many lines. [201/25]
+RSpec.describe 'Admin representative functions', type: :feature do ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:434:3: C: Metrics/BlockLength: Block has too many lines. [51/25]
+  scenario 'editing a representative\'s university' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:506:3: C: Metrics/BlockLength: Block has too many lines. [29/25]
+  scenario 'delete associations' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:538:3: C: Metrics/BlockLength: Block has too many lines. [48/25]
+  scenario 'clear all' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:590:1: C: Metrics/BlockLength: Block has too many lines. [207/25]
+RSpec.describe 'Admin student functions', type: :feature do ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:613:3: C: Metrics/BlockLength: Block has too many lines. [31/25]
+  scenario 'create student' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:688:3: C: Metrics/BlockLength: Block has too many lines. [30/25]
+  scenario 'clear all' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:721:3: C: Metrics/BlockLength: Block has too many lines. [34/25]
+  scenario 'correct students count from creating and deleting' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:758:3: C: Metrics/BlockLength: Block has too many lines. [26/25]
+  scenario 'update exchange term' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:825:1: C: Metrics/BlockLength: Block has too many lines. [61/25]
+RSpec.describe 'User representative functions', type: :feature do ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:893:1: C: Metrics/BlockLength: Block has too many lines. [210/25]
+RSpec.describe 'User student functions', type: :feature do ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:1075:3: C: Metrics/BlockLength: Block has too many lines. [37/25]
+  scenario 'Don\'t allow more representatives to make nominations after reaching limit' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:6:1: C: Metrics/BlockLength: Block has too many lines. [61/25]
+RSpec.describe Representative, type: :model do ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:43:3: C: Metrics/BlockLength: Block has too many lines. [30/25]
+  it 'does not allow emails that do not fit the specified format' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:132:1: C: Metrics/BlockLength: Block has too many lines. [76/25]
+RSpec.describe Student, type: :model do ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:140:121: C: Layout/LineLength: Line is too long. [127/120]
+                        student_email: 'FooBar@gmail.com', exchange_term: 'First', degree_level: 'PHD', major: 'Basket Making')
+                                                                                                                        ^^^^^^^
+spec/unit/unit_spec.rb:187:3: C: Metrics/BlockLength: Block has too many lines. [30/25]
+  it 'does not allow emails that do not fit the specified format' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+115 files inspected, 108 offenses detected
