@@ -64,4 +64,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'brakeman'
-gem 'rubocop'
+gem 'rubocop', github: 'rubocop/rubocop'
+gem 'rubocop-performance', '~> 1.13.0'
+gem 'rubocop-rspec', '~> 2.9.0'
