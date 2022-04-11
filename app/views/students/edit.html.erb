@@ -1,9 +1,30 @@
-<% content_for :title, "Edit Student: " + @student.first_name + " " + @student.last_name%>
+<header style="margin-top: 0;">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3C0000; padding-top: 0;padding-bottom: 0;">
+    <div class = "row" style="height:35px; padding-bottom: 0;">
+      <div class="col-sm-auto" style="margin-bottom: 0;">
+        <%= button_to "Back to Students", students_path, :class => "new-navbar-box", :method => :get %>
+      </div>
+    </div>
+  <nav>
+</header>
 
-<h1>Editing Student</h1>
+<div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
+  <% content_for :title, "Edit Student: " + @student.first_name + " " + @student.last_name%>
 
-<%= render 'form', student: @student %>
+  <h1>Editing Student</h1>
 
-<%= link_to 'Show', @student %> |
-<%= link_to 'Delete', delete_student_path(@student) %> |
-<%= link_to 'Back to Students', students_path %>
+  <hr style="height: 3px; border: 0px solid #696969; border-top-width: 1px;" >
+
+  <div class="container show-box">
+    <%= render 'form', student: @student %>
+    
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-auto">
+        <%= button_to 'Show', @student, :class => "show-button", :method => :get %>
+      </div>
+      <div class="col-auto">
+        <%= button_to 'Delete', delete_student_path(@student), :class => "delete-button", :method => :get %>
+      </div>
+    </div>
+  </div>
+</div>
