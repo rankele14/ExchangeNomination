@@ -40,7 +40,7 @@
   <strong>Number of Nominations: </strong>
   <%= @university.num_nominees %>
   out of 
-  <%= @max_lim%>
+  <%= @university.max_limit%>
 </p>
 <h2>Questions:</h2>
 <% for response in @student.response %>
@@ -52,7 +52,7 @@
 <% end %>
 <%= link_to 'Edit', user_edit_student_path(@student) %> |
 
-<% if (@deadline == nil || Time.now <= @deadline.var_value) && @university.num_nominees < @variable.var_value.to_i%>
+<% if (@deadline == nil || Time.now <= @deadline.var_value) && @university.num_nominees < @university.max_limit%>
   <%= link_to 'Enter another new student', user_new_student_path(@student.representative_id) %> | 
 <% end %>
 
