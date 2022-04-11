@@ -25,6 +25,10 @@ class RepresentativesController < ApplicationController
   # GET /representatives/user_new
   def user_new
     @representative = Representative.new
+    @deadline = Variable.find_by(var_name: 'deadline')
+    if @deadline != nil && Time.now > @deadline.var_value # past the deadline
+      redirect_to deadline_dashboards_path 
+    end
   end
 
   # GET /representatives/1/edit
