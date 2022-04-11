@@ -1,21 +1,9 @@
-<div>
-  <h2>Delete Answer</h2>
+<h1>Deleting Answer</h1>
 
-  <%= form_for(@answer, :method => 'delete') do |f| %>
+<p>Are you sure you want to permanently delete this answer choice?</p>
 
-    <p>Are you sure you want to permanently delete this university?</p>
+<p>Reply: <%= @answer.choice %> <br>
 
-    <p>
-    Question: <%= @answer.question %> <br>
-    Choice: <%= @answer.choice %>
-    </p>
-    
-    <%= link_to 'Back to Answers', answers_path %>
-    <br><br>
+<%= link_to 'Destroy', [@question, @answer], method: :delete %>
 
-    <div class="form-buttons">
-      <%= f.submit("Delete Answer") %>
-    </div>
-
-  <% end %>
-</div>
+<%= link_to 'Back to Answers', question_answers_path(@question) %>

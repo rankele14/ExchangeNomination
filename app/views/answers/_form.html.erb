@@ -15,7 +15,7 @@
     <%= form.label :choice %>
     <%= form.text_field :choice %>
   </div>
-
+  <%= form.hidden_field :question_id, value: @question.id %>
   <div class="actions">
     <%= form.submit %>
   </div>

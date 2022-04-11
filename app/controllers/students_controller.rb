@@ -71,6 +71,11 @@ class StudentsController < ApplicationController
 
     respond_to do |format|
       if @student.save
+	    Question.all.each do |question|
+          @response = Response.new(student_id: @student.id)
+          @response.question_id = question.id
+          @response.save
+        end
         @university = University.find(@student.university_id)
         if @student.exchange_term.include? 'and'
           @university.update(num_nominees: @university.num_nominees + 2)
@@ -98,6 +103,11 @@ class StudentsController < ApplicationController
     else
       respond_to do |format|
         if @student.save
+		  Question.all.each do |question|
+            @response = Response.new(student_id: @student.id)
+            @response.question_id = question.id
+            @response.save
+          end
           if @student.exchange_term.include? 'and'
             @university.update(num_nominees: @university.num_nominees + 2)
           else
@@ -177,6 +187,11 @@ class StudentsController < ApplicationController
 
   def destroy
     destroy_uni_update(@student.id)
+	Response.all.each do |response|
+	  if @student.id == response.student_id then
+		response.destroy
+	  end
+	end
     @student.destroy
 
     respond_to do |format|
@@ -192,6 +207,11 @@ class StudentsController < ApplicationController
   def user_destroy
     @representative = Representative.find(@student.representative_id)
     destroy_uni_update(@student.id)
+	Response.all.each do |response|
+	  if @student.id == response.student_id then
+		response.destroy
+	  end
+	end
     @student.destroy
 
     respond_to do |format|
