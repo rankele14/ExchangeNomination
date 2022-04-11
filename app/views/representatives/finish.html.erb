@@ -48,11 +48,11 @@
                 <td><%= student.exchange_term %></td>
                 <td><%= student.student_email %></td>
 
-                <!--% if @deadline == nil || Time.now <= @deadline.var_value %-->
+                <% if @deadline == nil || Time.now <= @deadline.var_value %>
                   <td><%= button_to 'Show', user_show_student_path(student), :class => "show-button", :method => :get %></td>
                   <td><%= button_to 'Edit', user_edit_student_path(student), :class => "edit-button", :method => :get %></td>
                   <td><%= button_to 'Delete', user_delete_student_path(student), :class => "delete-button", :method => :get %></td>
-                % end %-->
+                <% end %>
               </tr>
             <% end %>
           </tbody>
@@ -69,15 +69,15 @@
     <p>If the maximum number of nominees has been reached, then entering a new student will not be allowed.</p>
 
 
-    <!--% if (@deadline == nil || Time.now <= @deadline.var_value) && @university.num_nominees < @variable.var_value.to_i%-->
+    <% if (@deadline == nil || Time.now <= @deadline.var_value) && @university.num_nominees < @university.max_limit%>
       <div style="margin-left: 20%;">
         <%= button_to "Enter a new student", user_new_student_path(@representative), :class => "create-new-item-button", :method => :get %>
       </div>
-    <!--% end %-->
+    <% end %>
 
-    <!--% if @deadline != nil && Time.now > @deadline.var_value %-->
-    <!--p style="color=red;">The deadline has passed. Adding, removing, or modifying students is not allowed</p-->
-      <!--% end %-->
+    <% if @deadline != nil && Time.now > @deadline.var_value %>
+      <p style="color=red;">The deadline has passed. Adding, removing, or modifying students is not allowed</p>
+    <% end %>
 
     <br>
     <br>
@@ -110,8 +110,8 @@
       <%= University.find(@representative.university_id).university_name %>
     </p>
 
-    <!--% if (@deadline == nil || Time.now <= @deadline.var_value) %-->
+    <% if (@deadline == nil || Time.now <= @deadline.var_value) %>
       <%= link_to 'Edit Nominator Info', user_edit_representative_path(@representative) %>
-      <!--% end %-->
+      <% end %>
   </div>
 </div>
