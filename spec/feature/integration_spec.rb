@@ -806,6 +806,107 @@ RSpec.describe 'Admin student functions', type: :feature do
   end
 end
 
+
+RSpec.describe 'Admin question functions', type: :feature do
+  before do
+    @authorized = Authorized.create(authorized_email: "userdoe@example.com")
+    Rails.application.env_config['devise.mapping'] = Devise.mappings[:admin]
+    Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_user]
+    unless Admin.where(email: 'userdoe@example.com').first.nil? == false
+      Admin.create!(email: 'userdoe@example.com', full_name: 'User Doe', uid: '123456789', avatar_url: 'https://lh3.googleusercontent.com/url/photo.jpg')
+    end
+    visit root_path
+    click_on 'Admin login'
+  end
+
+  # new/create
+  scenario 'create question' do
+    visit new_question_path
+    expect(page).to have_content('New Question')
+      click_on 'Create Question'
+      expect(page).to have_content('error')
+      fill_in 'Prompt', with: 'frq'
+      click_on 'Create Question'
+    visit questions_path
+      expect(page).to have_content('frq')
+    click_on 'Show'
+      expect(page).to have_content('frq')
+  end
+
+  # edit/update
+  scenario 'editing question' do
+    visit new_question_path
+      fill_in 'Prompt', with: 'frq'
+      click_on 'Create Question'
+    visit questions_path
+    click_on 'Edit'
+      fill_in 'Prompt', with: ''
+      click_on 'Update Question'
+      expect(page).to have_content('error')
+      fill_in 'Prompt', with: 'different'
+    click_on 'Update Question'
+      expect(page).to have_content('different')
+  end
+
+  # delete/destroy
+  scenario 'deleting question' do
+    visit new_question_path
+      fill_in 'Prompt', with: 'frq'
+      click_on 'Create Question'
+    visit questions_path
+    click_on 'Delete'
+      click_on 'Delete Question'
+      expect(page).not_to have_content('frq')
+  end
+
+  scenario 'create answer' do
+    visit new_question_path
+    click_on 'Create Question'
+    fill_in 'Prompt', with: 'multi'
+	check 'question_multi'
+    click_on 'Create Question'
+	click_on 'Add Answer'
+	click_on 'New Answer'
+	fill_in 'Choice', with: '1'
+	click_on 'Create Answer'
+	expect(page).to have_content('1')
+  end
+  
+  scenario 'edit answer' do
+    visit new_question_path
+    click_on 'Create Question'
+    fill_in 'Prompt', with: 'multi'
+	check 'question_multi'
+    click_on 'Create Question'
+	click_on 'Add Answer'
+	click_on 'New Answer'
+	fill_in 'Choice', with: '1'
+	click_on 'Create Answer'
+	click_on 'Edit Choice'
+    fill_in 'Choice', with: ''
+    click_on 'Update Answer'
+    expect(page).to have_content('error')
+    fill_in 'Choice', with: '2'
+    click_on 'Update Answer'
+    expect(page).to have_content('2')
+  end
+  
+  scenario 'delete answer' do
+    visit new_question_path
+    click_on 'Create Question'
+    fill_in 'Prompt', with: 'multi'
+	check 'question_multi'
+    click_on 'Create Question'
+	click_on 'Add Answer'
+	click_on 'New Answer'
+	fill_in 'Choice', with: '1'
+	click_on 'Create Answer'
+	click_on 'Delete Choice'
+	click_on 'Destroy'
+    expect(page).not_to have_content('1')
+  end
+end
+
 # RSpec.describe 'Admin question functions', type: :feature do
 #   before do
 #     @authorized = Authorized.create(authorized_email: "userdoe@example.com")
@@ -818,6 +919,7 @@ end
 #     click_on 'Admin login'
 #   end
 # end
+
 
 # ################################### user CRUD functions ###########################
 
@@ -1194,6 +1296,114 @@ RSpec.describe 'Deadline', type: :feature do
       click_on 'Delete Student'
       expect(page).to have_content('Nomination Record')
       expect(page).to have_content('Foo')
+  end
+end
+
+RSpec.describe 'User Question functions', type: :feature do
+  before do
+    @authorized = Authorized.create(authorized_email: "userdoe@example.com")
+    Rails.application.env_config['devise.mapping'] = Devise.mappings[:admin]
+    Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_user]
+    unless Admin.where(email: 'userdoe@example.com').first.nil? == false
+      Admin.create!(email: 'userdoe@example.com', full_name: 'User Doe', uid: '123456789', avatar_url: 'https://lh3.googleusercontent.com/url/photo.jpg')
+    end
+      visit root_path # need to create university first
+      click_on 'Admin login'
+      visit new_university_path
+      fill_in 'University name', with: 'AM'
+      click_on 'Create University'
+	  
+	  visit new_question_path
+	  fill_in 'Prompt', with: 'How are you?'
+	  click_on 'Create Question'
+	  
+	  visit user_new_representatives_path
+      select 'AM', :from => 'University'
+      fill_in 'First name', with: 'John'
+      fill_in 'Last name', with: 'Smith'
+      fill_in 'Title', with: 'CEO'
+      fill_in 'Rep email', with: 'JohnSmith@gmail.com'
+      click_on 'Create Representative'
+	  
+      click_link 'Continue'
+	  click_on 'Enter a new student'
+      fill_in 'First name', with: 'Foo'
+      fill_in 'Last name', with: 'Bar'
+      select 'Bachelors', :from => 'Degree level'
+      fill_in 'Major', with: 'Basket Making'
+      select 'Fall Only', :from => 'Exchange term'
+      fill_in 'Student email', with: 'FooBar@gmail.com'
+      click_on 'Create Student'
+  end
+  
+  scenario 'User can view Questions' do
+	  expect(page).to have_content('How are you?')
+  end
+  
+  scenario 'Answer FRQ Question' do
+	  click_on 'Edit Answer'
+      fill_in 'How are you?', with: 'Good'
+      click_on 'Update Response'
+      expect(page).to have_content('Good')
+  end
+end
+
+
+RSpec.describe 'User Answer functions', type: :feature do
+  before do
+    @authorized = Authorized.create(authorized_email: "userdoe@example.com")
+    Rails.application.env_config['devise.mapping'] = Devise.mappings[:admin]
+    Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_user]
+    unless Admin.where(email: 'userdoe@example.com').first.nil? == false
+      Admin.create!(email: 'userdoe@example.com', full_name: 'User Doe', uid: '123456789', avatar_url: 'https://lh3.googleusercontent.com/url/photo.jpg')
+    end
+      visit root_path # need to create university first
+      click_on 'Admin login'
+      visit new_university_path
+      fill_in 'University name', with: 'AM'
+      click_on 'Create University'
+
+	  visit new_question_path
+	  check 'question_multi'
+	  fill_in 'Prompt', with: 'Yes or no?'
+	  click_on 'Create Question'
+	  
+	  click_on 'Add Answer'
+	  click_on 'New Answer'
+	  fill_in 'Choice', with: 'Yes'
+	  click_on 'Create Answer'
+	  click_on 'New Answer'
+	  fill_in 'Choice', with: 'No'
+	  click_on 'Create Answer'
+	  
+	  visit user_new_representatives_path
+      select 'AM', :from => 'University'
+      fill_in 'First name', with: 'John'
+      fill_in 'Last name', with: 'Smith'
+      fill_in 'Title', with: 'CEO'
+      fill_in 'Rep email', with: 'JohnSmith@gmail.com'
+      click_on 'Create Representative'
+	  
+      click_link 'Continue'
+	  click_on 'Enter a new student'
+      fill_in 'First name', with: 'Foo'
+      fill_in 'Last name', with: 'Bar'
+      select 'Bachelors', :from => 'Degree level'
+      fill_in 'Major', with: 'Basket Making'
+      select 'Fall Only', :from => 'Exchange term'
+      fill_in 'Student email', with: 'FooBar@gmail.com'
+      click_on 'Create Student'
+  end
+  
+  scenario 'User can view Questions' do
+      expect(page).to have_content('Yes or no?')
+  end
+
+  scenario 'Answer Multiple Choice Question' do
+	  click_on 'Edit Answer'
+      select 'Yes', :from => 'Yes or no?'
+      click_on 'Update Response'
+      expect(page).to have_content('Yes')
   end
 end
 

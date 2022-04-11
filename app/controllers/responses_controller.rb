@@ -70,10 +70,6 @@ class ResponsesController < ApplicationController
 
   def destroy
     @response.destroy
-    respond_to do |format|
-      format.html { redirect_to student_responses_path(@student), notice: "Response was successfully destroyed." }
-      format.json { head :no_content }
-    end
   end
 
   def clear_all

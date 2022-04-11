@@ -45,8 +45,8 @@
 <h2>Questions:</h2>
 <% for response in @student.response %>
     <ul>
-	  <strong><%= Question.all.find(response.question_id).prompt %>: </strong>
-	  <%= response.reply %>
+	  <td><%= Question.all.find(response.question_id).prompt %>: </td>
+	  <td><%= response.reply %></td>
 	  <td><%= link_to 'Edit Answer', user_edit_student_response_path(@student, response) %></td>
   </ul>
 <% end %>
