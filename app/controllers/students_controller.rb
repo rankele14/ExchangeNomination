@@ -33,7 +33,6 @@ class StudentsController < ApplicationController
   def user_show
     @representative = Representative.find(@student.representative_id)
     @university = University.find(@student.university_id)
-    @variable = Variable.find_by(var_name: 'max_limit')
     @deadline = Variable.find_by(var_name: 'deadline')
   end
 
@@ -130,7 +129,6 @@ class StudentsController < ApplicationController
     prev_term = @student.exchange_term
     new_term = params[:student][:exchange_term]
     @university = University.find(@student.university_id)
-    @variable = Variable.find_by(var_name: 'max_limit')
 
     if !(prev_term.include? 'and') && (new_term.include? 'and') && (@university.num_nominees >= @university.max_limit) then # used to be single, now double, exceeds university limit
       redirect_to edit_student_url(@student), alert: "Sorry, a double term nomination would exceed the university's nomination limit. Please stick to a single term nomination." 
