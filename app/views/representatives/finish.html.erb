@@ -42,7 +42,7 @@
               <tr>
                 <td><%= student.first_name %></td>
                 <td><%= student.last_name %></td>
-                <td><%= student.university_id %></td>
+                <td><%= University.find(student.university_id).university_name %></td>
                 <td><%= student.degree_level %></td>
                 <td><%= student.major %></td>
                 <td><%= student.exchange_term %></td>
