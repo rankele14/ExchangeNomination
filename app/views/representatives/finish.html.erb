@@ -64,7 +64,7 @@
       <strong>Number of University Nominations: </strong>
       <%= University.find(@representative.university_id).num_nominees %>
       students nominated out of alloted
-      <%= @max_lim%> nominees
+      <%= @university.max_limit %> nominees
     </p>
     <p>If the maximum number of nominees has been reached, then entering a new student will not be allowed.</p>
 

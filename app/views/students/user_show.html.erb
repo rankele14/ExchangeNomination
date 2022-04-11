@@ -40,7 +40,7 @@
   <strong>Number of Nominations: </strong>
   <%= @university.num_nominees %>
   out of 
-  <%= @max_lim%>
+  <%= @university.max_limit %>
 </p>
 <h2>Questions:</h2>
 <% for response in @student.response %>
