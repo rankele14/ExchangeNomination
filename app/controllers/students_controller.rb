@@ -34,6 +34,7 @@ class StudentsController < ApplicationController
     @representative = Representative.find(@student.representative_id)
     @university = University.find(@student.university_id)
     @variable = Variable.find_by(var_name: 'max_limit')
+    @deadline = Variable.find_by(var_name: 'deadline')
   end
 
   # GET /students/new
