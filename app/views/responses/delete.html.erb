@@ -1,21 +1,34 @@
-<div>
+<header style="margin-top: 0;">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3C0000; padding-top: 0;padding-bottom: 0;">
+    <div class = "row" style="height:35px; padding-bottom: 0;">
+      <div class="col-sm-auto" style="margin-bottom: 0;">
+        <%= button_to "Back to Responses", responses_path, :class => "new-navbar-box", :method => :get %>
+      </div>
+    </div>
+  <nav>
+</header>
+
+<div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
   <h2>Delete Response</h2>
 
-  <%= form_for(@response, :method => 'delete') do |f| %>
+  <hr style="height: 3px; border: 0px solid #696969; border-top-width: 1px;" >
 
-    <p>Are you sure you want to permanently delete this response?</p>
+  <div class="container show-box">
+    <%= form_for(@response, :method => 'delete') do |f| %>
 
-    <p>Reply: <%= @response.reply %> <br>
-    Question: <%= @response.question %> <br>
-    Student: <%= @response.student %>
-    </p>
-    
-    <%= link_to 'Back to Responses', responses_path %>
-    <br><br>
+      <h2 style="text-align: center;">Are you sure you want to permanently delete this response?</h2>
 
-    <div class="form-buttons">
-      <%= f.submit("Delete Response") %>
-    </div>
+      <p>Reply: <%= @response.reply %> <br>
+      Question: <%= @response.question %> <br>
+      Student: <%= @response.student %>
+      </p>
 
-  <% end %>
+      <br><br>
+
+      <div class="form-buttons">
+        <%= f.submit("Delete Response") %>
+      </div>
+
+    <% end %>
+  </div>
 </div>

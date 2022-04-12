@@ -1,21 +1,33 @@
-<div>
-  <h2>Delete Answer</h2>
-
-  <%= form_for(@answer, :method => 'delete') do |f| %>
-
-    <p>Are you sure you want to permanently delete this university?</p>
-
-    <p>
-    Question: <%= @answer.question %> <br>
-    Choice: <%= @answer.choice %>
-    </p>
-    
-    <%= link_to 'Back to Answers', answers_path %>
-    <br><br>
-
-    <div class="form-buttons">
-      <%= f.submit("Delete Answer") %>
+<header style="margin-top: 0;">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3C0000; padding-top: 0;padding-bottom: 0;">
+    <div class = "row" style="height:35px; padding-bottom: 0;">
+      <div class="col-sm-auto" style="margin-bottom: 0;">
+        <%= button_to "Back to Questions", questions_path, :class => "new-navbar-box", :method => :get %>
+      </div>
     </div>
+  <nav>
+</header>
 
-  <% end %>
+<div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
+  <div>
+    <h2>Delete Answer</h2>
+
+    <%= form_for(@answer, :method => 'delete') do |f| %>
+
+      <p>Are you sure you want to permanently delete this university?</p>
+
+      <p>
+      Question: <%= @answer.question %> <br>
+      Choice: <%= @answer.choice %>
+      </p>
+
+      <%= link_to 'Back to Answers', answers_path %>
+      <br><br>
+
+      <div class="form-buttons">
+        <%= f.submit("Delete Answer") %>
+      </div>
+
+    <% end %>
+  </div>
 </div>

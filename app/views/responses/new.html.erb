@@ -1,16 +1,32 @@
-<h1>New Response</h1>
-<% Question.all.each do |question| %>
-  <tr>
-	<% @question = question %>
-    <%= render 'form', response: @response %>
-	<p>
-	<strong>Current Response:</strong>
-	<%= @response.reply %>
-	</p>
-  </tr>
-<% end %>
+<header style="margin-top: 0;">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3C0000; padding-top: 0;padding-bottom: 0;">
+    <div class = "row" style="height:35px; padding-bottom: 0;">
+      <div class="col-sm-auto" style="margin-bottom: 0;">
+        <%= button_to "Back to Responses", student_responses_path, :class => "new-navbar-box", :method => :get %>
+      </div>
+    </div>
+  <nav>
+</header>
 
-<%= link_to 'Done', student_responses_path(@student) %>
-<br><br>
-<%= link_to 'Back to Responses', student_responses_path %>
+<div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
+  <h1>New Response</h1>
 
+  <hr style="height: 3px; border: 0px solid #696969; border-top-width: 1px;" >
+
+  <div class="container form-box">
+    <% Question.all.each do |question| %>
+      <tr>
+    	<% @question = question %>
+        <%= render 'form', response: @response %>
+    	<p>
+    	<strong>Current Response:</strong>
+    	<%= @response.reply %>
+    	</p>
+      </tr>
+    <% end %>
+
+    <div style="margin-left: 20%;">
+      <%= button_to "Done", student_responses_path(@student), :class => "create-new-item-button", :method => :get %>
+    </div>
+  </div>
+</div>
