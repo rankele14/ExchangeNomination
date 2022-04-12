@@ -9,9 +9,7 @@ RSpec.describe 'Logging in', type: :feature do
     @authorized = Authorized.create(authorized_email: 'userdoe@example.com')
     Rails.application.env_config['devise.mapping'] = Devise.mappings[:admin]
     Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_user]
-    unless Admin.where(email: 'userdoe@example.com').first.nil? == false
-      Admin.create!(email: 'userdoe@example.com', full_name: 'User Doe', uid: '123456789', avatar_url: 'https://lh3.googleusercontent.com/url/photo.jpg')
-    end
+    Admin.create!(email: 'userdoe@example.com', full_name: 'User Doe', uid: '123456789', avatar_url: 'https://lh3.googleusercontent.com/url/photo.jpg') unless Admin.where(email: 'userdoe@example.com').first.nil? == false
   end
 
   scenario 'signing in' do
@@ -42,9 +40,7 @@ RSpec.describe 'Admin dashboard links', type: :feature do
     @authorized = Authorized.create(authorized_email: 'userdoe@example.com')
     Rails.application.env_config['devise.mapping'] = Devise.mappings[:admin]
     Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_user]
-    unless Admin.where(email: 'userdoe@example.com').first.nil? == false
-      Admin.create!(email: 'userdoe@example.com', full_name: 'User Doe', uid: '123456789', avatar_url: 'https://lh3.googleusercontent.com/url/photo.jpg')
-    end
+    Admin.create!(email: 'userdoe@example.com', full_name: 'User Doe', uid: '123456789', avatar_url: 'https://lh3.googleusercontent.com/url/photo.jpg') unless Admin.where(email: 'userdoe@example.com').first.nil? == false
     visit root_path
     click_on 'Admin login'
   end
@@ -119,9 +115,7 @@ RSpec.describe 'Admin university functions', type: :feature do
     @authorized = Authorized.create(authorized_email: 'userdoe@example.com')
     Rails.application.env_config['devise.mapping'] = Devise.mappings[:admin]
     Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_user]
-    unless Admin.where(email: 'userdoe@example.com').first.nil? == false
-      Admin.create!(email: 'userdoe@example.com', full_name: 'User Doe', uid: '123456789', avatar_url: 'https://lh3.googleusercontent.com/url/photo.jpg')
-    end
+    Admin.create!(email: 'userdoe@example.com', full_name: 'User Doe', uid: '123456789', avatar_url: 'https://lh3.googleusercontent.com/url/photo.jpg') unless Admin.where(email: 'userdoe@example.com').first.nil? == false
     visit root_path
     click_on 'Admin login'
   end
@@ -375,9 +369,7 @@ RSpec.describe 'Admin representative functions', type: :feature do
     @authorized = Authorized.create(authorized_email: 'userdoe@example.com')
     Rails.application.env_config['devise.mapping'] = Devise.mappings[:admin]
     Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_user]
-    unless Admin.where(email: 'userdoe@example.com').first.nil? == false
-      Admin.create!(email: 'userdoe@example.com', full_name: 'User Doe', uid: '123456789', avatar_url: 'https://lh3.googleusercontent.com/url/photo.jpg')
-    end
+    Admin.create!(email: 'userdoe@example.com', full_name: 'User Doe', uid: '123456789', avatar_url: 'https://lh3.googleusercontent.com/url/photo.jpg') unless Admin.where(email: 'userdoe@example.com').first.nil? == false
     visit root_path
     click_on 'Admin login'
   end
@@ -592,9 +584,7 @@ RSpec.describe 'Admin student functions', type: :feature do
     @authorized = Authorized.create(authorized_email: 'userdoe@example.com')
     Rails.application.env_config['devise.mapping'] = Devise.mappings[:admin]
     Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_user]
-    unless Admin.where(email: 'userdoe@example.com').first.nil? == false
-      Admin.create!(email: 'userdoe@example.com', full_name: 'User Doe', uid: '123456789', avatar_url: 'https://lh3.googleusercontent.com/url/photo.jpg')
-    end
+    Admin.create!(email: 'userdoe@example.com', full_name: 'User Doe', uid: '123456789', avatar_url: 'https://lh3.googleusercontent.com/url/photo.jpg') unless Admin.where(email: 'userdoe@example.com').first.nil? == false
     visit root_path
     click_on 'Admin login'
     visit new_university_path
@@ -827,9 +817,7 @@ RSpec.describe 'User representative functions', type: :feature do
     @authorized = Authorized.create(authorized_email: 'userdoe@example.com')
     Rails.application.env_config['devise.mapping'] = Devise.mappings[:admin]
     Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_user]
-    unless Admin.where(email: 'userdoe@example.com').first.nil? == false
-      Admin.create!(email: 'userdoe@example.com', full_name: 'User Doe', uid: '123456789', avatar_url: 'https://lh3.googleusercontent.com/url/photo.jpg')
-    end
+    Admin.create!(email: 'userdoe@example.com', full_name: 'User Doe', uid: '123456789', avatar_url: 'https://lh3.googleusercontent.com/url/photo.jpg') unless Admin.where(email: 'userdoe@example.com').first.nil? == false
     visit root_path # need to create university first
     click_on 'Admin login'
     visit new_university_path
@@ -895,9 +883,7 @@ RSpec.describe 'User student functions', type: :feature do
     @authorized = Authorized.create(authorized_email: 'userdoe@example.com')
     Rails.application.env_config['devise.mapping'] = Devise.mappings[:admin]
     Rails.application.env_config['omniauth.auth'] = OmniAuth.config.mock_auth[:google_user]
-    unless Admin.where(email: 'userdoe@example.com').first.nil? == false
-      Admin.create!(email: 'userdoe@example.com', full_name: 'User Doe', uid: '123456789', avatar_url: 'https://lh3.googleusercontent.com/url/photo.jpg')
-    end
+    Admin.create!(email: 'userdoe@example.com', full_name: 'User Doe', uid: '123456789', avatar_url: 'https://lh3.googleusercontent.com/url/photo.jpg') unless Admin.where(email: 'userdoe@example.com').first.nil? == false
     visit root_path # need to create university and representative first
     click_on 'Admin login'
     visit new_university_path
