@@ -1,0 +1,9 @@
+<h1>Deleting Answer</h1>
+
+<p>Are you sure you want to permanently delete this answer choice?</p>
+
+<p>Reply: <%= @answer.choice %> <br>
+
+<%= link_to 'Destroy', [@question, @answer], method: :delete %>
+
+<%= link_to 'Back to Answers', question_answers_path(@question) %>

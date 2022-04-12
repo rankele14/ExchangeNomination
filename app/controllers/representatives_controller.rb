@@ -1,4 +1,6 @@
+require 'common_stuff'
 class RepresentativesController < ApplicationController
+  include CommonStuff
   before_action :set_representative, only: %i[ show edit update destroy ]
 
   # GET /representatives or /representatives.json
@@ -8,6 +10,7 @@ class RepresentativesController < ApplicationController
 
   # GET /representatives/1 or /representatives/1.json
   def show
+    @students = Student.where(representative_id: @representative.id)
   end
 
   # GET /representatives/1/user_show
@@ -23,6 +26,10 @@ class RepresentativesController < ApplicationController
   # GET /representatives/user_new
   def user_new
     @representative = Representative.new
+    @deadline = Variable.find_by(var_name: 'deadline')
+    if @deadline != nil && Time.now > @deadline.var_value # past the deadline
+      redirect_to deadline_dashboards_path 
+    end
   end
 
   # GET /representatives/1/edit
@@ -51,22 +58,44 @@ class RepresentativesController < ApplicationController
 
   def user_create
     @representative = Representative.new(representative_params)
-
-    respond_to do |format|
-      if @representative.save
-        format.html { redirect_to user_show_representative_url(@representative), notice: "Nominator was successfully created." }
-        format.json { render :show, status: :created, location: @representative }
-      else
-        format.html { render :user_new, status: :unprocessable_entity }
-        format.json { render json: @representative.errors, status: :unprocessable_entity }
+    @deadline = Variable.find_by(var_name: 'deadline')
+    if @deadline != nil && Time.now > @deadline.var_value then # past the deadline
+      redirect_to deadline_dashboards_path 
+    else
+      respond_to do |format|
+        if @representative.save
+          format.html { redirect_to user_show_representative_url(@representative), notice: "Nominator was successfully created." }
+          format.json { render :show, status: :created, location: @representative }
+        else
+          format.html { render :user_new, status: :unprocessable_entity }
+          format.json { render json: @representative.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
 
   # PATCH/PUT /representatives/1 or /representatives/1.json
   def update
+    @uni_prev = University.find(@representative.university_id)
     respond_to do |format|
       if @representative.update(representative_params)
+        @university = University.find(@representative.university_id)
+        if @uni_prev != @university
+          @students = Student.where(representative_id: @representative.id)
+          @students.each do |student|
+            student.university_id = @representative.university_id
+            student.save
+            if student.exchange_term.include? 'and'
+              @university.num_nominees = @university.num_nominees + 2
+              @uni_prev.num_nominees = @uni_prev.num_nominees - 2
+            else
+              @university.num_nominees = @university.num_nominees + 1
+              @uni_prev.num_nominees = @uni_prev.num_nominees - 1
+            end
+            @university.save
+            @uni_prev.save
+          end
+        end
         format.html { redirect_to representative_url(@representative), notice: "Nominator was successfully updated." }
         format.json { render :show, status: :ok, location: @representative }
       else
@@ -79,20 +108,33 @@ class RepresentativesController < ApplicationController
   # PATCH/PUT /representatives/1 or /representatives/1.json
   def user_update
     @representative = Representative.find(params[:id])
+    @deadline = Variable.find_by(var_name: 'deadline')
 
-    respond_to do |format|
-      if @representative.update(representative_params)
-        format.html { redirect_to user_show_representative_url(@representative), notice: "Nominator was successfully updated." }
-        format.json { render :show, status: :ok, location: @representative }
-      else
-        format.html { render :user_edit, status: :unprocessable_entity }
-        format.json { render json: @representative.errors, status: :unprocessable_entity }
+    if @deadline != nil && Time.now > @deadline.var_value then # past the deadline
+      redirect_to finish_representative_url(@representative), alert: "Sorry, the deadline for submitting students has passed" 
+    else
+      respond_to do |format|
+        if @representative.update(representative_params)
+          format.html { redirect_to user_show_representative_url(@representative), notice: "Nominator was successfully updated." }
+          format.json { render :show, status: :ok, location: @representative }
+        else
+          format.html { render :user_edit, status: :unprocessable_entity }
+          format.json { render json: @representative.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
 
   # DELETE /representatives/1 or /representatives/1.json
+  def delete
+    @representative = Representative.find(params[:id])
+  end
+
   def destroy
+    @students = Student.where(representative_id: @representative.id)
+    @students.each do |student|
+      destroy_uni_update(student.id)
+    end
     @representative.destroy
 
     respond_to do |format|
@@ -104,20 +146,8 @@ class RepresentativesController < ApplicationController
   def finish
     @representative = Representative.find(params[:id])
     @students = Student.where(representative_id: @representative.id)
-    @max_lim = $max_limit
-  end
-
-  def rep_check
-    @representative = Representative.find(params[:id])
-    @university = University.find(@representitive.university_id)
-
-    if @university.num_nominees >= $max_limit
-      redirect_to finish_url(@representative), notice: "Sorry, your university has already reached the maximum limit of 3 student nominees." 
-    else
-      @student = Student.new
-      @student.update(first_name: "", last_name: "", university_id: @representitive.university_id, student_email: "", exchange_term: "", degree_level: "", major: "")
-      edit_student_path(@student)
-    end
+    @university = University.find(@representative.university_id)
+    @deadline = Variable.find_by(var_name: 'deadline')
   end
 
   def test_method
@@ -126,6 +156,23 @@ class RepresentativesController < ApplicationController
 
   def rep_redirect
     user_new_student_path
+  end
+
+  def clear_all
+    @representatives = Representative.all
+  end
+
+  def destroy_all
+    @representatives = Representative.all
+    @representatives.each do |representative|      
+      @students = Student.where(representative_id: representative.id)
+      @students.each do |student|
+        destroy_uni_update(student.id)
+      end
+      representative.destroy
+    end
+    # automatically destroys rep's students
+    redirect_to representatives_url, notice: "Representatives successfully cleared."
   end
 
   private

@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+<div style="text-align: right"><%= link_to 'Help', user_help_path %></div>
 
 <p>
   <strong>First name:</strong>
@@ -39,9 +40,20 @@
   <strong>Number of Nominations: </strong>
   <%= @university.num_nominees %>
   out of 
-  <%= @max_lim%>
+  <%= @university.max_limit%>
 </p>
-
+<h2>Questions:</h2>
+<% for response in @student.response %>
+    <ul>
+	  <td><%= Question.all.find(response.question_id).prompt %>: </td>
+	  <td><%= response.reply %></td>
+	  <td><%= link_to 'Edit Answer', user_edit_student_response_path(@student, response) %></td>
+  </ul>
+<% end %>
 <%= link_to 'Edit', user_edit_student_path(@student) %> |
-<%= link_to 'Enter another new student', user_new_student_path(@student.representative_id) %> | 
-<%= link_to 'Finish', finish_path(@student.representative_id) %>
+
+<% if (@deadline == nil || Time.now <= @deadline.var_value) && @university.num_nominees < @university.max_limit%>
+  <%= link_to 'Enter another new student', user_new_student_path(@student.representative_id) %> | 
+<% end %>
+
+<%= link_to 'Finish', finish_representative_path(@student.representative_id) %>

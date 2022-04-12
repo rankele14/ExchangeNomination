@@ -1,6 +1,29 @@
-<h1>Editing Response</h1>
-<% @question = Question.all.find(@response.question_id) %>
-<%= render 'form', response: @response, question_id: @response.question_id %>
+<header style="margin-top: 0;">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3C0000; padding-top: 0;padding-bottom: 0;">
+    <div class = "row" style="height:35px; padding-bottom: 0;">
+      <div class="col-sm-auto" style="margin-bottom: 0;">
+        <%= button_to "Back to Responses", student_response_path(@student), :class => "new-navbar-box", :method => :get %>
+      </div>
+    </div>
+  <nav>
+</header>
 
-<%= link_to 'Show', [@student, @response] %> |
-<%= link_to 'Back', student_response_path(@student) %>
+<div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
+  <h1>Editing Response</h1>
+
+  <hr style="height: 3px; border: 0px solid #696969; border-top-width: 1px;" >
+
+  <div class="container show-box">
+    <% @question = Question.all.find(@response.question_id) %>
+    <%= render 'form', response: @response, question_id: @response.question_id %>
+    
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-auto">
+        <%= button_to 'Show', [@student, @response], :class => "show-button", :method => :get %>
+      </div>
+      <div class="col-auto">
+        <%= button_to 'Delete', delete_student_response_path(@student, @response), :class => "delete-button", :method => :get %>
+      </div>
+    </div>
+  </div>
+</div>

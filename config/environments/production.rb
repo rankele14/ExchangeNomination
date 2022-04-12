@@ -4,7 +4,6 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   ENV['GOOGLE_OAUTH_CLIENT_ID'] = '476275841813-brgqi9tp8jf9at20ammgsn6v2sfnvam6.apps.googleusercontent.com'
   ENV['GOOGLE_OAUTH_CLIENT_SECRET'] = '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' 
-  
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -65,7 +64,15 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "ExchangeNomination_production"
 
   config.action_mailer.perform_caching = false
-
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    port: 587,
+    address: 'smtp.gmail.com',
+    user_name: ENV['EMAIL'],
+    password: ENV['EMAIL_PASSWORD'],
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false

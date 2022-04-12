@@ -8,18 +8,18 @@ class Admins::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         sign_in_and_redirect admin, event: :authentication
       else
         flash[:alert] = t 'devise.omniauth_callbacks.failure', kind: 'Google', reason: "#{auth.info.email} is not authorized."
-        redirect_to new_admin_session_path
+        redirect_to user_new_representatives_path
       end
     end
   
     protected
   
     def after_omniauth_failure_path_for(_scope)
-      new_admin_session_path
+      root_path
     end
   
     def after_sign_in_path_for(resource_or_scope)
-      stored_location_for(resource_or_scope) || root_path
+      stored_location_for(resource_or_scope) || admin_path
     end
   
     private
@@ -34,6 +34,6 @@ class Admins::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   
     def auth
-      @auth ||= request.env['omniauth.auth']
+      @auth ||= Rails.application.env_config['omniauth.auth'] || request.env['omniauth.auth']
     end
   end

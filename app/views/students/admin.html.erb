@@ -1,31 +1,194 @@
-<p id="notice"><%= notice %></p>
+<style>
+  .update-UTC-box {
+    height: auto;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 1px 1px 5px black;
+    border-radius: 24px;
+    background-color: rgba(0, 0, 56, 0.2);
+    padding: 30px 50px 30px 50px;
+  }
 
-<h1>Admin Home Page</h1>
+  .update-nominee-count {
+    height: 250px;
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 1px 1px 5px black;
+    border-radius: 24px;
+    background-color: #F3F8FA;
+  }
 
-<br>
+  .nominee-count-text {
+    font-family: 'Helvetica Neue LT Std';
+    color: #504444;
+    font-size: 32px;
+    line-height: 25px;
+  }
 
-<p>
-Max Number of Nominees: 
-<%= @max_lim %>
-</p>
+  #limit-input-field {
+    margin-top: 25px;
+  }
 
-<form action="/admin/update_max" method="get" accept-charset="UTF-8" >
-  <label for="max_lim">Update to:</label>
-  <input id="max_lim" name="max_lim" type="number" />
-  <input name="commit" type="submit" value="Update Limit" />
-</form>
+  .update-deadline {
+    font-family: 'Helvetica Neue LT Std';
+    width: auto;
+    padding: 3px 25px 3px 25px;
+    background-color: #598C9B;
+    border:0 none;
+    cursor:pointer;
+    color:white;
+    border-radius: 5px;
+    box-shadow: 0px 3px 4px 2px rgba(0,0,0,0.35);
+    transition-duration: 0.4s;
+  }
 
-<br>
-<br>
+  .update-deadline:hover {
+    background-color: #59A4BB;
+  }
 
-<%= link_to 'Universities', universities_path %>
-<br>
-<%= link_to 'Nominators', representatives_path %>
-<br>
-<%= link_to 'Students', students_path %>
-<br>
-<%= link_to 'Questions', questions_path %>
-<br>
-<br>
+  .bottom-buttons {
+    border: none;
+    width: 200px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: #598C9B;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0px 6px 8px 2px rgba(0,0,0,0.35);
+  }
 
-<%= link_to 'Return to Home Page', user_new_representative_path %>
+  .bottom-buttons:hover {
+    background-color: #65ACFF;
+    text-decoration: none;
+  }
+
+  .download-button {
+    border: none;
+    width: 225px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background: url("<%= asset_path('alt download pictogram.png') %>");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #598C9B;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0px 6px 8px 2px rgba(0,0,0,0.35);
+  }
+
+  .download-button:hover {
+    background-color: #65ACFF;
+    text-decoration: none;
+  }
+</style>
+
+<header style="margin-top: 0;">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3C0000; padding-top: 0;padding-bottom: 0;">
+    <div class = "row" style="height:35px; padding-bottom: 0;">
+      <div class="col-sm-auto" style="margin-bottom: 0;">
+        <%= button_to "Return to Home Page", user_new_representatives_path, :class => "new-navbar-box", :method => :get %>
+      </div>
+      <div class="col-sm" style="margin-right: auto;">
+        <div style="margin-right: auto;">
+          <%= button_to 'Help', admin_help_path, :class => "new-navbar-box", :method => :get %>
+        </div>
+      </div>
+      <div class="col-sm-auto" style="margin-bottom: 0;">
+        <%= button_to 'Sign Out', destroy_admin_session_path, :class => "new-navbar-box", :method => :get %>
+      </div>
+    </div>
+  <nav>
+</header>
+
+<div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
+  <p id="notice"><%= notice %></p>
+
+  <h1>Admin Home Page</h1>
+
+  <hr style="height: 3px; border: 0px solid #696969; border-top-width: 1px;" >
+
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-sm-auto">
+        <%= button_to "Universities", universities_path, :class => "data-button", :method => :get %>
+      </div>
+      <div class="col-sm-auto">
+        <%= button_to 'Nominators', representatives_path, :class => "data-button", :method => :get %>
+      </div>
+      <div class="col-sm-auto">
+        <%= button_to 'Students', students_path, :class => "data-button", :method => :get %>
+      </div>
+      <div class="col-sm-auto">
+        <%= button_to 'Questions', questions_path, :class => "data-button", :method => :get %>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <br>
+
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-sm-auto">
+        <h4 style="text-align: center;">
+        Deadline in UTC
+        </h4>
+
+        <hr style="height: 2px; border: 0px solid #696969; border-top-width: 1px;" >
+
+        <h2>
+          <%= @deadline.var_value %>
+        </h2>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-sm-auto">
+        <div class="update-UTC-box">
+          <form action="/admin/update_deadline" method="get" accept-charset="UTF-8">
+            <label for="deadline" style="display:block; text-align: center; font-size:25px; font-family: 'Helvetica Neue LT Std';">Update Deadline</label>
+            <br>
+            <input id="deadline" name="deadline" type="datetime-local" style="display: block; margin: auto;" />
+            <br>
+            <input class="update-deadline" name="commit" type="submit" value="Update" style="display: block; margin: auto;" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-sm-auto">
+        <%= button_to "Admin List", authorizeds_path, :class => "bottom-buttons", :method => :get %>
+      </div>
+      <div class="col-sm-auto">
+          <%= button_to 'Export Students (.csv)', export_students_path, :class => "download-button", :method => :get %>
+      </div>
+    </div>
+  </div>
+
+</div>

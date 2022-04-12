@@ -1,0 +1,54 @@
+<header style="margin-top: 0;">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3C0000; padding-top: 0;padding-bottom: 0;">
+    <div class = "row" style="height:35px; padding-bottom: 0;">
+      <div class="col-sm-auto" style="margin-bottom: 0;">
+        <%= button_to "Back to Responses", responses_path, :class => "new-navbar-box", :method => :get %>
+      </div>
+    </div>
+  <nav>
+</header>
+
+<div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
+  <h2>Clear All Responses</h2>
+
+  <hr style="height: 3px; border: 0px solid #696969; border-top-width: 1px;" >
+
+  <div class="container show-box">
+    <%= form_with url: destroy_all_responses_url do |f| %>
+
+      <h2 style="text-align: center;">Are you sure you want to permanently delete all responses?</h2>
+
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <table class="table center">
+            <thead class="thread-dark">
+              <tr>
+                <th>Question</th>
+                <th>Student</th>
+                <th>Reply</th>
+                <th colspan="3"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @responses.each do |response| %>
+                <tr>
+                  <td><%= Question.all.find(response.question_id).prompt %></td>
+                  <td><%= response.student.student_email %></td>
+                  <td><%= response.reply %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <br><br>
+
+      <div class="form-buttons">
+        <%= f.submit("Clear All Responses") %>
+      </div>
+
+    <% end %>
+  </div>
+</div>

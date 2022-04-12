@@ -1,57 +1,88 @@
+<header style="margin-top: 0;">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3C0000; padding-top: 0;padding-bottom: 0;">
+    <div class = "row" style="height:35px; padding-bottom: 0;">
+      <div class="col-sm-auto" style="margin-bottom: 0;">
+        <%= button_to "Back to Students", students_path, :class => "new-navbar-box", :method => :get %>
+      </div>
+    </div>
+  <nav>
+</header>
+
 <p id="notice"><%= notice %></p>
 
-<% content_for :title, "Students: " + @student.first_name + " " + @student.last_name%>
+<div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
+  <div class="container show-box">
+    <% content_for :title, "Students: " + @student.first_name + " " + @student.last_name%>
 
-<p>
-  <strong>First name:</strong>
-  <%= @student.first_name %>
-</p>
+    <h2>Student</h2>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @student.last_name %>
-</p>
+    <hr style="height: 2px; width:90%; margin: auto; border: 0px solid #696969; border-top-width: 1px;" >
 
-<p>
-  <strong>University:</strong>
-  <%= @university.university_name %>
-</p>
+    <br>
 
-<p>
-  <strong>Nominator:</strong>
-  <%= @representative.first_name %>
-  <%= @representative.last_name %>
-</p>
+    <p>
+      <strong>First name:</strong>
+      <%= @student.first_name %>
+    </p>
 
-<p>
-  <strong>Degree level</strong>
-  <%= @student.degree_level %>
-</p>
+    <p>
+      <strong>Last name:</strong>
+      <%= @student.last_name %>
+    </p>
 
-<p>
-  <strong>Major/Area of Study</strong>
-  <%= @student.major %>
-</p>
+    <p>
+      <strong>University:</strong>
+      <%= @university.university_name %>
+    </p>
 
-<p>
-  <strong>Term of exchange</strong>
-  <%= @student.exchange_term %>
-</p>
+    <p>
+      <strong>Nominator:</strong>
+      <%= @representative.first_name %>
+      <%= @representative.last_name %>
+    </p>
 
-<p>
-  <strong>Email</strong>
-  <%= @student.student_email %>
-</p>
+    <p>
+      <strong>Degree level</strong>
+      <%= @student.degree_level %>
+    </p>
 
-<h2>Responses</h2>
-<% for response in @student.response %>
-    <ul>
-      <li><%= response.reply %></li>
-  </ul>
-<% end %>
+    <p>
+      <strong>Major/Area of Study</strong>
+      <%= @student.major %>
+    </p>
 
-<%= link_to 'Edit', edit_student_path(@student) %> |
-<%= link_to 'Enter another new student', new_student_path %> | 
-<%= link_to 'Add Response', student_responses_path(@student) %> |
+    <p>
+      <strong>Term of exchange</strong>
+      <%= @student.exchange_term %>
+    </p>
 
-<%= link_to 'Finish', University.find(@student.university_id) %>
+    <p>
+      <strong>Email</strong>
+      <%= @student.student_email %>
+    </p>
+
+    <br>
+
+    <h2>Questions:</h2>
+
+    <hr style="height: 2px; width:90%; margin: auto; border: 0px solid #696969; border-top-width: 1px;" >
+
+    <br>
+
+    <% for response in @student.response %>
+        <ul>
+    	  <td><%= Question.all.find(response.question_id).prompt %></td>
+          <li><%= response.reply %></li>
+    	  <td><%= link_to 'Answer Question', edit_student_response_path(@student, response) %></td>
+      </ul>
+    <% end %>
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-auto">
+        <%= button_to 'Edit', edit_student_path(@student), :class => "edit-button", :method => :get %>
+      </div>
+      <div class="col-auto">
+        <%= button_to 'Delete', delete_student_path(@student), :class => "delete-button", :method => :get %>
+      </div>
+    </div>
+  </div>
+</div>

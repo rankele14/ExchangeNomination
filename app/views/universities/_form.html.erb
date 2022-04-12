@@ -17,9 +17,15 @@
   </div>
 
   <div class="field">
-    <%= form.label :num_nominees %>
+    <%= form.label :num_nominees %> <!-- Current number of submitted nominees -->
     <%= form.number_field :num_nominees %>
   </div>
+
+  <div class="field">
+    <%= form.label :max_limit %>
+    <%= form.number_field :max_limit %>
+  </div>
+
 
   <div class="actions">
     <%= form.submit %>
