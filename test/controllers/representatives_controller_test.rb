@@ -20,8 +20,14 @@ class RepresentativesControllerTest < ActionDispatch::IntegrationTest
   test 'should create representative' do
     assert_difference('Representative.count') do
       post representatives_url,
-           params: { representative: { first_name: @representative.first_name, last_name: @representative.last_name,
-                                       title: @representative.title, university_id: @representative.university_id } }
+           params: {
+             representative: {
+               first_name: @representative.first_name,
+               last_name: @representative.last_name,
+               title: @representative.title,
+               university_id: @representative.university_id
+             }
+           }
     end
 
     assert_redirected_to representative_url(Representative.last)
@@ -39,8 +45,14 @@ class RepresentativesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should update representative' do
     patch representative_url(@representative),
-          params: { representative: { first_name: @representative.first_name, last_name: @representative.last_name,
-                                      title: @representative.title, university_id: @representative.university_id } }
+          params: {
+            representative: {
+              first_name: @representative.first_name,
+              last_name: @representative.last_name,
+              title: @representative.title,
+              university_id: @representative.university_id
+            }
+          }
     assert_redirected_to representative_url(@representative)
   end
 

@@ -28,11 +28,11 @@ class ResponsesController < ApplicationController
 
     respond_to do |format|
       if @response.save
-        format.html { redirect_to new_student_response_path(@student), notice: 'Response was successfully created.' }
-        format.json { render :show, status: :created, location: @response }
+        format.html { redirect_to(new_student_response_path(@student), notice: 'Response was successfully created.') }
+        format.json { render(:show, status: :created, location: @response) }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @response.errors, status: :unprocessable_entity }
+        format.html { render(:new, status: :unprocessable_entity) }
+        format.json { render(json: @response.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -41,11 +41,11 @@ class ResponsesController < ApplicationController
   def update
     respond_to do |format|
       if @response.update(response_params)
-        format.html { redirect_to show_student_url(@student), notice: 'Response was successfully updated.' }
-        format.json { render :show, status: :ok, location: @response }
+        format.html { redirect_to(show_student_url(@student), notice: 'Response was successfully updated.') }
+        format.json { render(:show, status: :ok, location: @response) }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @response.errors, status: :unprocessable_entity }
+        format.html { render(:edit, status: :unprocessable_entity) }
+        format.json { render(json: @response.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -53,11 +53,11 @@ class ResponsesController < ApplicationController
   def user_update
     respond_to do |format|
       if @response.update(response_params)
-        format.html { redirect_to user_show_student_url(@student), notice: 'Response was successfully updated.' }
-        format.json { render :show, status: :ok, location: @response }
+        format.html { redirect_to(user_show_student_url(@student), notice: 'Response was successfully updated.') }
+        format.json { render(:show, status: :ok, location: @response) }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @response.errors, status: :unprocessable_entity }
+        format.html { render(:edit, status: :unprocessable_entity) }
+        format.json { render(json: @response.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -68,10 +68,10 @@ class ResponsesController < ApplicationController
   end
 
   def destroy
-    @response.destroy
+    @response.destroy!
     respond_to do |format|
-      format.html { redirect_to student_responses_path(@student), notice: 'Response was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to(student_responses_path(@student), notice: 'Response was successfully destroyed.') }
+      format.json { head(:no_content) }
     end
   end
 
@@ -82,7 +82,7 @@ class ResponsesController < ApplicationController
   def destroy_all
     @responses = Response.all
     @responses.each(&:destroy)
-    redirect_to responses_url, notice: 'Responses successfully cleared.'
+    redirect_to(responses_url, notice: 'Responses successfully cleared.')
   end
 
   private

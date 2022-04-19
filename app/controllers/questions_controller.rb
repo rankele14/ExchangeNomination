@@ -25,11 +25,11 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.save
-        format.html { redirect_to @question, notice: 'Question was successfully created.' }
-        format.json { render :show, status: :created, location: @question }
+        format.html { redirect_to(@question, notice: 'Question was successfully created.') }
+        format.json { render(:show, status: :created, location: @question) }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @question.errors, status: :unprocessable_entity }
+        format.html { render(:new, status: :unprocessable_entity) }
+        format.json { render(json: @question.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -38,11 +38,11 @@ class QuestionsController < ApplicationController
   def update
     respond_to do |format|
       if @question.update(question_params)
-        format.html { redirect_to @question, notice: 'Question was successfully updated.' }
-        format.json { render :show, status: :ok, location: @question }
+        format.html { redirect_to(@question, notice: 'Question was successfully updated.') }
+        format.json { render(:show, status: :ok, location: @question) }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @question.errors, status: :unprocessable_entity }
+        format.html { render(:edit, status: :unprocessable_entity) }
+        format.json { render(json: @question.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -53,10 +53,10 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    @question.destroy
+    @question.destroy!
     respond_to do |format|
-      format.html { redirect_to questions_url, notice: 'Question was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to(questions_url, notice: 'Question was successfully destroyed.') }
+      format.json { head(:no_content) }
     end
   end
 
@@ -67,7 +67,7 @@ class QuestionsController < ApplicationController
   def destroy_all
     @questions = Question.all
     @questions.each(&:destroy)
-    redirect_to questions_url, notice: 'Questions successfully cleared.'
+    redirect_to(questions_url, notice: 'Questions successfully cleared.')
   end
 
   private

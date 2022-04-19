@@ -42,11 +42,11 @@ class RepresentativesController < ApplicationController
 
     respond_to do |format|
       if @representative.save
-        format.html { redirect_to representative_url(@representative), notice: 'Nominator was successfully created.' }
-        format.json { render :show, status: :created, location: @representative }
+        format.html { redirect_to(representative_url(@representative), notice: 'Nominator was successfully created.') }
+        format.json { render(:show, status: :created, location: @representative) }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @representative.errors, status: :unprocessable_entity }
+        format.html { render(:new, status: :unprocessable_entity) }
+        format.json { render(json: @representative.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -54,18 +54,18 @@ class RepresentativesController < ApplicationController
   def user_create
     @representative = Representative.new(representative_params)
     @deadline = Variable.find_by(var_name: 'deadline')
-    if !@deadline.nil? && Time.now > @deadline.var_value # past the deadline
-      redirect_to deadline_dashboards_path
+    if !@deadline.nil? && Time.zone.now > @deadline.var_value # past the deadline
+      redirect_to(deadline_dashboards_path)
     else
       respond_to do |format|
         if @representative.save
           format.html do
-            redirect_to user_show_representative_url(@representative), notice: 'Nominator was successfully created.'
+            redirect_to(user_show_representative_url(@representative), notice: 'Nominator was successfully created.')
           end
-          format.json { render :show, status: :created, location: @representative }
+          format.json { render(:show, status: :created, location: @representative) }
         else
-          format.html { render :user_new, status: :unprocessable_entity }
-          format.json { render json: @representative.errors, status: :unprocessable_entity }
+          format.html { render(:user_new, status: :unprocessable_entity) }
+          format.json { render(json: @representative.errors, status: :unprocessable_entity) }
         end
       end
     end
@@ -81,23 +81,23 @@ class RepresentativesController < ApplicationController
           @students = Student.where(representative_id: @representative.id)
           @students.each do |student|
             student.university_id = @representative.university_id
-            student.save
-            if student.exchange_term.include? 'and'
+            student.save!
+            if student.exchange_term.include?('and')
               @university.num_nominees = @university.num_nominees + 2
               @uni_prev.num_nominees = @uni_prev.num_nominees - 2
             else
               @university.num_nominees = @university.num_nominees + 1
               @uni_prev.num_nominees = @uni_prev.num_nominees - 1
             end
-            @university.save
-            @uni_prev.save
+            @university.save!
+            @uni_prev.save!
           end
         end
-        format.html { redirect_to representative_url(@representative), notice: 'Nominator was successfully updated.' }
-        format.json { render :show, status: :ok, location: @representative }
+        format.html { redirect_to(representative_url(@representative), notice: 'Nominator was successfully updated.') }
+        format.json { render(:show, status: :ok, location: @representative) }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @representative.errors, status: :unprocessable_entity }
+        format.html { render(:edit, status: :unprocessable_entity) }
+        format.json { render(json: @representative.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -107,19 +107,20 @@ class RepresentativesController < ApplicationController
     @representative = Representative.find(params[:id])
     @deadline = Variable.find_by(var_name: 'deadline')
 
-    if !@deadline.nil? && Time.now > @deadline.var_value # past the deadline
-      redirect_to finish_representative_url(@representative),
+    if !@deadline.nil? && Time.zone.now > @deadline.var_value # past the deadline
+      redirect_to(finish_representative_url(@representative),
                   alert: 'Sorry, the deadline for submitting students has passed'
+                 )
     else
       respond_to do |format|
         if @representative.update(representative_params)
           format.html do
-            redirect_to user_show_representative_url(@representative), notice: 'Nominator was successfully updated.'
+            redirect_to(user_show_representative_url(@representative), notice: 'Nominator was successfully updated.')
           end
-          format.json { render :show, status: :ok, location: @representative }
+          format.json { render(:show, status: :ok, location: @representative) }
         else
-          format.html { render :user_edit, status: :unprocessable_entity }
-          format.json { render json: @representative.errors, status: :unprocessable_entity }
+          format.html { render(:user_edit, status: :unprocessable_entity) }
+          format.json { render(json: @representative.errors, status: :unprocessable_entity) }
         end
       end
     end
@@ -135,11 +136,11 @@ class RepresentativesController < ApplicationController
     @students.each do |student|
       destroy_uni_update(student.id)
     end
-    @representative.destroy
+    @representative.destroy!
 
     respond_to do |format|
-      format.html { redirect_to representatives_url, notice: 'Nominator was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to(representatives_url, notice: 'Nominator was successfully destroyed.') }
+      format.json { head(:no_content) }
     end
   end
 
@@ -151,7 +152,7 @@ class RepresentativesController < ApplicationController
   end
 
   def test_method
-    @representative.update(first_name: 'Updated')
+    @representative.update!(first_name: 'Updated')
   end
 
   def rep_redirect
@@ -169,10 +170,10 @@ class RepresentativesController < ApplicationController
       @students.each do |student|
         destroy_uni_update(student.id)
       end
-      representative.destroy
+      representative.destroy!
     end
     # automatically destroys rep's students
-    redirect_to representatives_url, notice: 'Representatives successfully cleared.'
+    redirect_to(representatives_url, notice: 'Representatives successfully cleared.')
   end
 
   private

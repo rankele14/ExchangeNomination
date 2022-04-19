@@ -26,11 +26,11 @@ class AnswersController < ApplicationController
 
     respond_to do |format|
       if @answer.save
-        format.html { redirect_to question_answers_path(@question), notice: 'Answer was successfully created.' }
-        format.json { render :show, status: :created, location: @answer }
+        format.html { redirect_to(question_answers_path(@question), notice: 'Answer was successfully created.') }
+        format.json { render(:show, status: :created, location: @answer) }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @answer.errors, status: :unprocessable_entity }
+        format.html { render(:new, status: :unprocessable_entity) }
+        format.json { render(json: @answer.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -39,11 +39,11 @@ class AnswersController < ApplicationController
   def update
     respond_to do |format|
       if @answer.update(answer_params)
-        format.html { redirect_to question_answers_path(@question), notice: 'Answer was successfully updated.' }
-        format.json { render :show, status: :ok, location: @answer }
+        format.html { redirect_to(question_answers_path(@question), notice: 'Answer was successfully updated.') }
+        format.json { render(:show, status: :ok, location: @answer) }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @answer.errors, status: :unprocessable_entity }
+        format.html { render(:edit, status: :unprocessable_entity) }
+        format.json { render(json: @answer.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -54,10 +54,10 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    @answer.destroy
+    @answer.destroy!
     respond_to do |format|
-      format.html { redirect_to question_answers_path(@question), notice: 'Answer was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to(question_answers_path(@question), notice: 'Answer was successfully destroyed.') }
+      format.json { head(:no_content) }
     end
   end
 

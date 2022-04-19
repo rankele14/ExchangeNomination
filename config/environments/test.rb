@@ -62,20 +62,21 @@ Rails.application.configure do
   OmniAuth.config.test_mode = true
   OmniAuth.config.allowed_request_methods += %i[get]
   OmniAuth.config.mock_auth[:google_user] = OmniAuth::AuthHash.new({
-                                                                     provider: 'google_oauth2',
-                                                                     uid: '123456789',
-                                                                     info: {
-                                                                       name: 'User Doe',
-                                                                       email: 'userdoe@example.com',
-                                                                       first_name: 'User',
-                                                                       last_name: 'Doe',
-                                                                       image: 'https://lh3.googleusercontent.com/url/photo.jpg'
-                                                                     },
-                                                                     credentials: {
-                                                                       token: 'token',
-                                                                       refresh_token: 'another_token',
-                                                                       expires_at: 1_354_920_555,
-                                                                       expires: true
-                                                                     }
-                                                                   })
+    provider: 'google_oauth2',
+    uid: '123456789',
+    info: {
+      name: 'User Doe',
+      email: 'userdoe@example.com',
+      first_name: 'User',
+      last_name: 'Doe',
+      image: 'https://lh3.googleusercontent.com/url/photo.jpg'
+    },
+    credentials: {
+      token: 'token',
+      refresh_token: 'another_token',
+      expires_at: 1_354_920_555,
+      expires: true
+    }
+  }
+                                                                  )
 end

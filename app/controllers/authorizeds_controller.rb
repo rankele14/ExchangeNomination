@@ -25,11 +25,11 @@ class AuthorizedsController < ApplicationController
 
     respond_to do |format|
       if @authorized.save
-        format.html { redirect_to @authorized, notice: 'Authorized was successfully created.' }
-        format.json { render :show, status: :created, location: @authorized }
+        format.html { redirect_to(@authorized, notice: 'Authorized was successfully created.') }
+        format.json { render(:show, status: :created, location: @authorized) }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @authorized.errors, status: :unprocessable_entity }
+        format.html { render(:new, status: :unprocessable_entity) }
+        format.json { render(json: @authorized.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -38,21 +38,21 @@ class AuthorizedsController < ApplicationController
   def update
     respond_to do |format|
       if @authorized.update(authorized_params)
-        format.html { redirect_to @authorized, notice: 'Authorized was successfully updated.' }
-        format.json { render :show, status: :ok, location: @authorized }
+        format.html { redirect_to(@authorized, notice: 'Authorized was successfully updated.') }
+        format.json { render(:show, status: :ok, location: @authorized) }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @authorized.errors, status: :unprocessable_entity }
+        format.html { render(:edit, status: :unprocessable_entity) }
+        format.json { render(json: @authorized.errors, status: :unprocessable_entity) }
       end
     end
   end
 
   # DELETE /authorizeds/1 or /authorizeds/1.json
   def destroy
-    @authorized.destroy
+    @authorized.destroy!
     respond_to do |format|
-      format.html { redirect_to authorizeds_url, notice: 'Authorized was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to(authorizeds_url, notice: 'Authorized was successfully destroyed.') }
+      format.json { head(:no_content) }
     end
   end
 
