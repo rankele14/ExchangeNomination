@@ -25,13 +25,13 @@ class StudentsController < ApplicationController
 
   # GET /students/1 or /students/1.json
   def show
-    @representative = Representative.find(@student.representative_id)
+    @nominator = Nominator.find(@student.nominator_id)
     @university = University.find(@student.university_id)
   end
   
   # GET /students/1/user_show
   def user_show
-    @representative = Representative.find(@student.representative_id)
+    @nominator = Nominator.find(@student.nominator_id)
     @university = University.find(@student.university_id)
     @deadline = Variable.find_by(var_name: 'deadline')
   end
@@ -44,16 +44,16 @@ class StudentsController < ApplicationController
   # GET /students/user_new
   def user_new
     @student = Student.new
-    @student.representative_id = params[:id]
-    @representative = Representative.find(params[:id])
-    @student.university_id = @representative.university_id
+    @student.nominator_id = params[:id]
+    @nominator = Nominator.find(params[:id])
+    @student.university_id = @nominator.university_id
     @university = University.find(@student.university_id)
     @deadline = Variable.find_by(var_name: 'deadline')
 
     # if @university.num_nominees >= @university.max_limit
-    #   redirect_to finish_representative_url(@representative), alert: "Sorry, maximum limit of 3 students already reached." 
+    #   redirect_to finish_nominator_url(@nominator), alert: "Sorry, maximum limit of 3 students already reached." 
     # elsif @deadline != nil && Time.now > @deadline.var_value then # past the deadline
-    #   redirect_to finish_representative_path(@representative), alert: "Sorry, the deadline for submitting students has passed" 
+    #   redirect_to finish_nominator_path(@nominator), alert: "Sorry, the deadline for submitting students has passed" 
     # end
   end
 
@@ -94,17 +94,17 @@ class StudentsController < ApplicationController
   # POST /students but redirects to user_show_student
   def user_create
     @student = Student.new(student_params)
-    @representative = Representative.find(@student.representative_id)
+    @nominator = Nominator.find(@student.nominator_id)
     @university = University.find(@student.university_id)
     @deadline = Variable.find_by(var_name: 'deadline')
     new_term = params[:student][:exchange_term]
     
     if  @university.num_nominees >= @university.max_limit then # used to be single, now double, exceeds university limit
-      redirect_to user_new_student_url(@representative), alert: "Sorry, the University has already reached the limit on nominees." 
+      redirect_to user_new_student_url(@nominator), alert: "Sorry, the University has already reached the limit on nominees." 
     elsif  (new_term.include? 'and') && (@university.num_nominees >= @university.max_limit-1) then # used to be single, now double, exceeds university limit
-      redirect_to user_new_student_url(@representative), alert: "Sorry, a double term nomination would exceed the university's nomination limit. Please stick to a single term nomination." 
+      redirect_to user_new_student_url(@nominator), alert: "Sorry, a double term nomination would exceed the university's nomination limit. Please stick to a single term nomination." 
     elsif @deadline != nil && Time.now > @deadline.var_value then# past the deadline
-      redirect_to finish_representative_path(@student.representative_id), alert: "Sorry, the deadline for submitting students has passed" 
+      redirect_to finish_nominator_path(@student.nominator_id), alert: "Sorry, the deadline for submitting students has passed" 
     else
       respond_to do |format|
         if @student.save
@@ -118,7 +118,7 @@ class StudentsController < ApplicationController
           else
             @university.update(num_nominees: @university.num_nominees + 1)
           end
-          ConfirmationMailer.with(student: @student, representative: Representative.find_by(id: @student.representative_id)).confirm_email.deliver_later
+          ConfirmationMailer.with(student: @student, nominator: Nominator.find_by(id: @student.nominator_id)).confirm_email.deliver_later
           format.html { redirect_to user_show_student_url(@student), notice: "Student was successfully created." }
           format.json { render :show, status: :created, location: @student }
         else
@@ -165,7 +165,7 @@ class StudentsController < ApplicationController
     if !(prev_term.include? 'and') && (new_term.include? 'and') && (@university.num_nominees >= @university.max_limit) then # used to be single, now double, exceeds university limit
       redirect_to user_edit_student_url(@student), alert: "Sorry, a double term nomination would exceed the university's nomination limit. Please stick to a single term nomination." 
     elsif @deadline != nil && Time.now > @deadline.var_value then # past the deadline
-      redirect_to finish_representative_path(@student.representative_id), alert: "Sorry, the deadline for submitting students has passed" 
+      redirect_to finish_nominator_path(@student.nominator_id), alert: "Sorry, the deadline for submitting students has passed" 
     else
       respond_to do |format|
         if @student.update(student_params)
@@ -209,15 +209,15 @@ class StudentsController < ApplicationController
   end
 
   def user_destroy
-    @representative = Representative.find(@student.representative_id)
+    @nominator = Nominator.find(@student.nominator_id)
     @deadline = Variable.find_by(var_name: 'deadline')
     if @deadline != nil && Time.now > @deadline.var_value then
       respond_to do |format|
-        format.html { redirect_to finish_representative_path(@representative), notice: "Sorry, the deadline for removing students has passed." }
+        format.html { redirect_to finish_nominator_path(@nominator), notice: "Sorry, the deadline for removing students has passed." }
         format.json { head :no_content }
       end
     else
-      @representative = Representative.find(@student.representative_id)
+      @nominator = Nominator.find(@student.nominator_id)
       destroy_uni_update(@student.id)
       Response.all.each do |response|
 	      if @student.id == response.student_id then
@@ -227,7 +227,7 @@ class StudentsController < ApplicationController
       @student.destroy
 
       respond_to do |format|
-        format.html { redirect_to finish_representative_path(@representative), notice: "Student was successfully removed." }
+        format.html { redirect_to finish_nominator_path(@nominator), notice: "Student was successfully removed." }
         format.json { head :no_content }
       end
     end
@@ -290,6 +290,6 @@ class StudentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def student_params
-      params.require(:student).permit(:first_name, :last_name, :university_id, :representative_id, :student_email, :exchange_term, :degree_level, :major)
+      params.require(:student).permit(:first_name, :last_name, :university_id, :nominator_id, :student_email, :exchange_term, :degree_level, :major)
     end
 end

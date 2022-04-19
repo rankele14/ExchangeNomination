@@ -1,0 +1,43 @@
+<header style="margin-top: 0;">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3C0000; padding-top: 0;padding-bottom: 0;">
+    <div class = "row" style="height:35px; padding-bottom: 0;">
+      <div class="col-sm-auto" style="margin-bottom: 0;">
+        <%= button_to "Help", user_help_path, :class => "new-navbar-box", :method => :get %>
+      </div>
+    </div>
+  <nav>
+</header>
+
+<p id="notice"><%= notice %></p>
+
+<div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
+  <div class="container show-box">
+    <p>
+      <strong>First name:</strong>
+      <%= @nominator.first_name %>
+    </p>
+
+    <p>
+      <strong>Last name:</strong>
+      <%= @nominator.last_name %>
+    </p>
+
+    <p>
+      <strong>Title:</strong>
+      <%= @nominator.title %>
+    </p>
+
+    <p>
+      <strong>Nominator email:</strong>
+      <%= @nominator.nominator_email %>
+    </p>
+
+    <p>
+      <strong>University:</strong>
+      <%= University.find(@nominator.university_id).university_name %>
+    </p>
+
+    <%= link_to 'Edit', user_edit_nominator_path(@nominator) %> |
+    <%= link_to 'Continue', finish_nominator_path(@nominator) %>
+  </div>
+</div>

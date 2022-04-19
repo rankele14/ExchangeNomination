@@ -17,8 +17,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :representative_id %>
-    <%= form.select :representative_id, Representative.order([:last_name, :first_name].join(", ")).map { |representative| [[representative.last_name, representative.first_name].join(", "), representative.id] }, include_blank: true, id: "id_of_the_representative_id_select_box" %>
+    <%= form.label :nominator_id %>
+    <%= form.select :nominator_id, Nominator.order([:last_name, :first_name].join(", ")).map { |nominator| [[nominator.last_name, nominator.first_name].join(", "), nominator.id] }, include_blank: true, id: "id_of_the_nominator_id_select_box" %>
   </div>
 
   <div class="field">

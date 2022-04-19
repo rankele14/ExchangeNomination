@@ -1,0 +1,87 @@
+<header style="margin-top: 0;">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3C0000; padding-top: 0;padding-bottom: 0;">
+    <div class = "row" style="height:35px; padding-bottom: 0;">
+      <div class="col-sm-auto" style="margin-bottom: 0;">
+        <%= button_to "Back to Nominators", nominators_path, :class => "new-navbar-box", :method => :get %>
+      </div>
+    </div>
+  <nav>
+</header>
+
+<p id="notice"><%= notice %></p>
+
+<div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
+  <div class="container show-box">
+    <p>
+      <strong>First name:</strong>
+      <%= @nominator.first_name %>
+    </p>
+
+    <p>
+      <strong>Last name:</strong>
+      <%= @nominator.last_name %>
+    </p>
+
+    <p>
+      <strong>Title:</strong>
+      <%= @nominator.title %>
+    </p>
+
+    <p>
+      <strong>Nominator email:</strong>
+      <%= @nominator.nominator_email %>
+    </p>
+
+    <p>
+      <strong>University:</strong>
+      <%= University.find(@nominator.university_id).university_name %>
+    </p>
+
+    <br><br>
+
+    <p style="font-size:130%;">Student Nominees for this Nominator:</p>
+
+    <div class="row justify-content-center">
+      <div class="col-auto">
+        <table class="table center">
+          <thead class="thread-dark">
+            <tr>
+              <th>First name</th>
+              <th>Last name</th>
+              <th>Degree level</th>
+              <th>Major/Area of Study</th>
+              <th>Term of exchange</th>
+              <th>Email</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @students.each do |student| %>
+              <tr>
+                <td><%= student.first_name %></td>
+                <td><%= student.last_name %></td>
+                <td><%= student.degree_level %></td>
+                <td><%= student.major %></td>
+                <td><%= student.exchange_term %></td>
+                <td><%= student.student_email %></td>
+                <td><%= button_to 'Show', student, :class => "show-button", :method => :get %></td>
+                <td><%= button_to 'Edit', edit_student_path(student), :class => "edit-button", :method => :get %></td>
+                <td><%= button_to 'Delete', student, :class => "delete-button", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-auto">
+        <%= button_to 'Edit', edit_nominator_path(@nominator), :class => "edit-button", :method => :get %>
+      </div>
+      <div class="col-auto">
+        <%= button_to 'Delete', delete_nominator_path(@nominator), :class => "delete-button", :method => :get %>
+      </div>
+    </div>
+  </div>
+</div>

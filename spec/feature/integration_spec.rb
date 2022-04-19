@@ -197,13 +197,13 @@ RSpec.describe 'Admin university functions', type: :feature do
     visit new_university_path
       fill_in 'University name', with: 'UniName'
       click_on 'Create University'
-    visit new_representative_path
+    visit new_nominator_path
       select 'UniName', :from => 'University'
       fill_in 'First name', with: 'John'
       fill_in 'Last name', with: 'Smith'
       fill_in 'Title', with: 'CEO'
       fill_in 'Email', with: 'JohnSmith@gmail.com'
-      click_on 'Create Representative'
+      click_on 'Create Nominator'
     visit new_student_path
       select 'UniName', :from => 'University'
       fill_in 'First name', with: 'Foo'
@@ -212,13 +212,13 @@ RSpec.describe 'Admin university functions', type: :feature do
       fill_in 'Major', with: 'Basket Making'
       select 'Fall Only', :from => 'Exchange term'
       fill_in 'Student email', with: 'FooBar@gmail.com'
-      select 'Smith, John', :from => 'Representative'
+      select 'Smith, John', :from => 'Nominator'
       click_on 'Create Student'
     visit universities_path
       click_on 'Delete'
       click_on 'Delete University'
       expect(page).not_to have_content('UniName')
-      visit representatives_path
+      visit nominators_path
       expect(page).not_to have_content('John')
       visit students_path
       expect(page).not_to have_content('Foo')
@@ -269,13 +269,13 @@ RSpec.describe 'Admin university functions', type: :feature do
       visit new_university_path
       fill_in 'University name', with: 'TU'
       click_on 'Create University'
-    visit new_representative_path
+    visit new_nominator_path
       select 'UniName', :from => 'University'
       fill_in 'First name', with: 'John'
       fill_in 'Last name', with: 'Smith'
       fill_in 'Title', with: 'CEO'
       fill_in 'Email', with: 'JohnSmith@gmail.com'
-      click_on 'Create Representative'
+      click_on 'Create Nominator'
     visit new_student_path
       select 'UniName', :from => 'University'
       fill_in 'First name', with: 'Foo'
@@ -284,15 +284,15 @@ RSpec.describe 'Admin university functions', type: :feature do
       fill_in 'Major', with: 'Basket Making'
       select 'Fall Only', :from => 'Exchange term'
       fill_in 'Student email', with: 'FooBar@gmail.com'
-      select 'Smith, John', :from => 'Representative'
+      select 'Smith, John', :from => 'Nominator'
       click_on 'Create Student'
-    visit new_representative_path
+    visit new_nominator_path
       select 'TU', :from => 'University'
       fill_in 'First name', with: 'Jackie'
       fill_in 'Last name', with: 'Garcia'
       fill_in 'Title', with: 'Director'
       fill_in 'Email', with: 'JackieGarcia@yahoo.com'
-      click_on 'Create Representative'
+      click_on 'Create Nominator'
     visit new_student_path
       select 'TU', :from => 'University'
       fill_in 'First name', with: 'Test'
@@ -301,7 +301,7 @@ RSpec.describe 'Admin university functions', type: :feature do
       fill_in 'Major', with: 'Basket Making'
       select 'Fall Only', :from => 'Exchange term'
       fill_in 'Student email', with: 'FooBar@gmail.com'
-      select 'Garcia, Jackie', :from => 'Representative'
+      select 'Garcia, Jackie', :from => 'Nominator'
       click_on 'Create Student'
     visit universities_path
     click_on 'Clear All'
@@ -309,7 +309,7 @@ RSpec.describe 'Admin university functions', type: :feature do
     visit universities_path
       expect(page).not_to have_content('UniName')
       expect(page).not_to have_content('TU')
-    visit representatives_path
+    visit nominators_path
       expect(page).not_to have_content('John')
       expect(page).not_to have_content('Jackie')
     visit students_path
@@ -324,13 +324,13 @@ RSpec.describe 'Admin university functions', type: :feature do
       visit new_university_path
       fill_in 'University name', with: 'TU'
       click_on 'Create University'
-    visit new_representative_path
+    visit new_nominator_path
       select 'UniName', :from => 'University'
       fill_in 'First name', with: 'John'
       fill_in 'Last name', with: 'Smith'
       fill_in 'Title', with: 'CEO'
       fill_in 'Email', with: 'JohnSmith@gmail.com'
-      click_on 'Create Representative'
+      click_on 'Create Nominator'
     visit new_student_path
       select 'UniName', :from => 'University'
       fill_in 'First name', with: 'Foo'
@@ -339,15 +339,15 @@ RSpec.describe 'Admin university functions', type: :feature do
       fill_in 'Major', with: 'Basket Making'
       select 'Fall Only', :from => 'Exchange term'
       fill_in 'Student email', with: 'FooBar@gmail.com'
-      select 'Smith, John', :from => 'Representative'
+      select 'Smith, John', :from => 'Nominator'
       click_on 'Create Student'
-    visit new_representative_path
+    visit new_nominator_path
       select 'TU', :from => 'University'
       fill_in 'First name', with: 'Jackie'
       fill_in 'Last name', with: 'Garcia'
       fill_in 'Title', with: 'Director'
       fill_in 'Email', with: 'JackieGarcia@yahoo.com'
-      click_on 'Create Representative'
+      click_on 'Create Nominator'
     visit new_student_path
       select 'TU', :from => 'University'
       fill_in 'First name', with: 'Test'
@@ -356,7 +356,7 @@ RSpec.describe 'Admin university functions', type: :feature do
       fill_in 'Major', with: 'Basket Making'
       select 'Fall Only', :from => 'Exchange term'
       fill_in 'Student email', with: 'FooBar@gmail.com'
-      select 'Garcia, Jackie', :from => 'Representative'
+      select 'Garcia, Jackie', :from => 'Nominator'
       click_on 'Create Student'
     visit universities_path
     click_on 'Reset All'
@@ -365,7 +365,7 @@ RSpec.describe 'Admin university functions', type: :feature do
     visit universities_path
       expect(page).to have_content('UniName 0 3')
       expect(page).to have_content('TU 0 3')
-    visit representatives_path
+    visit nominators_path
       expect(page).not_to have_content('John')
       expect(page).not_to have_content('Jackie')
     visit students_path
@@ -374,7 +374,7 @@ RSpec.describe 'Admin university functions', type: :feature do
   end
 end
 
-RSpec.describe 'Admin representative functions', type: :feature do
+RSpec.describe 'Admin nominator functions', type: :feature do
   before do
     @authorized = Authorized.create(authorized_email: "userdoe@example.com")
     Rails.application.env_config['devise.mapping'] = Devise.mappings[:admin]
@@ -387,13 +387,13 @@ RSpec.describe 'Admin representative functions', type: :feature do
   end
 
   # new/create
-  scenario 'create representative' do
+  scenario 'create nominator' do
     visit new_university_path
       fill_in 'University name', with: 'UniName'
     click_on 'Create University'
       visit universities_path
-    visit new_representative_path
-      click_on 'Create Representative'
+    visit new_nominator_path
+      click_on 'Create Nominator'
       expect(page).to have_content('error')
       select 'UniName', :from => 'University'
       fill_in 'First name', with: 'John'
@@ -401,11 +401,11 @@ RSpec.describe 'Admin representative functions', type: :feature do
       fill_in 'Title', with: 'CEO'
       # FIXME should error this part without @ but doesn't
       #fill_in 'Email', with: 'JohnSmith'
-      #click_on 'Create Representative'
+      #click_on 'Create Nominator'
       #expect(page).to have_content('error')
       fill_in 'Email', with: 'JohnSmith@gmail.com'
-    click_on 'Create Representative'
-      visit representatives_path
+    click_on 'Create Nominator'
+      visit nominators_path
       expect(page).to have_content('John')
       expect(page).to have_content('Smith')
       expect(page).to have_content('CEO')
@@ -413,42 +413,42 @@ RSpec.describe 'Admin representative functions', type: :feature do
   end
   
   # edit/update
-  scenario 'editing a representative' do
+  scenario 'editing a nominator' do
     visit new_university_path
       fill_in 'University name', with: 'UniName'
       click_on 'Create University'
-    visit new_representative_path
+    visit new_nominator_path
       select 'UniName', :from => 'University'
       fill_in 'First name', with: 'John'
       fill_in 'Last name', with: 'Smith'
       fill_in 'Title', with: 'CEO'
       fill_in 'Email', with: 'JohnSmith@gmail.com'
-      click_on 'Create Representative'
-    visit representatives_path
+      click_on 'Create Nominator'
+    visit nominators_path
     click_on 'Edit'
       fill_in 'First name', with: ''
-      click_on 'Update Representative'
+      click_on 'Update Nominator'
       expect(page).to have_content('error')
       fill_in 'First name', with: 'Alice'
-      click_on 'Update Representative'
-    visit representatives_path
+      click_on 'Update Nominator'
+    visit nominators_path
       expect(page).to have_content('Alice')
   end
 
-  scenario 'editing a representative\'s university' do
+  scenario 'editing a nominator\'s university' do
     visit new_university_path
       fill_in 'University name', with: 'UniName'
       click_on 'Create University'
       visit new_university_path
       fill_in 'University name', with: 'TU'
       click_on 'Create University'
-    visit new_representative_path
+    visit new_nominator_path
       select 'UniName', :from => 'University'
       fill_in 'First name', with: 'John'
       fill_in 'Last name', with: 'Smith'
       fill_in 'Title', with: 'CEO'
       fill_in 'Email', with: 'JohnSmith@gmail.com'
-      click_on 'Create Representative'
+      click_on 'Create Nominator'
     visit new_student_path
       select 'UniName', :from => 'University'
       fill_in 'First name', with: 'Foo'
@@ -457,7 +457,7 @@ RSpec.describe 'Admin representative functions', type: :feature do
       fill_in 'Major', with: 'Basket Making'
       select 'Fall Only', :from => 'Exchange term'
       fill_in 'Student email', with: 'FooBar@gmail.com'
-      select 'Smith, John', :from => 'Representative'
+      select 'Smith, John', :from => 'Nominator'
       click_on 'Create Student'
     visit new_student_path
       select 'UniName', :from => 'University'
@@ -467,19 +467,19 @@ RSpec.describe 'Admin representative functions', type: :feature do
       fill_in 'Major', with: 'Basket Making'
       select 'Fall and Spring', :from => 'Exchange term'
       fill_in 'Student email', with: 'TT@gmail.com'
-      select 'Smith, John', :from => 'Representative'
+      select 'Smith, John', :from => 'Nominator'
       click_on 'Create Student'
     visit universities_path
       expect(page).to have_content('UniName 3 3')
       expect(page).to have_content('TU 0 3')
-    visit representatives_path
+    visit nominators_path
     click_on 'Edit'
       select '', :from => 'University'
-      click_on 'Update Representative'
+      click_on 'Update Nominator'
       expect(page).to have_content('error')
       select 'TU', :from => 'University'
-      click_on 'Update Representative'
-    visit representatives_path
+      click_on 'Update Nominator'
+    visit nominators_path
       expect(page).to have_content('TU')
     visit students_path
       expect(page).to have_content('TU')
@@ -490,20 +490,20 @@ RSpec.describe 'Admin representative functions', type: :feature do
   end
 
   # delete/destroy
-  scenario 'deleting a representative' do
+  scenario 'deleting a nominator' do
     visit new_university_path
       fill_in 'University name', with: 'UniName'
       click_on 'Create University'
-    visit new_representative_path
+    visit new_nominator_path
       select 'UniName', :from => 'University'
       fill_in 'First name', with: 'John'
       fill_in 'Last name', with: 'Smith'
       fill_in 'Title', with: 'CEO'
       fill_in 'Email', with: 'JohnSmith@gmail.com'
-      click_on 'Create Representative'
-    visit representatives_path
+      click_on 'Create Nominator'
+    visit nominators_path
     click_on 'Delete'
-      click_on 'Delete Representative'
+      click_on 'Delete Nominator'
       expect(page).not_to have_content('John')
   end
   
@@ -511,13 +511,13 @@ RSpec.describe 'Admin representative functions', type: :feature do
     visit new_university_path
       fill_in 'University name', with: 'UniName'
       click_on 'Create University'
-    visit new_representative_path
+    visit new_nominator_path
       select 'UniName', :from => 'University'
       fill_in 'First name', with: 'John'
       fill_in 'Last name', with: 'Smith'
       fill_in 'Title', with: 'CEO'
       fill_in 'Email', with: 'JohnSmith@gmail.com'
-      click_on 'Create Representative'
+      click_on 'Create Nominator'
     visit new_student_path
       select 'UniName', :from => 'University'
       fill_in 'First name', with: 'Foo'
@@ -526,14 +526,14 @@ RSpec.describe 'Admin representative functions', type: :feature do
       fill_in 'Major', with: 'Basket Making'
       select 'Fall Only', :from => 'Exchange term'
       fill_in 'Student email', with: 'FooBar@gmail.com'
-      select 'Smith, John', :from => 'Representative'
+      select 'Smith, John', :from => 'Nominator'
       click_on 'Create Student'
-    visit representatives_path
+    visit nominators_path
       click_on 'Delete'
-      click_on 'Delete Representative'
+      click_on 'Delete Nominator'
     visit universities_path
       expect(page).to have_content('UniName 0 3')
-    visit representatives_path
+    visit nominators_path
       expect(page).not_to have_content('John')
     visit students_path
       expect(page).not_to have_content('Foo')
@@ -543,13 +543,13 @@ RSpec.describe 'Admin representative functions', type: :feature do
     visit new_university_path
       fill_in 'University name', with: 'UniName'
       click_on 'Create University'
-    visit new_representative_path
+    visit new_nominator_path
       select 'UniName', :from => 'University'
       fill_in 'First name', with: 'John'
       fill_in 'Last name', with: 'Smith'
       fill_in 'Title', with: 'CEO'
       fill_in 'Email', with: 'JohnSmith@gmail.com'
-      click_on 'Create Representative'
+      click_on 'Create Nominator'
     visit new_student_path
       select 'UniName', :from => 'University'
       fill_in 'First name', with: 'Foo'
@@ -558,15 +558,15 @@ RSpec.describe 'Admin representative functions', type: :feature do
       fill_in 'Major', with: 'Basket Making'
       select 'Fall Only', :from => 'Exchange term'
       fill_in 'Student email', with: 'FooBar@gmail.com'
-      select 'Smith, John', :from => 'Representative'
+      select 'Smith, John', :from => 'Nominator'
       click_on 'Create Student'
-    visit new_representative_path
+    visit new_nominator_path
       select 'UniName', :from => 'University'
       fill_in 'First name', with: 'Jackie'
       fill_in 'Last name', with: 'Garcia'
       fill_in 'Title', with: 'Director'
       fill_in 'Email', with: 'JackieGarcia@yahoo.com'
-      click_on 'Create Representative'
+      click_on 'Create Nominator'
     visit new_student_path
       select 'UniName', :from => 'University'
       fill_in 'First name', with: 'Test'
@@ -575,14 +575,14 @@ RSpec.describe 'Admin representative functions', type: :feature do
       fill_in 'Major', with: 'Basket Making'
       select 'Fall Only', :from => 'Exchange term'
       fill_in 'Student email', with: 'FooBar@gmail.com'
-      select 'Garcia, Jackie', :from => 'Representative'
+      select 'Garcia, Jackie', :from => 'Nominator'
       click_on 'Create Student'
-    visit representatives_path
+    visit nominators_path
     click_on 'Clear All'
-      click_on 'Clear All Representatives'
+      click_on 'Clear All Nominators'
     visit universities_path
       expect(page).to have_content('UniName 0 3')
-    visit representatives_path
+    visit nominators_path
       expect(page).not_to have_content('John')
       expect(page).not_to have_content('Jackie')
     visit students_path
@@ -604,13 +604,13 @@ RSpec.describe 'Admin student functions', type: :feature do
     visit new_university_path
       fill_in 'University name', with: 'UniName'
       click_on 'Create University'
-    visit new_representative_path
+    visit new_nominator_path
       select 'UniName', :from => 'University'
       fill_in 'First name', with: 'John'
       fill_in 'Last name', with: 'Smith'
       fill_in 'Title', with: 'CEO'
       fill_in 'Email', with: 'JohnSmith@gmail.com'
-      click_on 'Create Representative'
+      click_on 'Create Nominator'
   end
 
   # new/create
@@ -619,7 +619,7 @@ RSpec.describe 'Admin student functions', type: :feature do
       click_on 'Create Student'
       expect(page).to have_content('error')
       select 'UniName', :from => 'University'
-      select 'Smith, John', :from => 'Representative'
+      select 'Smith, John', :from => 'Nominator'
       fill_in 'First name', with: 'Foo'
       fill_in 'Last name', with: 'Bar'
       select 'Bachelors', :from => 'Degree level'
@@ -635,7 +635,7 @@ RSpec.describe 'Admin student functions', type: :feature do
       fill_in 'Major', with: 'Basket Making'
       select 'Fall and Spring', :from => 'Exchange term'
       fill_in 'Student email', with: 'TT@gmail.com'
-      select 'Smith, John', :from => 'Representative'
+      select 'Smith, John', :from => 'Nominator'
       click_on 'Create Student'
     visit students_path
       expect(page).to have_content('Foo')
@@ -658,7 +658,7 @@ RSpec.describe 'Admin student functions', type: :feature do
       fill_in 'Major', with: 'Basket Making'
       select 'Fall Only', :from => 'Exchange term'
       fill_in 'Student email', with: 'FooBar@gmail.com'
-      select 'Smith, John', :from => 'Representative'
+      select 'Smith, John', :from => 'Nominator'
       click_on 'Create Student'
       visit students_path
     click_on 'Edit'
@@ -681,7 +681,7 @@ RSpec.describe 'Admin student functions', type: :feature do
       fill_in 'Major', with: 'Basket Making'
       select 'Fall Only', :from => 'Exchange term'
       fill_in 'Student email', with: 'FooBar@gmail.com'
-      select 'Smith, John', :from => 'Representative'
+      select 'Smith, John', :from => 'Nominator'
       click_on 'Create Student'
     visit students_path
     click_on 'Delete'
@@ -698,7 +698,7 @@ RSpec.describe 'Admin student functions', type: :feature do
       fill_in 'Major', with: 'Basket Making'
       select 'Fall Only', :from => 'Exchange term'
       fill_in 'Student email', with: 'FooBar@gmail.com'
-      select 'Smith, John', :from => 'Representative'
+      select 'Smith, John', :from => 'Nominator'
       click_on 'Create Student'
     visit new_student_path
       select 'UniName', :from => 'University'
@@ -708,14 +708,14 @@ RSpec.describe 'Admin student functions', type: :feature do
       fill_in 'Major', with: 'Basket Making'
       select 'Fall Only', :from => 'Exchange term'
       fill_in 'Student email', with: 'FooBar@gmail.com'
-      select 'Smith, John', :from => 'Representative'
+      select 'Smith, John', :from => 'Nominator'
       click_on 'Create Student'
     visit students_path
     click_on 'Clear All'
       click_on 'Clear All Students'
     visit universities_path
       expect(page).to have_content('UniName 0 3')
-    visit representatives_path
+    visit nominators_path
       expect(page).to have_content('John')
     visit students_path
       expect(page).not_to have_content('Foo')
@@ -731,7 +731,7 @@ RSpec.describe 'Admin student functions', type: :feature do
       fill_in 'Major', with: 'Basket Making'
       select 'Fall Only', :from => 'Exchange term'
       fill_in 'Student email', with: 'FooBar@gmail.com'
-      select 'Smith, John', :from => 'Representative'
+      select 'Smith, John', :from => 'Nominator'
       click_on 'Create Student'
     visit universities_path
       expect(page).to have_content('UniName 1 3')
@@ -748,7 +748,7 @@ RSpec.describe 'Admin student functions', type: :feature do
       fill_in 'Major', with: 'Basket Making'
       select 'Fall and Spring', :from => 'Exchange term'
       fill_in 'Student email', with: 'FooBar@gmail.com'
-      select 'Smith, John', :from => 'Representative'
+      select 'Smith, John', :from => 'Nominator'
       click_on 'Create Student'
     visit universities_path
       expect(page).to have_content('UniName 2 3')
@@ -764,7 +764,7 @@ RSpec.describe 'Admin student functions', type: :feature do
       click_on 'Create Student'
       expect(page).to have_content('error')
       select 'UniName', :from => 'University'
-      select 'Smith, John', :from => 'Representative'
+      select 'Smith, John', :from => 'Nominator'
       fill_in 'First name', with: 'Foo'
       fill_in 'Last name', with: 'Bar'
       select 'Bachelors', :from => 'Degree level'
@@ -797,7 +797,7 @@ RSpec.describe 'Admin student functions', type: :feature do
       fill_in 'Major', with: 'Basket Making'
       select 'Fall Only', :from => 'Exchange term'
       fill_in 'Student email', with: 'FooBar@gmail.com'
-      select 'Smith, John', :from => 'Representative'
+      select 'Smith, John', :from => 'Nominator'
       click_on 'Create Student'
     visit universities_path
       fill_in 'change_lim', with: '1'
@@ -928,7 +928,7 @@ end
 
 # ################################### user CRUD functions ###########################
 
-RSpec.describe 'User representative functions', type: :feature do
+RSpec.describe 'User nominator functions', type: :feature do
   before do
     @authorized = Authorized.create(authorized_email: "userdoe@example.com")
     Rails.application.env_config['devise.mapping'] = Devise.mappings[:admin]
@@ -943,16 +943,16 @@ RSpec.describe 'User representative functions', type: :feature do
       click_on 'Create University'
   end
 
-  scenario 'create representative' do
-    visit user_new_representatives_path
-      click_on 'Create Representative'
+  scenario 'create nominator' do
+    visit user_new_nominators_path
+      click_on 'Create Nominator'
       expect(page).to have_content('error')
       select 'UniName', :from => 'University'
       fill_in 'First name', with: 'John'
       fill_in 'Last name', with: 'Smith'
       fill_in 'Title', with: 'CEO'
       fill_in 'Email', with: 'JohnSmith@gmail.com'
-    click_on 'Create Representative'
+    click_on 'Create Nominator'
       expect(page).to have_content('John')
       expect(page).to have_content('Smith')
       expect(page).to have_content('CEO')
@@ -961,32 +961,32 @@ RSpec.describe 'User representative functions', type: :feature do
       expect(page).to have_content('Continue')
   end
 
-  scenario 'edit representative' do
-    visit user_new_representatives_path
+  scenario 'edit nominator' do
+    visit user_new_nominators_path
       select 'UniName', :from => 'University'
       fill_in 'First name', with: 'John'
       fill_in 'Last name', with: 'Smith'
       fill_in 'Title', with: 'CEO'
       fill_in 'Email', with: 'JohnSmith@gmail.com'
-      click_on 'Create Representative'
+      click_on 'Create Nominator'
     click_on 'Edit'
       fill_in 'First name', with: ''
-      click_on 'Update Representative'
+      click_on 'Update Nominator'
       expect(page).to have_content('error')
       fill_in 'First name', with: 'Alice'
-    click_on 'Update Representative'
+    click_on 'Update Nominator'
       expect(page).to have_content('Alice')
       expect(page).to have_content('Continue') # expect user_show
   end
   
   scenario 'finish link' do
-    visit user_new_representatives_path
+    visit user_new_nominators_path
       select 'UniName', :from => 'University'
       fill_in 'First name', with: 'John'
       fill_in 'Last name', with: 'Smith'
       fill_in 'Title', with: 'CEO'
       fill_in 'Email', with: 'JohnSmith@gmail.com'
-      click_on 'Create Representative'
+      click_on 'Create Nominator'
     click_link 'Continue'
       expect(page).to have_content('Finish')
       expect(page).to have_content('John')
@@ -1004,26 +1004,26 @@ RSpec.describe 'User student functions', type: :feature do
     unless Admin.where(email: 'userdoe@example.com').first.nil? == false
       Admin.create!(email: 'userdoe@example.com', full_name: 'User Doe', uid: '123456789', avatar_url: 'https://lh3.googleusercontent.com/url/photo.jpg')
     end
-    visit root_path # need to create university and representative first
+    visit root_path # need to create university and nominator first
       click_on 'Admin login'
       visit new_university_path
       fill_in 'University name', with: 'UniName'
       click_on 'Create University'
-    visit user_new_representatives_path
+    visit user_new_nominators_path
       select 'UniName', :from => 'University'
       fill_in 'First name', with: 'John'
       fill_in 'Last name', with: 'Smith'
       fill_in 'Title', with: 'CEO'
       fill_in 'Email', with: 'JohnSmith@gmail.com'
-      click_on 'Create Representative'
+      click_on 'Create Nominator'
       click_link 'Continue'
   end
 
   scenario 'create student' do
     expect(page).to have_content('Finish')
     click_on 'Enter a new student'
-      expect(page).not_to have_content('University') # can't fill in representative or university
-      expect(page).not_to have_content('Representative')
+      expect(page).not_to have_content('University') # can't fill in nominator or university
+      expect(page).not_to have_content('Nominator')
       click_on 'Create Student'
       expect(page).to have_content('error')
       fill_in 'First name', with: 'Foo'
@@ -1112,13 +1112,13 @@ RSpec.describe 'User student functions', type: :feature do
     visit universities_path
       fill_in 'change_lim', with: '1'
       click_on 'Change All Limits'
-    visit user_new_representatives_path
+    visit user_new_nominators_path
       select 'UniName', :from => 'University'
       fill_in 'First name', with: 'Johnny'
       fill_in 'Last name', with: 'Smith'
       fill_in 'Title', with: 'CEO'
       fill_in 'Email', with: 'JohnnySmith@gmail.com'
-      click_on 'Create Representative'
+      click_on 'Create Nominator'
       click_link 'Continue'
     click_on 'Enter a new student'
       fill_in 'First name', with: 'Foo'
@@ -1178,7 +1178,7 @@ RSpec.describe 'User student functions', type: :feature do
       expect(page).not_to have_content('Enter another new student')
   end
 
-  scenario "Don't allow more representatives to make nominations after reaching limit" do
+  scenario "Don't allow more nominators to make nominations after reaching limit" do
     click_on 'Enter a new student' # student 1
       fill_in 'First name', with: 'Foo'
       fill_in 'Last name', with: 'Bar'
@@ -1203,14 +1203,14 @@ RSpec.describe 'User student functions', type: :feature do
       select 'Fall Only', :from => 'Exchange term'
       fill_in 'Student email', with: 'Foo3Bar@gmail.com'
       click_on 'Create Student'
-      # start over with new representative
-    visit user_new_representatives_path
+      # start over with new nominator
+    visit user_new_nominators_path
       select 'UniName', :from => 'University'
       fill_in 'First name', with: 'Alice'
       fill_in 'Last name', with: 'May'
       fill_in 'Title', with: 'Division Head'
       fill_in 'Email', with: 'A.May@gmail.com'
-      click_on 'Create Representative'
+      click_on 'Create Nominator'
     click_link 'Continue'
       expect(page).to have_content('Finish')
       expect(page).to have_content('3 students nominated')
@@ -1228,18 +1228,18 @@ RSpec.describe 'Deadline', type: :feature do
     unless Admin.where(email: 'userdoe@example.com').first.nil? == false
       Admin.create!(email: 'userdoe@example.com', full_name: 'User Doe', uid: '123456789', avatar_url: 'https://lh3.googleusercontent.com/url/photo.jpg')
     end
-    visit root_path # need to create university and representative first
+    visit root_path # need to create university and nominator first
       click_on 'Admin login'
       visit new_university_path
       fill_in 'University name', with: 'UniName'
       click_on 'Create University'
-    visit user_new_representatives_path
+    visit user_new_nominators_path
       select 'UniName', :from => 'University'
       fill_in 'First name', with: 'John'
       fill_in 'Last name', with: 'Smith'
       fill_in 'Title', with: 'CEO'
       fill_in 'Email', with: 'JohnSmith@gmail.com'
-      click_on 'Create Representative'
+      click_on 'Create Nominator'
       click_link 'Continue'
     click_on 'Enter a new student'
       fill_in 'First name', with: 'Foo'
@@ -1255,7 +1255,7 @@ RSpec.describe 'Deadline', type: :feature do
   end
 
   scenario 'root redirect' do
-    visit user_new_representatives_path
+    visit user_new_nominators_path
     expect(page).to have_content('The deadline for this form has passed')
   end
 
@@ -1270,14 +1270,14 @@ RSpec.describe 'Deadline', type: :feature do
       fill_in 'Title', with: 'CEO'
       fill_in 'Email', with: 'JohnSmith@gmail.com'
       sleep(3)
-      click_on 'Create Representative'
+      click_on 'Create Nominator'
       expect(page).to have_content('The deadline for this form has passed')
   end
 
   scenario 'create student' do
-    visit user_new_student_path(Representative.all[0])
-      expect(page).not_to have_content('University') # can't fill in representative or university
-      expect(page).not_to have_content('Representative')
+    visit user_new_student_path(Nominator.all[0])
+      expect(page).not_to have_content('University') # can't fill in nominator or university
+      expect(page).not_to have_content('Nominator')
       fill_in 'First name', with: 'Foo2'
       fill_in 'Last name', with: 'Bar2'
       select 'Bachelors', :from => 'Degree level'
@@ -1322,13 +1322,13 @@ RSpec.describe 'User Question functions', type: :feature do
 	  fill_in 'Prompt', with: 'How are you?'
 	  click_on 'Create Question'
 	  
-	  visit user_new_representatives_path
+	  visit user_new_nominators_path
       select 'UniName', :from => 'University'
       fill_in 'First name', with: 'John'
       fill_in 'Last name', with: 'Smith'
       fill_in 'Title', with: 'CEO'
       fill_in 'Email', with: 'JohnSmith@gmail.com'
-      click_on 'Create Representative'
+      click_on 'Create Nominator'
 	  
       click_link 'Continue'
 	  click_on 'Enter a new student'
@@ -1381,13 +1381,13 @@ RSpec.describe 'User Answer functions', type: :feature do
 	  fill_in 'Choice', with: 'No'
 	  click_on 'Create Answer'
 	  
-	  visit user_new_representatives_path
+	  visit user_new_nominators_path
       select 'UniName', :from => 'University'
       fill_in 'First name', with: 'John'
       fill_in 'Last name', with: 'Smith'
       fill_in 'Title', with: 'CEO'
       fill_in 'Email', with: 'JohnSmith@gmail.com'
-      click_on 'Create Representative'
+      click_on 'Create Nominator'
 	  
       click_link 'Continue'
 	  click_on 'Enter a new student'

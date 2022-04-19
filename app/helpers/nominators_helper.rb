@@ -1,0 +1,2 @@
+module NominatorsHelper
+end

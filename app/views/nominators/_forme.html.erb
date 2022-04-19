@@ -1,10 +1,10 @@
-<%= form_with model: representative, url: user_update_representative_path(@representative), method: :patch, local: true do |form| %>
-  <% if representative.errors.any? %>
+<%= form_with model: nominator, url: user_update_nominator_path(@nominator), method: :patch, local: true do |form| %>
+  <% if nominator.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(representative.errors.count, "error") %> prohibited this nominator from being saved:</h2>
+      <h2><%= pluralize(nominator.errors.count, "error") %> prohibited this nominator from being saved:</h2>
 
       <ul>
-        <% representative.errors.each do |error| %>
+        <% nominator.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -32,8 +32,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :rep_email, "Email" %>
-    <%= form.email_field :rep_email %>
+    <%= form.label :nominator_email, "Email" %>
+    <%= form.email_field :nominator_email %>
   </div>
 
   <div class="actions">

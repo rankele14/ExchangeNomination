@@ -53,7 +53,7 @@
 <%= link_to 'Edit', user_edit_student_path(@student) %> |
 
 <% if (@deadline == nil || Time.now <= @deadline.var_value) && @university.num_nominees < @university.max_limit%>
-  <%= link_to 'Enter another new student', user_new_student_path(@student.representative_id) %> | 
+  <%= link_to 'Enter another new student', user_new_student_path(@student.nominator_id) %> | 
 <% end %>
 
-<%= link_to 'Finish', finish_representative_path(@student.representative_id) %>
+<%= link_to 'Finish', finish_nominator_path(@student.nominator_id) %>

@@ -39,19 +39,19 @@ ActiveRecord::Schema.define(version: 2022_04_01_025847) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "questions", force: :cascade do |t|
-    t.boolean "multi"
-    t.string "prompt"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "representatives", force: :cascade do |t|
+  create_table "nominators", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "title"
     t.integer "university_id"
-    t.string "rep_email"
+    t.string "nominator_email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.boolean "multi"
+    t.string "prompt"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2022_04_01_025847) do
     t.string "exchange_term"
     t.string "degree_level"
     t.string "major"
-    t.integer "representative_id"
+    t.integer "nominator_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
