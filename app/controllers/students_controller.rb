@@ -97,8 +97,13 @@ class StudentsController < ApplicationController
     @representative = Representative.find(@student.representative_id)
     @university = University.find(@student.university_id)
     @deadline = Variable.find_by(var_name: 'deadline')
+    new_term = params[:student][:exchange_term]
     
-    if @deadline != nil && Time.now > @deadline.var_value then# past the deadline
+    if  @university.num_nominees >= @university.max_limit then # used to be single, now double, exceeds university limit
+      redirect_to user_new_student_url(@representative), alert: "Sorry, the University has already reached the limit on nominees." 
+    elsif  (new_term.include? 'and') && (@university.num_nominees >= @university.max_limit-1) then # used to be single, now double, exceeds university limit
+      redirect_to user_new_student_url(@representative), alert: "Sorry, a double term nomination would exceed the university's nomination limit. Please stick to a single term nomination." 
+    elsif @deadline != nil && Time.now > @deadline.var_value then# past the deadline
       redirect_to finish_representative_path(@student.representative_id), alert: "Sorry, the deadline for submitting students has passed" 
     else
       respond_to do |format|
