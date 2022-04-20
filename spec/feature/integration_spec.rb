@@ -1,7 +1,5 @@
 require 'rails_helper'
 
-OmniAuth.config.silence_get_warning = true
-
 RSpec.describe 'Logging in', type: :feature do
   before do
     @authorized = Authorized.create(authorized_email: "userdoe@example.com")
@@ -400,9 +398,9 @@ RSpec.describe 'Admin representative functions', type: :feature do
       fill_in 'Last name', with: 'Smith'
       fill_in 'Title', with: 'CEO'
       # FIXME should error this part without @ but doesn't
-      #fill_in 'Email', with: 'JohnSmith'
-      #click_on 'Create Representative'
-      #expect(page).to have_content('error')
+      # fill_in 'Email', with: 'JohnSmith'
+      # click_on 'Create Representative'
+      # expect(page).to have_content('error')
       fill_in 'Email', with: 'JohnSmith@gmail.com'
     click_on 'Create Representative'
       visit representatives_path
@@ -907,7 +905,9 @@ RSpec.describe 'Admin question functions', type: :feature do
 	fill_in 'Choice', with: '1'
 	click_on 'Create Answer'
 	click_on 'Delete Choice'
-	click_on 'Destroy'
+  # not using delete page, just link from index
+  # delete page not necessary for association notice
+	# click_on 'Delete Choice'
     expect(page).not_to have_content('1')
   end
 end
@@ -936,11 +936,20 @@ RSpec.describe 'User representative functions', type: :feature do
     unless Admin.where(email: 'userdoe@example.com').first.nil? == false
       Admin.create!(email: 'userdoe@example.com', full_name: 'User Doe', uid: '123456789', avatar_url: 'https://lh3.googleusercontent.com/url/photo.jpg')
     end
-    visit root_path # need to create university first
+    visit root_path # need to create university and variables first
       click_on 'Admin login'
+      visit admin_path
+        fill_in 'deadline', with: DateTime.current + 3.days
+        click_on 'Update'
+      visit universities_path
+        fill_in 'max_lim', with: '3'
+        click_on 'Update Default Limit'
+        visit universities_path
+        expect(page).to have_content('3')
       visit new_university_path
-      fill_in 'University name', with: 'UniName'
-      click_on 'Create University'
+        fill_in 'University name', with: 'UniName'
+        click_on 'Create University'
+        expect(page).to have_content('UniName 0 3')
   end
 
   scenario 'create representative' do
@@ -958,7 +967,7 @@ RSpec.describe 'User representative functions', type: :feature do
       expect(page).to have_content('CEO')
       expect(page).to have_content('JohnSmith@gmail.com')
       # expect to go to user_show after fail, Continue instead of Back
-      expect(page).to have_content('Continue')
+      click_on('Continue'); # expect user_show
   end
 
   scenario 'edit representative' do
@@ -976,7 +985,7 @@ RSpec.describe 'User representative functions', type: :feature do
       fill_in 'First name', with: 'Alice'
     click_on 'Update Representative'
       expect(page).to have_content('Alice')
-      expect(page).to have_content('Continue') # expect user_show
+      click_on('Continue'); # expect user_show
   end
   
   scenario 'finish link' do
@@ -987,12 +996,12 @@ RSpec.describe 'User representative functions', type: :feature do
       fill_in 'Title', with: 'CEO'
       fill_in 'Email', with: 'JohnSmith@gmail.com'
       click_on 'Create Representative'
-    click_link 'Continue'
-      expect(page).to have_content('Finish')
+    click_on 'Continue'
       expect(page).to have_content('John')
       expect(page).to have_content('Smith')
       expect(page).to have_content('CEO')
       expect(page).to have_content('JohnSmith@gmail.com')
+      expect(page).to have_content('Finish') # expect finish page
   end
 end
 
@@ -1004,8 +1013,16 @@ RSpec.describe 'User student functions', type: :feature do
     unless Admin.where(email: 'userdoe@example.com').first.nil? == false
       Admin.create!(email: 'userdoe@example.com', full_name: 'User Doe', uid: '123456789', avatar_url: 'https://lh3.googleusercontent.com/url/photo.jpg')
     end
-    visit root_path # need to create university and representative first
+    visit root_path # need to create university and representative variables first
       click_on 'Admin login'
+      visit admin_path
+        fill_in 'deadline', with: DateTime.current + 3.days
+        click_on 'Update'
+      visit universities_path
+        fill_in 'max_lim', with: '3'
+        click_on 'Update Default Limit'
+        visit universities_path
+        expect(page).to have_content('3')
       visit new_university_path
       fill_in 'University name', with: 'UniName'
       click_on 'Create University'
@@ -1016,11 +1033,11 @@ RSpec.describe 'User student functions', type: :feature do
       fill_in 'Title', with: 'CEO'
       fill_in 'Email', with: 'JohnSmith@gmail.com'
       click_on 'Create Representative'
-      click_link 'Continue'
+      click_on 'Continue'
   end
 
   scenario 'create student' do
-    expect(page).to have_content('Finish')
+    expect(page).to have_content('Finish') # finish page
     click_on 'Enter a new student'
       expect(page).not_to have_content('University') # can't fill in representative or university
       expect(page).not_to have_content('Representative')
@@ -1039,7 +1056,7 @@ RSpec.describe 'User student functions', type: :feature do
       expect(page).to have_content('Basket Making')
       expect(page).to have_content('Fall Only')
       expect(page).to have_content('FooBar@gmail.com')
-      expect(page).to have_content('Finish') # expect user_show    
+      click_on 'Finish' # expect user_show    
   end
 
   scenario 'edit student' do
@@ -1058,7 +1075,7 @@ RSpec.describe 'User student functions', type: :feature do
       fill_in 'First name', with: 'Baz'
     click_on 'Update Student'
       expect(page).to have_content('Baz')
-      expect(page).to have_content('Finish') # expect user_show
+      click_on 'Finish' # expect user_show
   end
 
   scenario 'finish link' do
@@ -1071,7 +1088,7 @@ RSpec.describe 'User student functions', type: :feature do
       fill_in 'Student email', with: 'FooBar@gmail.com'
       click_on 'Create Student'
     click_on 'Finish'
-      expect(page).to have_content('Finish')
+      expect(page).to have_content('Finish') # finish page
   end
   
   scenario 'update exchange term up' do
@@ -1119,7 +1136,7 @@ RSpec.describe 'User student functions', type: :feature do
       fill_in 'Title', with: 'CEO'
       fill_in 'Email', with: 'JohnnySmith@gmail.com'
       click_on 'Create Representative'
-      click_link 'Continue'
+      click_on 'Continue'
     click_on 'Enter a new student'
       fill_in 'First name', with: 'Foo'
       fill_in 'Last name', with: 'Bar'
@@ -1146,7 +1163,7 @@ RSpec.describe 'User student functions', type: :feature do
     click_on 'Finish'
       click_on 'Delete'
       click_on 'Delete Student'
-      expect(page).to have_content('Finish')
+      expect(page).to have_content('Finish') # finish page
       expect(page).not_to have_content('Foo')
   end
 
@@ -1173,7 +1190,7 @@ RSpec.describe 'User student functions', type: :feature do
       expect(page).to have_content('3 out of 3')
       expect(page).not_to have_content('Enter another new student')
     click_on 'Finish'
-      expect(page).to have_content('Finish')
+      expect(page).to have_content('Finish') # finish page
       expect(page).to have_content('3 students nominated')
       expect(page).not_to have_content('Enter another new student')
   end
@@ -1211,8 +1228,8 @@ RSpec.describe 'User student functions', type: :feature do
       fill_in 'Title', with: 'Division Head'
       fill_in 'Email', with: 'A.May@gmail.com'
       click_on 'Create Representative'
-    click_link 'Continue'
-      expect(page).to have_content('Finish')
+    click_on 'Continue'
+      expect(page).to have_content('Finish') # finish page
       expect(page).to have_content('3 students nominated')
       expect(page).to have_content('Alice')
       expect(page).not_to have_content('Foo')
@@ -1240,7 +1257,7 @@ RSpec.describe 'Deadline', type: :feature do
       fill_in 'Title', with: 'CEO'
       fill_in 'Email', with: 'JohnSmith@gmail.com'
       click_on 'Create Representative'
-      click_link 'Continue'
+      click_on 'Continue'
     click_on 'Enter a new student'
       fill_in 'First name', with: 'Foo'
       fill_in 'Last name', with: 'Bar'
@@ -1299,7 +1316,7 @@ RSpec.describe 'Deadline', type: :feature do
   scenario 'delete student' do
     visit user_delete_student_url(Student.all[0])
       click_on 'Delete Student'
-      expect(page).to have_content('Finish')
+      expect(page).to have_content('Finish') # finish page
       expect(page).to have_content('Foo')
   end
 end
@@ -1330,7 +1347,7 @@ RSpec.describe 'User Question functions', type: :feature do
       fill_in 'Email', with: 'JohnSmith@gmail.com'
       click_on 'Create Representative'
 	  
-      click_link 'Continue'
+      click_on 'Continue'
 	  click_on 'Enter a new student'
       fill_in 'First name', with: 'Foo'
       fill_in 'Last name', with: 'Bar'
@@ -1389,7 +1406,7 @@ RSpec.describe 'User Answer functions', type: :feature do
       fill_in 'Email', with: 'JohnSmith@gmail.com'
       click_on 'Create Representative'
 	  
-      click_link 'Continue'
+      click_on 'Continue'
 	  click_on 'Enter a new student'
       fill_in 'First name', with: 'Foo'
       fill_in 'Last name', with: 'Bar'

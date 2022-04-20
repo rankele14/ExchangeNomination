@@ -54,10 +54,10 @@ class QuestionsController < ApplicationController
 
   def destroy
     Answer.all.each do |answer|
-	  if @question.id == answer.question_id then
-		answer.destroy
+      if @question.id == answer.question_id then
+      answer.destroy
+      end
 	  end
-	end
     @question.destroy
     respond_to do |format|
       format.html { redirect_to questions_url, notice: "Question was successfully destroyed." }

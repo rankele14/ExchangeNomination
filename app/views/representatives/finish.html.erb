@@ -69,7 +69,7 @@
     <p>If the maximum number of nominees has been reached, then entering a new student will not be allowed.</p>
 
 
-    <% if (@deadline == nil || Time.now <= @deadline.var_value) && @university.num_nominees < @variable.var_value.to_i%>
+    <% if (@deadline == nil || Time.now <= @deadline.var_value) && @university.num_nominees < @max_limit.var_value.to_i%>
       <div style="margin-left: 20%;">
         <%= button_to "Enter a new student", user_new_student_path(@representative), :class => "create-new-item-button", :method => :get %>
       </div>
