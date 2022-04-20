@@ -78,11 +78,11 @@ class UniversitiesController < ApplicationController
       @variable.save
       redirect_to universities_path, notice: "Max Limit was successfully updated."
     elsif ml < 0
-      redirect_to universities_path, alert: "Max Limit update not successful. Max Limit cannot be negative."
+      redirect_to universities_path, alert: "There was an error updating max limit. Max Limit cannot be negative."
     elsif ml > 100
-      redirect_to universities_path, alert: "Max Limit update not successful. Max Limit capped at 100."
-    else
-      redirect_to universities_path, alert: "There was an error updating max limit."
+      redirect_to universities_path, alert: "There was an error updating max limit. Max Limit capped at 100."
+    # else
+    #   redirect_to universities_path, alert: "There was an error updating max limit."
     end
   end
 
@@ -97,11 +97,11 @@ class UniversitiesController < ApplicationController
       end
       redirect_to universities_path, notice: "Limits were successfully updated."
     elsif cl < 0
-      redirect_to universities_path, alert: "Limits update not successful. Limits cannot be negative."
+      redirect_to universities_path, alert: "There was an error updating limits. Limits cannot be negative."
     elsif cl > 100
-      redirect_to universities_path, alert: "Limits update not successful. Limits capped at 100."
-    else
-      redirect_to universities_path, alert: "There was an error updating limits."
+      redirect_to universities_path, alert: "There was an error updating limits. Limits capped at 100."
+    # else
+    #   redirect_to universities_path, alert: "There was an error updating limits."
     end
   end
 
@@ -119,6 +119,10 @@ class UniversitiesController < ApplicationController
   end
 
   def reset_all
+    @universities = University.all
+  end
+  
+  def reset
     @universities = University.all
     @universities.each do |university|
       # delete students too?

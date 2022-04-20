@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3C0000; padding-top: 0;padding-bottom: 0;">
     <div class = "row" style="height:35px; padding-bottom: 0;">
       <div class="col-sm-auto" style="margin-bottom: 0;">
-        <%= button_to "Back to Representatives", representatives_path, :class => "new-navbar-box", :method => :get %>
+        <%= button_to "Return to Home Page", user_new_representatives_path, :class => "new-navbar-box", :method => :get %>
       </div>
     </div>
   <nav>
@@ -42,7 +42,7 @@
               <tr>
                 <td><%= student.first_name %></td>
                 <td><%= student.last_name %></td>
-                <td><%= student.university_id %></td>
+                <td><%= University.find(student.university_id).university_name %></td>
                 <td><%= student.degree_level %></td>
                 <td><%= student.major %></td>
                 <td><%= student.exchange_term %></td>
@@ -62,9 +62,9 @@
 
     <p>
       <strong>Number of University Nominations: </strong>
-      <%= University.find(@representative.university_id).num_nominees %>
+      <%= @university.num_nominees %>
       students nominated out of alloted
-      <%= @max_lim%> nominees
+      <%= @university.max_limit%> nominees
     </p>
     <p>If the maximum number of nominees has been reached, then entering a new student will not be allowed.</p>
 
@@ -109,7 +109,7 @@
 
     <p>
       <strong>University:</strong>
-      <%= University.find(@representative.university_id).university_name %>
+      <%= @university.university_name %>
     </p>
 
     <% if (@deadline == nil || Time.now <= @deadline.var_value) %>
