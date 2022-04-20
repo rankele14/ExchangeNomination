@@ -51,9 +51,9 @@ ActiveRecord::Schema.define(version: 2022_04_01_025847) do
     t.string "last_name"
     t.string "title"
     t.integer "university_id"
-    t.string "rep_email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "rep_email"
   end
 
   create_table "responses", force: :cascade do |t|
@@ -69,19 +69,16 @@ ActiveRecord::Schema.define(version: 2022_04_01_025847) do
     t.string "first_name"
     t.string "last_name"
     t.integer "university_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.string "student_email"
     t.string "exchange_term"
     t.string "degree_level"
     t.string "major"
-    t.integer "representative_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "universities", force: :cascade do |t|
     t.string "university_name"
-    t.integer "num_nominees"
-    t.integer "max_limit"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

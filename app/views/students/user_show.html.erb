@@ -1,48 +1,50 @@
-<p id="notice"><%= notice %></p>
-<div style="text-align: right"><%= link_to 'Help', user_help_path %></div>
+<div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
+  <div class="container show-box">
+    <p id="notice"><%= notice %></p>
+    <div style="text-align: right"><%= link_to 'Help', user_help_path %></div>
 
-<p>
-  <strong>First name:</strong>
-  <%= @student.first_name %>
-</p>
+    <p>
+      <strong>First name:</strong>
+      <%= @student.first_name %>
+    </p>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @student.last_name %>
-</p>
+    <p>
+      <strong>Last name:</strong>
+      <%= @student.last_name %>
+    </p>
 
-<p>
-  <strong>University:</strong>
-  <%= @university.university_name %>
-</p>
+    <p>
+      <strong>University:</strong>
+      <%= @university.university_name %>
+    </p>
 
-<p>
-  <strong>Degree level</strong>
-  <%= @student.degree_level %>
-</p>
+    <p>
+      <strong>Degree level</strong>
+      <%= @student.degree_level %>
+    </p>
 
-<p>
-  <strong>Major/Area of Study</strong>
-  <%= @student.major %>
-</p>
+    <p>
+      <strong>Major/Area of Study</strong>
+      <%= @student.major %>
+    </p>
 
-<p>
-  <strong>Term of exchange</strong>
-  <%= @student.exchange_term %>
-</p>
+    <p>
+      <strong>Term of exchange</strong>
+      <%= @student.exchange_term %>
+    </p>
 
-<p>
-  <strong>Email</strong>
-  <%= @student.student_email %>
-</p>
+    <p>
+      <strong>Email</strong>
+      <%= @student.student_email %>
+    </p>
 
-<p>
-  <strong>Number of Nominations: </strong>
-  <%= @university.num_nominees %>
-  out of 
+    <p>
+      <strong>Number of Nominations: </strong>
+      <%= @university.num_nominees %>
+      out of
   <%= @university.max_limit%>
-</p>
-<h2>Questions:</h2>
+    </p>
+    <h2>Questions:</h2>
 <% for response in @student.response %>
     <ul>
 	  <td><%= Question.all.find(response.question_id).prompt %>: </td>
@@ -50,10 +52,14 @@
 	  <td><%= link_to 'Edit Answer', user_edit_student_response_path(@student, response) %></td>
   </ul>
 <% end %>
-<%= link_to 'Edit', user_edit_student_path(@student) %> |
+    <%= link_to 'Edit', user_edit_student_path(@student) %>
 
-<% if (@deadline == nil || Time.now <= @deadline.var_value) && @university.num_nominees < @university.max_limit%>
-  <%= link_to 'Enter another new student', user_new_student_path(@student.representative_id) %> | 
-<% end %>
+    <% if (@deadline == nil || Time.now <= @deadline.var_value) && @university.num_nominees < @university.max_limit%>
+      <%= link_to 'Enter another new student', user_new_student_path(@student.representative_id) %> |
+    <% end %>
 
-<%= link_to 'Finish', finish_representative_path(@student.representative_id) %>
+    <div style="margin-left: 10%;">
+      <%= button_to "Finish", finish_representative_path(@student.representative_id), :class => "create-new-item-button", :method => :get %>
+    </div>
+  </div>
+</div>
