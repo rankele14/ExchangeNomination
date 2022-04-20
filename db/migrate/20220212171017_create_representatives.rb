@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateRepresentatives < ActiveRecord::Migration[6.1]
   def change
     create_table :representatives do |t|

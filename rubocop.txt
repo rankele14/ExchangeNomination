@@ -1,5 +1,5 @@
-Inspecting 115 files
-CCCCWWWCCWCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+Inspecting 95 files
+...C.C.C.CCCCW..........C.....C.C..CCCCCCCCCCCCCCCCCCCCC.CC.C.C.....C......C..CC.CC..CCC.....C.
 
 Offenses:
 
@@ -144,17 +144,33 @@ app/controllers/answers_controller.rb:20:3: C: [Correctable] Style/EmptyMethod: 
 app/controllers/answers_controller.rb:29:77: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
         format.html { redirect_to question_answers_path(@question), notice: "Answer was successfully created." }
                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/answers_controller.rb:42:77: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-        format.html { redirect_to question_answers_path(@question), notice: "Answer was successfully updated." }
+app/controllers/answers_controller.rb:30:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render :show, status: :created, location: @answer }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/answers_controller.rb:32:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { render :new, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/answers_controller.rb:33:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render json: @answer.errors, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/answers_controller.rb:42:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { redirect_to question_answers_path(@question), notice: 'Answer was successfully updated.' }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/answers_controller.rb:42:77: C: Rails/I18nLocaleTexts: Move locale texts to the locale files in the config/locales directory.
+        format.html { redirect_to question_answers_path(@question), notice: 'Answer was successfully updated.' }
                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/answers_controller.rb:56:1: C: [Correctable] Layout/IndentationWidth: Use 2 (not 4) spaces for indentation.
-    def destroy
-^^^^
-app/controllers/answers_controller.rb:56:5: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
-    def destroy ...
-    ^^^^^^^^^^^
-app/controllers/answers_controller.rb:57:5: C: [Correctable] Layout/IndentationWidth: Use 2 (not 0) spaces for indentation.
+app/controllers/answers_controller.rb:43:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render :show, status: :ok, location: @answer }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/answers_controller.rb:45:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { render :edit, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/answers_controller.rb:46:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render json: @answer.errors, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/answers_controller.rb:57:13: C: [Correctable] Rails/SaveBang: Use destroy! instead of destroy if the return value is not checked.
     @answer.destroy
+
     
 app/controllers/answers_controller.rb:58:1: C: [Correctable] Layout/IndentationStyle: Tab detected in indentation.
 	respond_to do |format|
@@ -241,76 +257,66 @@ app/controllers/authorizeds_controller.rb:19:3: C: [Correctable] Style/EmptyMeth
   ^^^^^^^^
 app/controllers/authorizeds_controller.rb:28:56: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
         format.html { redirect_to @authorized, notice: "Authorized was successfully created." }
+
                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/authorizeds_controller.rb:41:56: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-        format.html { redirect_to @authorized, notice: "Authorized was successfully updated." }
+app/controllers/authorizeds_controller.rb:29:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render :show, status: :created, location: @authorized }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/authorizeds_controller.rb:31:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { render :new, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/authorizeds_controller.rb:32:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render json: @authorized.errors, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/authorizeds_controller.rb:41:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { redirect_to @authorized, notice: 'Authorized was successfully updated.' }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/authorizeds_controller.rb:41:56: C: Rails/I18nLocaleTexts: Move locale texts to the locale files in the config/locales directory.
+        format.html { redirect_to @authorized, notice: 'Authorized was successfully updated.' }
                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/authorizeds_controller.rb:54:58: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-      format.html { redirect_to authorizeds_url, notice: "Authorized was successfully destroyed." }
+app/controllers/authorizeds_controller.rb:42:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render :show, status: :ok, location: @authorized }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/authorizeds_controller.rb:44:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { render :edit, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/authorizeds_controller.rb:45:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render json: @authorized.errors, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/authorizeds_controller.rb:52:17: C: [Correctable] Rails/SaveBang: Use destroy! instead of destroy if the return value is not checked.
+    @authorized.destroy
+                ^^^^^^^
+app/controllers/authorizeds_controller.rb:54:21: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      format.html { redirect_to authorizeds_url, notice: 'Authorized was successfully destroyed.' }
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/authorizeds_controller.rb:54:58: C: Rails/I18nLocaleTexts: Move locale texts to the locale files in the config/locales directory.
+      format.html { redirect_to authorizeds_url, notice: 'Authorized was successfully destroyed.' }
                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/authorizeds_controller.rb:59:3: C: [Correctable] Layout/EmptyLinesAroundAccessModifier: Keep a blank line before and after private.
-  private
-  ^^^^^^^
-app/controllers/authorizeds_controller.rb:61:1: C: [Correctable] Layout/IndentationWidth: Use 2 (not 4) spaces for indentation.
-    def set_authorized
-^^^^
-app/controllers/authorizeds_controller.rb:61:5: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
-    def set_authorized ...
-    ^^^^^^^^^^^^^^^^^^
-app/controllers/authorizeds_controller.rb:66:1: C: [Correctable] Layout/IndentationWidth: Use 2 (not 4) spaces for indentation.
-    def authorized_params
-^^^^
-app/controllers/authorizeds_controller.rb:66:5: C: [Correctable] Layout/IndentationConsistency: Inconsistent indentation detected.
-    def authorized_params ...
-    ^^^^^^^^^^^^^^^^^^^^^
-app/controllers/dashboards_controller.rb:1:1: C: Layout/EndOfLine: Carriage return character detected.
-class DashboardsController < ApplicationController ...
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/dashboards_controller.rb:1:1: C: Style/Documentation: Missing top-level documentation comment for class DashboardsController.
-class DashboardsController < ApplicationController
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/dashboards_controller.rb:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
-class DashboardsController < ApplicationController
-^
-app/controllers/dashboards_controller.rb:2:1: C: [Correctable] Layout/IndentationWidth: Use 2 (not 4) spaces for indentation.
-    def show
-^^^^
-app/controllers/dashboards_controller.rb:2:5: C: [Correctable] Style/EmptyMethod: Put empty method definitions on a single line.
-    def show ...
-    ^^^^^^^^
-app/controllers/dashboards_controller.rb:4:3: W: [Correctable] Layout/EndAlignment: end at 4, 2 is not aligned with class at 1, 0.
-  end
-  ^^^
-app/controllers/dashboards_controller.rb:4:6: C: [Correctable] Layout/TrailingEmptyLines: Final newline missing.
-  end
-     
-app/controllers/questions_controller.rb:1:1: C: Layout/EndOfLine: Carriage return character detected.
-class QuestionsController < ApplicationController ...
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/questions_controller.rb:1:1: C: Style/Documentation: Missing top-level documentation comment for class QuestionsController.
-class QuestionsController < ApplicationController
-^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/questions_controller.rb:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
-class QuestionsController < ApplicationController
-^
-app/controllers/questions_controller.rb:2:41: C: [Correctable] Layout/SpaceInsidePercentLiteralDelimiters: Do not use spaces inside percent literal delimiters.
-  before_action :set_question, only: %i[ show edit update destroy ]
-                                        ^
-app/controllers/questions_controller.rb:2:66: C: [Correctable] Layout/SpaceInsidePercentLiteralDelimiters: Do not use spaces inside percent literal delimiters.
-  before_action :set_question, only: %i[ show edit update destroy ]
-                                                                 ^
-app/controllers/questions_controller.rb:10:3: C: [Correctable] Style/EmptyMethod: Put empty method definitions on a single line.
-  def show ...
-  ^^^^^^^^
-app/controllers/questions_controller.rb:19:3: C: [Correctable] Style/EmptyMethod: Put empty method definitions on a single line.
-  def edit ...
-  ^^^^^^^^
-app/controllers/questions_controller.rb:28:54: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-        format.html { redirect_to @question, notice: "Question was successfully created." }
+app/controllers/authorizeds_controller.rb:55:21: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      format.json { head :no_content }
+                    ^^^^^^^^^^^^^^^^
+app/controllers/questions_controller.rb:28:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { redirect_to @question, notice: 'Question was successfully created.' }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/questions_controller.rb:28:54: C: Rails/I18nLocaleTexts: Move locale texts to the locale files in the config/locales directory.
+        format.html { redirect_to @question, notice: 'Question was successfully created.' }
                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/questions_controller.rb:41:54: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-        format.html { redirect_to @question, notice: "Question was successfully updated." }
+app/controllers/questions_controller.rb:29:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render :show, status: :created, location: @question }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/questions_controller.rb:31:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { render :new, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/questions_controller.rb:32:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render json: @question.errors, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/questions_controller.rb:41:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { redirect_to @question, notice: 'Question was successfully updated.' }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/questions_controller.rb:41:54: C: Rails/I18nLocaleTexts: Move locale texts to the locale files in the config/locales directory.
+        format.html { redirect_to @question, notice: 'Question was successfully updated.' }
                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 app/controllers/questions_controller.rb:57:1: C: [Correctable] Layout/IndentationStyle: Tab detected in indentation.
 	  if @question.id == answer.question_id then
 ^
@@ -524,14 +530,39 @@ app/controllers/responses_controller.rb:30:5: C: [Correctable] Layout/Indentatio
     ^^^^^^^^^^^^^^^^^^^^^^
 app/controllers/responses_controller.rb:32:80: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
         format.html { redirect_to new_student_response_path(@student), notice: "Response was successfully created." }
+
                                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/responses_controller.rb:45:71: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-        format.html { redirect_to show_student_url(@student), notice: "Response was successfully updated." }
+app/controllers/responses_controller.rb:32:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render :show, status: :created, location: @response }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/responses_controller.rb:34:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { render :new, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/responses_controller.rb:35:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render json: @response.errors, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/responses_controller.rb:44:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { redirect_to show_student_url(@student), notice: 'Response was successfully updated.' }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/responses_controller.rb:44:71: C: Rails/I18nLocaleTexts: Move locale texts to the locale files in the config/locales directory.
+        format.html { redirect_to show_student_url(@student), notice: 'Response was successfully updated.' }
                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/responses_controller.rb:53:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
-app/controllers/responses_controller.rb:57:76: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-        format.html { redirect_to user_show_student_url(@student), notice: "Response was successfully updated." }
+app/controllers/responses_controller.rb:45:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render :show, status: :ok, location: @response }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/responses_controller.rb:47:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { render :edit, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/responses_controller.rb:48:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render json: @response.errors, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/responses_controller.rb:56:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { redirect_to user_show_student_url(@student), notice: 'Response was successfully updated.' }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/responses_controller.rb:56:76: C: Rails/I18nLocaleTexts: Move locale texts to the locale files in the config/locales directory.
+        format.html { redirect_to user_show_student_url(@student), notice: 'Response was successfully updated.' }
                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 app/controllers/responses_controller.rb:81:21: C: [Correctable] Style/SymbolProc: Pass &:destroy as an argument to each instead of a block.
     @responses.each do |response| ...
                     ^^^^^^^^^^^^^
@@ -992,71 +1023,108 @@ app/controllers/universities_controller.rb:30:3: C: Metrics/MethodLength: Method
   ^^^^^^^^^^
 app/controllers/universities_controller.rb:36:61: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
         format.html { redirect_to universities_path notice: "University was successfully created." }
+
                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/universities_controller.rb:49:62: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-        format.html { redirect_to universities_path, notice: "University was successfully updated." }
+app/controllers/universities_controller.rb:38:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render :show, status: :created, location: @university }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/universities_controller.rb:40:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { render :new, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/universities_controller.rb:41:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render json: @university.errors, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/universities_controller.rb:50:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { redirect_to universities_path, notice: 'University was successfully updated.' }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/universities_controller.rb:50:62: C: Rails/I18nLocaleTexts: Move locale texts to the locale files in the config/locales directory.
+        format.html { redirect_to universities_path, notice: 'University was successfully updated.' }
                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/universities_controller.rb:67:59: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-      format.html { redirect_to universities_url, notice: "University was successfully destroyed." }
+app/controllers/universities_controller.rb:51:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render :show, status: :ok, location: @university }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/universities_controller.rb:53:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.html { render :edit, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/universities_controller.rb:54:23: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+        format.json { render json: @university.errors, status: :unprocessable_entity }
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/universities_controller.rb:65:17: C: [Correctable] Rails/SaveBang: Use destroy! instead of destroy if the return value is not checked.
+    @university.destroy
+                ^^^^^^^
+app/controllers/universities_controller.rb:68:21: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      format.html { redirect_to universities_url, notice: 'University was successfully destroyed.' }
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/universities_controller.rb:68:59: C: Rails/I18nLocaleTexts: Move locale texts to the locale files in the config/locales directory.
+      format.html { redirect_to universities_url, notice: 'University was successfully destroyed.' }
                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/universities_controller.rb:72:3: C: Metrics/MethodLength: Method has too many lines. [11/10]
-  def update_max ...
-  ^^^^^^^^^^^^^^
-app/controllers/universities_controller.rb:74:5: C: [Correctable] Layout/LeadingCommentSpace: Missing space after #.
-    #puts "params? #{params[:max_lim]}"
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/universities_controller.rb:76:16: C: [Correctable] Style/AndOr: Use && instead of and.
-    if ml > -1 and ml < 101
-               ^^^
-app/controllers/universities_controller.rb:79:46: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-      redirect_to universities_path, notice: "Max Limit was successfully updated."
+app/controllers/universities_controller.rb:69:21: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      format.json { head :no_content }
+                    ^^^^^^^^^^^^^^^^
+app/controllers/universities_controller.rb:76:10: W: [Correctable] Lint/NumberConversion: Replace unsafe number conversion with number class parsing, instead of using params[:max_lim].to_i, use stricter Integer(params[:max_lim], 10).
+    ml = params[:max_lim].to_i
+         ^^^^^^^^^^^^^^^^^^^^^
+app/controllers/universities_controller.rb:79:17: C: [Correctable] Rails/SaveBang: Use save! instead of save if the return value is not checked.
+      @variable.save
+                ^^^^
+app/controllers/universities_controller.rb:80:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      redirect_to universities_path, notice: 'Max Limit was successfully updated.'
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/universities_controller.rb:80:46: C: Rails/I18nLocaleTexts: Move locale texts to the locale files in the config/locales directory.
+      redirect_to universities_path, notice: 'Max Limit was successfully updated.'
                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/universities_controller.rb:80:11: C: [Correctable] Style/NumericPredicate: Use ml.negative? instead of ml < 0.
-    elsif ml < 0
-          ^^^^^^
-app/controllers/universities_controller.rb:81:45: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-      redirect_to universities_path, alert: "There was an error updating max limit. Max Limit cannot be negative."
+app/controllers/universities_controller.rb:82:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      redirect_to universities_path, alert: 'There was an error updating max limit. Max Limit cannot be negative.'
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/universities_controller.rb:82:45: C: Rails/I18nLocaleTexts: Move locale texts to the locale files in the config/locales directory.
+      redirect_to universities_path, alert: 'There was an error updating max limit. Max Limit cannot be negative.'
                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/universities_controller.rb:83:45: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-      redirect_to universities_path, alert: "There was an error updating max limit. Max Limit capped at 100."
+app/controllers/universities_controller.rb:84:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      redirect_to universities_path, alert: 'There was an error updating max limit. Max Limit capped at 100.'
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/universities_controller.rb:84:45: C: Rails/I18nLocaleTexts: Move locale texts to the locale files in the config/locales directory.
+      redirect_to universities_path, alert: 'There was an error updating max limit. Max Limit capped at 100.'
                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/universities_controller.rb:85:5: C: [Correctable] Layout/CommentIndentation: Incorrect indentation detected (column 4 instead of 6).
-    #   redirect_to universities_path, alert: "There was an error updating max limit."
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/universities_controller.rb:89:3: C: Metrics/MethodLength: Method has too many lines. [13/10]
-  def change_all_max ...
-  ^^^^^^^^^^^^^^^^^^
-app/controllers/universities_controller.rb:92:16: C: [Correctable] Style/AndOr: Use && instead of and.
-    if cl > -1 and cl < 101
-               ^^^
-app/controllers/universities_controller.rb:98:46: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-      redirect_to universities_path, notice: "Limits were successfully updated."
+app/controllers/universities_controller.rb:91:10: W: [Correctable] Lint/NumberConversion: Replace unsafe number conversion with number class parsing, instead of using params[:change_lim].to_i, use stricter Integer(params[:change_lim], 10).
+    cl = params[:change_lim].to_i
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/universities_controller.rb:97:20: C: [Correctable] Rails/SaveBang: Use save! instead of save if the return value is not checked.
+        university.save
+                   ^^^^
+app/controllers/universities_controller.rb:99:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      redirect_to universities_path, notice: 'Limits were successfully updated.'
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/universities_controller.rb:99:46: C: Rails/I18nLocaleTexts: Move locale texts to the locale files in the config/locales directory.
+      redirect_to universities_path, notice: 'Limits were successfully updated.'
                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/universities_controller.rb:99:11: C: [Correctable] Style/NumericPredicate: Use cl.negative? instead of cl < 0.
-    elsif cl < 0
-          ^^^^^^
-app/controllers/universities_controller.rb:100:45: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-      redirect_to universities_path, alert: "There was an error updating limits. Limits cannot be negative."
+app/controllers/universities_controller.rb:101:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      redirect_to universities_path, alert: 'There was an error updating limits. Limits cannot be negative.'
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/universities_controller.rb:101:45: C: Rails/I18nLocaleTexts: Move locale texts to the locale files in the config/locales directory.
+      redirect_to universities_path, alert: 'There was an error updating limits. Limits cannot be negative.'
                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/universities_controller.rb:102:45: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-      redirect_to universities_path, alert: "There was an error updating limits. Limits capped at 100."
+app/controllers/universities_controller.rb:103:7: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+      redirect_to universities_path, alert: 'There was an error updating limits. Limits capped at 100.'
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/universities_controller.rb:103:45: C: Rails/I18nLocaleTexts: Move locale texts to the locale files in the config/locales directory.
+      redirect_to universities_path, alert: 'There was an error updating limits. Limits capped at 100.'
                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/universities_controller.rb:104:5: C: [Correctable] Layout/CommentIndentation: Incorrect indentation detected (column 4 instead of 6).
-    #   redirect_to universities_path, alert: "There was an error updating limits."
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/universities_controller.rb:114:24: C: [Correctable] Style/SymbolProc: Pass &:destroy as an argument to each instead of a block.
-    @universities.each do |university| ...
-                       ^^^^^^^^^^^^^^^
-app/controllers/universities_controller.rb:118:43: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    redirect_to universities_url, notice: "Universities successfully cleared."
+app/controllers/universities_controller.rb:117:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    redirect_to universities_url, notice: 'Universities successfully cleared.'
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/universities_controller.rb:117:43: C: Rails/I18nLocaleTexts: Move locale texts to the locale files in the config/locales directory.
+    redirect_to universities_url, notice: 'Universities successfully cleared.'
                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/controllers/universities_controller.rb:124:1: C: [Correctable] Layout/TrailingWhitespace: Trailing whitespace detected.
-app/controllers/universities_controller.rb:130:29: C: [Correctable] Style/SymbolProc: Pass &:destroy as an argument to each instead of a block.
-      @representatives.each do |representative| ...
-                            ^^^^^^^^^^^^^^^^^^^
-app/controllers/universities_controller.rb:137:43: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    redirect_to universities_url, notice: "Universities successfully reset."
+app/controllers/universities_controller.rb:132:18: C: [Correctable] Rails/SaveBang: Use save! instead of save if the return value is not checked.
+      university.save
+                 ^^^^
+app/controllers/universities_controller.rb:134:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    redirect_to universities_url, notice: 'Universities successfully reset.'
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/universities_controller.rb:134:43: C: Rails/I18nLocaleTexts: Move locale texts to the locale files in the config/locales directory.
+    redirect_to universities_url, notice: 'Universities successfully reset.'
                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 app/controllers/universities_controller.rb:140:3: C: [Correctable] Layout/EmptyLinesAroundAccessModifier: Keep a blank line before and after private.
   private
   ^^^^^^^
@@ -1349,245 +1417,94 @@ app/views/answers/_answer.json.jbuilder:1:1: C: Layout/EndOfLine: Carriage retur
 json.extract! answer, :id, :choice, :question, :created_at, :updated_at ...
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 app/views/answers/_answer.json.jbuilder:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+
 json.extract! answer, :id, :choice, :question, :created_at, :updated_at
-^
-app/views/answers/index.json.jbuilder:1:1: C: Layout/EndOfLine: Carriage return character detected.
-json.array! @answers, partial: "answers/answer", as: :answer ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/answers/_answer.json.jbuilder:4:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.url answer_url(answer, format: :json)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/answers/index.json.jbuilder:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.array! @answers, partial: 'answers/answer', as: :answer
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/views/answers/index.json.jbuilder:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
-json.array! @answers, partial: "answers/answer", as: :answer
-^
-app/views/answers/index.json.jbuilder:1:32: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-json.array! @answers, partial: "answers/answer", as: :answer
-                               ^^^^^^^^^^^^^^^^
-app/views/answers/show.json.jbuilder:1:1: C: Layout/EndOfLine: Carriage return character detected.
-json.partial! "answers/answer", answer: @answer ...
+app/views/answers/show.json.jbuilder:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.partial! 'answers/answer', answer: @answer
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/views/answers/show.json.jbuilder:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
-json.partial! "answers/answer", answer: @answer
-^
-app/views/answers/show.json.jbuilder:1:15: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-json.partial! "answers/answer", answer: @answer
-              ^^^^^^^^^^^^^^^^
-app/views/authorizeds/_authorized.json.jbuilder:1:1: C: Layout/EndOfLine: Carriage return character detected.
-json.extract! authorized, :id, :authorized_email, :created_at, :updated_at ...
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/views/authorizeds/_authorized.json.jbuilder:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+app/views/authorizeds/_authorized.json.jbuilder:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
 json.extract! authorized, :id, :authorized_email, :created_at, :updated_at
-^
-app/views/authorizeds/index.json.jbuilder:1:1: C: Layout/EndOfLine: Carriage return character detected.
-json.array! @authorizeds, partial: "authorizeds/authorized", as: :authorized ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/authorizeds/_authorized.json.jbuilder:4:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.url authorized_url(authorized, format: :json)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/authorizeds/index.json.jbuilder:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.array! @authorizeds, partial: 'authorizeds/authorized', as: :authorized
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/views/authorizeds/index.json.jbuilder:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
-json.array! @authorizeds, partial: "authorizeds/authorized", as: :authorized
-^
-app/views/authorizeds/index.json.jbuilder:1:36: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-json.array! @authorizeds, partial: "authorizeds/authorized", as: :authorized
-                                   ^^^^^^^^^^^^^^^^^^^^^^^^
-app/views/authorizeds/show.json.jbuilder:1:1: C: Layout/EndOfLine: Carriage return character detected.
-json.partial! "authorizeds/authorized", authorized: @authorized ...
+app/views/authorizeds/show.json.jbuilder:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.partial! 'authorizeds/authorized', authorized: @authorized
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/views/authorizeds/show.json.jbuilder:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
-json.partial! "authorizeds/authorized", authorized: @authorized
-^
-app/views/authorizeds/show.json.jbuilder:1:15: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-json.partial! "authorizeds/authorized", authorized: @authorized
-              ^^^^^^^^^^^^^^^^^^^^^^^^
-app/views/questions/_question.json.jbuilder:1:1: C: Layout/EndOfLine: Carriage return character detected.
-json.extract! question, :id, :multi, :prompt, :created_at, :updated_at ...
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/views/questions/_question.json.jbuilder:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+app/views/questions/_question.json.jbuilder:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
 json.extract! question, :id, :multi, :prompt, :created_at, :updated_at
-^
-app/views/questions/index.json.jbuilder:1:1: C: Layout/EndOfLine: Carriage return character detected.
-json.array! @questions, partial: "questions/question", as: :question ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/questions/_question.json.jbuilder:4:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.url question_url(question, format: :json)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/questions/index.json.jbuilder:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.array! @questions, partial: 'questions/question', as: :question
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/views/questions/index.json.jbuilder:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
-json.array! @questions, partial: "questions/question", as: :question
-^
-app/views/questions/index.json.jbuilder:1:34: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-json.array! @questions, partial: "questions/question", as: :question
-                                 ^^^^^^^^^^^^^^^^^^^^
-app/views/questions/show.json.jbuilder:1:1: C: Layout/EndOfLine: Carriage return character detected.
-json.partial! "questions/question", question: @question ...
+app/views/questions/show.json.jbuilder:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.partial! 'questions/question', question: @question
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/views/questions/show.json.jbuilder:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
-json.partial! "questions/question", question: @question
-^
-app/views/questions/show.json.jbuilder:1:15: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-json.partial! "questions/question", question: @question
-              ^^^^^^^^^^^^^^^^^^^^
-app/views/representatives/_representative.json.jbuilder:1:1: C: Layout/EndOfLine: Carriage return character detected.
-json.extract! representative, :id, :first_name, :last_name, :title, :university_id, :created_at, :updated_at ...
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/views/representatives/_representative.json.jbuilder:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+app/views/representatives/_representative.json.jbuilder:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
 json.extract! representative, :id, :first_name, :last_name, :title, :university_id, :created_at, :updated_at
-^
-app/views/representatives/index.json.jbuilder:1:1: C: Layout/EndOfLine: Carriage return character detected.
-json.array! @representatives, partial: "representatives/representative", as: :representative ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/representatives/_representative.json.jbuilder:4:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.url representative_url(representative, format: :json)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/representatives/index.json.jbuilder:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.array! @representatives, partial: 'representatives/representative', as: :representative
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/views/representatives/index.json.jbuilder:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
-json.array! @representatives, partial: "representatives/representative", as: :representative
-^
-app/views/representatives/index.json.jbuilder:1:40: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-json.array! @representatives, partial: "representatives/representative", as: :representative
-                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/views/representatives/show.json.jbuilder:1:1: C: Layout/EndOfLine: Carriage return character detected.
-json.partial! "representatives/representative", representative: @representative ...
+app/views/representatives/show.json.jbuilder:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.partial! 'representatives/representative', representative: @representative
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/views/representatives/show.json.jbuilder:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
-json.partial! "representatives/representative", representative: @representative
-^
-app/views/representatives/show.json.jbuilder:1:15: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-json.partial! "representatives/representative", representative: @representative
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/views/responses/_response.json.jbuilder:1:1: C: Layout/EndOfLine: Carriage return character detected.
-json.extract! response, :id, :reply, :question, :student, :created_at, :updated_at ...
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/views/responses/_response.json.jbuilder:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+app/views/responses/_response.json.jbuilder:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
 json.extract! response, :id, :reply, :question, :student, :created_at, :updated_at
-^
-app/views/responses/index.json.jbuilder:1:1: C: Layout/EndOfLine: Carriage return character detected.
-json.array! @responses, partial: "responses/response", as: :response ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/responses/_response.json.jbuilder:4:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.url response_url(response, format: :json)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/responses/index.json.jbuilder:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.array! @responses, partial: 'responses/response', as: :response
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/views/responses/index.json.jbuilder:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
-json.array! @responses, partial: "responses/response", as: :response
-^
-app/views/responses/index.json.jbuilder:1:34: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-json.array! @responses, partial: "responses/response", as: :response
-                                 ^^^^^^^^^^^^^^^^^^^^
-app/views/responses/show.json.jbuilder:1:1: C: Layout/EndOfLine: Carriage return character detected.
-json.partial! "responses/response", response: @response ...
+app/views/responses/show.json.jbuilder:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.partial! 'responses/response', response: @response
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/views/responses/show.json.jbuilder:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
-json.partial! "responses/response", response: @response
-^
-app/views/responses/show.json.jbuilder:1:15: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-json.partial! "responses/response", response: @response
-              ^^^^^^^^^^^^^^^^^^^^
-app/views/students/_student.json.jbuilder:1:1: C: Layout/EndOfLine: Carriage return character detected.
-json.extract! student, :id, :first_name, :last_name, :university_id, :created_at, :updated_at ...
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/views/students/_student.json.jbuilder:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+app/views/students/_student.json.jbuilder:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
 json.extract! student, :id, :first_name, :last_name, :university_id, :created_at, :updated_at
-^
-app/views/students/index.json.jbuilder:1:1: C: Layout/EndOfLine: Carriage return character detected.
-json.array! @students, partial: "students/student", as: :student ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/students/_student.json.jbuilder:4:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.url student_url(student, format: :json)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/students/index.json.jbuilder:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.array! @students, partial: 'students/student', as: :student
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/views/students/index.json.jbuilder:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
-json.array! @students, partial: "students/student", as: :student
-^
-app/views/students/index.json.jbuilder:1:33: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-json.array! @students, partial: "students/student", as: :student
-                                ^^^^^^^^^^^^^^^^^^
-app/views/students/show.json.jbuilder:1:1: C: Layout/EndOfLine: Carriage return character detected.
-json.partial! "students/student", student: @student ...
+app/views/students/show.json.jbuilder:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.partial! 'students/student', student: @student
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/views/students/show.json.jbuilder:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
-json.partial! "students/student", student: @student
-^
-app/views/students/show.json.jbuilder:1:15: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-json.partial! "students/student", student: @student
-              ^^^^^^^^^^^^^^^^^^
-app/views/universities/_university.json.jbuilder:1:1: C: Layout/EndOfLine: Carriage return character detected.
-json.extract! university, :id, :university_name, :num_nominees, :created_at, :updated_at ...
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/views/universities/_university.json.jbuilder:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+app/views/universities/_university.json.jbuilder:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
 json.extract! university, :id, :university_name, :num_nominees, :created_at, :updated_at
-^
-app/views/universities/index.json.jbuilder:1:1: C: Layout/EndOfLine: Carriage return character detected.
-json.array! @universities, partial: "universities/university", as: :university ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/universities/_university.json.jbuilder:4:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.url university_url(university, format: :json)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/views/universities/index.json.jbuilder:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.array! @universities, partial: 'universities/university', as: :university
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/views/universities/index.json.jbuilder:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
-json.array! @universities, partial: "universities/university", as: :university
-^
-app/views/universities/index.json.jbuilder:1:37: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-json.array! @universities, partial: "universities/university", as: :university
-                                    ^^^^^^^^^^^^^^^^^^^^^^^^^
-app/views/universities/show.json.jbuilder:1:1: C: Layout/EndOfLine: Carriage return character detected.
-json.partial! "universities/university", university: @university ...
+app/views/universities/show.json.jbuilder:3:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+json.partial! 'universities/university', university: @university
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-app/views/universities/show.json.jbuilder:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
-json.partial! "universities/university", university: @university
-^
-app/views/universities/show.json.jbuilder:1:15: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-json.partial! "universities/university", university: @university
-              ^^^^^^^^^^^^^^^^^^^^^^^^^
-bin/bundle:1:1: C: Layout/EndOfLine: Carriage return character detected.
-#!/usr/bin/env ruby ...
-^^^^^^^^^^^^^^^^^^^
-bin/bundle:11:9: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-require "rubygems"
-        ^^^^^^^^^^
-bin/bundle:17:22: C: [Correctable] Style/SpecialGlobalVars: Prefer $PROGRAM_NAME over $0.
-    File.expand_path($0) == File.expand_path(__FILE__)
-                     ^^
-bin/bundle:21:9: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    ENV["BUNDLER_VERSION"]
-        ^^^^^^^^^^^^^^^^^
-bin/bundle:24:3: C: Metrics/CyclomaticComplexity: Cyclomatic complexity for cli_arg_version is too high. [9/7]
-  def cli_arg_version ...
-  ^^^^^^^^^^^^^^^^^^^
-bin/bundle:24:3: C: Metrics/MethodLength: Method has too many lines. [13/10]
-  def cli_arg_version ...
-  ^^^^^^^^^^^^^^^^^^^
-bin/bundle:24:3: C: Metrics/PerceivedComplexity: Perceived complexity for cli_arg_version is too high. [9/8]
-  def cli_arg_version ...
-  ^^^^^^^^^^^^^^^^^^^
-bin/bundle:26:5: C: [Correctable] Layout/EmptyLineAfterGuardClause: Add empty line after guard clause.
-    return unless "update".start_with?(ARGV.first || " ") # must be running `bundle update`
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-bin/bundle:26:19: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    return unless "update".start_with?(ARGV.first || " ") # must be running `bundle update`
-                  ^^^^^^^^
-bin/bundle:26:54: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    return unless "update".start_with?(ARGV.first || " ") # must be running `bundle update`
-                                                     ^^^
-bin/bundle:30:7: C: [Correctable] Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
-      if update_index && update_index.succ == i && a =~ Gem::Version::ANCHORED_VERSION_PATTERN
-      ^^
-bin/bundle:33:7: C: [Correctable] Layout/EmptyLineAfterGuardClause: Add empty line after guard clause.
-      next unless a =~ /\A--bundler(?:[= ](#{Gem::Version::VERSION_PATTERN}))?\z/
-      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-bin/bundle:34:25: C: [Correctable] Style/PerlBackrefs: Prefer Regexp.last_match(1) over $1.
-      bundler_version = $1
-                        ^^
-bin/bundle:41:19: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    gemfile = ENV["BUNDLE_GEMFILE"]
-                  ^^^^^^^^^^^^^^^^
-bin/bundle:44:10: C: [Correctable] Style/ExpandPathArguments: Use expand_path('../Gemfile', __dir__) instead of expand_path('../../Gemfile', __FILE__).
-    File.expand_path("../../Gemfile", __FILE__)
-         ^^^^^^^^^^^
-bin/bundle:44:22: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    File.expand_path("../../Gemfile", __FILE__)
-                     ^^^^^^^^^^^^^^^
-bin/bundle:50:12: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-      when "gems.rb" then gemfile.sub(/\.rb$/, gemfile)
-           ^^^^^^^^^
-bin/bundle:57:5: C: [Correctable] Layout/EmptyLineAfterGuardClause: Add empty line after guard clause.
-    return unless File.file?(lockfile)
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-bin/bundle:59:5: C: [Correctable] Layout/EmptyLineAfterGuardClause: Add empty line after guard clause.
-    return unless lockfile_contents =~ /\n\nBUNDLED WITH\n\s{2,}(#{Gem::Version::VERSION_PATTERN})\n/
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-bin/bundle:66:9: C: [Correctable] Layout/MultilineOperationIndentation: Align the operands of an expression in an assignment spanning multiple lines.
-        bundler_requirement_for(lockfile_version)
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-bin/bundle:76:81: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    return requirement unless Gem::Version.new(Gem::VERSION) < Gem::Version.new("2.7.0")
-                                                                                ^^^^^^^
-bin/bundle:78:20: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    requirement += ".a" if bundler_gem_version.prerelease?
-                   ^^^^
-bin/bundle:84:9: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    ENV["BUNDLE_GEMFILE"] ||= gemfile
-        ^^^^^^^^^^^^^^^^
-bin/bundle:91:11: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-      gem "bundler", bundler_requirement
-          ^^^^^^^^^
-bin/bundle:93:5: C: [Correctable] Layout/EmptyLineAfterGuardClause: Add empty line after guard clause.
-    return if gem_error.nil?
+config/application.rb:14:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    config.load_defaults 6.1
     ^^^^^^^^^^^^^^^^^^^^^^^^
+
 bin/bundle:95:15: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
       require "bundler/version"
               ^^^^^^^^^^^^^^^^^
@@ -2131,82 +2048,42 @@ config/spring.rb:4:3: C: [Correctable] Style/StringLiterals: Prefer single-quote
   ^^^^^^^^^^^^^^^^^
 config/spring.rb:5:3: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
   "tmp/caching-dev.txt"
+
   ^^^^^^^^^^^^^^^^^^^^^
-db/migrate/20220212170041_create_universities.rb:1:1: C: Layout/EndOfLine: Carriage return character detected.
-class CreateUniversities < ActiveRecord::Migration[6.1] ...
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/migrate/20220212170041_create_universities.rb:1:1: C: Style/Documentation: Missing top-level documentation comment for class CreateUniversities.
-class CreateUniversities < ActiveRecord::Migration[6.1]
-^^^^^^^^^^^^^^^^^^^^^^^^
-db/migrate/20220212170041_create_universities.rb:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
-class CreateUniversities < ActiveRecord::Migration[6.1]
-^
-db/migrate/20220212170633_create_students.rb:1:1: C: Layout/EndOfLine: Carriage return character detected.
-class CreateStudents < ActiveRecord::Migration[6.1] ...
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/migrate/20220212170633_create_students.rb:1:1: C: Style/Documentation: Missing top-level documentation comment for class CreateStudents.
-class CreateStudents < ActiveRecord::Migration[6.1]
-^^^^^^^^^^^^^^^^^^^^
-db/migrate/20220212170633_create_students.rb:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
-class CreateStudents < ActiveRecord::Migration[6.1]
-^
-db/migrate/20220212170633_create_students.rb:2:3: C: Metrics/MethodLength: Method has too many lines. [11/10]
-  def change ...
-  ^^^^^^^^^^
-db/migrate/20220212171017_create_representatives.rb:1:1: C: Layout/EndOfLine: Carriage return character detected.
-class CreateRepresentatives < ActiveRecord::Migration[6.1] ...
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/migrate/20220212171017_create_representatives.rb:1:1: C: Style/Documentation: Missing top-level documentation comment for class CreateRepresentatives.
-class CreateRepresentatives < ActiveRecord::Migration[6.1]
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/migrate/20220212171017_create_representatives.rb:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
-class CreateRepresentatives < ActiveRecord::Migration[6.1]
-^
-db/migrate/20220303005639_devise_create_admins.rb:1:1: C: Layout/EndOfLine: Carriage return character detected.
-# frozen_string_literal: true ...
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/migrate/20220303005639_devise_create_admins.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class DeviseCreateAdmins.
-class DeviseCreateAdmins < ActiveRecord::Migration[6.1]
-^^^^^^^^^^^^^^^^^^^^^^^^
-db/migrate/20220305233039_create_questions.rb:1:1: C: Layout/EndOfLine: Carriage return character detected.
-class CreateQuestions < ActiveRecord::Migration[6.1] ...
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/migrate/20220305233039_create_questions.rb:1:1: C: Style/Documentation: Missing top-level documentation comment for class CreateQuestions.
-class CreateQuestions < ActiveRecord::Migration[6.1]
-^^^^^^^^^^^^^^^^^^^^^
-db/migrate/20220305233039_create_questions.rb:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
-class CreateQuestions < ActiveRecord::Migration[6.1]
-^
-db/migrate/20220305233219_create_answers.rb:1:1: C: Layout/EndOfLine: Carriage return character detected.
-class CreateAnswers < ActiveRecord::Migration[6.1] ...
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/migrate/20220305233219_create_answers.rb:1:1: C: Style/Documentation: Missing top-level documentation comment for class CreateAnswers.
-class CreateAnswers < ActiveRecord::Migration[6.1]
-^^^^^^^^^^^^^^^^^^^
-db/migrate/20220305233219_create_answers.rb:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
-class CreateAnswers < ActiveRecord::Migration[6.1]
-^
-db/migrate/20220306010556_create_responses.rb:1:1: C: Layout/EndOfLine: Carriage return character detected.
-class CreateResponses < ActiveRecord::Migration[6.1] ...
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/migrate/20220306010556_create_responses.rb:1:1: C: Style/Documentation: Missing top-level documentation comment for class CreateResponses.
-class CreateResponses < ActiveRecord::Migration[6.1]
-^^^^^^^^^^^^^^^^^^^^^
-db/migrate/20220306010556_create_responses.rb:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
-class CreateResponses < ActiveRecord::Migration[6.1]
-^
-db/migrate/20220331012434_create_variables.rb:1:1: C: Layout/EndOfLine: Carriage return character detected.
-class CreateVariables < ActiveRecord::Migration[6.1] ...
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-db/migrate/20220331012434_create_variables.rb:1:1: C: Style/Documentation: Missing top-level documentation comment for class CreateVariables.
-class CreateVariables < ActiveRecord::Migration[6.1]
-^^^^^^^^^^^^^^^^^^^^^
-db/migrate/20220331012434_create_variables.rb:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
-class CreateVariables < ActiveRecord::Migration[6.1]
-^
-db/migrate/20220401025847_create_authorizeds.rb:1:1: C: Layout/EndOfLine: Carriage return character detected.
-class CreateAuthorizeds < ActiveRecord::Migration[6.1] ...
+spec/feature/integration_spec.rb:15:3: C: RSpec/RepeatedExample: Don't repeat examples within an example group.
+  scenario 'signing in' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:18:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('Successfully authenticated from Google account.')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:19:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('Admin Home Page')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:22:3: C: [Correctable] RSpec/Capybara/FeatureMethods: Use it instead of scenario.
+  scenario 'valid inputs' do
+  ^^^^^^^^
+spec/feature/integration_spec.rb:25:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('Admin Home Page')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:28:3: C: [Correctable] RSpec/Capybara/FeatureMethods: Use it instead of scenario.
+  scenario 'signing in' do
+  ^^^^^^^^
+spec/feature/integration_spec.rb:28:3: C: RSpec/RepeatedDescription: Don't repeat descriptions within an example group.
+  scenario 'signing in' do
+  ^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:28:3: C: RSpec/RepeatedExample: Don't repeat examples within an example group.
+  scenario 'signing in' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:31:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('Successfully authenticated from Google account.')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:32:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('Admin Home Page')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:38:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe 'Admin dashboard links', type: :feature do
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 db/migrate/20220401025847_create_authorizeds.rb:1:1: C: Style/Documentation: Missing top-level documentation comment for class CreateAuthorizeds.
 class CreateAuthorizeds < ActiveRecord::Migration[6.1]
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -6102,39 +5979,665 @@ test/system/universities_test.rb:28:13: C: [Correctable] Style/StringLiterals: P
             ^^^^^^^^^^^^^^^^^
 test/system/universities_test.rb:29:5: C: [Correctable] Layout/LeadingCommentSpace: Missing space after #.
     #probably needs one for num_nominees
+
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/system/universities_test.rb:30:14: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    click_on "Update University"
-             ^^^^^^^^^^^^^^^^^^^
-test/system/universities_test.rb:32:17: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    assert_text "University was successfully updated"
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/system/universities_test.rb:33:14: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    click_on "Back"
-             ^^^^^^
-test/system/universities_test.rb:36:8: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-  test "destroying a University" do
-       ^^^^^^^^^^^^^^^^^^^^^^^^^
-test/system/universities_test.rb:39:16: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-      click_on "Destroy", match: :first
-               ^^^^^^^^^
-test/system/universities_test.rb:42:17: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-    assert_text "University was successfully destroyed"
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/test_helper.rb:1:1: C: Layout/EndOfLine: Carriage return character detected.
-ENV['RAILS_ENV'] ||= 'test' ...
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test/test_helper.rb:1:1: C: [Correctable] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
-ENV['RAILS_ENV'] ||= 'test'
-^
-test/test_helper.rb:2:18: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-require_relative "../config/environment"
-                 ^^^^^^^^^^^^^^^^^^^^^^^
-test/test_helper.rb:3:9: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
-require "rails/test_help"
-        ^^^^^^^^^^^^^^^^^
-test/test_helper.rb:5:7: C: [Correctable] Style/ClassAndModuleChildren: Use nested module/class definitions instead of compact style.
-class ActiveSupport::TestCase
-      ^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:875:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('Smith')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:876:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('CEO')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:877:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('JohnSmith@gmail.com')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:881:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe 'User student functions', type: :feature do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:883:30: C: [Correctable] Rails/SaveBang: Use create! instead of create if the return value is not checked.
+    @authorized = Authorized.create(authorized_email: 'userdoe@example.com')
+                             ^^^^^^
+spec/feature/integration_spec.rb:887:21: C: Style/InlineComment: Avoid trailing inline comments.
+    visit root_path # need to create university and representative first
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:902:3: C: [Correctable] RSpec/Capybara/FeatureMethods: Use it instead of scenario.
+  scenario 'create student' do
+  ^^^^^^^^
+spec/feature/integration_spec.rb:903:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('Nomination Record')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:905:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).not_to have_content('University') # can't fill in representative or university
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:905:52: C: Style/InlineComment: Avoid trailing inline comments.
+    expect(page).not_to have_content('University') # can't fill in representative or university
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:906:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).not_to have_content('Representative')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:908:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('error')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:916:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('Foo')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:917:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('Bar')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:918:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('Bachelors')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:919:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('Basket Making')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:920:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('Fall Only')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:921:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('FooBar@gmail.com')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:922:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('Finish') # expect user_show
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:922:44: C: Style/InlineComment: Avoid trailing inline comments.
+    expect(page).to have_content('Finish') # expect user_show
+                                           ^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:925:3: C: [Correctable] RSpec/Capybara/FeatureMethods: Use it instead of scenario.
+  scenario 'edit student' do
+  ^^^^^^^^
+spec/feature/integration_spec.rb:937:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('error')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:940:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('Baz')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:941:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('Finish') # expect user_show
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:941:44: C: Style/InlineComment: Avoid trailing inline comments.
+    expect(page).to have_content('Finish') # expect user_show
+                                           ^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:944:3: C: [Correctable] RSpec/Capybara/FeatureMethods: Use it instead of scenario.
+  scenario 'finish link' do
+  ^^^^^^^^
+spec/feature/integration_spec.rb:954:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('Nomination Record')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:957:3: C: [Correctable] RSpec/Capybara/FeatureMethods: Use it instead of scenario.
+  scenario 'update exchange term up' do
+  ^^^^^^^^
+spec/feature/integration_spec.rb:971:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('AM 2 3')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:974:3: C: [Correctable] RSpec/Capybara/FeatureMethods: Use it instead of scenario.
+  scenario 'update exchange term down' do
+  ^^^^^^^^
+spec/feature/integration_spec.rb:988:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('AM 1 3')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:991:3: C: [Correctable] RSpec/Capybara/FeatureMethods: Use it instead of scenario.
+  scenario 'update exchange term max' do
+  ^^^^^^^^
+spec/feature/integration_spec.rb:1014:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('Sorry')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:1017:3: C: [Correctable] RSpec/Capybara/FeatureMethods: Use it instead of scenario.
+  scenario 'delete student' do
+  ^^^^^^^^
+spec/feature/integration_spec.rb:1029:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('Nomination Record')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:1030:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).not_to have_content('Foo')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:1034:3: C: [Correctable] RSpec/Capybara/FeatureMethods: Use it instead of scenario.
+  scenario 'auto-stop user adding students' do
+  ^^^^^^^^
+spec/feature/integration_spec.rb:1035:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('0 students nominated')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:1036:36: C: Style/InlineComment: Avoid trailing inline comments.
+    click_on 'Enter a new student' # student 1
+                                   ^^^^^^^^^^^
+spec/feature/integration_spec.rb:1044:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('1 out of 3')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:1045:42: C: Style/InlineComment: Avoid trailing inline comments.
+    click_on 'Enter another new student' # student 2
+                                         ^^^^^^^^^^^
+spec/feature/integration_spec.rb:1053:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('3 out of 3')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:1054:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).not_to have_content('Enter another new student')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:1056:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('Nomination Record')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:1057:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('3 students nominated')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:1058:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).not_to have_content('Enter another new student')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:1061:3: C: [Correctable] RSpec/Capybara/FeatureMethods: Use it instead of scenario.
+  scenario 'Don\'t allow more representatives to make nominations after reaching limit' do
+  ^^^^^^^^
+spec/feature/integration_spec.rb:1062:36: C: Style/InlineComment: Avoid trailing inline comments.
+    click_on 'Enter a new student' # student 1
+                                   ^^^^^^^^^^^
+spec/feature/integration_spec.rb:1070:42: C: Style/InlineComment: Avoid trailing inline comments.
+    click_on 'Enter another new student' # student 2
+                                         ^^^^^^^^^^^
+spec/feature/integration_spec.rb:1078:42: C: Style/InlineComment: Avoid trailing inline comments.
+    click_on 'Enter another new student' # student 3
+                                         ^^^^^^^^^^^
+spec/feature/integration_spec.rb:1095:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('Nomination Record')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:1096:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('3 students nominated')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:1097:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).to have_content('Alice')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:1098:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).not_to have_content('Foo')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:1099:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(page).not_to have_content('Enter a new student')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/rails_helper.rb:32:3: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+  puts e.to_s.strip
+  ^^^^^^^^^^^^^^^^^
+spec/rails_helper.rb:33:3: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+  exit 1
+  ^^^^^^
+spec/unit/unit_spec.rb:6:1: C: RSpec/MultipleDescribes: Do not use multiple top-level example groups - try to nest them.
+RSpec.describe Representative, type: :model do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:6:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe Representative, type: :model do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:9:5: C: RSpec/InstanceVariable: Avoid instance variables – use let, a method call, or a local variable (if possible).
+    @uni.save
+    ^^^^
+spec/unit/unit_spec.rb:9:10: C: [Correctable] Rails/SaveBang: Use save! instead of save if the return value is not checked.
+    @uni.save
+         ^^^^
+spec/unit/unit_spec.rb:10:94: C: RSpec/InstanceVariable: Avoid instance variables – use let, a method call, or a local variable (if possible).
+    described_class.new(first_name: 'John', last_name: 'Smith', title: 'CEO', university_id: @uni.id,
+                                                                                             ^^^^
+spec/unit/unit_spec.rb:11:57: C: [Correctable] Layout/MultilineMethodCallBraceLayout: Closing method call brace must be on the line after the last argument.
+                        rep_email: 'JohnSmith@gmail.com')
+                                                        ^
+spec/unit/unit_spec.rb:15:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:15:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:19:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.first_name = nil
+    ^^^^^^^
+spec/unit/unit_spec.rb:20:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).not_to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:20:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).not_to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:24:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.last_name = nil
+    ^^^^^^^
+spec/unit/unit_spec.rb:25:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).not_to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:25:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).not_to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:29:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.title = nil
+    ^^^^^^^
+spec/unit/unit_spec.rb:30:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).not_to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:30:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).not_to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:34:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.university_id = nil
+    ^^^^^^^
+spec/unit/unit_spec.rb:35:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).not_to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:35:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).not_to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:39:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.rep_email = nil
+    ^^^^^^^
+spec/unit/unit_spec.rb:40:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).not_to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:40:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).not_to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:45:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.rep_email = invalid_email
+    ^^^^^^^
+spec/unit/unit_spec.rb:46:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).to be_invalid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:46:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).to be_invalid
+           ^^^^^^^
+spec/unit/unit_spec.rb:49:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.rep_email = invalid_email
+    ^^^^^^^
+spec/unit/unit_spec.rb:50:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).not_to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:50:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).not_to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:59:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.rep_email = unexpected_email
+    ^^^^^^^
+spec/unit/unit_spec.rb:60:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:60:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:63:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.rep_email = invalid_email
+    ^^^^^^^
+spec/unit/unit_spec.rb:64:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).not_to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:64:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).not_to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:67:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.rep_email = invalid_email
+    ^^^^^^^
+spec/unit/unit_spec.rb:68:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).not_to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:68:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).not_to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:71:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.rep_email = invalid_email
+    ^^^^^^^
+spec/unit/unit_spec.rb:72:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).not_to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:72:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).not_to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:75:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.rep_email = invalid_email
+    ^^^^^^^
+spec/unit/unit_spec.rb:76:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).not_to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:76:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).not_to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:79:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.rep_email = invalid_email
+    ^^^^^^^
+spec/unit/unit_spec.rb:80:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).not_to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:80:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).not_to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:83:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.rep_email = invalid_email
+    ^^^^^^^
+spec/unit/unit_spec.rb:84:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).not_to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:84:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).not_to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:92:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.rep_email = invalid_email
+    ^^^^^^^
+spec/unit/unit_spec.rb:93:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:93:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:97:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe University, type: :model do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:103:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:103:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:107:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.university_name = nil
+    ^^^^^^^
+spec/unit/unit_spec.rb:108:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).not_to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:108:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).not_to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:112:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.num_nominees = nil
+    ^^^^^^^
+spec/unit/unit_spec.rb:113:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).not_to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:113:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).not_to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:117:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.max_limit = nil
+    ^^^^^^^
+spec/unit/unit_spec.rb:118:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).not_to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:118:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).not_to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:132:1: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+RSpec.describe Student, type: :model do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:135:5: C: RSpec/InstanceVariable: Avoid instance variables – use let, a method call, or a local variable (if possible).
+    @uni.save
+    ^^^^
+spec/unit/unit_spec.rb:135:10: C: [Correctable] Rails/SaveBang: Use save! instead of save if the return value is not checked.
+    @uni.save
+         ^^^^
+spec/unit/unit_spec.rb:136:100: C: RSpec/InstanceVariable: Avoid instance variables – use let, a method call, or a local variable (if possible).
+    @rep = Representative.new(first_name: 'John', last_name: 'Smith', title: 'CEO', university_id: @uni.id,
+                                                                                                   ^^^^
+spec/unit/unit_spec.rb:137:63: C: [Correctable] Layout/MultilineMethodCallBraceLayout: Closing method call brace must be on the line after the last argument.
+                              rep_email: 'JohnSmith@gmail.com')
+                                                              ^
+spec/unit/unit_spec.rb:138:5: C: RSpec/InstanceVariable: Avoid instance variables – use let, a method call, or a local variable (if possible).
+    @rep.save
+    ^^^^
+spec/unit/unit_spec.rb:138:10: C: [Correctable] Rails/SaveBang: Use save! instead of save if the return value is not checked.
+    @rep.save
+         ^^^^
+spec/unit/unit_spec.rb:139:77: C: RSpec/InstanceVariable: Avoid instance variables – use let, a method call, or a local variable (if possible).
+    described_class.new(first_name: 'Foo', last_name: 'Bar', university_id: @uni.id, representative_id: @rep.id,
+                                                                            ^^^^
+spec/unit/unit_spec.rb:139:105: C: RSpec/InstanceVariable: Avoid instance variables – use let, a method call, or a local variable (if possible).
+    described_class.new(first_name: 'Foo', last_name: 'Bar', university_id: @uni.id, representative_id: @rep.id,
+                                                                                                        ^^^^
+spec/unit/unit_spec.rb:140:127: C: [Correctable] Layout/MultilineMethodCallBraceLayout: Closing method call brace must be on the line after the last argument.
+                        student_email: 'FooBar@gmail.com', exchange_term: 'First', degree_level: 'PHD', major: 'Basket Making')
+                                                                                                                              ^
+spec/unit/unit_spec.rb:144:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:144:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:148:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.first_name = nil
+    ^^^^^^^
+spec/unit/unit_spec.rb:149:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).not_to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:149:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).not_to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:153:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.last_name = nil
+    ^^^^^^^
+spec/unit/unit_spec.rb:154:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).not_to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:154:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).not_to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:158:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.university_id = nil
+    ^^^^^^^
+spec/unit/unit_spec.rb:159:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).not_to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:159:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).not_to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:163:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.representative_id = nil
+    ^^^^^^^
+spec/unit/unit_spec.rb:164:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).not_to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:164:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).not_to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:168:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.student_email = nil
+    ^^^^^^^
+spec/unit/unit_spec.rb:169:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).not_to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:169:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).not_to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:173:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.exchange_term = nil
+    ^^^^^^^
+spec/unit/unit_spec.rb:174:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).not_to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:174:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).not_to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:178:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.degree_level = nil
+    ^^^^^^^
+spec/unit/unit_spec.rb:179:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).not_to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:179:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).not_to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:183:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.major = nil
+    ^^^^^^^
+spec/unit/unit_spec.rb:184:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).not_to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:184:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).not_to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:189:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.student_email = invalid_email
+    ^^^^^^^
+spec/unit/unit_spec.rb:190:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).to be_invalid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:190:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).to be_invalid
+           ^^^^^^^
+spec/unit/unit_spec.rb:193:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.student_email = invalid_email
+    ^^^^^^^
+spec/unit/unit_spec.rb:194:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).not_to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:194:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).not_to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:197:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.student_email = unexpected_email
+    ^^^^^^^
+spec/unit/unit_spec.rb:198:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:198:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:201:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.student_email = invalid_email
+    ^^^^^^^
+spec/unit/unit_spec.rb:202:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).not_to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:202:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).not_to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:205:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.student_email = invalid_email
+    ^^^^^^^
+spec/unit/unit_spec.rb:206:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).not_to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:206:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).not_to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:209:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.student_email = invalid_email
+    ^^^^^^^
+spec/unit/unit_spec.rb:210:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).not_to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:210:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).not_to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:213:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.student_email = invalid_email
+    ^^^^^^^
+spec/unit/unit_spec.rb:214:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).not_to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:214:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).not_to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:217:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.student_email = invalid_email
+    ^^^^^^^
+spec/unit/unit_spec.rb:218:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).not_to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:218:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).not_to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:221:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.student_email = invalid_email
+    ^^^^^^^
+spec/unit/unit_spec.rb:222:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).not_to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:222:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).not_to be_valid
+           ^^^^^^^
+spec/unit/unit_spec.rb:225:5: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    subject.student_email = invalid_email
+    ^^^^^^^
+spec/unit/unit_spec.rb:226:5: C: [Correctable] Style/MethodCallWithArgsParentheses: Use parentheses for method calls with arguments.
+    expect(subject).to be_valid
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:226:12: C: RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.
+    expect(subject).to be_valid
+           ^^^^^^^
+test/controllers/representatives_controller_test.rb:23:22: C: [Correctable] Layout/FirstHashElementLineBreak: Add a line break before the first element of a multi-line hash.
+           params: { representative: { first_name: @representative.first_name, last_name: @representative.last_name, ...
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test/controllers/representatives_controller_test.rb:23:40: C: [Correctable] Layout/FirstHashElementLineBreak: Add a line break before the first element of a multi-line hash.
+           params: { representative: { first_name: @representative.first_name, last_name: @representative.last_name,
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test/controllers/representatives_controller_test.rb:23:80: C: [Correctable] Layout/MultilineHashKeyLineBreaks: Each key in a multi-line hash must start on a separate line.
+           params: { representative: { first_name: @representative.first_name, last_name: @representative.last_name,
+                                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test/controllers/representatives_controller_test.rb:24:70: C: [Correctable] Layout/MultilineHashKeyLineBreaks: Each key in a multi-line hash must start on a separate line.
+                                       title: @representative.title, university_id: @representative.university_id } }
+                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test/controllers/representatives_controller_test.rb:24:115: C: [Correctable] Layout/MultilineHashBraceLayout: Closing hash brace must be on the line after the last hash element.
+                                       title: @representative.title, university_id: @representative.university_id } }
+                                                                                                                  ^
+test/controllers/representatives_controller_test.rb:24:117: C: [Correctable] Layout/MultilineHashBraceLayout: Closing hash brace must be on the line after the last hash element.
+                                       title: @representative.title, university_id: @representative.university_id } }
+                                                                                                                    ^
+test/controllers/representatives_controller_test.rb:42:21: C: [Correctable] Layout/FirstHashElementLineBreak: Add a line break before the first element of a multi-line hash.
+          params: { representative: { first_name: @representative.first_name, last_name: @representative.last_name, ...
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test/controllers/representatives_controller_test.rb:42:39: C: [Correctable] Layout/FirstHashElementLineBreak: Add a line break before the first element of a multi-line hash.
+          params: { representative: { first_name: @representative.first_name, last_name: @representative.last_name,
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test/controllers/representatives_controller_test.rb:42:79: C: [Correctable] Layout/MultilineHashKeyLineBreaks: Each key in a multi-line hash must start on a separate line.
+          params: { representative: { first_name: @representative.first_name, last_name: @representative.last_name,
+                                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test/controllers/representatives_controller_test.rb:43:69: C: [Correctable] Layout/MultilineHashKeyLineBreaks: Each key in a multi-line hash must start on a separate line.
+                                      title: @representative.title, university_id: @representative.university_id } }
+                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test/controllers/representatives_controller_test.rb:43:114: C: [Correctable] Layout/MultilineHashBraceLayout: Closing hash brace must be on the line after the last hash element.
+                                      title: @representative.title, university_id: @representative.university_id } }
+                                                                                                                 ^
+test/controllers/representatives_controller_test.rb:43:116: C: [Correctable] Layout/MultilineHashBraceLayout: Closing hash brace must be on the line after the last hash element.
+                                      title: @representative.title, university_id: @representative.university_id } }
+                                                                                                                   ^
+test/controllers/students_controller_test.rb:23:22: C: [Correctable] Layout/FirstHashElementLineBreak: Add a line break before the first element of a multi-line hash.
+           params: { student: { first_name: @student.first_name, last_name: @student.last_name, ...
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test/controllers/students_controller_test.rb:23:33: C: [Correctable] Layout/FirstHashElementLineBreak: Add a line break before the first element of a multi-line hash.
+           params: { student: { first_name: @student.first_name, last_name: @student.last_name,
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test/controllers/students_controller_test.rb:23:66: C: [Correctable] Layout/MultilineHashKeyLineBreaks: Each key in a multi-line hash must start on a separate line.
+           params: { student: { first_name: @student.first_name, last_name: @student.last_name,
+                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test/controllers/students_controller_test.rb:24:71: C: [Correctable] Layout/MultilineHashBraceLayout: Closing hash brace must be on the line after the last hash element.
+                                university_id: @student.university_id } }
+                                                                      ^
+test/controllers/students_controller_test.rb:24:73: C: [Correctable] Layout/MultilineHashBraceLayout: Closing hash brace must be on the line after the last hash element.
+                                university_id: @student.university_id } }
+                                                                        ^
+test/controllers/students_controller_test.rb:42:21: C: [Correctable] Layout/FirstHashElementLineBreak: Add a line break before the first element of a multi-line hash.
+          params: { student: { first_name: @student.first_name, last_name: @student.last_name, ...
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test/controllers/students_controller_test.rb:42:32: C: [Correctable] Layout/FirstHashElementLineBreak: Add a line break before the first element of a multi-line hash.
+          params: { student: { first_name: @student.first_name, last_name: @student.last_name,
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test/controllers/students_controller_test.rb:42:65: C: [Correctable] Layout/MultilineHashKeyLineBreaks: Each key in a multi-line hash must start on a separate line.
+          params: { student: { first_name: @student.first_name, last_name: @student.last_name,
+                                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test/controllers/students_controller_test.rb:43:70: C: [Correctable] Layout/MultilineHashBraceLayout: Closing hash brace must be on the line after the last hash element.
+                               university_id: @student.university_id } }
+                                                                     ^
+test/controllers/students_controller_test.rb:43:72: C: [Correctable] Layout/MultilineHashBraceLayout: Closing hash brace must be on the line after the last hash element.
+                               university_id: @student.university_id } }
+                                                                       ^
+test/controllers/universities_controller_test.rb:23:22: C: [Correctable] Layout/FirstHashElementLineBreak: Add a line break before the first element of a multi-line hash.
+           params: { university: { num_nominees: @university.num_nominees, ...
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test/controllers/universities_controller_test.rb:23:36: C: [Correctable] Layout/FirstHashElementLineBreak: Add a line break before the first element of a multi-line hash.
+           params: { university: { num_nominees: @university.num_nominees,
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test/controllers/universities_controller_test.rb:24:81: C: [Correctable] Layout/MultilineHashBraceLayout: Closing hash brace must be on the line after the last hash element.
+                                   university_name: @university.university_name } }
+                                                                                ^
+test/controllers/universities_controller_test.rb:24:83: C: [Correctable] Layout/MultilineHashBraceLayout: Closing hash brace must be on the line after the last hash element.
+                                   university_name: @university.university_name } }
+                                                                                  ^
+test/controllers/universities_controller_test.rb:42:21: C: [Correctable] Layout/FirstHashElementLineBreak: Add a line break before the first element of a multi-line hash.
+          params: { university: { num_nominees: @university.num_nominees, ...
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test/controllers/universities_controller_test.rb:42:35: C: [Correctable] Layout/FirstHashElementLineBreak: Add a line break before the first element of a multi-line hash.
+          params: { university: { num_nominees: @university.num_nominees,
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test/controllers/universities_controller_test.rb:43:80: C: [Correctable] Layout/MultilineHashBraceLayout: Closing hash brace must be on the line after the last hash element.
+                                  university_name: @university.university_name } }
+                                                                               ^
+test/controllers/universities_controller_test.rb:43:82: C: [Correctable] Layout/MultilineHashBraceLayout: Closing hash brace must be on the line after the last hash element.
+                                  university_name: @university.university_name } }
+                                                                                 ^
+test/system/universities_test.rb:15:35: C: Style/InlineComment: Avoid trailing inline comments.
+  test 'creating a University' do # what?
+                                  ^^^^^^^
 
 115 files inspected, 2101 offenses detected, 1871 offenses auto-correctable
+

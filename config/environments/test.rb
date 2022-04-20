@@ -1,4 +1,6 @@
-require "active_support/core_ext/integer/time"
+# frozen_string_literal: true
+
+require 'active_support/core_ext/integer/time'
 
 # The test environment is used exclusively to run your application's
 # test suite. You never need to work with it otherwise. Remember that
@@ -76,5 +78,6 @@ Rails.application.configure do
       expires_at: 1_354_920_555,
       expires: true
     }
-  })
+  }
+                                                                  )
 end
