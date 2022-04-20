@@ -70,19 +70,23 @@ class UniversitiesController < ApplicationController
   end
 
   def update_max
-    @variable = Variable.find_by(var_name: 'max_limit')
-    #puts "params? #{params[:max_lim]}"
+    @max_limit = Variable.find_by(var_name: 'max_limit')
     ml = params[:max_lim].to_i
-    if ml > -1 and ml < 101
-      @variable.var_value = params[:max_lim]
-      @variable.save
-      redirect_to universities_path, notice: "Max Limit was successfully updated."
-    elsif ml < 0
-      redirect_to universities_path, alert: "There was an error updating max limit. Max Limit cannot be negative."
-    elsif ml > 100
-      redirect_to universities_path, alert: "There was an error updating max limit. Max Limit capped at 100."
-    # else
-    #   redirect_to universities_path, alert: "There was an error updating max limit."
+    if @max_limit == nil
+      @max_limit = Variable.new({var_name: 'max_limit', var_value: ml})
+      @max_limit.save
+    else
+      if ml > -1 and ml < 101
+        @max_limit.var_value = params[:max_lim]
+        @max_limit.save
+        redirect_to universities_path, notice: "Max Limit was successfully updated."
+      elsif ml < 0
+        redirect_to universities_path, alert: "There was an error updating max limit. Max Limit cannot be negative."
+      elsif ml > 100
+        redirect_to universities_path, alert: "There was an error updating max limit. Max Limit capped at 100."
+      # else
+      #   redirect_to universities_path, alert: "There was an error updating max limit."
+      end
     end
   end
 

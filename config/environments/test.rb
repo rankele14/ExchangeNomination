@@ -58,6 +58,7 @@ Rails.application.configure do
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
   OmniAuth.config.test_mode = true
+  OmniAuth.config.silence_get_warning = true
   OmniAuth.config.allowed_request_methods += %i[get]
   OmniAuth.config.mock_auth[:google_user] = OmniAuth::AuthHash.new({
     provider: 'google_oauth2',

@@ -4,20 +4,37 @@
       <div class="col-sm-auto" style="margin-bottom: 0;">
         <%= button_to "Back to Questions", questions_path, :class => "new-navbar-box", :method => :get %>
       </div>
+      <div class="col-sm-auto" style="margin-bottom: 0;">
+        <%= button_to "Back to Answers", question_answers_path(@question), :class => "new-navbar-box", :method => :get %>
+      </div>
     </div>
   <nav>
 </header>
 
 <div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
   <div>
-    <h1>Deleting Answer</h1>
+    <h2>Deleting Answer</h2>
+    
+    <hr style="height: 3px; border: 0px solid #696969; border-top-width: 1px;" >
 
-    <p>Are you sure you want to permanently delete this answer choice?</p>
+    <div class="container show-box">
 
-    <p>Reply: <%= @answer.choice %> <br>
+      <h2 style="text-align: center;">Are you sure you want to permanently delete this answer choice?</h2>
+      
+      <hr style="height: 2px; width:90%; margin: auto; border: 0px solid #696969; border-top-width: 1px;" >
+      <br>
 
-    <%= link_to 'Destroy', [@question, @answer], method: :delete %>
+      <p>Reply: <%= @answer.choice %></p>
+      <div class="row" style="margin-top: 20px;">
+        <div class="col-auto">
+          <%= button_to 'Delete Choice', [@question, @answer], :class => "delete-button", :method => :delete %>
+        </div>
+      </div>
+      <br>
 
-    <%= link_to 'Back to Answers', question_answers_path(@question) %>
+      <!-- <%= link_to 'Destroy', [@question, @answer], method: :delete %>
+
+      <%= link_to 'Back to Answers', question_answers_path(@question) %> -->
+    </div>
   </div>
 </div>
