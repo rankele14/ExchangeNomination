@@ -1,9 +1,23 @@
-<h1>Deleting Answer</h1>
+<header style="margin-top: 0;">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3C0000; padding-top: 0;padding-bottom: 0;">
+    <div class = "row" style="height:35px; padding-bottom: 0;">
+      <div class="col-sm-auto" style="margin-bottom: 0;">
+        <%= button_to "Back to Questions", questions_path, :class => "new-navbar-box", :method => :get %>
+      </div>
+    </div>
+  <nav>
+</header>
 
-<p>Are you sure you want to permanently delete this answer choice?</p>
+<div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
+  <div>
+    <h1>Deleting Answer</h1>
 
-<p>Reply: <%= @answer.choice %> <br>
+    <p>Are you sure you want to permanently delete this answer choice?</p>
 
-<%= link_to 'Destroy', [@question, @answer], method: :delete %>
+    <p>Reply: <%= @answer.choice %> <br>
 
-<%= link_to 'Back to Answers', question_answers_path(@question) %>
+    <%= link_to 'Destroy', [@question, @answer], method: :delete %>
+
+    <%= link_to 'Back to Answers', question_answers_path(@question) %>
+  </div>
+</div>

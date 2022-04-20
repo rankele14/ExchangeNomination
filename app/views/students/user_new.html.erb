@@ -1,8 +1,23 @@
-<div style="text-align: right"><%= link_to 'Help', user_help_path %></div>
-<h1>New Student</h1>
-<br>
+<header style="margin-top: 0;">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3C0000; padding-top: 0;padding-bottom: 0;">
+    <div class = "row" style="height:35px; padding-bottom: 0;">
+      <div class="col-sm-auto" style="margin-bottom: 0;">
+        <%= button_to "Back", finish_representative_path(@representative), :class => "new-navbar-box", :method => :get %>
+      </div>
+      <div class="col-sm-auto" style="margin-bottom: 0;">
+        <%= button_to "Help", user_help_path, :class => "new-navbar-box", :method => :get %>
+      </div>
+    </div>
+  <nav>
+</header>
 
-<%= render 'formu', student: @student %>
-<br><br>
+<div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
 
-<%= link_to 'Back', finish_representative_path(@representative) %>
+  <h1>New Student</h1>
+
+  <hr style="height: 3px; border: 0px solid #696969; border-top-width: 1px;" >
+
+  <div class="container show-box">
+    <%= render 'formu', student: @student %>
+  </div>
+</div>

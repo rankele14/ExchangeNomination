@@ -1,4 +1,13 @@
-<h1>The deadline for this form has passed</h1>
-<%= link_to 'Admin login', admin_google_oauth2_omniauth_authorize_path %>
+<header style="margin-top: 0;">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3C0000; padding-top: 0;padding-bottom: 0;">
+    <div class = "row" style="height:35px; padding-bottom: 0;">
+      <div class="col-sm-auto" style="margin-bottom: 0;">
+        <%= button_to "Admin login", admin_google_oauth2_omniauth_authorize_path, :class => "new-navbar-box", :method => :get %>
+      </div>
+    </div>
+  <nav>
+</header>
 
-
+<div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
+  <h4>The deadline for this form has passed</h4>
+</div>

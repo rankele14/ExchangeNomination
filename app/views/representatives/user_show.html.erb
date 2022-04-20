@@ -37,7 +37,13 @@
       <%= University.find(@representative.university_id).university_name %>
     </p>
 
-    <%= link_to 'Edit', user_edit_representative_path(@representative) %> |
-    <%= link_to 'Continue', finish_representative_path(@representative) %>
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-auto">
+        <%= button_to 'Edit', user_edit_representative_path(@representative), :class => "edit-button", :method => :get %>
+      </div>
+      <div class="col-auto">
+        <%= button_to 'Continue', finish_representative_path(@representative), :class => "show-button", :method => :get %>
+      </div>
+    </div>
   </div>
 </div>
