@@ -8,5 +8,25 @@
     <p>
       We have recieved your form submission for <%= @student.first_name %> <%= @student.last_name %>
     </p>
+
+	<p>
+	  <strong>Degree level: </strong>
+	  <%= @student.degree_level %>
+	</p>
+
+	<p>
+	  <strong>Major/Area of Study: </strong>
+	  <%= @student.major %>
+	</p>
+
+	<p>
+	  <strong>Term of exchange: </strong>
+	  <%= @student.exchange_term %>
+	</p>
+
+	<p>
+	  <strong>Email: </strong>
+	  <%= @student.student_email %>
+	</p>
   </body>
 </html>

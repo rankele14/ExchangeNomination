@@ -1,96 +1,117 @@
-<p id="notice"><%= notice %></p>
-<p id="alert"><%= alert %></p>
-<div style="text-align: right"><%= link_to 'Help', user_help_path %></div>
+<header style="margin-top: 0;">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3C0000; padding-top: 0;padding-bottom: 0;">
+    <div class = "row" style="height:35px; padding-bottom: 0;">
+      <div class="col-sm-auto" style="margin-bottom: 0;">
+        <%= button_to "Return to Home Page", user_new_representatives_path, :class => "new-navbar-box", :method => :get %>
+      </div>
+    </div>
+  <nav>
+</header>
 
-<h1>Nomination Record</h1>
+<div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
+  <p id="notice"><%= notice %></p>
+  <p id="alert"><%= alert %></p>
+  <div style="text-align: right"><%= link_to 'Help', user_help_path %></div>
 
-<br>
+  <h1>Finish</h1>
 
-<h2>Students</h2>
+  <hr style="height: 3px; border: 0px solid #696969; border-top-width: 1px;" >
 
-<table>
-  <thead>
-    <tr>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>University</th>
-      <th>Degree level</th>
-      <th>Major/Area of Study</th>
-      <th>Term of exchange</th>
-      <th>Email</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <div class="container">
 
-  <tbody>
-    <% @students.each do |student| %>
-      <tr>
-        <td><%= student.first_name %></td>
-        <td><%= student.last_name %></td>
-        <td><%= student.university_id %></td>
-        <td><%= student.degree_level %></td>
-        <td><%= student.major %></td>
-        <td><%= student.exchange_term %></td>
-        <td><%= student.student_email %></td>
-        
-        <% if @deadline == nil || Time.now <= @deadline.var_value %>
-          <td><%= link_to 'Show', user_show_student_path(student) %></td>
-          <td><%= link_to 'Edit', user_edit_student_path(student) %></td>
-          <td><%= link_to 'Delete', user_delete_student_path(student) %></td>
-        <% end %>
-      </tr>
+    <h2>Students</h2>
+
+    <div class="row justify-content-center">
+      <div class="col-auto">
+        <table class="table center">
+          <thead class="thread-dark">
+            <tr>
+              <th>First name</th>
+              <th>Last name</th>
+              <th>University</th>
+              <th>Degree level</th>
+              <th>Major/Area of Study</th>
+              <th>Term of exchange</th>
+              <th>Email</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @students.each do |student| %>
+              <tr>
+                <td><%= student.first_name %></td>
+                <td><%= student.last_name %></td>
+                <td><%= University.find(student.university_id).university_name %></td>
+                <td><%= student.degree_level %></td>
+                <td><%= student.major %></td>
+                <td><%= student.exchange_term %></td>
+                <td><%= student.student_email %></td>
+
+                <% if @deadline == nil || Time.now <= @deadline.var_value %>
+                  <td><%= button_to 'Show', user_show_student_path(student), :class => "show-button", :method => :get %></td>
+                  <td><%= button_to 'Edit', user_edit_student_path(student), :class => "edit-button", :method => :get %></td>
+                  <td><%= button_to 'Delete', user_delete_student_path(student), :class => "delete-button", :method => :get %></td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <p>
+      <strong>Number of University Nominations: </strong>
+      <%= @university.num_nominees %>
+      students nominated out of alloted
+      <%= @university.max_limit%> nominees
+    </p>
+    <p>If the maximum number of nominees has been reached, then entering a new student will not be allowed.</p>
+
+
+    <% if (@deadline == nil || Time.now <= @deadline.var_value) && @university.num_nominees < @university.max_limit%>
+      <div style="margin-left: 20%;">
+        <%= button_to "Enter a new student", user_new_student_path(@representative), :class => "create-new-item-button", :method => :get %>
+      </div>
     <% end %>
-  </tbody>
-</table>
 
-<p>
-  <strong>Number of University Nominations: </strong>
-  <%= University.find(@representative.university_id).num_nominees %>
-  students nominated out of alloted 
-  <%= @university.max_limit %> nominees
-</p>
-<p>If the maximum number of nominees has been reached, then entering a new student will not be allowed.</p>
+    <% if @deadline != nil && Time.now > @deadline.var_value %>
+      <p style="color=red;">The deadline has passed. Adding, removing, or modifying students is not allowed</p>
+    <% end %>
 
+    <br>
+    <br>
+    <br>
 
-<% if (@deadline == nil || Time.now <= @deadline.var_value) && @university.num_nominees < @university.max_limit %>
-  <%= link_to 'Enter a new student', user_new_student_path(@representative) %> | 
-<% end %>
+    <h2>Nominator</h2>
 
-<% if @deadline != nil && Time.now > @deadline.var_value %>
-  <p>The deadline has passed. Adding, removing, or modifying students is not allowed</p>
-<% end %>
+    <p>
+      <strong>First name:</strong>
+      <%= @representative.first_name %>
+    </p>
 
-<br>
-<br>
-<br>
+    <p>
+      <strong>Last name:</strong>
+      <%= @representative.last_name %>
+    </p>
 
-<h2>Nominator</h2>
+    <p>
+      <strong>Title:</strong>
+      <%= @representative.title %>
+    </p>
 
-<p>
-  <strong>First name:</strong>
-  <%= @representative.first_name %>
-</p>
+    <p>
+      <strong>Nominator email:</strong>
+      <%= @representative.rep_email %>
+    </p>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @representative.last_name %>
-</p>
+    <p>
+      <strong>University:</strong>
+      <%= @university.university_name %>
+    </p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @representative.title %>
-</p>
-
-<p>
-  <strong>Nominator email:</strong>
-  <%= @representative.rep_email %>
-</p>
-
-<p>
-  <strong>University:</strong>
-  <%= University.find(@representative.university_id).university_name %>
-</p>
-
-<% if (@deadline == nil || Time.now <= @deadline.var_value) %>
-  <%= link_to 'Edit Nominator Info', user_edit_representative_path(@representative) %>
-<% end %>
+    <% if (@deadline == nil || Time.now <= @deadline.var_value) %>
+      <%= link_to 'Edit Nominator Info', user_edit_representative_path(@representative) %>
+      <% end %>
+  </div>
+</div>

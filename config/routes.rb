@@ -100,6 +100,16 @@ Rails.application.routes.draw do
       get :delete
     end
   end
+  
+  resources :answers do
+    member do
+      get :show
+      get :edit
+      patch :update
+      post :destroy
+      get :delete
+    end
+  end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

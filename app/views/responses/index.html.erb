@@ -1,43 +1,72 @@
-<p id="notice"><%= notice %></p>
-<div style="text-align: right"><%= link_to 'Help', admin_help_path %></div>
+<header style="margin-top: 0;">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3C0000; padding-top: 0;padding-bottom: 0;">
+    <div class = "row" style="height:35px; padding-bottom: 0;">
+      <div class="col-sm-auto" style="margin-bottom: 0;">
+        <%= button_to "Back to Admin", admin_path, :class => "new-navbar-box", :method => :get %>
+      </div>
+      <div class="col-sm-auto" style="margin-bottom: 0;">
+        <%= button_to "Help", admin_help_path, :class => "new-navbar-box", :method => :get %>
+      </div>
+    </div>
+  <nav>
+</header>
 
-<h1>Responses</h1>
-<br>
+<div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
+  <p id="notice"><%= notice %></p>
 
-<%= link_to 'Universities', universities_path %> | 
-<%= link_to 'Nominators', representatives_path %> | 
-<%= link_to 'Students', students_path %> | 
-<%= link_to 'Questions', questions_path %>
-<br>
-<br>
+  <h1>Responses</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Question</th>
-      <th>Student</th>
-      <th>Reply</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <hr style="height: 3px; border: 0px solid #696969; border-top-width: 1px;" >
 
-  <tbody>
-    <% @responses.each do |response| %>
-      <tr>
-		    <td><%= Question.all.find(response.question_id).prompt %></td>
-        <td><%= response.student.student_email %></td>
-        <td><%= response.reply %></td>
-        <td><%= link_to 'Show Student', [@student] %></td>
-        <td><%= link_to 'Edit Response', edit_student_response_path(@student, response) %></td>
-        <td><%= link_to 'Delete Response', delete_student_response_path(@student, response) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-sm-auto">
+        <%= button_to "Universities", universities_path, :class => "data-button", :method => :get %>
+      </div>
+      <div class="col-sm-auto">
+        <%= button_to 'Nominators', representatives_path, :class => "data-button", :method => :get %>
+      </div>
+      <div class="col-sm-auto">
+        <%= button_to 'Students', students_path, :class => "data-button", :method => :get %>
+      </div>
+      <div class="col-sm-auto">
+        <%= button_to 'Questions', questions_path, :class => "data-button", :method => :get %>
+      </div>
+    </div>
+  </div>
 
-<br>
+  <br>
 
-<%= link_to 'New Response', new_student_response_path(@student) %> | 
-<%= link_to 'Clear All', clear_all_repsonses_path %>
-<br>
-<%= link_to 'Back to Admin', admin_path %>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <table class="table center">
+        <thead class="thread-dark">
+          <tr>
+            <th>Question</th>
+            <th>Student</th>
+            <th>Reply</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @responses.each do |response| %>
+            <tr>
+      		    <td><%= Question.all.find(response.question_id).prompt %></td>
+              <td><%= response.student.student_email %></td>
+              <td><%= response.reply %></td>
+              <td><%= button_to 'Show Student', [@student], :class => "response-button", :method => :get %></td>
+              <td><%= button_to 'Edit Response', edit_student_response_path(@student, response), :class => "response-button", :method => :get %></td>
+              <td><%= button_to 'Delete Response', delete_student_response_path(@student, response), :class => "response-button", :method => :get %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= link_to 'Clear All', clear_all_repsonses_path %>
+    </div>
+  </div>
+
+  <div style="margin-left: 20%;">
+    <%= button_to "New Response", new_student_response_path(@student), :class => "create-new-item-button", :method => :get %>
+  </div>
+</div>

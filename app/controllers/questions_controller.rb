@@ -1,7 +1,5 @@
-# frozen_string_literal: true
-
 class QuestionsController < ApplicationController
-  before_action :set_question, only: %i[show edit update destroy]
+  before_action :set_question, only: %i[ show edit update destroy ]
 
   # GET /questions or /questions.json
   def index
@@ -9,7 +7,8 @@ class QuestionsController < ApplicationController
   end
 
   # GET /questions/1 or /questions/1.json
-  def show; end
+  def show
+  end
 
   # GET /questions/new
   def new
@@ -17,7 +16,8 @@ class QuestionsController < ApplicationController
   end
 
   # GET /questions/1/edit
-  def edit; end
+  def edit
+  end
 
   # POST /questions or /questions.json
   def create
@@ -25,11 +25,11 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.save
-        format.html { redirect_to(@question, notice: 'Question was successfully created.') }
-        format.json { render(:show, status: :created, location: @question) }
+        format.html { redirect_to @question, notice: "Question was successfully created." }
+        format.json { render :show, status: :created, location: @question }
       else
-        format.html { render(:new, status: :unprocessable_entity) }
-        format.json { render(json: @question.errors, status: :unprocessable_entity) }
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @question.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -38,11 +38,11 @@ class QuestionsController < ApplicationController
   def update
     respond_to do |format|
       if @question.update(question_params)
-        format.html { redirect_to(@question, notice: 'Question was successfully updated.') }
-        format.json { render(:show, status: :ok, location: @question) }
+        format.html { redirect_to @question, notice: "Question was successfully updated." }
+        format.json { render :show, status: :ok, location: @question }
       else
-        format.html { render(:edit, status: :unprocessable_entity) }
-        format.json { render(json: @question.errors, status: :unprocessable_entity) }
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @question.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -53,10 +53,15 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    @question.destroy!
+    Answer.all.each do |answer|
+	  if @question.id == answer.question_id then
+		answer.destroy
+	  end
+	end
+    @question.destroy
     respond_to do |format|
-      format.html { redirect_to(questions_url, notice: 'Question was successfully destroyed.') }
-      format.json { head(:no_content) }
+      format.html { redirect_to questions_url, notice: "Question was successfully destroyed." }
+      format.json { head :no_content }
     end
   end
 
@@ -66,19 +71,21 @@ class QuestionsController < ApplicationController
 
   def destroy_all
     @questions = Question.all
-    @questions.each(&:destroy)
-    redirect_to(questions_url, notice: 'Questions successfully cleared.')
+    @questions.each do |question|
+      question.destroy
+      # automatically destroys answers
+    end
+    redirect_to questions_url, notice: "Questions successfully cleared."
   end
 
   private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_question
+      @question = Question.find(params[:id])
+    end
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_question
-    @question = Question.find(params[:id])
-  end
-
-  # Only allow a list of trusted parameters through.
-  def question_params
-    params.require(:question).permit(:multi, :prompt)
-  end
+    # Only allow a list of trusted parameters through.
+    def question_params
+      params.require(:question).permit(:multi, :prompt)
+    end
 end
