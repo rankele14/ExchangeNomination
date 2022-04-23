@@ -25,15 +25,8 @@
 
     <style>
       .background {
-        background: linear-gradient(to bottom, transparent, 60%, silver), url("<%= asset_path('denim.png') %>");
-      }
-      .background-overlay {
-        height:100%;
-        background-repeat: no-repeat;
-        background-size: cover;
-        position: relative;
-        background-color: red; /* For browsers that do not support gradients */
-        background-image: linear-gradient(red, yellow);
+        height: 100%;
+        background: linear-gradient(to bottom, transparent, 60%, rgba(245,245,245, 0.6)) no-repeat fixed, url("<%= asset_path('denim.png') %>") repeat;
       }
 
         .vl {
