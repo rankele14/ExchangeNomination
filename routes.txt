@@ -14,6 +14,7 @@
                    destroy_admin_session GET      /admins/sign_out(.:format)                                                                        admins/sessions#destroy
                         user_new_student GET      /representatives/:id/students/user_new(.:format)                                                  students#user_new
                                    admin GET      /admin(.:format)                                                                                  students#admin
+                         update_deadline GET      /admin/update_deadline(.:format)                                                                  students#update_deadline
                               admin_help GET      /admin/help(.:format)                                                                             students#admin_help
                                user_help GET      /help(.:format)                                                                                   students#user_help
                 user_show_representative GET      /representatives/:id/user_show(.:format)                                                          representatives#user_show
@@ -33,6 +34,8 @@
                                          PATCH    /representatives/:id(.:format)                                                                    representatives#update
                                          PUT      /representatives/:id(.:format)                                                                    representatives#update
                                          DELETE   /representatives/:id(.:format)                                                                    representatives#destroy
+              user_edit_student_response GET      /students/:student_id/responses/:id/user_edit(.:format)                                           responses#user_edit
+            user_update_student_response PATCH    /students/:student_id/responses/:id/user_update(.:format)                                         responses#user_update
              clear_all_student_responses GET      /students/:student_id/responses/clear_all(.:format)                                               responses#clear_all
            destroy_all_student_responses POST     /students/:student_id/responses/destroy_all(.:format)                                             responses#destroy_all
                  delete_student_response GET      /students/:student_id/responses/:id/delete(.:format)                                              responses#delete
@@ -67,6 +70,7 @@
                   clear_all_universities GET      /universities/clear_all(.:format)                                                                 universities#clear_all
                 destroy_all_universities POST     /universities/destroy_all(.:format)                                                               universities#destroy_all
                   reset_all_universities GET      /universities/reset_all(.:format)                                                                 universities#reset_all
+                      reset_universities POST     /universities/reset(.:format)                                                                     universities#reset
                        delete_university GET      /universities/:id/delete(.:format)                                                                universities#delete
                             universities GET      /universities(.:format)                                                                           universities#index
                                          POST     /universities(.:format)                                                                           universities#create
@@ -76,6 +80,23 @@
                                          PATCH    /universities/:id(.:format)                                                                       universities#update
                                          PUT      /universities/:id(.:format)                                                                       universities#update
                                          DELETE   /universities/:id(.:format)                                                                       universities#destroy
+                     deadline_dashboards GET      /dashboards/deadline(.:format)                                                                    dashboards#deadline
+                              dashboards GET      /dashboards(.:format)                                                                             dashboards#index
+                                         POST     /dashboards(.:format)                                                                             dashboards#create
+                           new_dashboard GET      /dashboards/new(.:format)                                                                         dashboards#new
+                          edit_dashboard GET      /dashboards/:id/edit(.:format)                                                                    dashboards#edit
+                               dashboard GET      /dashboards/:id(.:format)                                                                         dashboards#show
+                                         PATCH    /dashboards/:id(.:format)                                                                         dashboards#update
+                                         PUT      /dashboards/:id(.:format)                                                                         dashboards#update
+                                         DELETE   /dashboards/:id(.:format)                                                                         dashboards#destroy
+                               responses GET      /responses(.:format)                                                                              responses#index
+                                         POST     /responses(.:format)                                                                              responses#create
+                            new_response GET      /responses/new(.:format)                                                                          responses#new
+                           edit_response GET      /responses/:id/edit(.:format)                                                                     responses#edit
+                                response GET      /responses/:id(.:format)                                                                          responses#show
+                                         PATCH    /responses/:id(.:format)                                                                          responses#update
+                                         PUT      /responses/:id(.:format)                                                                          responses#update
+                                         DELETE   /responses/:id(.:format)                                                                          responses#destroy
                   delete_question_answer GET      /questions/:question_id/answers/:id/delete(.:format)                                              answers#delete
                         question_answers GET      /questions/:question_id/answers(.:format)                                                         answers#index
                                          POST     /questions/:question_id/answers(.:format)                                                         answers#create
@@ -96,6 +117,19 @@
                                          PATCH    /questions/:id(.:format)                                                                          questions#update
                                          PUT      /questions/:id(.:format)                                                                          questions#update
                                          DELETE   /questions/:id(.:format)                                                                          questions#destroy
+                                  answer GET      /answers/:id(.:format)                                                                            answers#show
+                             edit_answer GET      /answers/:id/edit(.:format)                                                                       answers#edit
+                                         PATCH    /answers/:id(.:format)                                                                            answers#update
+                                         POST     /answers/:id(.:format)                                                                            answers#destroy
+                           delete_answer GET      /answers/:id/delete(.:format)                                                                     answers#delete
+                                 answers GET      /answers(.:format)                                                                                answers#index
+                                         POST     /answers(.:format)                                                                                answers#create
+                              new_answer GET      /answers/new(.:format)                                                                            answers#new
+                                         GET      /answers/:id/edit(.:format)                                                                       answers#edit
+                                         GET      /answers/:id(.:format)                                                                            answers#show
+                                         PATCH    /answers/:id(.:format)                                                                            answers#update
+                                         PUT      /answers/:id(.:format)                                                                            answers#update
+                                         DELETE   /answers/:id(.:format)                                                                            answers#destroy
            rails_postmark_inbound_emails POST     /rails/action_mailbox/postmark/inbound_emails(.:format)                                           action_mailbox/ingresses/postmark/inbound_emails#create
               rails_relay_inbound_emails POST     /rails/action_mailbox/relay/inbound_emails(.:format)                                              action_mailbox/ingresses/relay/inbound_emails#create
            rails_sendgrid_inbound_emails POST     /rails/action_mailbox/sendgrid/inbound_emails(.:format)                                           action_mailbox/ingresses/sendgrid/inbound_emails#create

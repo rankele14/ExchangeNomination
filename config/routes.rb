@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   resources :authorizeds
   root to: 'representatives#user_new'
@@ -8,7 +10,7 @@ Rails.application.routes.draw do
   end
 
   # specific definitions go first or else get overwritten by default definitions
-  get 'representatives/:id/students/user_new/', to: 'students#user_new', as: 'user_new_student' #pass representative id to new student form
+  get 'representatives/:id/students/user_new/', to: 'students#user_new', as: 'user_new_student' # pass representative id to new student form
   get 'admin', to: 'students#admin', as: 'admin' # admin home page in student folder for now
   get 'admin/update_deadline', to: 'students#update_deadline', as: 'update_deadline'
   get 'admin/help', to: 'students#admin_help', as: 'admin_help'
@@ -33,10 +35,10 @@ Rails.application.routes.draw do
 
   resources :students do
     resources :responses do
-	  member do
-	    get :user_edit
-	    patch :user_update
-	  end
+      member do
+        get :user_edit
+        patch :user_update
+      end
       collection do
         get :clear_all
         post :destroy_all
@@ -69,12 +71,12 @@ Rails.application.routes.draw do
       get :clear_all
       post :destroy_all
       get :reset_all
+      post :reset
     end
     member do
       get :delete
     end
   end
-
 
   resources :dashboards do
     collection do
@@ -85,7 +87,7 @@ Rails.application.routes.draw do
   # default definitions and root
   resources :responses
   resources :questions do
-	  resources :answers do
+    resources :answers do
       member do
         get :delete
       end
@@ -95,6 +97,16 @@ Rails.application.routes.draw do
       post :destroy_all
     end
     member do
+      get :delete
+    end
+  end
+  
+  resources :answers do
+    member do
+      get :show
+      get :edit
+      patch :update
+      post :destroy
       get :delete
     end
   end
