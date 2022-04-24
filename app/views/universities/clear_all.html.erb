@@ -1,23 +1,40 @@
-<div>
+<header style="margin-top: 0;">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3C0000; padding-top: 0;padding-bottom: 0;">
+    <div class = "row" style="height:35px; padding-bottom: 0;">
+      <div class="col-sm-auto" style="margin-bottom: 0;">
+        <%= button_to "Back to Universities", universities_path, :class => "new-navbar-box", :method => :get %>
+      </div>
+    </div>
+  <nav>
+</header>
+
+<% content_for :title, "Clear All Universities"%>
+
+<div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
   <h2>Clear All Universities</h2>
 
-  <%= form_with url: destroy_all_universities_url do |f| %>
+  <hr style="height: 3px; border: 0px solid #696969; border-top-width: 1px;" >
+  <br>
+  <div class="container show-box">
+    <%= form_with url: destroy_all_universities_url do |f| %>
 
-    <p>Are you sure you want to permanently delete all universities?</p>
+      <p>Are you sure you want to permanently delete all universities?</p>
 
-    <p> Universities: <br>
-    <% @universities.each do |university| %>
-      <%= university.university_name %> <br>
+      <hr style="height: 2px; width:90%; margin: auto; border: 0px solid #696969; border-top-width: 1px;" >
+
+      <p> Universities: <br>
+      <% @universities.each do |university| %>
+        <%= university.university_name %> <br>
+      <% end %>
+      </p>
+
+      <p><strong>Notice:</strong> Deleting all universities will also delete all representatives and students and responses related to them.</p>
+      <br><br>
+
+      <div class="form-buttons">
+        <%= f.submit("Clear All Universities") %>
+      </div>
+
     <% end %>
-    </p>
-
-    <p><strong>Notice:</strong> Deleting all universities will also delete all representatives and students and responses related to them.</p>
-    <%= link_to 'Back to universities', universities_path %>
-    <br><br>
-
-    <div class="form-buttons">
-      <%= f.submit("Clear All Universities") %>
-    </div>
-
-  <% end %>
+  </div>
 </div>

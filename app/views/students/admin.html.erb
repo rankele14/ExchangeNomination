@@ -100,21 +100,22 @@
 </style>
 
 <header style="margin-top: 0;">
-  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3C0000; padding-top: 0;padding-bottom: 0;">
-    <div class = "row" style="height:35px; padding-bottom: 0;">
-      <div class="col-sm-auto" style="margin-bottom: 0;">
-        <%= button_to "Return to Home Page", user_new_representatives_path, :class => "new-navbar-box", :method => :get %>
-      </div>
-      <div class="col-sm" style="margin-right: auto;">
-        <div style="margin-right: auto;">
-          <%= button_to 'Help', user_help_path, :class => "new-navbar-box", :method => :get %>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3C0000; padding-top: 0;padding-bottom: 0;">
+      <div class = "row" style="height:35px; padding-bottom: 0;">
+        <div class="col-sm-auto" style="margin-bottom: 0;">
+          <%= button_to "Return to Home Page", user_new_representatives_path, :class => "new-navbar-box", :method => :get %>
+        </div>
+        <div class="col-sm" style="margin-right: auto;">
+          <div style="margin-right: auto;">
+            <%= button_to 'Help', user_help_path, :class => "new-navbar-box", :method => :get %>
+          </div>
+        </div>
+        <div class="col-sm-auto" style="margin-bottom: 0;">
+          <%= button_to 'Sign Out', destroy_admin_session_path, :class => "new-navbar-box", :method => :get %>
         </div>
       </div>
-      <div class="col-sm-auto" style="margin-bottom: 0;">
-        <%= button_to 'Sign Out', destroy_admin_session_path, :class => "new-navbar-box", :method => :get %>
-      </div>
-    </div>
-  <nav>
+    <nav>
+    <% content_for :title, "Admin Home Page"%>
 </header>
 
 <div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
