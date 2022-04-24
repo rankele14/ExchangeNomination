@@ -1,7 +1,30 @@
-<h1>Editing Answer</h1>
+<header style="margin-top: 0;">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3C0000; padding-top: 0;padding-bottom: 0;">
+    <div class = "row" style="height:35px; padding-bottom: 0;">
+      <div class="col-sm-auto" style="margin-bottom: 0;">
+        <%= button_to "Back to Answers", question_answer_path(@question), :class => "new-navbar-box", :method => :get %>
+      </div>
+    </div>
+  <nav>
+</header>
 
-<%= render 'form', answer: @answer %>
+<% content_for :title, "Edit Choice"%>
 
-<%= link_to 'Show', [@question, @answer] %> | 
-<%= link_to 'Delete', delete_question_answer_path(@question, @answer) %> | 
-<%= link_to 'Back to Answers', question_answer_path(@question) %>
+<div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
+  <h1>Edit Choice</h1>
+
+  <hr style="height: 3px; border: 0px solid #696969; border-top-width: 1px;" >
+
+  <div class="container show-box">
+    <%= render 'form', answer: @answer %>
+
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-auto">
+        <%= button_to 'Show', [@question, @answer], :class => "show-button", :method => :get %>
+      </div>
+      <div class="col-auto">
+        <%= button_to 'Delete', delete_question_answer_path(@question, @answer), :class => "delete-button", :method => :get %>
+      </div>
+    </div>
+  </div>
+</div>

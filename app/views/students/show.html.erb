@@ -14,56 +14,58 @@
   <div class="container show-box">
     <% content_for :title, "Students: " + @student.first_name + " " + @student.last_name%>
 
-    <h2>Student</h2>
+    <h2 style="margin-left: 20px;">Student</h2>
 
     <hr style="height: 2px; width:90%; margin: auto; border: 0px solid #696969; border-top-width: 1px;" >
 
     <br>
 
-    <p>
-      <strong>First name:</strong>
-      <%= @student.first_name %>
-    </p>
+    <div style="margin-left: 20px;">
+      <p>
+        <strong>First name:</strong>
+        <%= @student.first_name %>
+      </p>
 
-    <p>
-      <strong>Last name:</strong>
-      <%= @student.last_name %>
-    </p>
+      <p>
+        <strong>Last name:</strong>
+        <%= @student.last_name %>
+      </p>
 
-    <p>
-      <strong>University:</strong>
-      <%= @university.university_name %>
-    </p>
+      <p>
+        <strong>University:</strong>
+        <%= @university.university_name %>
+      </p>
 
-    <p>
-      <strong>Nominator:</strong>
-      <%= @representative.first_name %>
-      <%= @representative.last_name %>
-    </p>
+      <p>
+        <strong>Nominator:</strong>
+        <%= @representative.first_name %>
+        <%= @representative.last_name %>
+      </p>
 
-    <p>
-      <strong>Degree level</strong>
-      <%= @student.degree_level %>
-    </p>
+      <p>
+        <strong>Degree level</strong>
+        <%= @student.degree_level %>
+      </p>
 
-    <p>
-      <strong>Major/Area of Study</strong>
-      <%= @student.major %>
-    </p>
+      <p>
+        <strong>Major/Area of Study</strong>
+        <%= @student.major %>
+      </p>
 
-    <p>
-      <strong>Term of exchange</strong>
-      <%= @student.exchange_term %>
-    </p>
+      <p>
+        <strong>Term of exchange</strong>
+        <%= @student.exchange_term %>
+      </p>
 
-    <p>
-      <strong>Email</strong>
-      <%= @student.student_email %>
-    </p>
+      <p>
+        <strong>Email</strong>
+        <%= @student.student_email %>
+      </p>
+    </div>
 
     <br>
 
-    <h2>Questions:</h2>
+    <h2 style="margin-left: 20px;">Questions:</h2>
 
     <hr style="height: 2px; width:90%; margin: auto; border: 0px solid #696969; border-top-width: 1px;" >
 
@@ -73,7 +75,7 @@
         <ul>
     	  <td><%= Question.all.find(response.question_id).prompt %></td>
           <li><%= response.reply %></li>
-    	  <td><%= link_to 'Answer Question', edit_student_response_path(@student, response) %></td>
+    	  <td><%= button_to "Answer Question", edit_student_response_path(@student, response), :class => "create-new-item-button", :method => :get %></td>
       </ul>
     <% end %>
     <div class="row" style="margin-top: 20px;">

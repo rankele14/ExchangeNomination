@@ -10,6 +10,8 @@
 
 <p id="notice"><%= notice %></p>
 
+<% content_for :title, "Nominator - " + @representative.first_name + " " + @representative.last_name%>
+
 <div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
   <div class="container show-box">
     <p>
@@ -37,7 +39,13 @@
       <%= University.find(@representative.university_id).university_name %>
     </p>
 
-    <%= link_to 'Edit', user_edit_representative_path(@representative) %> |
-    <%= link_to 'Continue', finish_representative_path(@representative) %>
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-auto">
+        <%= button_to 'Edit', user_edit_representative_path(@representative), :class => "edit-button", :method => :get %>
+      </div>
+      <div class="col-auto">
+        <%= button_to 'Continue', finish_representative_path(@representative), :class => "show-button", :method => :get %>
+      </div>
+    </div>
   </div>
 </div>

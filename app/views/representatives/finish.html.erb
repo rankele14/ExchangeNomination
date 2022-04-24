@@ -8,6 +8,8 @@
   <nav>
 </header>
 
+<% content_for :title, "Representatives - Finish"%>
+
 <div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
   <p id="notice"><%= notice %></p>
   <p id="alert"><%= alert %></p>
@@ -17,7 +19,7 @@
 
   <hr style="height: 3px; border: 0px solid #696969; border-top-width: 1px;" >
 
-  <div class="container">
+  <div class="container show-box">
 
     <h2>Students</h2>
 
@@ -69,7 +71,7 @@
     <p>If the maximum number of nominees has been reached, then entering a new student will not be allowed.</p>
 
 
-    <% if (@deadline == nil || Time.now <= @deadline.var_value) && @university.num_nominees < @university.max_limit%>
+    <% if (@deadline == nil || Time.now <= @deadline.var_value) && @university.num_nominees < @max_limit.var_value.to_i%>
       <div style="margin-left: 20%;">
         <%= button_to "Enter a new student", user_new_student_path(@representative), :class => "create-new-item-button", :method => :get %>
       </div>
@@ -84,6 +86,8 @@
     <br>
 
     <h2>Nominator</h2>
+
+    <hr style="height: 2px; width:90%; margin: auto; border: 0px solid #696969; border-top-width: 1px;" >
 
     <p>
       <strong>First name:</strong>
@@ -112,6 +116,6 @@
 
     <% if (@deadline == nil || Time.now <= @deadline.var_value) %>
       <%= link_to 'Edit Nominator Info', user_edit_representative_path(@representative) %>
-      <% end %>
+    <% end %>
   </div>
 </div>

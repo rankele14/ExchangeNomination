@@ -1,0 +1,1075 @@
+Inspecting 115 files
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+Offenses:
+
+Gemfile:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+source 'https://rubygems.org'
+^
+Gemfile:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+source 'https://rubygems.org'
+^
+Rakefile:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+# Add your own tasks in files placed in lib/tasks ending in .rake,
+^
+Rakefile:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+# Add your own tasks in files placed in lib/tasks ending in .rake,
+^
+app/channels/application_cable/channel.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+module ApplicationCable
+^
+app/channels/application_cable/channel.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+module ApplicationCable
+^
+app/channels/application_cable/connection.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+module ApplicationCable
+^
+app/channels/application_cable/connection.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+module ApplicationCable
+^
+app/controllers/admins/omniauth_callbacks_controller.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class Admins::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+^
+app/controllers/admins/omniauth_callbacks_controller.rb:1:7: C: [Corrected] Style/ClassAndModuleChildren: Use nested module/class definitions instead of compact style.
+class Admins::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/admins/omniauth_callbacks_controller.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+module Admins
+^
+app/controllers/admins/omniauth_callbacks_controller.rb:4:3: C: [Corrected] Layout/IndentationWidth: Use 2 (not 0) spaces for indentation.
+  def google_oauth2
+  
+app/controllers/admins/omniauth_callbacks_controller.rb:4:3: C: Style/Documentation: Missing top-level documentation comment for class Admins::OmniauthCallbacksController.
+  class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/admins/omniauth_callbacks_controller.rb:18:3: C: [Corrected] Layout/AccessModifierIndentation: Indent access modifiers like protected.
+  protected
+  ^^^^^^^^^
+app/controllers/admins/omniauth_callbacks_controller.rb:20:3: C: [Corrected] Layout/IndentationWidth: Use 2 (not 0) spaces for indentation.
+  def after_omniauth_failure_path_for(_scope)
+  
+app/controllers/admins/omniauth_callbacks_controller.rb:24:3: C: [Corrected] Layout/IndentationWidth: Use 2 (not 0) spaces for indentation.
+  def after_sign_in_path_for(resource_or_scope)
+  
+app/controllers/admins/omniauth_callbacks_controller.rb:28:3: C: [Corrected] Layout/AccessModifierIndentation: Indent access modifiers like private.
+  private
+  ^^^^^^^
+app/controllers/admins/omniauth_callbacks_controller.rb:30:3: C: [Corrected] Layout/IndentationWidth: Use 2 (not 0) spaces for indentation.
+  def from_google_params
+  
+app/controllers/admins/omniauth_callbacks_controller.rb:39:3: C: [Corrected] Layout/IndentationWidth: Use 2 (not 0) spaces for indentation.
+  def auth
+  
+app/controllers/admins/sessions_controller.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class Admins::SessionsController < Devise::SessionsController
+^
+app/controllers/admins/sessions_controller.rb:1:7: C: [Corrected] Style/ClassAndModuleChildren: Use nested module/class definitions instead of compact style.
+class Admins::SessionsController < Devise::SessionsController
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/admins/sessions_controller.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+module Admins
+^
+app/controllers/admins/sessions_controller.rb:4:3: C: [Corrected] Layout/IndentationWidth: Use 2 (not 0) spaces for indentation.
+  def after_sign_out_path_for(_resource_or_scope)
+  
+app/controllers/admins/sessions_controller.rb:4:3: C: Style/Documentation: Missing top-level documentation comment for class Admins::SessionsController.
+  class SessionsController < Devise::SessionsController
+  ^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/admins/sessions_controller.rb:8:3: C: [Corrected] Layout/IndentationWidth: Use 2 (not 0) spaces for indentation.
+  def after_sign_in_path_for(resource_or_scope)
+  
+app/controllers/answers_controller.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class AnswersController < ApplicationController
+^
+app/controllers/answers_controller.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+class AnswersController < ApplicationController
+^
+app/controllers/answers_controller.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class AnswersController.
+class AnswersController < ApplicationController
+^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/answers_controller.rb:66:7: C: Naming/AccessorMethodName: Do not prefix reader method names with get_.
+  def get_question
+      ^^^^^^^^^^^^
+app/controllers/application_controller.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class ApplicationController < ActionController::Base
+^
+app/controllers/application_controller.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+class ApplicationController < ActionController::Base
+^
+app/controllers/authorizeds_controller.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class AuthorizedsController < ApplicationController
+^
+app/controllers/authorizeds_controller.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+class AuthorizedsController < ApplicationController
+^
+app/controllers/authorizeds_controller.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class AuthorizedsController.
+class AuthorizedsController < ApplicationController
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/dashboards_controller.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class DashboardsController < ApplicationController
+^
+app/controllers/dashboards_controller.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+class DashboardsController < ApplicationController
+^
+app/controllers/dashboards_controller.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class DashboardsController.
+class DashboardsController < ApplicationController
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/questions_controller.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class QuestionsController < ApplicationController
+^
+app/controllers/questions_controller.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+class QuestionsController < ApplicationController
+^
+app/controllers/questions_controller.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class QuestionsController.
+class QuestionsController < ApplicationController
+^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/questions_controller.rb:67:21: C: [Corrected] Style/SymbolProc: Pass &:destroy as an argument to each instead of a block.
+    @questions.each do |question| ...
+                    ^^^^^^^^^^^^^
+app/controllers/representatives_controller.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'common_stuff'
+^
+app/controllers/representatives_controller.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+require 'common_stuff'
+^
+app/controllers/representatives_controller.rb:4:1: C: Metrics/ClassLength: Class has too many lines. [146/100]
+class RepresentativesController < ApplicationController ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/representatives_controller.rb:4:1: C: Style/Documentation: Missing top-level documentation comment for class RepresentativesController.
+class RepresentativesController < ApplicationController
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/representatives_controller.rb:54:3: C: Metrics/AbcSize: Assignment Branch Condition size for user_create is too high. [<3, 21, 6> 22.05/17]
+  def user_create ...
+  ^^^^^^^^^^^^^^^
+app/controllers/representatives_controller.rb:54:3: C: Metrics/MethodLength: Method has too many lines. [17/10]
+  def user_create ...
+  ^^^^^^^^^^^^^^^
+app/controllers/representatives_controller.rb:75:3: C: Metrics/AbcSize: Assignment Branch Condition size for update is too high. [<10, 39, 7> 40.87/17]
+  def update ...
+  ^^^^^^^^^^
+app/controllers/representatives_controller.rb:75:3: C: Metrics/MethodLength: Method has too many lines. [27/10]
+  def update ...
+  ^^^^^^^^^^
+app/controllers/representatives_controller.rb:106:3: C: Metrics/AbcSize: Assignment Branch Condition size for user_update is too high. [<3, 23, 6> 23.96/17]
+  def user_update ...
+  ^^^^^^^^^^^^^^^
+app/controllers/representatives_controller.rb:106:3: C: Metrics/MethodLength: Method has too many lines. [18/10]
+  def user_update ...
+  ^^^^^^^^^^^^^^^
+app/controllers/responses_controller.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class ResponsesController < ApplicationController
+^
+app/controllers/responses_controller.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+class ResponsesController < ApplicationController
+^
+app/controllers/responses_controller.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class ResponsesController.
+class ResponsesController < ApplicationController
+^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/responses_controller.rb:25:3: C: Metrics/MethodLength: Method has too many lines. [11/10]
+  def create ...
+  ^^^^^^^^^^
+app/controllers/responses_controller.rb:82:21: C: [Corrected] Style/SymbolProc: Pass &:destroy as an argument to each instead of a block.
+    @responses.each do |response| ...
+                    ^^^^^^^^^^^^^
+app/controllers/responses_controller.rb:90:7: C: Naming/AccessorMethodName: Do not prefix reader method names with get_.
+  def get_student
+      ^^^^^^^^^^^
+app/controllers/students_controller.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'csv'
+^
+app/controllers/students_controller.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+require 'csv'
+^
+app/controllers/students_controller.rb:5:1: C: Metrics/ClassLength: Class has too many lines. [204/100]
+class StudentsController < ApplicationController ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/students_controller.rb:5:1: C: Style/Documentation: Missing top-level documentation comment for class StudentsController.
+class StudentsController < ApplicationController
+^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/students_controller.rb:21:5: C: Style/GuardClause: Use a guard clause (return unless @variable.nil?) instead of wrapping the code inside a conditional expression.
+    if @variable.nil?
+    ^^
+app/controllers/students_controller.rb:55:121: C: Layout/LineLength: Line is too long. [124/120]
+    #   redirect_to finish_representative_url(@representative), alert: "Sorry, maximum limit of 3 students already reached."
+                                                                                                                        ^^^^
+app/controllers/students_controller.rb:57:121: C: Layout/LineLength: Line is too long. [128/120]
+    #   redirect_to finish_representative_path(@representative), alert: "Sorry, the deadline for submitting students has passed"
+                                                                                                                        ^^^^^^^^
+app/controllers/students_controller.rb:68:3: C: Metrics/AbcSize: Assignment Branch Condition size for create is too high. [<3, 24, 4> 24.52/17]
+  def create ...
+  ^^^^^^^^^^
+app/controllers/students_controller.rb:68:3: C: Metrics/MethodLength: Method has too many lines. [16/10]
+  def create ...
+  ^^^^^^^^^^
+app/controllers/students_controller.rb:89:3: C: Metrics/AbcSize: Assignment Branch Condition size for user_create is too high. [<5, 39, 8> 40.12/17]
+  def user_create ...
+  ^^^^^^^^^^^^^^^
+app/controllers/students_controller.rb:89:3: C: Metrics/MethodLength: Method has too many lines. [25/10]
+  def user_create ...
+  ^^^^^^^^^^^^^^^
+app/controllers/students_controller.rb:107:121: C: Layout/LineLength: Line is too long. [133/120]
+                                  representative: Representative.find_by(id: @student.representative_id)).confirm_email.deliver_later
+                                                                                                                        ^^^^^^^^^^^^^
+app/controllers/students_controller.rb:119:3: C: Metrics/AbcSize: Assignment Branch Condition size for update is too high. [<5, 39, 11> 40.83/17]
+  def update ...
+  ^^^^^^^^^^
+app/controllers/students_controller.rb:119:3: C: Metrics/CyclomaticComplexity: Cyclomatic complexity for update is too high. [9/7]
+  def update ...
+  ^^^^^^^^^^
+app/controllers/students_controller.rb:119:3: C: Metrics/MethodLength: Method has too many lines. [23/10]
+  def update ...
+  ^^^^^^^^^^
+app/controllers/students_controller.rb:119:3: C: Metrics/PerceivedComplexity: Perceived complexity for update is too high. [12/8]
+  def update ...
+  ^^^^^^^^^^
+app/controllers/students_controller.rb:125:121: C: Layout/LineLength: Line is too long. [176/120]
+    if !(prev_term.include? 'and') && (new_term.include? 'and') && (@university.num_nominees >= @university.max_limit) # used to be single, now double, exceeds university limit
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/students_controller.rb:127:121: C: Layout/LineLength: Line is too long. [148/120]
+                  alert: "Sorry, a double term nomination would exceed the university's nomination limit. Please stick to a single term nomination."
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/students_controller.rb:147:3: C: Metrics/AbcSize: Assignment Branch Condition size for user_update is too high. [<5, 46, 14> 48.34/17]
+  def user_update ...
+  ^^^^^^^^^^^^^^^
+app/controllers/students_controller.rb:147:3: C: Metrics/CyclomaticComplexity: Cyclomatic complexity for user_update is too high. [11/7]
+  def user_update ...
+  ^^^^^^^^^^^^^^^
+app/controllers/students_controller.rb:147:3: C: Metrics/MethodLength: Method has too many lines. [26/10]
+  def user_update ...
+  ^^^^^^^^^^^^^^^
+app/controllers/students_controller.rb:147:3: C: Metrics/PerceivedComplexity: Perceived complexity for user_update is too high. [14/8]
+  def user_update ...
+  ^^^^^^^^^^^^^^^
+app/controllers/students_controller.rb:153:121: C: Layout/LineLength: Line is too long. [176/120]
+    if !(prev_term.include? 'and') && (new_term.include? 'and') && (@university.num_nominees >= @university.max_limit) # used to be single, now double, exceeds university limit
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/students_controller.rb:155:121: C: Layout/LineLength: Line is too long. [148/120]
+                  alert: "Sorry, a double term nomination would exceed the university's nomination limit. Please stick to a single term nomination."
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/universities_controller.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class UniversitiesController < ApplicationController
+^
+app/controllers/universities_controller.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+class UniversitiesController < ApplicationController
+^
+app/controllers/universities_controller.rb:3:1: C: Metrics/ClassLength: Class has too many lines. [107/100]
+class UniversitiesController < ApplicationController ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/universities_controller.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class UniversitiesController.
+class UniversitiesController < ApplicationController
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/universities_controller.rb:31:3: C: Metrics/MethodLength: Method has too many lines. [11/10]
+  def create ...
+  ^^^^^^^^^^
+app/controllers/universities_controller.rb:73:3: C: Metrics/MethodLength: Method has too many lines. [11/10]
+  def update_max ...
+  ^^^^^^^^^^^^^^
+app/controllers/universities_controller.rb:75:16: C: [Corrected] Style/AndOr: Use && instead of and.
+    if ml > -1 and ml < 101
+               ^^^
+app/controllers/universities_controller.rb:79:11: C: [Corrected] Style/NumericPredicate: Use ml.negative? instead of ml < 0.
+    elsif ml < 0
+          ^^^^^^
+app/controllers/universities_controller.rb:90:3: C: Metrics/MethodLength: Method has too many lines. [13/10]
+  def change_all_max ...
+  ^^^^^^^^^^^^^^^^^^
+app/controllers/universities_controller.rb:91:16: C: [Corrected] Style/AndOr: Use && instead of and.
+    if cl > -1 and cl < 101
+               ^^^
+app/controllers/universities_controller.rb:98:11: C: [Corrected] Style/NumericPredicate: Use cl.negative? instead of cl < 0.
+    elsif cl < 0
+          ^^^^^^
+app/controllers/universities_controller.rb:113:24: C: [Corrected] Style/SymbolProc: Pass &:destroy as an argument to each instead of a block.
+    @universities.each do |university| ...
+                       ^^^^^^^^^^^^^^^
+app/controllers/universities_controller.rb:129:29: C: [Corrected] Style/SymbolProc: Pass &:destroy as an argument to each instead of a block.
+      @representatives.each do |representative| ...
+                            ^^^^^^^^^^^^^^^^^^^
+app/helpers/answers_helper.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+module AnswersHelper
+^
+app/helpers/answers_helper.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+module AnswersHelper
+^
+app/helpers/answers_helper.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for module AnswersHelper.
+module AnswersHelper
+^^^^^^^^^^^^^^^^^^^^
+app/helpers/application_helper.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+module ApplicationHelper
+^
+app/helpers/application_helper.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+module ApplicationHelper
+^
+app/helpers/application_helper.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for module ApplicationHelper.
+module ApplicationHelper
+^^^^^^^^^^^^^^^^^^^^^^^^
+app/helpers/authorizeds_helper.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+module AuthorizedsHelper
+^
+app/helpers/authorizeds_helper.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+module AuthorizedsHelper
+^
+app/helpers/authorizeds_helper.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for module AuthorizedsHelper.
+module AuthorizedsHelper
+^^^^^^^^^^^^^^^^^^^^^^^^
+app/helpers/questions_helper.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+module QuestionsHelper
+^
+app/helpers/questions_helper.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+module QuestionsHelper
+^
+app/helpers/questions_helper.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for module QuestionsHelper.
+module QuestionsHelper
+^^^^^^^^^^^^^^^^^^^^^^
+app/helpers/representatives_helper.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+module RepresentativesHelper
+^
+app/helpers/representatives_helper.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+module RepresentativesHelper
+^
+app/helpers/representatives_helper.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for module RepresentativesHelper.
+module RepresentativesHelper
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/helpers/responses_helper.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+module ResponsesHelper
+^
+app/helpers/responses_helper.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+module ResponsesHelper
+^
+app/helpers/responses_helper.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for module ResponsesHelper.
+module ResponsesHelper
+^^^^^^^^^^^^^^^^^^^^^^
+app/helpers/students_helper.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+module StudentsHelper
+^
+app/helpers/students_helper.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+module StudentsHelper
+^
+app/helpers/students_helper.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for module StudentsHelper.
+module StudentsHelper
+^^^^^^^^^^^^^^^^^^^^^
+app/helpers/universities_helper.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+module UniversitiesHelper
+^
+app/helpers/universities_helper.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+module UniversitiesHelper
+^
+app/helpers/universities_helper.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for module UniversitiesHelper.
+module UniversitiesHelper
+^^^^^^^^^^^^^^^^^^^^^^^^^
+app/jobs/application_job.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class ApplicationJob < ActiveJob::Base
+^
+app/jobs/application_job.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+class ApplicationJob < ActiveJob::Base
+^
+app/mailers/application_mailer.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class ApplicationMailer < ActionMailer::Base
+^
+app/mailers/application_mailer.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+class ApplicationMailer < ActionMailer::Base
+^
+app/mailers/confirmation_mailer.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class ConfirmationMailer < ApplicationMailer
+^
+app/mailers/confirmation_mailer.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+class ConfirmationMailer < ApplicationMailer
+^
+app/mailers/confirmation_mailer.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class ConfirmationMailer.
+class ConfirmationMailer < ApplicationMailer
+^^^^^^^^^^^^^^^^^^^^^^^^
+app/models/admin.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class Admin < ApplicationRecord
+^
+app/models/admin.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+class Admin < ApplicationRecord
+^
+app/models/admin.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class Admin.
+class Admin < ApplicationRecord
+^^^^^^^^^^^
+app/models/answer.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class Answer < ApplicationRecord
+^
+app/models/answer.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+class Answer < ApplicationRecord
+^
+app/models/application_record.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class ApplicationRecord < ActiveRecord::Base
+^
+app/models/application_record.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+class ApplicationRecord < ActiveRecord::Base
+^
+app/models/application_record.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class ApplicationRecord.
+class ApplicationRecord < ActiveRecord::Base
+^^^^^^^^^^^^^^^^^^^^^^^
+app/models/authorized.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class Authorized < ApplicationRecord
+^
+app/models/authorized.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+class Authorized < ApplicationRecord
+^
+app/models/question.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class Question < ApplicationRecord
+^
+app/models/question.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+class Question < ApplicationRecord
+^
+app/models/representative.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class Representative < ApplicationRecord
+^
+app/models/representative.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+class Representative < ApplicationRecord
+^
+app/models/response.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class Response < ApplicationRecord
+^
+app/models/response.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+class Response < ApplicationRecord
+^
+app/models/student.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class Student < ApplicationRecord
+^
+app/models/student.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+class Student < ApplicationRecord
+^
+app/models/university.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class University < ApplicationRecord
+^
+app/models/university.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+class University < ApplicationRecord
+^
+app/models/variable.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class Variable < ApplicationRecord
+^
+app/models/variable.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+class Variable < ApplicationRecord
+^
+app/views/answers/_answer.json.jbuilder:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+json.extract! answer, :id, :choice, :question, :created_at, :updated_at
+^
+app/views/answers/_answer.json.jbuilder:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+json.extract! answer, :id, :choice, :question, :created_at, :updated_at
+^
+app/views/answers/index.json.jbuilder:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+json.array! @answers, partial: 'answers/answer', as: :answer
+^
+app/views/answers/index.json.jbuilder:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+json.array! @answers, partial: 'answers/answer', as: :answer
+^
+app/views/answers/show.json.jbuilder:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+json.partial! 'answers/answer', answer: @answer
+^
+app/views/answers/show.json.jbuilder:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+json.partial! 'answers/answer', answer: @answer
+^
+app/views/authorizeds/_authorized.json.jbuilder:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+json.extract! authorized, :id, :authorized_email, :created_at, :updated_at
+^
+app/views/authorizeds/_authorized.json.jbuilder:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+json.extract! authorized, :id, :authorized_email, :created_at, :updated_at
+^
+app/views/authorizeds/index.json.jbuilder:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+json.array! @authorizeds, partial: 'authorizeds/authorized', as: :authorized
+^
+app/views/authorizeds/index.json.jbuilder:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+json.array! @authorizeds, partial: 'authorizeds/authorized', as: :authorized
+^
+app/views/authorizeds/show.json.jbuilder:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+json.partial! 'authorizeds/authorized', authorized: @authorized
+^
+app/views/authorizeds/show.json.jbuilder:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+json.partial! 'authorizeds/authorized', authorized: @authorized
+^
+app/views/questions/_question.json.jbuilder:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+json.extract! question, :id, :multi, :prompt, :created_at, :updated_at
+^
+app/views/questions/_question.json.jbuilder:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+json.extract! question, :id, :multi, :prompt, :created_at, :updated_at
+^
+app/views/questions/index.json.jbuilder:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+json.array! @questions, partial: 'questions/question', as: :question
+^
+app/views/questions/index.json.jbuilder:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+json.array! @questions, partial: 'questions/question', as: :question
+^
+app/views/questions/show.json.jbuilder:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+json.partial! 'questions/question', question: @question
+^
+app/views/questions/show.json.jbuilder:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+json.partial! 'questions/question', question: @question
+^
+app/views/representatives/_representative.json.jbuilder:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+json.extract! representative, :id, :first_name, :last_name, :title, :university_id, :created_at, :updated_at
+^
+app/views/representatives/_representative.json.jbuilder:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+json.extract! representative, :id, :first_name, :last_name, :title, :university_id, :created_at, :updated_at
+^
+app/views/representatives/index.json.jbuilder:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+json.array! @representatives, partial: 'representatives/representative', as: :representative
+^
+app/views/representatives/index.json.jbuilder:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+json.array! @representatives, partial: 'representatives/representative', as: :representative
+^
+app/views/representatives/show.json.jbuilder:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+json.partial! 'representatives/representative', representative: @representative
+^
+app/views/representatives/show.json.jbuilder:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+json.partial! 'representatives/representative', representative: @representative
+^
+app/views/responses/_response.json.jbuilder:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+json.extract! response, :id, :reply, :question, :student, :created_at, :updated_at
+^
+app/views/responses/_response.json.jbuilder:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+json.extract! response, :id, :reply, :question, :student, :created_at, :updated_at
+^
+app/views/responses/index.json.jbuilder:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+json.array! @responses, partial: 'responses/response', as: :response
+^
+app/views/responses/index.json.jbuilder:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+json.array! @responses, partial: 'responses/response', as: :response
+^
+app/views/responses/show.json.jbuilder:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+json.partial! 'responses/response', response: @response
+^
+app/views/responses/show.json.jbuilder:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+json.partial! 'responses/response', response: @response
+^
+app/views/students/_student.json.jbuilder:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+json.extract! student, :id, :first_name, :last_name, :university_id, :created_at, :updated_at
+^
+app/views/students/_student.json.jbuilder:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+json.extract! student, :id, :first_name, :last_name, :university_id, :created_at, :updated_at
+^
+app/views/students/index.json.jbuilder:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+json.array! @students, partial: 'students/student', as: :student
+^
+app/views/students/index.json.jbuilder:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+json.array! @students, partial: 'students/student', as: :student
+^
+app/views/students/show.json.jbuilder:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+json.partial! 'students/student', student: @student
+^
+app/views/students/show.json.jbuilder:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+json.partial! 'students/student', student: @student
+^
+app/views/universities/_university.json.jbuilder:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+json.extract! university, :id, :university_name, :num_nominees, :created_at, :updated_at
+^
+app/views/universities/_university.json.jbuilder:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+json.extract! university, :id, :university_name, :num_nominees, :created_at, :updated_at
+^
+app/views/universities/index.json.jbuilder:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+json.array! @universities, partial: 'universities/university', as: :university
+^
+app/views/universities/index.json.jbuilder:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+json.array! @universities, partial: 'universities/university', as: :university
+^
+app/views/universities/show.json.jbuilder:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+json.partial! 'universities/university', university: @university
+^
+app/views/universities/show.json.jbuilder:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+json.partial! 'universities/university', university: @university
+^
+bin/bundle:17:22: C: [Corrected] Style/SpecialGlobalVars: Prefer $PROGRAM_NAME over $0.
+    File.expand_path($0) == File.expand_path(__FILE__)
+                     ^^
+bin/bundle:24:3: C: Metrics/CyclomaticComplexity: Cyclomatic complexity for cli_arg_version is too high. [9/7]
+  def cli_arg_version ...
+  ^^^^^^^^^^^^^^^^^^^
+bin/bundle:24:3: C: Metrics/MethodLength: Method has too many lines. [11/10]
+  def cli_arg_version ...
+  ^^^^^^^^^^^^^^^^^^^
+bin/bundle:24:3: C: Metrics/PerceivedComplexity: Perceived complexity for cli_arg_version is too high. [9/8]
+  def cli_arg_version ...
+  ^^^^^^^^^^^^^^^^^^^
+bin/bundle:91:3: C: Metrics/MethodLength: Method has too many lines. [12/10]
+  def activate_bundler ...
+  ^^^^^^^^^^^^^^^^^^^^
+bin/bundle:104:121: C: Layout/LineLength: Line is too long. [198/120]
+    warn "Activating bundler (#{bundler_requirement}) failed:\n#{gem_error.message}\n\nTo install the version of bundler this project requires, run `gem install bundler -v '#{bundler_requirement}'`"
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+bin/rails:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+#!/usr/bin/env ruby
+^
+bin/rails:3:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+load File.expand_path('spring', __dir__)
+^
+bin/rake:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+#!/usr/bin/env ruby
+^
+bin/rake:3:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+load File.expand_path('spring', __dir__)
+^
+bin/setup:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+#!/usr/bin/env ruby
+^
+bin/setup:3:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+require 'fileutils'
+^
+bin/spring:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+#!/usr/bin/env ruby
+^
+bin/spring:3:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+if !defined?(Spring) && [nil, 'development', 'test'].include?(ENV['RAILS_ENV'])
+^
+bin/webpack:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+#!/usr/bin/env ruby
+^
+bin/webpack-dev-server:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+#!/usr/bin/env ruby
+^
+bin/yarn:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+#!/usr/bin/env ruby
+^
+bin/yarn:3:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+APP_ROOT = File.expand_path('..', __dir__)
+^
+bin/yarn:4:10: C: [Corrected] Style/InverseMethods: Use reject instead of inverting select.
+  yarn = ENV['PATH'].split(File::PATH_SEPARATOR) ...
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+config.ru:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+# This file is used by Rack-based servers to start the application.
+^
+config.ru:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+# This file is used by Rack-based servers to start the application.
+^
+config/application.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require_relative 'boot'
+^
+config/application.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+require_relative 'boot'
+^
+config/application.rb:12:3: C: Style/Documentation: Missing top-level documentation comment for class ExchangeNomination::Application.
+  class Application < Rails::Application
+  ^^^^^^^^^^^^^^^^^
+config/boot.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../Gemfile', __dir__)
+^
+config/boot.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../Gemfile', __dir__)
+^
+config/environment.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+# Load the Rails application.
+^
+config/environment.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+# Load the Rails application.
+^
+config/environments/development.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'active_support/core_ext/integer/time'
+^
+config/environments/development.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+require 'active_support/core_ext/integer/time'
+^
+config/environments/development.rb:5:1: C: Metrics/BlockLength: Block has too many lines. [36/25]
+Rails.application.configure do ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+config/environments/production.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'active_support/core_ext/integer/time'
+^
+config/environments/production.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+require 'active_support/core_ext/integer/time'
+^
+config/environments/production.rb:5:1: C: Metrics/BlockLength: Block has too many lines. [32/25]
+Rails.application.configure do ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+config/environments/production.rb:101:50: C: [Corrected] Style/GlobalStdStream: Use $stdout instead of STDOUT.
+    logger           = ActiveSupport::Logger.new(STDOUT)
+                                                 ^^^^^^
+config/environments/test.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'active_support/core_ext/integer/time'
+^
+config/environments/test.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+require 'active_support/core_ext/integer/time'
+^
+config/environments/test.rb:10:1: C: Metrics/BlockLength: Block has too many lines. [37/25]
+Rails.application.configure do ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+config/initializers/application_controller_renderer.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+# Be sure to restart your server when you modify this file.
+^
+config/initializers/assets.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+# Be sure to restart your server when you modify this file.
+^
+config/initializers/assets.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+# Be sure to restart your server when you modify this file.
+^
+config/initializers/backtrace_silencers.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+# Be sure to restart your server when you modify this file.
+^
+config/initializers/backtrace_silencers.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+# Be sure to restart your server when you modify this file.
+^
+config/initializers/content_security_policy.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+# Be sure to restart your server when you modify this file.
+^
+config/initializers/cookies_serializer.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+# Be sure to restart your server when you modify this file.
+^
+config/initializers/cookies_serializer.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+# Be sure to restart your server when you modify this file.
+^
+config/initializers/devise.rb:1:1: C: Layout/EndOfLine: Carriage return character detected.
+# frozen_string_literal: true ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+config/initializers/devise.rb:17:121: C: Layout/LineLength: Line is too long. [154/120]
+  # config.secret_key = '4ddfd9871e7e128031fbfbf4f5f5afca46e90a5bb079898632a9a290b03d52764184cde460a8eba6f8d5f09ace9e9625881d0df12cef9b8668bab8f9e105dec1'
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+config/initializers/devise.rb:130:121: C: Layout/LineLength: Line is too long. [150/120]
+  # config.pepper = 'cc0b4efc29be9af12c402899b6cb8da75af533ccdb9233c30cdfdd3b4e857835731a65341cf66b7415b094c3be6dd1a7d4e8353cb7cfe1f975b0565abd734793'
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+config/initializers/filter_parameter_logging.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+# Be sure to restart your server when you modify this file.
+^
+config/initializers/filter_parameter_logging.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+# Be sure to restart your server when you modify this file.
+^
+config/initializers/inflections.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+# Be sure to restart your server when you modify this file.
+^
+config/initializers/mime_types.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+# Be sure to restart your server when you modify this file.
+^
+config/initializers/permissions_policy.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+# Define an application-wide HTTP permissions policy. For further
+^
+config/initializers/wrap_parameters.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+# Be sure to restart your server when you modify this file.
+^
+config/initializers/wrap_parameters.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+# Be sure to restart your server when you modify this file.
+^
+config/puma.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+# Puma can serve each request in a thread from an internal thread pool.
+^
+config/puma.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+# Puma can serve each request in a thread from an internal thread pool.
+^
+config/puma.rb:7:25: C: [Corrected] Style/RedundantFetchBlock: Use fetch('RAILS_MAX_THREADS', 5) instead of fetch('RAILS_MAX_THREADS') { 5 }.
+max_threads_count = ENV.fetch('RAILS_MAX_THREADS') { 5 }
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+config/puma.rb:18:10: C: [Corrected] Style/RedundantFetchBlock: Use fetch('PORT', 3000) instead of fetch('PORT') { 3000 }.
+port ENV.fetch('PORT') { 3000 }
+         ^^^^^^^^^^^^^^^^^^^^^^
+config/puma.rb:23:17: C: [Corrected] Style/RedundantFetchBlock: Use fetch('RAILS_ENV', 'development') instead of fetch('RAILS_ENV') { 'development' }.
+environment ENV.fetch('RAILS_ENV') { 'development' }
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+config/puma.rb:26:13: C: [Corrected] Style/RedundantFetchBlock: Use fetch('PIDFILE', 'tmp/pids/server.pid') instead of fetch('PIDFILE') { 'tmp/pids/server.pid' }.
+pidfile ENV.fetch('PIDFILE') { 'tmp/pids/server.pid' }
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+config/routes.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+Rails.application.routes.draw do
+^
+config/routes.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+Rails.application.routes.draw do
+^
+config/routes.rb:3:1: C: Metrics/BlockLength: Block has too many lines. [89/25]
+Rails.application.routes.draw do ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+config/routes.rb:13:121: C: Layout/LineLength: Line is too long. [140/120]
+  get 'representatives/:id/students/user_new/', to: 'students#user_new', as: 'user_new_student' # pass representative id to new student form
+                                                                                                                        ^^^^^^^^^^^^^^^^^^^^
+config/routes.rb:36:3: C: Metrics/BlockLength: Block has too many lines. [27/25]
+  resources :students do ...
+  ^^^^^^^^^^^^^^^^^^^^^^
+config/spring.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+Spring.watch(
+^
+config/spring.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+Spring.watch(
+^
+db/migrate/20220212170041_create_universities.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class CreateUniversities < ActiveRecord::Migration[6.1]
+^
+db/migrate/20220212170041_create_universities.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+class CreateUniversities < ActiveRecord::Migration[6.1]
+^
+db/migrate/20220212170041_create_universities.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class CreateUniversities.
+class CreateUniversities < ActiveRecord::Migration[6.1]
+^^^^^^^^^^^^^^^^^^^^^^^^
+db/migrate/20220212170633_create_students.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class CreateStudents < ActiveRecord::Migration[6.1]
+^
+db/migrate/20220212170633_create_students.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+class CreateStudents < ActiveRecord::Migration[6.1]
+^
+db/migrate/20220212170633_create_students.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class CreateStudents.
+class CreateStudents < ActiveRecord::Migration[6.1]
+^^^^^^^^^^^^^^^^^^^^
+db/migrate/20220212170633_create_students.rb:4:3: C: Metrics/MethodLength: Method has too many lines. [11/10]
+  def change ...
+  ^^^^^^^^^^
+db/migrate/20220212171017_create_representatives.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class CreateRepresentatives < ActiveRecord::Migration[6.1]
+^
+db/migrate/20220212171017_create_representatives.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+class CreateRepresentatives < ActiveRecord::Migration[6.1]
+^
+db/migrate/20220212171017_create_representatives.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class CreateRepresentatives.
+class CreateRepresentatives < ActiveRecord::Migration[6.1]
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/migrate/20220303005639_devise_create_admins.rb:1:1: C: Layout/EndOfLine: Carriage return character detected.
+# frozen_string_literal: true ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/migrate/20220303005639_devise_create_admins.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class DeviseCreateAdmins.
+class DeviseCreateAdmins < ActiveRecord::Migration[6.1]
+^^^^^^^^^^^^^^^^^^^^^^^^
+db/migrate/20220305233039_create_questions.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class CreateQuestions < ActiveRecord::Migration[6.1]
+^
+db/migrate/20220305233039_create_questions.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+class CreateQuestions < ActiveRecord::Migration[6.1]
+^
+db/migrate/20220305233039_create_questions.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class CreateQuestions.
+class CreateQuestions < ActiveRecord::Migration[6.1]
+^^^^^^^^^^^^^^^^^^^^^
+db/migrate/20220305233219_create_answers.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class CreateAnswers < ActiveRecord::Migration[6.1]
+^
+db/migrate/20220305233219_create_answers.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+class CreateAnswers < ActiveRecord::Migration[6.1]
+^
+db/migrate/20220305233219_create_answers.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class CreateAnswers.
+class CreateAnswers < ActiveRecord::Migration[6.1]
+^^^^^^^^^^^^^^^^^^^
+db/migrate/20220306010556_create_responses.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class CreateResponses < ActiveRecord::Migration[6.1]
+^
+db/migrate/20220306010556_create_responses.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+class CreateResponses < ActiveRecord::Migration[6.1]
+^
+db/migrate/20220306010556_create_responses.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class CreateResponses.
+class CreateResponses < ActiveRecord::Migration[6.1]
+^^^^^^^^^^^^^^^^^^^^^
+db/migrate/20220331012434_create_variables.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class CreateVariables < ActiveRecord::Migration[6.1]
+^
+db/migrate/20220331012434_create_variables.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+class CreateVariables < ActiveRecord::Migration[6.1]
+^
+db/migrate/20220331012434_create_variables.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class CreateVariables.
+class CreateVariables < ActiveRecord::Migration[6.1]
+^^^^^^^^^^^^^^^^^^^^^
+db/migrate/20220401025847_create_authorizeds.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+class CreateAuthorizeds < ActiveRecord::Migration[6.1]
+^
+db/migrate/20220401025847_create_authorizeds.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+class CreateAuthorizeds < ActiveRecord::Migration[6.1]
+^
+db/migrate/20220401025847_create_authorizeds.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for class CreateAuthorizeds.
+class CreateAuthorizeds < ActiveRecord::Migration[6.1]
+^^^^^^^^^^^^^^^^^^^^^^^
+db/schema.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+# This file is auto-generated from the current state of the database. Instead
+^
+db/schema.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+# This file is auto-generated from the current state of the database. Instead
+^
+db/schema.rb:15:1: C: Metrics/BlockLength: Block has too many lines. [70/25]
+ActiveRecord::Schema.define(version: 20_220_401_025_847) do ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+db/seeds.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+# This file should contain all the record creation needed to seed the database with its default values.
+^
+lib/common_stuff.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+module CommonStuff
+^
+lib/common_stuff.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+module CommonStuff
+^
+lib/common_stuff.rb:3:1: C: Style/Documentation: Missing top-level documentation comment for module CommonStuff.
+module CommonStuff
+^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'rails_helper'
+^
+spec/feature/integration_spec.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+require 'rails_helper'
+^
+spec/feature/integration_spec.rb:40:1: C: Metrics/BlockLength: Block has too many lines. [56/25]
+RSpec.describe 'Admin dashboard links', type: :feature do ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:117:1: C: Metrics/BlockLength: Block has too many lines. [240/25]
+RSpec.describe 'Admin university functions', type: :feature do ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:192:3: C: Metrics/BlockLength: Block has too many lines. [28/25]
+  scenario 'check destroy association' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:261:3: C: Metrics/BlockLength: Block has too many lines. [52/25]
+  scenario 'clear all' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:316:3: C: Metrics/BlockLength: Block has too many lines. [53/25]
+  scenario 'reset all' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:373:1: C: Metrics/BlockLength: Block has too many lines. [201/25]
+RSpec.describe 'Admin representative functions', type: :feature do ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:434:3: C: Metrics/BlockLength: Block has too many lines. [51/25]
+  scenario 'editing a representative\'s university' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:506:3: C: Metrics/BlockLength: Block has too many lines. [29/25]
+  scenario 'delete associations' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:538:3: C: Metrics/BlockLength: Block has too many lines. [48/25]
+  scenario 'clear all' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:590:1: C: Metrics/BlockLength: Block has too many lines. [207/25]
+RSpec.describe 'Admin student functions', type: :feature do ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:613:3: C: Metrics/BlockLength: Block has too many lines. [31/25]
+  scenario 'create student' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:688:3: C: Metrics/BlockLength: Block has too many lines. [30/25]
+  scenario 'clear all' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:721:3: C: Metrics/BlockLength: Block has too many lines. [34/25]
+  scenario 'correct students count from creating and deleting' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:758:3: C: Metrics/BlockLength: Block has too many lines. [26/25]
+  scenario 'update exchange term' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:825:1: C: Metrics/BlockLength: Block has too many lines. [61/25]
+RSpec.describe 'User representative functions', type: :feature do ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:893:1: C: Metrics/BlockLength: Block has too many lines. [210/25]
+RSpec.describe 'User student functions', type: :feature do ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:1075:3: C: Metrics/BlockLength: Block has too many lines. [37/25]
+  scenario 'Don\'t allow more representatives to make nominations after reaching limit' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/try.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'rails_helper'
+^
+spec/feature/try.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+require 'rails_helper'
+^
+spec/rails_helper.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+# This file is copied to spec/ when you run 'rails generate rspec:install'
+^
+spec/rails_helper.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+# This file is copied to spec/ when you run 'rails generate rspec:install'
+^
+spec/spec_helper.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'simplecov'
+^
+spec/spec_helper.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+require 'simplecov'
+^
+spec/unit/unit_spec.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'rails_helper'
+^
+spec/unit/unit_spec.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+require 'rails_helper'
+^
+spec/unit/unit_spec.rb:6:1: C: Metrics/BlockLength: Block has too many lines. [61/25]
+RSpec.describe Representative, type: :model do ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:43:3: C: Metrics/BlockLength: Block has too many lines. [30/25]
+  it 'does not allow emails that do not fit the specified format' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:132:1: C: Metrics/BlockLength: Block has too many lines. [76/25]
+RSpec.describe Student, type: :model do ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:140:121: C: Layout/LineLength: Line is too long. [127/120]
+                        student_email: 'FooBar@gmail.com', exchange_term: 'First', degree_level: 'PHD', major: 'Basket Making')
+                                                                                                                        ^^^^^^^
+spec/unit/unit_spec.rb:187:3: C: Metrics/BlockLength: Block has too many lines. [30/25]
+  it 'does not allow emails that do not fit the specified format' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test/application_system_test_case.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'test_helper'
+^
+test/application_system_test_case.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+require 'test_helper'
+^
+test/channels/application_cable/connection_test.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'test_helper'
+^
+test/channels/application_cable/connection_test.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+require 'test_helper'
+^
+test/channels/application_cable/connection_test.rb:3:7: C: [Corrected] Style/ClassAndModuleChildren: Use nested module/class definitions instead of compact style.
+class ApplicationCable::ConnectionTest < ActionCable::Connection::TestCase
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test/channels/application_cable/connection_test.rb:12:3: C: [Corrected] Layout/CommentIndentation: Incorrect indentation detected (column 2 instead of 4).
+  # end
+  ^^^^^
+test/controllers/representatives_controller_test.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'test_helper'
+^
+test/controllers/representatives_controller_test.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+require 'test_helper'
+^
+test/controllers/students_controller_test.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'test_helper'
+^
+test/controllers/students_controller_test.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+require 'test_helper'
+^
+test/controllers/universities_controller_test.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'test_helper'
+^
+test/controllers/universities_controller_test.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+require 'test_helper'
+^
+test/models/representative_test.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'test_helper'
+^
+test/models/representative_test.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+require 'test_helper'
+^
+test/models/student_test.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'test_helper'
+^
+test/models/student_test.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+require 'test_helper'
+^
+test/models/university_test.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'test_helper'
+^
+test/models/university_test.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+require 'test_helper'
+^
+test/system/representatives_test.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'application_system_test_case'
+^
+test/system/representatives_test.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+require 'application_system_test_case'
+^
+test/system/students_test.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'application_system_test_case'
+^
+test/system/students_test.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+require 'application_system_test_case'
+^
+test/system/universities_test.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+require 'application_system_test_case'
+^
+test/system/universities_test.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+require 'application_system_test_case'
+^
+test/test_helper.rb:1:1: C: [Corrected] Style/FrozenStringLiteralComment: Missing frozen string literal comment.
+ENV['RAILS_ENV'] ||= 'test'
+^
+test/test_helper.rb:2:1: C: [Corrected] Layout/EmptyLineAfterMagicComment: Add an empty line after magic comments.
+ENV['RAILS_ENV'] ||= 'test'
+^
+test/test_helper.rb:5:7: C: [Corrected] Style/ClassAndModuleChildren: Use nested module/class definitions instead of compact style.
+class ActiveSupport::TestCase
+      ^^^^^^^^^^^^^^^^^^^^^^^
+test/test_helper.rb:9:3: C: [Corrected] Layout/CommentIndentation: Incorrect indentation detected (column 2 instead of 4).
+  # Run tests in parallel with specified workers
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test/test_helper.rb:9:3: C: [Corrected] Layout/IndentationWidth: Use 2 (not 0) spaces for indentation.
+  parallelize(workers: :number_of_processors)
+  
+test/test_helper.rb:12:3: C: [Corrected] Layout/CommentIndentation: Incorrect indentation detected (column 2 instead of 4).
+  # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test/test_helper.rb:12:3: C: [Corrected] Layout/IndentationWidth: Use 2 (not 0) spaces for indentation.
+  fixtures :all
+  
+test/test_helper.rb:14:3: C: [Corrected] Layout/CommentIndentation: Incorrect indentation detected (column 2 instead of 4).
+  # Add more helper methods to be used by all tests here...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+115 files inspected, 356 offenses detected, 250 offenses corrected

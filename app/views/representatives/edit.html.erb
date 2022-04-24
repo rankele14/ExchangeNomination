@@ -8,6 +8,8 @@
   <nav>
 </header>
 
+<% content_for :title, "Edit Nominator"%>
+
 <div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
   <h1>Editing Nominator</h1>
 
@@ -15,7 +17,7 @@
 
   <div class="container show-box">
     <%= render 'form', representative: @representative %>
-    
+
     <div class="row" style="margin-top: 20px;">
       <div class="col-auto">
         <%= button_to 'Show', @representative, :class => "show-button", :method => :get %>

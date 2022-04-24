@@ -148,6 +148,7 @@ class RepresentativesController < ApplicationController
     @students = Student.where(representative_id: @representative.id)
     @university = University.find(@representative.university_id)
     @deadline = Variable.find_by(var_name: 'deadline')
+    @max_limit = Variable.find_by(var_name: 'max_limit')
   end
 
   def test_method

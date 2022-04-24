@@ -8,6 +8,8 @@
   <nav>
 </header>
 
+<% content_for :title, "Nominator - " + @representative.first_name + " " + @representative.last_name%>
+
 <p id="notice"><%= notice %></p>
 
 <div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
@@ -74,7 +76,7 @@
         </table>
       </div>
     </div>
-    
+
     <div class="row" style="margin-top: 20px;">
       <div class="col-auto">
         <%= button_to 'Edit', edit_representative_path(@representative), :class => "edit-button", :method => :get %>

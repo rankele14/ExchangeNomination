@@ -8,6 +8,8 @@
   <nav>
 </header>
 
+<% content_for :title, "Clear All Question"%>
+
 <div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
   <h2>Clear All Questions</h2>
 
@@ -18,6 +20,16 @@
 
       <h2 style="text-align: center;">Are you sure you want to permanently delete all questions?</h2>
 
+      <p>Prompt: <%= @question.prompt %> </p>
+      <% if @question.multi %>
+        <h2>Answers</h2>
+
+        <ol style="list-style-type: Lower-alpha;">
+          <% for answer in @question.answer %>
+      		  <li style="margin-bottom: 10px;"><%= answer.choice %></li>
+    	     <% end %>
+        </ol>
+      <% end %>
 
       <p><strong>Notice:</strong> Deleting all questions will also delete all answers and responses related to them.</p>
       <br>
