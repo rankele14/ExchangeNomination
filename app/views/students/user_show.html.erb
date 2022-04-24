@@ -58,8 +58,10 @@
 		  <td><%= response.reply %></td>
 		  <% if response.reply == "" %>
 			<% allanswered = false %>
+      <td><%= button_to "Answer Question", user_edit_student_response_path(@student, response), :class => "create-new-item-button", :method => :get %></td>
+		  <% else %>
+		  <td><%= button_to "Edit Answer", user_edit_student_response_path(@student, response), :class => "create-new-item-button", :method => :get %></td>
 		  <% end %>
-		  <td><%= button_to "Answer Question", user_edit_student_response_path(@student, response), :class => "create-new-item-button", :method => :get %></td>
 	  </ul>
 	<% end %>
 	
