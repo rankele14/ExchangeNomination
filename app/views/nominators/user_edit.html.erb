@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3C0000; padding-top: 0;padding-bottom: 0;">
     <div class = "row" style="height:35px; padding-bottom: 0;">
       <div class="col-sm-auto" style="margin-bottom: 0;">
-        <%= button_to "Back to Representatives", representatives_path, :class => "new-navbar-box", :method => :get %>
+        <%= button_to "Help", user_help_path, :class => "new-navbar-box", :method => :get %>
       </div>
     </div>
   <nav>
@@ -16,15 +16,6 @@
   <hr style="height: 3px; border: 0px solid #696969; border-top-width: 1px;" >
 
   <div class="container show-box">
-    <%= render 'form', representative: @representative %>
-
-    <div class="row" style="margin-top: 20px;">
-      <div class="col-auto">
-        <%= button_to 'Show', @representative, :class => "show-button", :method => :get %>
-      </div>
-      <div class="col-auto">
-        <%= button_to 'Delete', delete_representative_path(@representative), :class => "delete-button", :method => :get %>
-      </div>
-    </div>
+    <%= render 'forme', nominator: @nominator %>
   </div>
 </div>

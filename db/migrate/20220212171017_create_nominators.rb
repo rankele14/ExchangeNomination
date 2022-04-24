@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-class CreateRepresentatives < ActiveRecord::Migration[6.1]
+class CreateNominators < ActiveRecord::Migration[6.1]
   def change
-    create_table :representatives do |t|
+    create_table :nominators do |t|
       t.string :first_name
       t.string :last_name
       t.string :title
       t.integer :university_id
-      t.string :rep_email
+      t.string :nominator_email
 
       t.timestamps
     end

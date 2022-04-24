@@ -10,41 +10,41 @@
 
 <p id="notice"><%= notice %></p>
 
-<% content_for :title, "Nominator - " + @representative.first_name + " " + @representative.last_name%>
+<% content_for :title, "Nominator - " + @nominator.first_name + " " + @nominator.last_name%>
 
 <div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
   <div class="container show-box">
     <p>
       <strong>First name:</strong>
-      <%= @representative.first_name %>
+      <%= @nominator.first_name %>
     </p>
 
     <p>
       <strong>Last name:</strong>
-      <%= @representative.last_name %>
+      <%= @nominator.last_name %>
     </p>
 
     <p>
       <strong>Title:</strong>
-      <%= @representative.title %>
+      <%= @nominator.title %>
     </p>
 
     <p>
       <strong>Nominator email:</strong>
-      <%= @representative.rep_email %>
+      <%= @nominator.nominator_email %>
     </p>
 
     <p>
       <strong>University:</strong>
-      <%= University.find(@representative.university_id).university_name %>
+      <%= University.find(@nominator.university_id).university_name %>
     </p>
 
     <div class="row" style="margin-top: 20px;">
       <div class="col-auto">
-        <%= button_to 'Edit', user_edit_representative_path(@representative), :class => "edit-button", :method => :get %>
+        <%= button_to 'Edit', user_edit_nominator_path(@nominator), :class => "edit-button", :method => :get %>
       </div>
       <div class="col-auto">
-        <%= button_to 'Continue', finish_representative_path(@representative), :class => "show-button", :method => :get %>
+        <%= button_to 'Continue', finish_nominator_path(@nominator), :class => "show-button", :method => :get %>
       </div>
     </div>
   </div>

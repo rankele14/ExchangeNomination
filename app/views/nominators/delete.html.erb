@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3C0000; padding-top: 0;padding-bottom: 0;">
     <div class = "row" style="height:35px; padding-bottom: 0;">
       <div class="col-sm-auto" style="margin-bottom: 0;">
-        <%= button_to "Back to Representatives", representatives_path, :class => "new-navbar-box", :method => :get %>
+        <%= button_to "Back to Nominators", nominators_path, :class => "new-navbar-box", :method => :get %>
       </div>
     </div>
   <nav>
@@ -11,31 +11,31 @@
 <% content_for :title, "Delete Nominator"%>
 
 <div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
-  <h2>Delete Representative</h2>
+  <h2>Delete Nominator</h2>
 
   <hr style="height: 3px; border: 0px solid #696969; border-top-width: 1px;" >
 
   <div class="container show-box">
-    <%= form_for(@representative, :method => 'delete') do |f| %>
+    <%= form_for(@nominator, :method => 'delete') do |f| %>
 
-      <h2 style="text-align: center;">Are you sure you want to permanently delete this representative?</h2>
+      <h2 style="text-align: center;">Are you sure you want to permanently delete this nominator?</h2>
 
       <hr style="height: 2px; width:90%; margin: auto; border: 0px solid #696969; border-top-width: 1px;" >
 
       <br>
 
       <p>
-      Name: <%= @representative.first_name %> <%= @representative.last_name %> <br>
-      Title: <%= @representative.title %> <br>
-      University: <%= University.find(@representative.university_id).university_name %>
+      Name: <%= @nominator.first_name %> <%= @nominator.last_name %> <br>
+      Title: <%= @nominator.title %> <br>
+      University: <%= University.find(@nominator.university_id).university_name %>
       </p>
 
       <p><strong>Notice:</strong> Deleting this item will also delete related students.</p>
-      <%= link_to 'Show', @representative %>
+      <%= link_to 'Show', @nominator %>
       <br><br>
 
       <div class="form-buttons">
-        <%= f.submit("Delete Representative") %>
+        <%= f.submit("Delete Nominator") %>
       </div>
 
     <% end %>

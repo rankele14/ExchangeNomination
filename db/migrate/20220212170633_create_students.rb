@@ -10,7 +10,7 @@ class CreateStudents < ActiveRecord::Migration[6.1]
       t.string :exchange_term
       t.string :degree_level
       t.string :major
-      t.integer :representative_id
+      t.integer :nominator_id
 
       t.timestamps
     end

@@ -3,8 +3,8 @@
 class ConfirmationMailer < ApplicationMailer
   default from: ENV['EMAIL']
   def confirm_email
-    @representative = params[:representative]
+    @nominator = params[:nominator]
     @student = params[:student]
-    mail(to: @representative.rep_email, subject: 'Form Confirmation')
+    mail(to: @nominator.nominator_email, subject: 'Form Confirmation')
   end
 end

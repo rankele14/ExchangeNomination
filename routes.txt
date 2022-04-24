@@ -7,33 +7,33 @@
                                          PATCH    /authorizeds/:id(.:format)                                                                        authorizeds#update
                                          PUT      /authorizeds/:id(.:format)                                                                        authorizeds#update
                                          DELETE   /authorizeds/:id(.:format)                                                                        authorizeds#destroy
-                                    root GET      /                                                                                                 representatives#user_new
+                                    root GET      /                                                                                                 nominators#user_new
   admin_google_oauth2_omniauth_authorize GET|POST /admins/auth/google_oauth2(.:format)                                                              admins/omniauth_callbacks#passthru
    admin_google_oauth2_omniauth_callback GET|POST /admins/auth/google_oauth2/callback(.:format)                                                     admins/omniauth_callbacks#google_oauth2
                        new_admin_session GET      /admins/sign_in(.:format)                                                                         admins/sessions#new
                    destroy_admin_session GET      /admins/sign_out(.:format)                                                                        admins/sessions#destroy
-                        user_new_student GET      /representatives/:id/students/user_new(.:format)                                                  students#user_new
+                        user_new_student GET      /nominators/:id/students/user_new(.:format)                                                  students#user_new
                                    admin GET      /admin(.:format)                                                                                  students#admin
                          update_deadline GET      /admin/update_deadline(.:format)                                                                  students#update_deadline
                               admin_help GET      /admin/help(.:format)                                                                             students#admin_help
                                user_help GET      /help(.:format)                                                                                   students#user_help
-                user_show_representative GET      /representatives/:id/user_show(.:format)                                                          representatives#user_show
-                user_edit_representative GET      /representatives/:id/user_edit(.:format)                                                          representatives#user_edit
-              user_update_representative PATCH    /representatives/:id/user_update(.:format)                                                        representatives#user_update
-                   finish_representative GET      /representatives/:id/finish(.:format)                                                             representatives#finish
-                   delete_representative GET      /representatives/:id/delete(.:format)                                                             representatives#delete
-                user_new_representatives GET      /representatives/user_new(.:format)                                                               representatives#user_new
-             user_create_representatives POST     /representatives/user_create(.:format)                                                            representatives#user_create
-               clear_all_representatives GET      /representatives/clear_all(.:format)                                                              representatives#clear_all
-             destroy_all_representatives POST     /representatives/destroy_all(.:format)                                                            representatives#destroy_all
-                         representatives GET      /representatives(.:format)                                                                        representatives#index
-                                         POST     /representatives(.:format)                                                                        representatives#create
-                      new_representative GET      /representatives/new(.:format)                                                                    representatives#new
-                     edit_representative GET      /representatives/:id/edit(.:format)                                                               representatives#edit
-                          representative GET      /representatives/:id(.:format)                                                                    representatives#show
-                                         PATCH    /representatives/:id(.:format)                                                                    representatives#update
-                                         PUT      /representatives/:id(.:format)                                                                    representatives#update
-                                         DELETE   /representatives/:id(.:format)                                                                    representatives#destroy
+                user_show_nominator GET      /nominators/:id/user_show(.:format)                                                          nominators#user_show
+                user_edit_nominator GET      /nominators/:id/user_edit(.:format)                                                          nominators#user_edit
+              user_update_nominator PATCH    /nominators/:id/user_update(.:format)                                                        nominators#user_update
+                   finish_nominator GET      /nominators/:id/finish(.:format)                                                             nominators#finish
+                   delete_nominator GET      /nominators/:id/delete(.:format)                                                             nominators#delete
+                user_new_nominators GET      /nominators/user_new(.:format)                                                               nominators#user_new
+             user_create_nominators POST     /nominators/user_create(.:format)                                                            nominators#user_create
+               clear_all_nominators GET      /nominators/clear_all(.:format)                                                              nominators#clear_all
+             destroy_all_nominators POST     /nominators/destroy_all(.:format)                                                            nominators#destroy_all
+                         nominators GET      /nominators(.:format)                                                                        nominators#index
+                                         POST     /nominators(.:format)                                                                        nominators#create
+                      new_nominator GET      /nominators/new(.:format)                                                                    nominators#new
+                     edit_nominator GET      /nominators/:id/edit(.:format)                                                               nominators#edit
+                          nominator GET      /nominators/:id(.:format)                                                                    nominators#show
+                                         PATCH    /nominators/:id(.:format)                                                                    nominators#update
+                                         PUT      /nominators/:id(.:format)                                                                    nominators#update
+                                         DELETE   /nominators/:id(.:format)                                                                    nominators#destroy
               user_edit_student_response GET      /students/:student_id/responses/:id/user_edit(.:format)                                           responses#user_edit
             user_update_student_response PATCH    /students/:student_id/responses/:id/user_update(.:format)                                         responses#user_update
              clear_all_student_responses GET      /students/:student_id/responses/clear_all(.:format)                                               responses#clear_all

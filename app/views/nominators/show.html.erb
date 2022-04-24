@@ -2,13 +2,13 @@
   <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3C0000; padding-top: 0;padding-bottom: 0;">
     <div class = "row" style="height:35px; padding-bottom: 0;">
       <div class="col-sm-auto" style="margin-bottom: 0;">
-        <%= button_to "Back to Representatives", representatives_path, :class => "new-navbar-box", :method => :get %>
+        <%= button_to "Back to Nominators", nominators_path, :class => "new-navbar-box", :method => :get %>
       </div>
     </div>
   <nav>
 </header>
 
-<% content_for :title, "Nominator - " + @representative.first_name + " " + @representative.last_name%>
+<% content_for :title, "Nominator - " + @nominator.first_name + " " + @nominator.last_name%>
 
 <p id="notice"><%= notice %></p>
 
@@ -16,27 +16,27 @@
   <div class="container show-box">
     <p>
       <strong>First name:</strong>
-      <%= @representative.first_name %>
+      <%= @nominator.first_name %>
     </p>
 
     <p>
       <strong>Last name:</strong>
-      <%= @representative.last_name %>
+      <%= @nominator.last_name %>
     </p>
 
     <p>
       <strong>Title:</strong>
-      <%= @representative.title %>
+      <%= @nominator.title %>
     </p>
 
     <p>
       <strong>Nominator email:</strong>
-      <%= @representative.rep_email %>
+      <%= @nominator.nominator_email %>
     </p>
 
     <p>
       <strong>University:</strong>
-      <%= University.find(@representative.university_id).university_name %>
+      <%= University.find(@nominator.university_id).university_name %>
     </p>
 
     <br><br>
@@ -79,10 +79,10 @@
 
     <div class="row" style="margin-top: 20px;">
       <div class="col-auto">
-        <%= button_to 'Edit', edit_representative_path(@representative), :class => "edit-button", :method => :get %>
+        <%= button_to 'Edit', edit_nominator_path(@nominator), :class => "edit-button", :method => :get %>
       </div>
       <div class="col-auto">
-        <%= button_to 'Delete', delete_representative_path(@representative), :class => "delete-button", :method => :get %>
+        <%= button_to 'Delete', delete_nominator_path(@nominator), :class => "delete-button", :method => :get %>
       </div>
     </div>
   </div>

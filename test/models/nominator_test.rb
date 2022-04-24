@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class RepresentativeTest < ActiveSupport::TestCase
+class NominatorTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

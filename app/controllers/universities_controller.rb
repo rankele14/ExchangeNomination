@@ -13,7 +13,7 @@ class UniversitiesController < ApplicationController
   # GET /universities/1 or /universities/1.json
   def show
     @students = Student.where(university_id: @university.id)
-    @representatives = Representative.where(university_id: @university.id)
+    @nominators = Nominator.where(university_id: @university.id)
   end
 
   # GET /universities/new
@@ -117,7 +117,7 @@ class UniversitiesController < ApplicationController
   def destroy_all
     @universities = University.all
     @universities.each(&:destroy)
-    # automatically destroys representatives and students
+    # automatically destroys nominators and students
     redirect_to(universities_url, notice: 'Universities successfully cleared.')
   end
 
@@ -129,9 +129,9 @@ class UniversitiesController < ApplicationController
     @universities = University.all
     @universities.each do |university|
       # delete students too?
-      @representatives = Representative.where(university_id: university.id)
-      @representatives.each(&:destroy)
-      # representatives auto-destroy students, students auto-destroy responses
+      @nominators = Nominator.where(university_id: university.id)
+      @nominators.each(&:destroy)
+      # nominators auto-destroy students, students auto-destroy responses
       university.num_nominees = 0
       university.save!
     end

@@ -43,15 +43,15 @@
           </thead>
 
           <tbody>
-            <% @representatives.each do |representative| %>
+            <% @nominators.each do |nominator| %>
               <tr>
-                <td><%= representative.first_name %></td>
-                <td><%= representative.last_name %></td>
-                <td><%= representative.title %></td>
-                <td><%= representative.rep_email %></td>
-                <td><%= button_to 'Show', representative, :class => "show-button", :method => :get %></td>
-                <td><%= button_to 'Edit', edit_representative_path(representative), :class => "edit-button", :method => :get %></td>
-                <td><%= button_to 'Delete', representative, :class => "delete-button", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <td><%= nominator.first_name %></td>
+                <td><%= nominator.last_name %></td>
+                <td><%= nominator.title %></td>
+                <td><%= nominator.nominator_email %></td>
+                <td><%= button_to 'Show', nominator, :class => "show-button", :method => :get %></td>
+                <td><%= button_to 'Edit', edit_nominator_path(nominator), :class => "edit-button", :method => :get %></td>
+                <td><%= button_to 'Delete', nominator, :class => "delete-button", method: :delete, data: { confirm: 'Are you sure?' } %></td>
               </tr>
             <% end %>
           </tbody>
@@ -60,7 +60,7 @@
     </div>
 
     <div class="row">
-      <%= button_to "Add Nominator", new_representative_path, :class => "create-new-item-button", :method => :get %>
+      <%= button_to "Add Nominator", new_nominator_path, :class => "create-new-item-button", :method => :get %>
     </div>
     
     <br><br>
@@ -88,7 +88,7 @@
               <tr>
                 <td><%= student.first_name %></td>
                 <td><%= student.last_name %></td>
-                <td><%= [Representative.find(student.representative_id).first_name, Representative.find(student.representative_id).last_name].join(' ') %></td>
+                <td><%= [Nominator.find(student.nominator_id).first_name, Nominator.find(student.nominator_id).last_name].join(' ') %></td>
                 <td><%= student.degree_level %></td>
                 <td><%= student.major %></td>
                 <td><%= student.exchange_term %></td>

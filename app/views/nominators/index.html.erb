@@ -28,7 +28,7 @@
         <%= button_to "Universities", universities_path, :class => "data-button", :method => :get %>
       </div>
       <div class="col-sm-auto">
-        <%= button_to 'Nominators', representatives_path, :class => "data-button", :method => :get %>
+        <%= button_to 'Nominators', nominators_path, :class => "data-button", :method => :get %>
       </div>
       <div class="col-sm-auto">
         <%= button_to 'Students', students_path, :class => "data-button", :method => :get %>
@@ -56,25 +56,25 @@
         </thead>
 
         <tbody>
-          <% @representatives.each do |representative| %>
+          <% @nominators.each do |nominator| %>
             <tr>
-              <td><%= representative.first_name %></td>
-              <td><%= representative.last_name %></td>
-              <td><%= representative.title %></td>
-              <td><%= University.find(representative.university_id).university_name %></td>
-              <td><%= representative.rep_email %></td>
-              <td class="actions"><%= button_to 'Show', representative_path(representative), :class => "show-button action show", :method => :get %></td>
-              <td><%= button_to 'Edit', edit_representative_path(representative), :class => "edit-button", :method => :get %></td>
-              <td><%= button_to 'Delete', delete_representative_path(representative), :class => "delete-button", :method => :get %></td>
+              <td><%= nominator.first_name %></td>
+              <td><%= nominator.last_name %></td>
+              <td><%= nominator.title %></td>
+              <td><%= University.find(nominator.university_id).university_name %></td>
+              <td><%= nominator.nominator_email %></td>
+              <td class="actions"><%= button_to 'Show', nominator_path(nominator), :class => "show-button action show", :method => :get %></td>
+              <td><%= button_to 'Edit', edit_nominator_path(nominator), :class => "edit-button", :method => :get %></td>
+              <td><%= button_to 'Delete', delete_nominator_path(nominator), :class => "delete-button", :method => :get %></td>
             </tr>
           <% end %>
         </tbody>
       </table>
-      <%= link_to 'Clear All', clear_all_representatives_path %>
+      <%= link_to 'Clear All', clear_all_nominators_path %>
     </div>
   </div>
 
   <div style="margin-top: 10px;">
-    <%= button_to "New Nominator", new_representative_path, :class => "create-new-item-button", :method => :get %>
+    <%= button_to "New Nominator", new_nominator_path, :class => "create-new-item-button", :method => :get %>
   </div>
 </div>

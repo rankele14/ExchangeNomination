@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   resources :authorizeds
-  root to: 'representatives#user_new'
+  root to: 'nominators#user_new'
   devise_for :admins, controllers: { omniauth_callbacks: 'admins/omniauth_callbacks' }
   devise_scope :admin do
     get 'admins/sign_in', to: 'admins/sessions#new', as: :new_admin_session
@@ -10,14 +10,14 @@ Rails.application.routes.draw do
   end
 
   # specific definitions go first or else get overwritten by default definitions
-  get 'representatives/:id/students/user_new/', to: 'students#user_new', as: 'user_new_student' # pass representative id to new student form
+  get 'nominators/:id/students/user_new/', to: 'students#user_new', as: 'user_new_student' # pass nominator id to new student form
   get 'admin', to: 'students#admin', as: 'admin' # admin home page in student folder for now
   get 'admin/update_deadline', to: 'students#update_deadline', as: 'update_deadline'
   get 'admin/help', to: 'students#admin_help', as: 'admin_help'
   get 'help', to: 'students#user_help', as: 'user_help'
 
   # add new functions/pages to separate user and admin views
-  resources :representatives do
+  resources :nominators do
     member do
       get :user_show
       get :user_edit

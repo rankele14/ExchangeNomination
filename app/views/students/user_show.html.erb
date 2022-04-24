@@ -72,11 +72,11 @@
 		<% if allanswered %>
 		<div class="col-auto">
 		  <% if (@deadline == nil || Time.now <= @deadline.var_value) && @university.num_nominees < @university.max_limit%>
-			<%= button_to "Enter another new student", user_new_student_path(@student.representative_id), :class => "create-new-item-button", :method => :get %>
+			<%= button_to "Enter another new student", user_new_student_path(@student.nominator_id), :class => "create-new-item-button", :method => :get %>
 		  <% end %>
 		</div>
 		<div class="col-auto">
-		  <%= button_to "Finish", finish_representative_path(@student.representative_id), :class => "create-new-item-button", :method => :get %>
+		  <%= button_to "Finish", finish_nominator_path(@student.nominator_id), :class => "create-new-item-button", :method => :get %>
 		</div>
 		<% end %>
 	</div>

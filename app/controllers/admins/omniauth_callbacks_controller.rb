@@ -12,7 +12,7 @@ module Admins
       else
         flash[:alert] =
           t('devise.omniauth_callbacks.failure', kind: 'Google', reason: "#{auth.info.email} is not authorized.")
-        redirect_to(user_new_representatives_path)
+        redirect_to(user_new_nominators_path)
       end
     end
 

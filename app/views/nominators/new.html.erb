@@ -5,7 +5,7 @@
         <%= button_to "Back to Admin", students_path, :class => "new-navbar-box", :method => :get %>
       </div>
       <div class="col-sm-auto" style="margin-bottom: 0;">
-        <%= button_to "Back to Respresentatives", representatives_path, :class => "new-navbar-box", :method => :get %>
+        <%= button_to "Back to Respresentatives", nominators_path, :class => "new-navbar-box", :method => :get %>
       </div>
     </div>
   <nav>
@@ -23,6 +23,6 @@
 
   <div class="container form-box">
     <br>
-    <%= render 'form', representative: @representative %>
+    <%= render 'form', nominator: @nominator %>
   </div>
 </div>

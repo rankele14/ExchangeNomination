@@ -5,6 +5,6 @@ class Student < ApplicationRecord
             presence: true
   validates :student_email, format: { with: URI::MailTo::EMAIL_REGEXP }
   belongs_to :university
-  belongs_to :representative
+  belongs_to :nominator
   has_many :response, dependent: :destroy
 end
