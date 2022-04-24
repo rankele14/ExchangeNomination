@@ -69,13 +69,15 @@
 
     <hr style="height: 2px; width:90%; margin: auto; border: 0px solid #696969; border-top-width: 1px;" >
 
+    <p  style="margin-left: 20px;">Please make sure you answer all questions before proceeding.</p>
+
     <br>
 
     <% for response in @student.response %>
         <ul>
     	  <td><%= Question.all.find(response.question_id).prompt %></td>
           <li><%= response.reply %></li>
-    	  <td><%= link_to 'Answer Question', edit_student_response_path(@student, response) %></td>
+    	  <td><%= button_to "Answer Question", edit_student_response_path(@student, response), :class => "create-new-item-button", :method => :get %></td>
       </ul>
     <% end %>
     <div class="row" style="margin-top: 20px;">
