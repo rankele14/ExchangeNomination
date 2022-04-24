@@ -8,14 +8,16 @@
   <nav>
 </header>
 
+<% content_for :title, "Edit Choice"%>
+
 <div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
-  <h1>Editing Answer</h1>
+  <h1>Edit Choice</h1>
 
   <hr style="height: 3px; border: 0px solid #696969; border-top-width: 1px;" >
 
   <div class="container show-box">
     <%= render 'form', answer: @answer %>
-    
+
     <div class="row" style="margin-top: 20px;">
       <div class="col-auto">
         <%= button_to 'Show', [@question, @answer], :class => "show-button", :method => :get %>
