@@ -25,15 +25,8 @@
 
     <style>
       .background {
-        background: url("<%= asset_path('denim.png') %>");
-      }
-      .background-overlay {
-        height:100%;
-        background-repeat: no-repeat;
-        background-size: cover;
-        position: relative;
-        background-color: red; /* For browsers that do not support gradients */
-        background-image: linear-gradient(red, yellow);
+        height: 100%;
+        background: linear-gradient(to bottom, transparent, 60%, rgba(245,245,245, 0.6)) no-repeat fixed, url("<%= asset_path('denim.png') %>") repeat;
       }
 
         .vl {
@@ -61,17 +54,11 @@
                 </div>
               </div>
             </a>
-            <a class="mr-sm-2" href="https://mays.tamu.edu/center-for-international-business-studies/" target="_blank" style="text-shadow: -2px 3px 5px #000000; text-decoration:none;">
+            <a class="mr-sm-2 image-shadow" href="https://mays.tamu.edu/center-for-international-business-studies/" target="_blank" style="text-shadow: -2px 3px 5px #000000; text-decoration:none;">
               <div class = "row justify-content-end">
-                <div class="col-sm-auto">
-                  <h1 class="cibs-text" style="font-style: italic; font-size: 60px;">CIBS</h1>
-                </div>
-                <div class="col-sm-auto">
-                  <div class="vl"></div>
-                </div>
                 <div class="col-sm-auto" style="font-style: italic; font-size: 20px; inline-size: auto; ">
-                  <h3 class="cibs-text">TAMU Exchange</h3>
-                  <h3 class="cibs-text">Nominations</h3>
+                  <h3 class="cibs-text">Center for</h3>
+                  <h3 class="cibs-text">International Business Studies</h3>
                 </div>
               </div>
             </a>

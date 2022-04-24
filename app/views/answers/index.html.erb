@@ -17,6 +17,8 @@
   <nav>
 </header>
 
+<% content_for :title, "Answers"%>
+
 <div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
 
   <h1>Answers</h1>
@@ -26,7 +28,7 @@
   <div class="container show-box">
     <p id="notice"><%= notice %></p>
 
-    <h4>Prompt: <%= @question.prompt %></h4>
+    <h4 style="margin-left:20px;">Prompt: <%= @question.prompt %></h4>
 
     <br>
 

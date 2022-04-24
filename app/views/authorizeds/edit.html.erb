@@ -8,13 +8,15 @@
   <nav>
 </header>
 
+<% content_for :title, "Edit Admin"%>
+
 <div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
   <h1>Editing Admin</h1>
 
   <hr style="height: 3px; border: 0px solid #696969; border-top-width: 1px;" >
 
   <%= render 'form', authorized: @authorized %>
-  
+
   <div class="row" style="margin-top: 20px;">
     <div class="col-auto">
       <%= button_to 'Show', @authorized, :class => "show-button", :method => :get %>

@@ -8,6 +8,8 @@
   <nav>
 </header>
 
+<% content_for :title, "Delete Nominator"%>
+
 <div style="margin-top: 10px; padding-left: 30px; padding-right: 30px;">
   <h2>Delete Representative</h2>
 
@@ -21,7 +23,7 @@
       <hr style="height: 2px; width:90%; margin: auto; border: 0px solid #696969; border-top-width: 1px;" >
 
       <br>
-      
+
       <p>
       Name: <%= @representative.first_name %> <%= @representative.last_name %> <br>
       Title: <%= @representative.title %> <br>
