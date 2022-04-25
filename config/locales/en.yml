@@ -48,16 +48,16 @@ en:
   nominators:
     create:
       success: "Nominator was successfully created."
-    user-create:
+    user_create:
       success: "Nominator was successfully created."
     update:
       success: "Nominator was successfully updated."
-    user-update:
+    user_update:
       success: "Nominator was successfully updated."
       deadline: "Sorry, the deadline for submitting students has passed."
     destroy: 
       success: "Nominator was successfully destroyed."
-    destroy-all:
+    destroy_all:
       success: "Nominators successfully cleared."
   questions:
     create:
@@ -66,7 +66,7 @@ en:
       success: "Question was successfully updated."
     destroy: 
       success: "Question was successfully destroyed."
-    destroy-all:
+    destroy_all:
       success: "Questions successfully cleared."
   responses:
     create:
@@ -75,12 +75,12 @@ en:
       success: "Response was successfully updated."
     destroy: 
       success: "Response was successfully destroyed."
-    destroy-all:
+    destroy_all:
       success: "Responses successfully cleared."
   students:
     create:
       success: "Student was successfully created."
-    user-create:
+    user_create:
       success: "Student was successfully created."
       deadline: "Sorry, the deadline for submitting students has passed."
       uni_max: "Sorry, the University has already reached the limit on nominees."
@@ -88,16 +88,16 @@ en:
     update:
       success: "Student was successfully updated."
       double_nom: "Sorry, a double term nomination would exceed the university's nomination limit. Please stick to a single term nomination."
-    user-update:
+    user_update:
       success: "Student was successfully updated."
       deadline: "Sorry, the deadline for submitting students has passed."
       double_nom: "Sorry, a double term nomination would exceed the university's nomination limit. Please stick to a single term nomination."
     destroy: 
       success: "Student was successfully destroyed."
-    user-destroy:
+    user_destroy:
       success: "Student was successfully destroyed."
       deadline: "Sorry, the deadline for submitting students has passed."
-    destroy-all:
+    destroy_all:
       success: "Students successfully cleared."
     update_deadline:
       success: "Deadline was successfully updated."
@@ -108,7 +108,7 @@ en:
       success: "University was successfully updated."
     destroy: 
       success: "University was successfully destroyed."
-    destroy-all:
+    destroy_all:
       success: "Universities successfully cleared."
     reset:
       success: "Universities successfully reset."
@@ -116,7 +116,7 @@ en:
       success: "Default max limit was successfully updated."
       neg: "There was an error updating max limit. Limit cannot be negative."
       cap: "There was an error updating max limit. Limit capped at 100."
-    change_max:
+    change_all_max:
       success: "All limits were successfully updated."
       neg: "There was an error updating limits. Limit cannot be negative."
       cap: "There was an error updating limits. Limit capped at 100."

@@ -168,7 +168,7 @@ class StudentsController < ApplicationController
 
     # used to be single, now double, exceeds university limit
     if prev_term.exclude?('and') && new_term.include?('and') && (@university.num_nominees >= @university.max_limit)
-      redirect_to(user_edit_student_url(@student), alert: t('.double-nom'))
+      redirect_to(user_edit_student_url(@student), alert: t('.double_nom'))
       # past the deadline
     elsif !@deadline.nil? && Time.zone.now > @deadline.var_value
       redirect_to(finish_nominator_path(@student.nominator_id), alert: t('.deadline'))
