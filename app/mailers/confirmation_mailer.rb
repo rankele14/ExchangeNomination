@@ -5,6 +5,6 @@ class ConfirmationMailer < ApplicationMailer
   def confirm_email
     @nominator = params[:nominator]
     @student = params[:student]
-    mail(to: @nominator.nominator_email, subject: 'Form Confirmation')
+    mail(to: @nominator.nominator_email)
   end
 end

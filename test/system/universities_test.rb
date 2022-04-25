@@ -12,7 +12,7 @@ class UniversitiesTest < ApplicationSystemTestCase
     assert_selector 'h1', text: 'Universities'
   end
 
-  test 'creating a University' do # what?
+  test 'creating a University' do
     visit universities_url
     click_on 'New University'
 

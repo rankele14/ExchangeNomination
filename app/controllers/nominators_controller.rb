@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'common_stuff'
 class NominatorsController < ApplicationController
   include CommonStuff
-  before_action :set_nominator, only: %i[ show edit update destroy ]
+  before_action :set_nominator, only: %i[show edit update destroy]
 
   # GET /nominators or /nominators.json
   def index
@@ -27,14 +29,12 @@ class NominatorsController < ApplicationController
   def user_new
     @nominator = Nominator.new
     @deadline = Variable.find_by(var_name: 'deadline')
-    if @deadline != nil && Time.now > @deadline.var_value # past the deadline
-      redirect_to deadline_dashboards_path 
-    end
+    # redirect if past the deadline
+    redirect_to(deadline_dashboards_path) if !@deadline.nil? && Time.zone.now > @deadline.var_value
   end
 
   # GET /nominators/1/edit
-  def edit
-  end
+  def edit; end
 
   # GET /nominators/1/user_edit
   def user_edit
@@ -47,11 +47,11 @@ class NominatorsController < ApplicationController
 
     respond_to do |format|
       if @nominator.save
-        format.html { redirect_to nominator_url(@nominator), notice: "Nominator was successfully created." }
-        format.json { render :show, status: :created, location: @nominator }
+        format.html { redirect_to(nominator_url(@nominator), notice: t('.success')) }
+        format.json { render(:show, status: :created, location: @nominator) }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @nominator.errors, status: :unprocessable_entity }
+        format.html { render(:new, status: :unprocessable_entity) }
+        format.json { render(json: @nominator.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -59,16 +59,17 @@ class NominatorsController < ApplicationController
   def user_create
     @nominator = Nominator.new(nominator_params)
     @deadline = Variable.find_by(var_name: 'deadline')
-    if @deadline != nil && Time.now > @deadline.var_value then # past the deadline
-      redirect_to deadline_dashboards_path 
+    # redirect if past the deadline
+    if !@deadline.nil? && Time.zone.now > @deadline.var_value
+      redirect_to(deadline_dashboards_path)
     else
       respond_to do |format|
         if @nominator.save
-          format.html { redirect_to user_show_nominator_url(@nominator), notice: "Nominator was successfully created." }
-          format.json { render :show, status: :created, location: @nominator }
+          format.html { redirect_to(user_show_nominator_url(@nominator), notice: t('.success')) }
+          format.json { render(:show, status: :created, location: @nominator) }
         else
-          format.html { render :user_new, status: :unprocessable_entity }
-          format.json { render json: @nominator.errors, status: :unprocessable_entity }
+          format.html { render(:user_new, status: :unprocessable_entity) }
+          format.json { render(json: @nominator.errors, status: :unprocessable_entity) }
         end
       end
     end
@@ -84,23 +85,23 @@ class NominatorsController < ApplicationController
           @students = Student.where(nominator_id: @nominator.id)
           @students.each do |student|
             student.university_id = @nominator.university_id
-            student.save
-            if student.exchange_term.include? 'and'
+            student.save!
+            if student.exchange_term.include?('and')
               @university.num_nominees = @university.num_nominees + 2
               @uni_prev.num_nominees = @uni_prev.num_nominees - 2
             else
               @university.num_nominees = @university.num_nominees + 1
               @uni_prev.num_nominees = @uni_prev.num_nominees - 1
             end
-            @university.save
-            @uni_prev.save
+            @university.save!
+            @uni_prev.save!
           end
         end
-        format.html { redirect_to nominator_url(@nominator), notice: "Nominator was successfully updated." }
-        format.json { render :show, status: :ok, location: @nominator }
+        format.html { redirect_to(nominator_url(@nominator), notice: t('.success')) }
+        format.json { render(:show, status: :ok, location: @nominator) }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @nominator.errors, status: :unprocessable_entity }
+        format.html { render(:edit, status: :unprocessable_entity) }
+        format.json { render(json: @nominator.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -110,16 +111,17 @@ class NominatorsController < ApplicationController
     @nominator = Nominator.find(params[:id])
     @deadline = Variable.find_by(var_name: 'deadline')
 
-    if @deadline != nil && Time.now > @deadline.var_value then # past the deadline
-      redirect_to finish_nominator_url(@nominator), alert: "Sorry, the deadline for submitting students has passed" 
+    # redirect if past the deadline
+    if !@deadline.nil? && Time.zone.now > @deadline.var_value
+      redirect_to(finish_nominator_url(@nominator), alert: t('.deadline'))
     else
       respond_to do |format|
         if @nominator.update(nominator_params)
-          format.html { redirect_to user_show_nominator_url(@nominator), notice: "Nominator was successfully updated." }
-          format.json { render :show, status: :ok, location: @nominator }
+          format.html { redirect_to(user_show_nominator_url(@nominator), notice: t('.success')) }
+          format.json { render(:show, status: :ok, location: @nominator) }
         else
-          format.html { render :user_edit, status: :unprocessable_entity }
-          format.json { render json: @nominator.errors, status: :unprocessable_entity }
+          format.html { render(:user_edit, status: :unprocessable_entity) }
+          format.json { render(json: @nominator.errors, status: :unprocessable_entity) }
         end
       end
     end
@@ -135,11 +137,11 @@ class NominatorsController < ApplicationController
     @students.each do |student|
       destroy_uni_update(student.id)
     end
-    @nominator.destroy
+    @nominator.destroy!
 
     respond_to do |format|
-      format.html { redirect_to nominators_url, notice: "Nominator was successfully destroyed." }
-      format.json { head :no_content }
+      format.html { redirect_to(nominators_url, notice: t('.success')) }
+      format.json { head(:no_content) }
     end
   end
 
@@ -152,7 +154,7 @@ class NominatorsController < ApplicationController
   end
 
   def test_method
-    @nominator.update(first_name: "Updated")
+    @nominator.update!(first_name: 'Updated')
   end
 
   def rep_redirect
@@ -165,25 +167,26 @@ class NominatorsController < ApplicationController
 
   def destroy_all
     @nominators = Nominator.all
-    @nominators.each do |nominator|      
+    @nominators.each do |nominator|
       @students = Student.where(nominator_id: nominator.id)
       @students.each do |student|
         destroy_uni_update(student.id)
       end
-      nominator.destroy
+      nominator.destroy!
     end
     # automatically destroys rep's students
-    redirect_to nominators_url, notice: "Nominators successfully cleared."
+    redirect_to(nominators_url, notice: t('.success'))
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_nominator
-      @nominator = Nominator.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def nominator_params
-      params.require(:nominator).permit(:first_name, :last_name, :title, :university_id,:nominator_email)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_nominator
+    @nominator = Nominator.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def nominator_params
+    params.require(:nominator).permit(:first_name, :last_name, :title, :university_id, :nominator_email)
+  end
 end

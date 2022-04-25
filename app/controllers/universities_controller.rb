@@ -34,7 +34,7 @@ class UniversitiesController < ApplicationController
 
     respond_to do |format|
       if @university.save
-        format.html { redirect_to(universities_path(notice: 'University was successfully created.')) }
+        format.html { redirect_to(universities_path(notice: t('.success'))) }
         format.json { render(:show, status: :created, location: @university) }
       else
         format.html { render(:new, status: :unprocessable_entity) }
@@ -47,7 +47,7 @@ class UniversitiesController < ApplicationController
   def update
     respond_to do |format|
       if @university.update(university_params)
-        format.html { redirect_to(universities_path, notice: 'University was successfully updated.') }
+        format.html { redirect_to(universities_path, notice: t('.success')) }
         format.json { render(:show, status: :ok, location: @university) }
       else
         format.html { render(:edit, status: :unprocessable_entity) }
@@ -65,29 +65,27 @@ class UniversitiesController < ApplicationController
     @university.destroy!
 
     respond_to do |format|
-      format.html { redirect_to(universities_url, notice: 'University was successfully destroyed.') }
+      format.html { redirect_to(universities_url, notice: t('.success')) }
       format.json { head(:no_content) }
     end
   end
 
   def update_max
     @max_limit = Variable.find_by(var_name: 'max_limit')
-    ml = params[:max_lim].to_i
-    if @max_limit == nil
-      @max_limit = Variable.new({var_name: 'max_limit', var_value: ml})
-      @max_limit.save
-    else
-      if ml > -1 and ml < 101
-        @max_limit.var_value = params[:max_lim]
-        @max_limit.save
-        redirect_to universities_path, notice: "Max Limit was successfully updated."
-      elsif ml < 0
-        redirect_to universities_path, alert: "There was an error updating max limit. Max Limit cannot be negative."
-      elsif ml > 100
-        redirect_to universities_path, alert: "There was an error updating max limit. Max Limit capped at 100."
+    ml = Integer(params[:max_lim], 10)
+    if @max_limit.nil?
+      @max_limit = Variable.new({ var_name: 'max_limit', var_value: ml })
+      @max_limit.save!
+    elsif (ml > -1) && (ml < 101)
+      @max_limit.var_value = params[:max_lim]
+      @max_limit.save!
+      redirect_to(universities_path, notice: t('.success'))
+    elsif ml.negative?
+      redirect_to(universities_path, alert:  t('.neg'))
+    elsif ml > 100
+      redirect_to(universities_path, alert:  t('.cap'))
       # else
       #   redirect_to universities_path, alert: "There was an error updating max limit."
-      end
     end
   end
 
@@ -100,11 +98,11 @@ class UniversitiesController < ApplicationController
         university.max_limit = cl
         university.save!
       end
-      redirect_to(universities_path, notice: 'Limits were successfully updated.')
+      redirect_to(universities_path, notice: t('.success'))
     elsif cl.negative?
-      redirect_to(universities_path, alert: 'There was an error updating limits. Limits cannot be negative.')
+      redirect_to(universities_path, alert:  t('.neg'))
     elsif cl > 100
-      redirect_to(universities_path, alert: 'There was an error updating limits. Limits capped at 100.')
+      redirect_to(universities_path, alert:  t('.cap'))
       # else
       #   redirect_to universities_path, alert: "There was an error updating limits."
     end
@@ -118,7 +116,7 @@ class UniversitiesController < ApplicationController
     @universities = University.all
     @universities.each(&:destroy)
     # automatically destroys nominators and students
-    redirect_to(universities_url, notice: 'Universities successfully cleared.')
+    redirect_to(universities_url, notice: t('.success'))
   end
 
   def reset_all
@@ -135,7 +133,7 @@ class UniversitiesController < ApplicationController
       university.num_nominees = 0
       university.save!
     end
-    redirect_to(universities_url, notice: 'Universities successfully reset.')
+    redirect_to(universities_url, notice: t('.success'))
   end
 
   private

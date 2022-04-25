@@ -31,3 +31,98 @@
 
 en:
   hello: "Hello world"
+  answers:
+    create:
+      success: "Answer was successfully created."
+    update:
+      success: "Answer was successfully updated."
+    destroy: 
+      success: "Answer was successfully destroyed."
+  authorizeds:
+    create:
+      success: "Admin was successfully created."
+    update:
+      success: "Admin was successfully updated."
+    destroy: 
+      success: "Admin was successfully destroyed."
+  nominators:
+    create:
+      success: "Nominator was successfully created."
+    user-create:
+      success: "Nominator was successfully created."
+    update:
+      success: "Nominator was successfully updated."
+    user-update:
+      success: "Nominator was successfully updated."
+      deadline: "Sorry, the deadline for submitting students has passed."
+    destroy: 
+      success: "Nominator was successfully destroyed."
+    destroy-all:
+      success: "Nominators successfully cleared."
+  questions:
+    create:
+      success: "Question was successfully created."
+    update:
+      success: "Question was successfully updated."
+    destroy: 
+      success: "Question was successfully destroyed."
+    destroy-all:
+      success: "Questions successfully cleared."
+  responses:
+    create:
+      success: "Response was successfully created."
+    update:
+      success: "Response was successfully updated."
+    destroy: 
+      success: "Response was successfully destroyed."
+    destroy-all:
+      success: "Responses successfully cleared."
+  students:
+    create:
+      success: "Student was successfully created."
+    user-create:
+      success: "Student was successfully created."
+      deadline: "Sorry, the deadline for submitting students has passed."
+      uni_max: "Sorry, the University has already reached the limit on nominees."
+      double_nom: "Sorry, a double term nomination would exceed the university's nomination limit. Please stick to a single term nomination."
+    update:
+      success: "Student was successfully updated."
+      double_nom: "Sorry, a double term nomination would exceed the university's nomination limit. Please stick to a single term nomination."
+    user-update:
+      success: "Student was successfully updated."
+      deadline: "Sorry, the deadline for submitting students has passed."
+      double_nom: "Sorry, a double term nomination would exceed the university's nomination limit. Please stick to a single term nomination."
+    destroy: 
+      success: "Student was successfully destroyed."
+    user-destroy:
+      success: "Student was successfully destroyed."
+      deadline: "Sorry, the deadline for submitting students has passed."
+    destroy-all:
+      success: "Students successfully cleared."
+    update_deadline:
+      success: "Deadline was successfully updated."
+  universities:
+    create:
+      success: "University was successfully created."
+    update:
+      success: "University was successfully updated."
+    destroy: 
+      success: "University was successfully destroyed."
+    destroy-all:
+      success: "Universities successfully cleared."
+    reset:
+      success: "Universities successfully reset."
+    update_max:
+      success: "Default max limit was successfully updated."
+      neg: "There was an error updating max limit. Limit cannot be negative."
+      cap: "There was an error updating max limit. Limit capped at 100."
+    change_max:
+      success: "All limits were successfully updated."
+      neg: "There was an error updating limits. Limit cannot be negative."
+      cap: "There was an error updating limits. Limit capped at 100."
+  # end controllers
+  confirmation_mailer:
+    confirm_email:
+      subject: "Form Confirmation"
+
+

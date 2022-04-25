@@ -4,8 +4,8 @@ require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  #ENV['GOOGLE_OAUTH_CLIENT_ID'] = 'key goes here'
-  #ENV['GOOGLE_OAUTH_CLIENT_SECRET'] = 'key goes here'
+  # ENV['GOOGLE_OAUTH_CLIENT_ID'] = 'key goes here'
+  # ENV['GOOGLE_OAUTH_CLIENT_SECRET'] = 'key goes here'
   # Code is not reloaded between requests.
   config.cache_classes = true
 
