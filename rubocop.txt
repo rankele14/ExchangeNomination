@@ -1,0 +1,91 @@
+Inspecting 94 files
+............C...............................................C..................C.C............
+
+Offenses:
+
+app/controllers/students_controller.rb:93:3: C: Metrics/AbcSize: Assignment Branch Condition size for user_create is too high. [<9, 64, 14> 66.13/53]
+  def user_create ...
+  ^^^^^^^^^^^^^^^
+app/controllers/students_controller.rb:93:3: C: Metrics/PerceivedComplexity: Perceived complexity for user_create is too high. [12/10]
+  def user_create ...
+  ^^^^^^^^^^^^^^^
+app/controllers/students_controller.rb:134:3: C: Metrics/PerceivedComplexity: Perceived complexity for update is too high. [12/10]
+  def update ...
+  ^^^^^^^^^^
+app/controllers/students_controller.rb:163:3: C: Metrics/CyclomaticComplexity: Cyclomatic complexity for user_update is too high. [11/10]
+  def user_update ...
+  ^^^^^^^^^^^^^^^
+app/controllers/students_controller.rb:163:3: C: Metrics/PerceivedComplexity: Perceived complexity for user_update is too high. [14/10]
+  def user_update ...
+  ^^^^^^^^^^^^^^^
+config/environments/development.rb:21:6: C: Rails/FilePath: Prefer Rails.root.join('path/to').
+  if Rails.root.join('tmp', 'caching-dev.txt').exist?
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:5:1: C: RSpec/MultipleDescribes: Do not use multiple top-level example groups - try to nest them.
+RSpec.describe('Logging in', type: :feature) do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:253:3: C: RSpec/ExampleLength: Example has too many lines. [52/40]
+  it 'clear all' do ...
+  ^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:308:3: C: RSpec/ExampleLength: Example has too many lines. [53/40]
+  it 'reset all' do ...
+  ^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:424:3: C: RSpec/ExampleLength: Example has too many lines. [51/40]
+  it 'editing a nominator\'s university' do ...
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/feature/integration_spec.rb:528:3: C: RSpec/ExampleLength: Example has too many lines. [48/40]
+  it 'clear all' do ...
+  ^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:6:1: C: RSpec/MultipleDescribes: Do not use multiple top-level example groups - try to nest them.
+RSpec.describe(Nominator, type: :model) do
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/unit/unit_spec.rb:9:5: C: RSpec/InstanceVariable: Avoid instance variables – use let, a method call, or a local variable (if possible).
+    @uni.save!
+    ^^^^
+spec/unit/unit_spec.rb:10:94: C: RSpec/InstanceVariable: Avoid instance variables – use let, a method call, or a local variable (if possible).
+    described_class.new(first_name: 'John', last_name: 'Smith', title: 'CEO', university_id: @uni.id, nominator_email: 'JohnSmith@gmail.com')
+                                                                                             ^^^^
+spec/unit/unit_spec.rb:124:5: C: RSpec/InstanceVariable: Avoid instance variables – use let, a method call, or a local variable (if possible).
+    @uni.save!
+    ^^^^
+spec/unit/unit_spec.rb:125:95: C: RSpec/InstanceVariable: Avoid instance variables – use let, a method call, or a local variable (if possible).
+    @rep = Nominator.new(first_name: 'John', last_name: 'Smith', title: 'CEO', university_id: @uni.id, nominator_email: 'JohnSmith@gmail.com')
+                                                                                              ^^^^
+spec/unit/unit_spec.rb:126:5: C: RSpec/InstanceVariable: Avoid instance variables – use let, a method call, or a local variable (if possible).
+    @rep.save!
+    ^^^^
+spec/unit/unit_spec.rb:127:77: C: RSpec/InstanceVariable: Avoid instance variables – use let, a method call, or a local variable (if possible).
+    described_class.new(first_name: 'Foo', last_name: 'Bar', university_id: @uni.id, nominator_id: @rep.id, student_email: 'FooBar@gmail.com', exchange_term: 'First', degree_level: 'PHD', major: 'Basket Making')
+                                                                            ^^^^
+spec/unit/unit_spec.rb:127:100: C: RSpec/InstanceVariable: Avoid instance variables – use let, a method call, or a local variable (if possible).
+    described_class.new(first_name: 'Foo', last_name: 'Bar', university_id: @uni.id, nominator_id: @rep.id, student_email: 'FooBar@gmail.com', exchange_term: 'First', degree_level: 'PHD', major: 'Basket Making')
+                                                                                                   ^^^^
+spec/unit/unit_spec.rb:235:5: C: RSpec/InstanceVariable: Avoid instance variables – use let, a method call, or a local variable (if possible).
+    @que.save!
+    ^^^^
+spec/unit/unit_spec.rb:236:38: C: RSpec/InstanceVariable: Avoid instance variables – use let, a method call, or a local variable (if possible).
+    described_class.new(question_id: @que.id, choice: 'Yes')
+                                     ^^^^
+spec/unit/unit_spec.rb:257:5: C: RSpec/InstanceVariable: Avoid instance variables – use let, a method call, or a local variable (if possible).
+    @uni.save!
+    ^^^^
+spec/unit/unit_spec.rb:258:95: C: RSpec/InstanceVariable: Avoid instance variables – use let, a method call, or a local variable (if possible).
+    @rep = Nominator.new(first_name: 'John', last_name: 'Smith', title: 'CEO', university_id: @uni.id, nominator_email: 'JohnSmith@gmail.com')
+                                                                                              ^^^^
+spec/unit/unit_spec.rb:259:5: C: RSpec/InstanceVariable: Avoid instance variables – use let, a method call, or a local variable (if possible).
+    @rep.save!
+    ^^^^
+spec/unit/unit_spec.rb:260:76: C: RSpec/InstanceVariable: Avoid instance variables – use let, a method call, or a local variable (if possible).
+    @stu = Student.new(first_name: 'Foo', last_name: 'Bar', university_id: @uni.id, nominator_id: @rep.id, student_email: 'FooBar@gmail.com', exchange_term: 'First', degree_level: 'PHD', major: 'Basket Making')
+                                                                           ^^^^
+spec/unit/unit_spec.rb:260:99: C: RSpec/InstanceVariable: Avoid instance variables – use let, a method call, or a local variable (if possible).
+    @stu = Student.new(first_name: 'Foo', last_name: 'Bar', university_id: @uni.id, nominator_id: @rep.id, student_email: 'FooBar@gmail.com', exchange_term: 'First', degree_level: 'PHD', major: 'Basket Making')
+                                                                                                  ^^^^
+spec/unit/unit_spec.rb:261:5: C: RSpec/InstanceVariable: Avoid instance variables – use let, a method call, or a local variable (if possible).
+    @stu.save!
+    ^^^^
+spec/unit/unit_spec.rb:262:37: C: RSpec/InstanceVariable: Avoid instance variables – use let, a method call, or a local variable (if possible).
+    described_class.new(student_id: @stu.id, question_id: 1, reply: 'Yes')
+                                    ^^^^
+
+94 files inspected, 28 offenses detected

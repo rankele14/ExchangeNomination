@@ -10,13 +10,17 @@ Rails.application.routes.draw do
   end
 
   # specific definitions go first or else get overwritten by default definitions
-  get 'nominators/:id/students/user_new/', to: 'students#user_new', as: 'user_new_student' # pass nominator id to new student form
-  get 'admin', to: 'students#admin', as: 'admin' # admin home page in student folder for now
+
+  # pass nominator id to new student form
+  get 'nominators/:id/students/user_new/', to: 'students#user_new', as: 'user_new_student'
+  # admin home page in student folder for now
+  get 'admin', to: 'students#admin', as: 'admin'
   get 'admin/update_deadline', to: 'students#update_deadline', as: 'update_deadline'
   get 'admin/help', to: 'students#admin_help', as: 'admin_help'
   get 'help', to: 'students#user_help', as: 'user_help'
 
-  # add new functions/pages to separate user and admin views
+  # define resources, members ('table/:id'), and collections ('/table/page')
+
   resources :nominators do
     member do
       get :user_show
@@ -57,13 +61,12 @@ Rails.application.routes.draw do
     end
     collection do
       post :user_create
-      get :export, path: 'export/student.csv' # export button
+      get :export, path: 'export/student.csv'
       get :clear_all
       post :destroy_all
     end
   end
 
-  # default definitions and root
   resources :universities do
     collection do
       get :update_max
@@ -84,7 +87,6 @@ Rails.application.routes.draw do
     end
   end
 
-  # default definitions and root
   resources :responses
   resources :questions do
     resources :answers do
@@ -100,7 +102,7 @@ Rails.application.routes.draw do
       get :delete
     end
   end
-  
+
   resources :answers do
     member do
       get :show

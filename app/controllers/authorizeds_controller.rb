@@ -25,7 +25,7 @@ class AuthorizedsController < ApplicationController
 
     respond_to do |format|
       if @authorized.save
-        format.html { redirect_to(@authorized, notice: 'Authorized was successfully created.') }
+        format.html { redirect_to(@authorized, notice: t('.success')) }
         format.json { render(:show, status: :created, location: @authorized) }
       else
         format.html { render(:new, status: :unprocessable_entity) }
@@ -38,7 +38,7 @@ class AuthorizedsController < ApplicationController
   def update
     respond_to do |format|
       if @authorized.update(authorized_params)
-        format.html { redirect_to(@authorized, notice: 'Authorized was successfully updated.') }
+        format.html { redirect_to(@authorized, notice: t('.success')) }
         format.json { render(:show, status: :ok, location: @authorized) }
       else
         format.html { render(:edit, status: :unprocessable_entity) }
@@ -51,7 +51,7 @@ class AuthorizedsController < ApplicationController
   def destroy
     @authorized.destroy!
     respond_to do |format|
-      format.html { redirect_to(authorizeds_url, notice: 'Authorized was successfully destroyed.') }
+      format.html { redirect_to(authorizeds_url, notice: t('.success')) }
       format.json { head(:no_content) }
     end
   end
