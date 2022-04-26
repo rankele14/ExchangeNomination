@@ -46,8 +46,18 @@
       out of
   <%= @university.max_limit%>
     </p>
+
+    
+	<div class="row" style="margin-top: 10px;">
+		<div class="col-auto">
+		  <%= button_to "Edit", user_edit_student_path(@student), :class => "edit-button", :method => :get %>
+		</div>
+  </div>
+  <br>
+
+
     <h2>Questions:</h2>
-	
+
 	<p>Please make sure you answer all questions before proceeding.</p>
 	
 	
@@ -64,11 +74,9 @@
 		  <% end %>
 	  </ul>
 	<% end %>
+  <br><br>
 	
 	<div class="row" style="margin-top: 10px; margin-left: 20px;">
-		<div class="col-auto">
-		  <%= button_to "Edit", user_edit_student_path(@student), :class => "edit-button", :method => :get %>
-		</div>
 		<% if allanswered %>
 		<div class="col-auto">
 		  <% if (@deadline == nil || Time.now <= @deadline.var_value) && @university.num_nominees < @university.max_limit%>
