@@ -73,6 +73,8 @@ en:
       success: "Response was successfully created."
     update:
       success: "Response was successfully updated."
+    user_update:
+      success: "Response was successfully updated."
     destroy: 
       success: "Response was successfully destroyed."
     destroy_all:
