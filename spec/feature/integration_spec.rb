@@ -1342,7 +1342,7 @@ RSpec.describe('User Question functions', type: :feature) do
   end
 
   it 'Answer FRQ Question' do
-    click_on 'Edit Answer'
+    click_on 'Answer Question'
     fill_in 'How are you?', with: 'Good'
     click_on 'Update Response'
     expect(page).to(have_content('Good'))
@@ -1399,7 +1399,7 @@ RSpec.describe('User Answer functions', type: :feature) do
   end
 
   it 'Answer Multiple Choice Question' do
-    click_on 'Edit Answer'
+    click_on 'Answer Question'
     select 'Yes', from: 'Yes or no?'
     click_on 'Update Response'
     expect(page).to(have_content('Yes'))
