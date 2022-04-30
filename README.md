@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Application Description
+The application is a Nomination Form Submission Site. The users can choose their respective university, fill out their contact information, and answer questions for each student that the admin sets. The Admin is able to add other admins to review forms, export information to a CSV format, set deadlines for the form, view all information, add universities, add users, set limits, and clear information. 
 
 ## Requirements
 
